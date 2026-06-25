@@ -167,9 +167,12 @@ export class ResourceManager {
   private cache: Map<string, any> = new Map();
   private loadingPromises: Map<string, Promise<any>> = new Map();
 
-  constructor(baseUrl: string = '/resources') {
-    this.resourceBaseUrl = baseUrl;
-    this.manifestUrl = `${baseUrl}/manifest.json`;
+  constructor(baseUrl: string = '') {
+    // In development, resources are served from /docs/resources/
+    // In production, they're served from /resources/
+    const isDev = import.meta.env.DEV;
+    this.resourceBaseUrl = isDev ? '/docs/resources' : '/resources';
+    this.manifestUrl = `${this.resourceBaseUrl}/manifest.json`;
   }
 
   /**
@@ -359,4 +362,70 @@ export async function getAvailableCommentaries(): Promise<CommentaryManifestEntr
 export async function getAvailableStrongs(): Promise<StrongsManifestEntry[]> {
   const manifest = await resourceManager.getManifest();
   return manifest.resources.strongs;
+}
+
+// ============================================================================
+// Convenience Export Functions for ResourceContext
+// ============================================================================
+
+const getResourceBaseUrl = () => {
+  const isDev = import.meta.env.DEV;
+  return isDev ? '/docs/resources' : '/resources';
+};
+
+/**
+ * Load the resource manifest
+ */
+export async function loadResourceManifest(): Promise<ResourceManifest> {
+  return resourceManager.getManifest();
+}
+
+/**
+ * Load a Bible by filename
+ */
+export async function loadBible(filename: string): Promise<BibleVersion> {
+  const url = `${getResourceBaseUrl()}/${filename}`;
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`Failed to load Bible: ${response.statusText}`);
+  }
+  return response.json();
+}
+
+/**
+ * Load a confession by filename
+ */
+export async function loadConfession(filename: string): Promise<Confession> {
+  const url = `${getResourceBaseUrl()}/${filename}`;
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`Failed to load confession: ${response.statusText}`);
+  }
+  return response.json();
+}
+
+/**
+ * Load a commentary by filename
+ */
+export async function loadCommentary(filename: string): Promise<Commentary> {
+  const url = `${getResourceBaseUrl()}/${filename}`;
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`Failed to load commentary: ${response.statusText}`);
+  }
+  return response.json();
+}
+
+/**
+ * Load Strong's Greek concordance
+ */
+export async function loadStrongsGreek(): Promise<StrongsConcordance> {
+  return resourceManager.loadStrongs('strongs-greek');
+}
+
+/**
+ * Load Strong's Hebrew concordance
+ */
+export async function loadStrongsHebrew(): Promise<StrongsConcordance> {
+  return resourceManager.loadStrongs('strongs-hebrew');
 }

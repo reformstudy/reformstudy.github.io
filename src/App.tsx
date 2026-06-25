@@ -1,9 +1,10 @@
-import { useState } from 'react';
-import { Search, BookOpen, Map as MapIcon, Library, Scale, Clock } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Search, BookOpen, Map as MapIcon, Library, Scale, Clock, AlertCircle } from 'lucide-react';
 import AtlasAndTimeline from './components/AtlasAndTimeline';
 import GlobalSearch from './components/GlobalSearch';
 import ScriptureReader from './components/ScriptureReader';
 import GenericView from './components/GenericView';
+import { ResourceProvider, useResources } from './context/ResourceContext';
 
 const navItems = [
   { id: 'search', label: 'Global Search', icon: <Search size={16} /> },
@@ -13,10 +14,64 @@ const navItems = [
   { id: 'theology', label: 'Theology Explorer', icon: <Scale size={16} /> }
 ];
 
-export default function App() {
-  const [activeModule, setActiveModule] = useState('atlas');
+function AppContent() {
+  const [activeModule, setActiveModule] = useState('reader');
+  const { isLoading, error, ensureResourceLoaded } = useResources();
+
+  // Pre-load default resources when app initializes
+  useEffect(() => {
+    ensureResourceLoaded('kjv');
+    ensureResourceLoaded('wcf');
+  }, [ensureResourceLoaded]);
 
   const renderWorkspace = () => {
+    if (isLoading) {
+      return (
+        <div className="workspace" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '600px' }}>
+          <div style={{ textAlign: 'center' }}>
+            <div style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: 16 }}>
+              Loading resources...
+            </div>
+            <div style={{ fontSize: '0.85rem', color: 'var(--text-tertiary)' }}>
+              Initializing Bible, confessions, and study materials
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    if (error) {
+      return (
+        <div className="workspace" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '600px' }}>
+          <div style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12 }}>
+            <AlertCircle size={32} color="var(--accent-exe)" />
+            <div style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text-primary)' }}>
+              Failed to Load Resources
+            </div>
+            <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', maxWidth: 400 }}>
+              {error.message}
+            </div>
+            <button
+              type="button"
+              onClick={() => window.location.reload()}
+              style={{
+                marginTop: 12,
+                padding: '8px 16px',
+                borderRadius: 8,
+                backgroundColor: 'var(--accent-exe)',
+                color: 'white',
+                border: 'none',
+                cursor: 'pointer',
+                fontWeight: 600
+              }}
+            >
+              Retry
+            </button>
+          </div>
+        </div>
+      );
+    }
+
     switch (activeModule) {
       case 'search':
         return <GlobalSearch />;
@@ -29,7 +84,7 @@ export default function App() {
       case 'theology':
         return <GenericView title="Theology Explorer" />;
       default:
-        return <AtlasAndTimeline />;
+        return <ScriptureReader />;
     }
   };
 
@@ -70,5 +125,13 @@ export default function App() {
 
       {renderWorkspace()}
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <ResourceProvider>
+      <AppContent />
+    </ResourceProvider>
   );
 }
