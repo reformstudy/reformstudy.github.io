@@ -1,0 +1,3 @@
+H1	ab	awb	noun masculine	father	father	1210
+H2	eb	abe	noun masculine	the green stuff, verdure	greenness	1
+H3	abagtha	ab-ag-tha	proper noun masculine	Abagtha, a eunuch of King Ahasuerus	Abagtha	1

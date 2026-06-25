@@ -1,0 +1,59 @@
+{
+  "version": {
+    "id": "kjv",
+    "name": "King James Version",
+    "abbreviation": "KJV",
+    "language": "en",
+    "releaseDate": "1611",
+    "copyright": "Public Domain",
+    "description": "The King James Version is an English translation of the Christian Bible originally published in 1611."
+  },
+  "books": [
+    {
+      "id": "GEN",
+      "name": "Genesis",
+      "testament": "OT",
+      "chapters": 50,
+      "verses": [
+        {
+          "book": "GEN",
+          "chapter": 1,
+          "verse": 1,
+          "text": "In the beginning God created the heaven and the earth."
+        },
+        {
+          "book": "GEN",
+          "chapter": 1,
+          "verse": 2,
+          "text": "And the earth was without form, and void; and darkness was upon the face of the deep. And the Spirit of God moved upon the face of the waters."
+        },
+        {
+          "book": "GEN",
+          "chapter": 1,
+          "verse": 3,
+          "text": "And God said, Let there be light: and there was light."
+        }
+      ]
+    },
+    {
+      "id": "MAT",
+      "name": "Matthew",
+      "testament": "NT",
+      "chapters": 28,
+      "verses": [
+        {
+          "book": "MAT",
+          "chapter": 1,
+          "verse": 1,
+          "text": "The book of the generation of Jesus Christ, the son of David, the son of Abraham."
+        },
+        {
+          "book": "MAT",
+          "chapter": 1,
+          "verse": 2,
+          "text": "Abraham begat Isaac; and Isaac begat Jacob; and Jacob begat Judas and his brethren;"
+        }
+      ]
+    }
+  ]
+}

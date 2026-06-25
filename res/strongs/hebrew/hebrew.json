@@ -1,0 +1,55 @@
+{
+  "concordance": {
+    "id": "hebrew",
+    "name": "Strong's Hebrew Concordance",
+    "language": "Hebrew",
+    "totalEntries": 8674,
+    "version": "1890"
+  },
+  "entries": [
+    {
+      "number": "H1",
+      "transliteration": "ab",
+      "pronunciation": "awb",
+      "partOfSpeech": "noun masculine",
+      "definition": "father",
+      "kjvDefinition": "father",
+      "usageCount": 1210,
+      "references": [
+        {
+          "book": "GEN",
+          "chapter": 2,
+          "verse": 24,
+          "text": "Therefore shall a man leave his father and his mother, and shall cleave unto his wife: and they shall be one flesh."
+        }
+      ]
+    },
+    {
+      "number": "H2",
+      "transliteration": "eb",
+      "pronunciation": "abe",
+      "partOfSpeech": "noun masculine",
+      "definition": "greenness, fresh verdure",
+      "kjvDefinition": "greenness",
+      "usageCount": 1,
+      "references": []
+    },
+    {
+      "number": "H3",
+      "transliteration": "abagtha",
+      "pronunciation": "ab-ag-tha",
+      "partOfSpeech": "proper noun masculine",
+      "definition": "Abagtha, a eunuch of King Ahasuerus",
+      "kjvDefinition": "Abagtha",
+      "usageCount": 1,
+      "references": [
+        {
+          "book": "EST",
+          "chapter": 1,
+          "verse": 10,
+          "text": "On the seventh day, when the heart of the king was merry with wine, he commanded Mehuman, Biztha, Harbona, Bigtha, and Abagtha, Zethar, and Carcas, the seven chamberlains that served in the presence of Ahasuerus the king,"
+        }
+      ]
+    }
+  ]
+}

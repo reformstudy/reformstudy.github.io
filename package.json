@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "build:resources": "node scripts/build-resources.js",
+    "convert:resources": "node scripts/convert-text-to-json.js",
     "preview": "vite preview"
   },
   "dependencies": {

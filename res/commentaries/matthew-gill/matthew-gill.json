@@ -1,0 +1,33 @@
+{
+  "commentary": {
+    "id": "matthew-gill",
+    "name": "John Gill's Exposition of the Entire Bible - Matthew",
+    "author": "John Gill",
+    "book": "MAT",
+    "published": 1746,
+    "description": "A thorough verse-by-verse commentary on the Gospel of Matthew by John Gill, a Baptist theologian and biblical scholar."
+  },
+  "entries": [
+    {
+      "book": "MAT",
+      "chapter": 1,
+      "verse": 1,
+      "text": "The book of the generation of Jesus Christ, the son of David, the son of Abraham.",
+      "commentary": "This title denotes the genealogy of Jesus Christ. The word 'generation' may refer to his genealogy or account of his person and incarnation. As the 'son of David,' this confirms the messianic prophecy that the Messiah would be of David's line. As the 'son of Abraham,' this shows Christ as the fulfillment of God's covenant with Abraham."
+    },
+    {
+      "book": "MAT",
+      "chapter": 1,
+      "verse": 2,
+      "text": "Abraham begat Isaac; and Isaac begat Jacob; and Jacob begat Judas and his brethren;",
+      "commentary": "The genealogy now proceeds through the chosen line of Abraham's descendants. This establishes the legitimacy of Jesus's lineage according to the flesh, showing that He came through the tribes of Judah, fulfilling the Old Testament prophecies concerning the Messiah."
+    },
+    {
+      "book": "MAT",
+      "chapter": 1,
+      "verse": 3,
+      "text": "And Judas begat Phares and Zara of Thamar; and Phares begat Esrom; and Esrom begat Aram;",
+      "commentary": "The mention of Tamar shows that even in the genealogy of Christ, sinful human nature is represented, yet God's grace works through imperfection. This demonstrates the mercy of God in redemption and Christ's solidarity with fallen humanity."
+    }
+  ]
+}
