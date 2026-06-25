@@ -185,8 +185,9 @@ export class ResourceManager {
       if (!response.ok) {
         throw new Error(`Failed to fetch manifest: ${response.statusText}`);
       }
-      this.manifest = await response.json();
-      return this.manifest;
+      const manifest = (await response.json()) as ResourceManifest;
+      this.manifest = manifest;
+      return manifest;
     } catch (error) {
       console.error('Error loading manifest:', error);
       throw error;

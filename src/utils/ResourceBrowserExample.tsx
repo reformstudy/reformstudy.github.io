@@ -18,6 +18,8 @@ import {
   StrongsManifestEntry,
   BibleVersion,
   Confession
+  ,
+  ConfessionSubsection
 } from '@/utils/resourceLoader';
 
 export function ResourceBrowserExample() {
@@ -225,7 +227,7 @@ export function ConfessionExample({ confessionId = 'wcf' }) {
       {firstSection && (
         <div>
           <h4>{firstSection.title}</h4>
-          {firstSection.sections.map((section, idx) => (
+          {firstSection.sections.map((section: ConfessionSubsection, idx: number) => (
             <div key={idx}>
               <p><strong>{section.number}</strong> {section.content}</p>
             </div>
