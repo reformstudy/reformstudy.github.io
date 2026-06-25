@@ -1,6 +1,6 @@
 # reformstudy.github.io
 
-This repository now hosts a Vite + React study app for Project Covenant.
+This repository now hosts a Vite + React study app for ReformStudy.
 
 ## Local development
 

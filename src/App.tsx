@@ -10,8 +10,7 @@ const navItems = [
   { id: 'reader', label: 'Scripture Reader', icon: <BookOpen size={16} /> },
   { id: 'atlas', label: 'Atlas & Timeline', icon: <MapIcon size={16} /> },
   { id: 'archive', label: 'Confessional Archive', icon: <Library size={16} /> },
-  { id: 'theology', label: 'Theology Explorer', icon: <Scale size={16} /> },
-  { id: 'history', label: 'Church History', icon: <Clock size={16} /> }
+  { id: 'theology', label: 'Theology Explorer', icon: <Scale size={16} /> }
 ];
 
 export default function App() {
@@ -29,8 +28,6 @@ export default function App() {
         return <GenericView title="Confessional Archive" />;
       case 'theology':
         return <GenericView title="Theology Explorer" />;
-      case 'history':
-        return <GenericView title="Church History Timeline" />;
       default:
         return <AtlasAndTimeline />;
     }
@@ -43,7 +40,7 @@ export default function App() {
           <div className="brand-mark">
             <BookOpen size={20} />
           </div>
-          <div className="brand-title">Project Covenant</div>
+          <div className="brand-title">ReformStudy</div>
         </div>
 
         <div className="search-bar">
