@@ -1,0 +1,51 @@
+{
+  "timestamp": "2026-06-25T19:27:31.167Z",
+  "resources": {
+    "bibles": [
+      {
+        "id": "kjv",
+        "name": "King James Version",
+        "abbreviation": "KJV",
+        "language": "en",
+        "file": "bible-kjv.json",
+        "description": "The King James Version is an English translation of the Christian Bible originally published in 1611."
+      }
+    ],
+    "confessions": [
+      {
+        "id": "wcf",
+        "name": "Westminster Confession of Faith",
+        "abbreviation": "WCF",
+        "year": 1647,
+        "file": "confession-wcf.json",
+        "description": "The Westminster Confession of Faith is a Reformed Christian confession of faith drafted by the 1646 Westminster Assembly."
+      }
+    ],
+    "commentaries": [
+      {
+        "id": "matthew-gill",
+        "name": "John Gill's Exposition of the Entire Bible - Matthew",
+        "author": "John Gill",
+        "book": "MAT",
+        "file": "commentary-matthew-gill.json",
+        "description": "A thorough verse-by-verse commentary on the Gospel of Matthew by John Gill, a Baptist theologian and biblical scholar."
+      }
+    ],
+    "strongs": [
+      {
+        "id": "greek",
+        "name": "Strong's Greek Concordance",
+        "language": "Greek",
+        "totalEntries": 5624,
+        "file": "strongs-greek.json"
+      },
+      {
+        "id": "hebrew",
+        "name": "Strong's Hebrew Concordance",
+        "language": "Hebrew",
+        "totalEntries": 8674,
+        "file": "strongs-hebrew.json"
+      }
+    ]
+  }
+}
