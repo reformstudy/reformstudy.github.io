@@ -1,13 +1,46 @@
 import { useState, useEffect } from 'react';
 import { BookOpen } from 'lucide-react';
 import { useResources } from '../context/ResourceContext';
+import type { BibleBook } from '../utils/resourceLoader';
+
+interface BookListProps {
+  books: BibleBook[];
+  selectedBook: string;
+  onSelect: (id: string) => void;
+}
+
+function BookList({ books, selectedBook, onSelect }: BookListProps) {
+  return (
+    <>
+      {books.map((book) => (
+        <button
+          key={book.id}
+          type="button"
+          onClick={() => onSelect(book.id)}
+          style={{
+            padding: '10px 17px',
+            fontWeight: 600,
+            color: selectedBook === book.id ? 'var(--accent-geo)' : 'var(--text-secondary)',
+            cursor: 'pointer',
+            background: 'transparent',
+            border: 'none',
+            textAlign: 'left',
+            borderLeft: selectedBook === book.id ? '3px solid var(--accent-geo)' : '3px solid transparent',
+            width: '100%'
+          }}
+        >
+          {book.name}
+        </button>
+      ))}
+    </>
+  );
+}
 
 export default function ScriptureReader() {
   const { bibles, ensureResourceLoaded } = useResources();
   const [selectedBook, setSelectedBook] = useState('MAT');
   const [selectedChapter, setSelectedChapter] = useState(1);
 
-  // Ensure KJV is loaded when component mounts
   useEffect(() => {
     ensureResourceLoaded('kjv');
   }, [ensureResourceLoaded]);
@@ -33,74 +66,25 @@ export default function ScriptureReader() {
     ? currentBook.verses.filter(v => v.chapter === selectedChapter)
     : [];
 
-  const getBooks = () => {
-    // Group books by testament
-    const ot = kjv.books.filter(b => b.testament === 'OT');
-    const nt = kjv.books.filter(b => b.testament === 'NT');
-    return { ot, nt };
-  };
+  const otBooks = kjv.books.filter(b => b.testament === 'OT');
+  const ntBooks = kjv.books.filter(b => b.testament === 'NT');
 
-  const books = getBooks();
+  const handleBookSelect = (id: string) => {
+    setSelectedBook(id);
+    setSelectedChapter(1);
+  };
 
   return (
     <div className="workspace">
       <aside className="left-sidebar">
-        <div style={{ padding: '20px 20px 10px', fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', color: 'var(--text-tertiary)' }}>
-          Old Testament
-        </div>
-        {books.ot.map((book) => (
-          <button
-            key={book.id}
-            type="button"
-            onClick={() => {
-              setSelectedBook(book.id);
-              setSelectedChapter(1);
-            }}
-            style={{
-              padding: '10px 20px',
-              fontWeight: 600,
-              color: selectedBook === book.id ? 'var(--accent-geo)' : 'var(--text-secondary)',
-              cursor: 'pointer',
-              background: 'transparent',
-              border: 'none',
-              textAlign: 'left',
-              borderLeft: selectedBook === book.id ? '3px solid var(--accent-geo)' : '3px solid transparent',
-              paddingLeft: '17px'
-            }}
-          >
-            {book.name}
-          </button>
-        ))}
+        <div className="sidebar-label">Old Testament</div>
+        <BookList books={otBooks} selectedBook={selectedBook} onSelect={handleBookSelect} />
 
-        <div style={{ padding: '20px 20px 10px', fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', color: 'var(--text-tertiary)', marginTop: 20 }}>
-          New Testament
-        </div>
-        {books.nt.map((book) => (
-          <button
-            key={book.id}
-            type="button"
-            onClick={() => {
-              setSelectedBook(book.id);
-              setSelectedChapter(1);
-            }}
-            style={{
-              padding: '10px 20px',
-              fontWeight: 600,
-              color: selectedBook === book.id ? 'var(--accent-geo)' : 'var(--text-secondary)',
-              cursor: 'pointer',
-              background: 'transparent',
-              border: 'none',
-              textAlign: 'left',
-              borderLeft: selectedBook === book.id ? '3px solid var(--accent-geo)' : '3px solid transparent',
-              paddingLeft: '17px'
-            }}
-          >
-            {book.name}
-          </button>
-        ))}
+        <div className="sidebar-label" style={{ marginTop: 20 }}>New Testament</div>
+        <BookList books={ntBooks} selectedBook={selectedBook} onSelect={handleBookSelect} />
 
         {currentBook && (
-          <div style={{ padding: '12px 20px 20px', backgroundColor: 'white', borderBottom: '1px solid var(--border-soft)' }}>
+          <div style={{ padding: '12px 20px 20px', backgroundColor: 'var(--bg-surface)', borderBottom: '1px solid var(--border-soft)' }}>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 6 }}>
               {Array.from({ length: currentBook.chapters }, (_, i) => i + 1).map((chapter) => (
                 <button
@@ -109,12 +93,12 @@ export default function ScriptureReader() {
                   onClick={() => setSelectedChapter(chapter)}
                   style={{
                     aspectRatio: '1',
-                    borderRadius: 8,
+                    borderRadius: 'var(--radius-sm)',
                     fontSize: '0.85rem',
                     fontWeight: 600,
                     cursor: 'pointer',
                     backgroundColor: chapter === selectedChapter ? 'var(--accent-geo)' : 'transparent',
-                    color: chapter === selectedChapter ? 'white' : 'var(--text-secondary)',
+                    color: chapter === selectedChapter ? 'var(--bg-surface)' : 'var(--text-secondary)',
                     border: 'none'
                   }}
                 >
@@ -139,7 +123,7 @@ export default function ScriptureReader() {
                 </span>
               </div>
 
-              <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1.2rem', lineHeight: 2, color: '#38332E' }}>
+              <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1.2rem', lineHeight: 2, color: 'var(--text-primary)' }}>
                 {currentVerses.length > 0 ? (
                   currentVerses.map((verse) => (
                     <div key={`${verse.book}-${verse.chapter}-${verse.verse}`} className="verse">
@@ -169,8 +153,8 @@ export default function ScriptureReader() {
         </div>
 
         <div style={{ padding: 20, display: 'flex', flexDirection: 'column', gap: 20, overflowY: 'auto' }}>
-          <div style={{ backgroundColor: 'var(--bg-surface)', borderRadius: 'var(--radius-lg)', border: '1px solid var(--border-soft)', boxShadow: 'var(--shadow-card)', overflow: 'hidden' }}>
-            <div style={{ padding: '12px 16px', fontSize: '0.85rem', fontWeight: 700, textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: 8, borderBottom: '1px solid var(--border-soft)', backgroundColor: 'var(--bg-exe-light)', color: '#B07B46' }}>
+          <div className="card">
+            <div style={{ padding: '12px 16px', fontSize: '0.85rem', fontWeight: 700, textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: 8, borderBottom: '1px solid var(--border-soft)', backgroundColor: 'var(--bg-exe-light)', color: 'var(--accent-exe)' }}>
               Word Study
             </div>
             <div style={{ padding: 16 }}>

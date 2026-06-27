@@ -126,9 +126,6 @@ export function ResourceProvider({ children }: { children: ReactNode }) {
       if (resourceId === 'kjv') {
         const data = await loadBible('bible-kjv.json');
         setBibles(prev => ({ ...prev, [resourceId]: data }));
-      } else if (resourceId === 'wcf') {
-        const data = await loadConfession('confession-wcf.json');
-        setConfessions(prev => ({ ...prev, [resourceId]: data }));
       } else if (resourceId === 'matthew-gill') {
         const data = await loadCommentary('commentary-matthew-gill.json');
         setCommentaries(prev => ({ ...prev, [resourceId]: data }));
@@ -138,6 +135,14 @@ export function ResourceProvider({ children }: { children: ReactNode }) {
       } else if (resourceId === 'strongs-hebrew') {
         const data = await loadStrongsHebrew();
         setStrongsHebrew(data);
+      } else {
+        // Dynamically resolve any confession from the manifest
+        const currentManifest = await loadResourceManifest();
+        const confessionEntry = currentManifest.resources.confessions.find(c => c.id === resourceId);
+        if (confessionEntry) {
+          const data = await loadConfession(confessionEntry.file);
+          setConfessions(prev => ({ ...prev, [resourceId]: data }));
+        }
       }
 
       setLoadedResources(prev => new Set(prev).add(resourceId));

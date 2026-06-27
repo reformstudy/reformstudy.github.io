@@ -6,6 +6,7 @@ import ScriptureReader from './components/ScriptureReader';
 import GenericView from './components/GenericView';
 import ContentEditor from './components/ContentEditor';
 import TheologyExplorer from './components/TheologyExplorer';
+import ConfessionalArchive from './components/ConfessionalArchive';
 import { ResourceProvider, useResources } from './context/ResourceContext';
 
 const navItems = [
@@ -83,7 +84,7 @@ function AppContent() {
       case 'atlas':
         return <AtlasAndTimeline />;
       case 'archive':
-        return <GenericView title="Confessional Archive" />;
+        return <ConfessionalArchive />;
       case 'theology':
         return <TheologyExplorer />;
       case 'admin':
