@@ -171,6 +171,8 @@ export class ResourceManager {
     // In development, resources are served from /docs/resources/
     // In production, they're served from /resources/
     const isDev = import.meta.env.DEV;
+    // Prefer built resources by default, but allow a local content server
+    // to serve editable content under /content when running in dev.
     this.resourceBaseUrl = isDev ? '/docs/resources' : '/resources';
     this.manifestUrl = `${this.resourceBaseUrl}/manifest.json`;
   }
@@ -370,6 +372,8 @@ export async function getAvailableStrongs(): Promise<StrongsManifestEntry[]> {
 
 const getResourceBaseUrl = () => {
   const isDev = import.meta.env.DEV;
+  // If a local content server is available, app components (Atlas/Theology)
+  // may fetch files directly from it (http://localhost:4001/file/...).
   return isDev ? '/docs/resources' : '/resources';
 };
 

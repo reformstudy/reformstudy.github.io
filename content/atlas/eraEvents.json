@@ -1,0 +1,27 @@
+{
+  "creation": { "title": "Creation & Fall", "timeframe": "Genesis 1 – 3", "events": [] },
+  "preflood": { "title": "Pre-Flood Age", "timeframe": "Genesis 4 – 6", "events": [] },
+  "patriarchal": {
+    "title": "Patriarchal Age",
+    "timeframe": "c. 2100 – 1800 BC",
+    "events": [
+      { "id": "ur", "date": "c. 2090 BC", "title": "The Call of Abram", "loc": "Ur of the Chaldeans", "coords": { "x": 900, "y": 480 }, "desc": "God calls Abram out of Ur, establishing the unconditional covenant of grace.", "scripture": "Genesis 12:1-3", "theme": "Covenant of Grace" }
+    ]
+  },
+  "mosaic": {
+    "title": "Exodus & Conquest",
+    "timeframe": "c. 1446 – 1350 BC",
+    "events": [
+      { "id": "exodus", "date": "c. 1446 BC", "title": "The Exodus", "loc": "Rameses, Egypt", "coords": { "x": 640, "y": 560 }, "desc": "God delivers Israel from slavery in Egypt.", "scripture": "Exodus 12", "theme": "Redemption" }
+    ]
+  },
+  "kingdom": { "title": "The Kingdom Era", "timeframe": "c. 1050 – 586 BC", "events": [] },
+  "exile": { "title": "Exile & Return", "timeframe": "586 – 400 BC", "events": [] },
+  "church": {
+    "title": "Apostolic & Church Age",
+    "timeframe": "33 AD – Present",
+    "events": [
+      { "id": "pentecost", "date": "c. 33 AD", "title": "Pentecost", "loc": "Jerusalem", "coords": { "x": 750, "y": 460 }, "desc": "The Holy Spirit is poured out on the disciples.", "scripture": "Acts 2:1-4", "theme": "New Covenant" }
+    ]
+  }
+}

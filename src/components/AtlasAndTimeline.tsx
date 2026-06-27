@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Map as MapIcon, BookOpen, Clock, ChevronRight } from 'lucide-react';
 
 interface EraEvent {
@@ -30,7 +30,7 @@ const eras = [
 
 type EraKey = typeof eras[number]['id'];
 
-const eraEvents: Record<EraKey, EraData> = {
+const defaultEraEvents: Record<EraKey, EraData> = {
   creation: {
     title: 'Creation & Fall',
     timeframe: 'Genesis 1 – 3',
@@ -82,9 +82,27 @@ const eraEvents: Record<EraKey, EraData> = {
   }
 };
 
+
 export default function AtlasAndTimeline() {
   const [activeEra, setActiveEra] = useState<EraKey>('church');
   const [activeEventId, setActiveEventId] = useState('athens');
+  const [eraEvents, setEraEvents] = useState<Record<EraKey, EraData>>(defaultEraEvents);
+
+  // In dev, try to load editable content from local content server
+  useEffect(() => {
+    if (!import.meta.env.DEV) return;
+    (async () => {
+      try {
+        const res = await fetch('http://localhost:4001/file/atlas/eraEvents.json');
+        if (!res.ok) return;
+        const json = await res.json();
+        // Merge with defaults to avoid breaking shape
+        setEraEvents(prev => ({ ...(prev as any), ...(json as any) }));
+      } catch (err) {
+        // Ignore - fall back to defaults
+      }
+    })();
+  }, []);
 
   const eraData = eraEvents[activeEra] ?? { title: 'Era Under Construction', timeframe: 'TBD', events: [] };
   const activeEvent = eraData.events.find((event: EraEvent) => event.id === activeEventId) ?? eraData.events[0];

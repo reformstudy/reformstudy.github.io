@@ -4,6 +4,8 @@ import AtlasAndTimeline from './components/AtlasAndTimeline';
 import GlobalSearch from './components/GlobalSearch';
 import ScriptureReader from './components/ScriptureReader';
 import GenericView from './components/GenericView';
+import ContentEditor from './components/ContentEditor';
+import TheologyExplorer from './components/TheologyExplorer';
 import { ResourceProvider, useResources } from './context/ResourceContext';
 
 const navItems = [
@@ -11,7 +13,8 @@ const navItems = [
   { id: 'reader', label: 'Scripture Reader', icon: <BookOpen size={16} /> },
   { id: 'atlas', label: 'Atlas & Timeline', icon: <MapIcon size={16} /> },
   { id: 'archive', label: 'Confessional Archive', icon: <Library size={16} /> },
-  { id: 'theology', label: 'Theology Explorer', icon: <Scale size={16} /> }
+  { id: 'theology', label: 'Theology Explorer', icon: <Scale size={16} /> },
+  { id: 'admin', label: 'Content Editor', icon: <Clock size={16} /> }
 ];
 
 function AppContent() {
@@ -82,7 +85,9 @@ function AppContent() {
       case 'archive':
         return <GenericView title="Confessional Archive" />;
       case 'theology':
-        return <GenericView title="Theology Explorer" />;
+        return <TheologyExplorer />;
+      case 'admin':
+        return <ContentEditor />;
       default:
         return <ScriptureReader />;
     }

@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:cms": "concurrently \"npm:content-server\" \"npm:dev\"",
     "build": "tsc && vite build",
+    "content-server": "node scripts/content-server.js",
     "build:resources": "node scripts/build-resources.js",
     "convert:resources": "node scripts/convert-text-to-json.js",
     "preview": "vite preview"
@@ -16,6 +18,9 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "concurrently": "^8.2.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
