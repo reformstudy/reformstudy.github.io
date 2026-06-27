@@ -148,7 +148,7 @@ export default function AtlasAndTimeline() {
         </div>
 
         <div className="bottom-timeline">
-          <div style={{ padding: '12px 24px', borderBottom: '1px solid var(--border-soft)', backgroundColor: '#FAFAFA', display: 'flex', justifyContent: 'space-between' }}>
+          <div style={{ padding: '12px 24px', borderBottom: '1px solid var(--border-soft)', backgroundColor: 'var(--bg-subtle)', display: 'flex', justifyContent: 'space-between' }}>
             <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1.1rem', fontWeight: 600 }}>{eraData.title}</div>
             <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: 600 }}>{eraData.timeframe}</div>
           </div>
@@ -181,7 +181,7 @@ export default function AtlasAndTimeline() {
       <aside className="right-sidebar">
         {activeEvent ? (
           <div style={{ padding: 24, display: 'flex', flexDirection: 'column', gap: 24, height: '100%', overflowY: 'auto' }}>
-            <div style={{ padding: '32px 24px 20px', borderBottom: '1px solid var(--border-soft)', backgroundColor: '#FAFAFA' }}>
+            <div style={{ padding: '32px 24px 20px', borderBottom: '1px solid var(--border-soft)', backgroundColor: 'var(--bg-subtle)' }}>
               <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '4px 12px', backgroundColor: 'var(--bg-geo-light)', color: 'var(--accent-geo)', borderRadius: 16, fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', marginBottom: 12 }}>
                 <MapIcon size={12} /> {activeEvent.loc}
               </div>
@@ -196,7 +196,7 @@ export default function AtlasAndTimeline() {
             </div>
 
             {activeEvent.scripture && (
-              <div style={{ backgroundColor: '#FAFAFA', borderLeft: '3px solid var(--accent-gold)', padding: 16, borderRadius: '0 var(--radius-md) var(--radius-md) 0' }}>
+              <div style={{ backgroundColor: 'var(--bg-subtle)', borderLeft: '3px solid var(--accent-gold)', padding: 16, borderRadius: '0 var(--radius-md) var(--radius-md) 0' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontWeight: 700, color: 'var(--accent-gold)', fontSize: '0.85rem', textTransform: 'uppercase', marginBottom: 8 }}>
                   <BookOpen size={14} /> Scripture Context
                 </div>
@@ -205,11 +205,11 @@ export default function AtlasAndTimeline() {
             )}
 
             {activeEvent.theme && (
-              <div style={{ backgroundColor: 'var(--accent-gold-light)', border: '1px solid #EED7B8', borderRadius: 'var(--radius-md)', padding: 16 }}>
+              <div style={{ backgroundColor: 'var(--accent-gold-light)', border: '1px solid var(--border-gold)', borderRadius: 'var(--radius-md)', padding: 16 }}>
                 <div style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--accent-gold)', textTransform: 'uppercase', marginBottom: 8, letterSpacing: 0.5 }}>
                   Theological Connection
                 </div>
-                <div style={{ fontSize: '0.95rem', color: '#5C4A3D', fontWeight: 600 }}>{activeEvent.theme}</div>
+                <div style={{ fontSize: '0.95rem', color: 'var(--text-warm)', fontWeight: 600 }}>{activeEvent.theme}</div>
               </div>
             )}
 

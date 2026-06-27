@@ -1,13 +1,18 @@
 :root {
   --bg-page: #FDFBF7;
   --bg-surface: #FFFFFF;
+  --bg-subtle: #FAFAFA;
   --bg-sidebar: #F5F3EC;
   --bg-sidebar-hover: #EAE6DB;
   --text-primary: #2C2724;
   --text-secondary: #6E665D;
   --text-tertiary: #A39C95;
+  --text-warm: #5C4A3D;
   --accent-geo: #4A6960;
+  --accent-geo-dark: #3a534b;
   --bg-geo-light: #E8EFEB;
+  /* --accent-exe and --accent-gold share the same amber hue intentionally;
+     exe = scripture/exegesis UI accents, gold = map/timeline highlights */
   --accent-exe: #D4A373;
   --bg-exe-light: #FDF6EE;
   --accent-theo: #546A7B;
@@ -16,6 +21,7 @@
   --bg-time-light: #F3E8EF;
   --accent-gold: #D4A373;
   --accent-gold-light: #FDF6EE;
+  --border-gold: #EED7B8;
   --map-water: #E8F0F2;
   --map-land: #F3EFE8;
   --map-border: #D8D2C4;
@@ -219,7 +225,25 @@ button {
 }
 
 .action-button:hover {
-  background-color: #3a534b;
+  background-color: var(--accent-geo-dark);
+}
+
+/* Reusable uppercase section label used in sidebars across components */
+.sidebar-label {
+  padding: 20px 20px 10px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+/* Standard content card: border, radius, shadow */
+.card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
 }
 
 .map-view {
@@ -265,7 +289,7 @@ button {
 }
 
 .verse.active-context {
-  background-color: #f8f9f6;
+  background-color: var(--bg-subtle);
   box-shadow: -3px 0 0 var(--border-soft);
 }
 

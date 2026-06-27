@@ -20,7 +20,7 @@ import {
   Confession
   ,
   ConfessionSubsection
-} from '@/utils/resourceLoader';
+} from './resourceLoader';
 
 export function ResourceBrowserExample() {
   const [bibles, setBibles] = useState<BibleManifestEntry[]>([]);
