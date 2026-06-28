@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, type ReactNode } from 'react';
-import { BookOpen, Library, ChevronRight } from 'lucide-react';
+import { BookOpen, Library, ChevronRight, SlidersHorizontal, X } from 'lucide-react';
 import { useResources } from '../context/ResourceContext';
 
 type SearchResultType = 'scripture' | 'confession';
@@ -89,6 +89,8 @@ export default function GlobalSearch() {
     setResults(newResults);
   }, [debouncedTerm, bibles, confessions]);
 
+  const [mobileFilters, setMobileFilters] = useState(false);
+
   const countForFilter = (filterId: FilterId) => {
     const filter = FILTERS.find(f => f.id === filterId);
     if (!filter?.type) return results.length;
@@ -103,8 +105,20 @@ export default function GlobalSearch() {
     .slice(0, RESULT_LIMIT);
 
   return (
+    <>
+    <div className="mobile-overlay" style={{ opacity: mobileFilters ? 1 : 0, pointerEvents: mobileFilters ? 'auto' : 'none' }} onClick={() => setMobileFilters(false)} />
+
+    <div className="mobile-panel-bar mobile-only">
+      <button className="mobile-panel-btn" onClick={() => setMobileFilters(true)}>
+        <SlidersHorizontal size={15} /> Filters
+      </button>
+    </div>
+
     <div className="workspace">
-      <aside className="left-sidebar" style={{ padding: 32, width: 280 }}>
+      <aside className={`left-sidebar${mobileFilters ? ' mobile-open' : ''}`} style={{ padding: 32, width: 280 }}>
+        <div className="sidebar-close-row mobile-only">
+          <button className="sidebar-close-btn" onClick={() => setMobileFilters(false)}><X size={16} /> Close</button>
+        </div>
         <div className="sidebar-label" style={{ padding: 0, marginBottom: 20 }}>Filter by Domain</div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           {FILTERS.map((filter) => {
@@ -193,5 +207,6 @@ export default function GlobalSearch() {
         )}
       </div>
     </div>
+    </>
   );
 }
