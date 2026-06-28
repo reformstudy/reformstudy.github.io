@@ -8,6 +8,3 @@ yarn-debug.log*
 yarn-error.log*
 coverage
 
-# Note: docs/ is NOT ignored - it contains the built app and resources for GitHub Pages
-# and should be committed to the repository
-

@@ -15,7 +15,7 @@ const navItems = [
   { id: 'atlas', label: 'Atlas & Timeline', icon: <MapIcon size={16} /> },
   { id: 'archive', label: 'Confessional Archive', icon: <Library size={16} /> },
   { id: 'theology', label: 'Theology Explorer', icon: <Scale size={16} /> },
-  { id: 'admin', label: 'Content Editor', icon: <Clock size={16} /> }
+  ...(import.meta.env.DEV ? [{ id: 'admin', label: 'Content Editor', icon: <Clock size={16} /> }] : [])
 ];
 
 function AppContent() {

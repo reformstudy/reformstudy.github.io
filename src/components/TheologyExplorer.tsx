@@ -41,9 +41,14 @@ export default function TheologyExplorer() {
 
       try {
         const res = await fetch('/content/theology/theology.json');
-        if (!res.ok) throw new Error('Failed to load theology content');
-        const json = await res.json();
-        if (mounted) setData(json as TheologyData);
+        if (res.status === 404) {
+          // No content file yet; show empty state
+        } else if (!res.ok) {
+          throw new Error('Failed to load theology content');
+        } else {
+          const json = await res.json();
+          if (mounted) setData(json as TheologyData);
+        }
       } catch (err: any) {
         setError(err?.message ?? String(err));
       } finally {
