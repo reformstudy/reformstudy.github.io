@@ -286,3 +286,40 @@ if (import.meta.url === `file://${process.argv[1]}`) {
 }
 
 export default buildResources;
+
+/**
+ * Copy site-level editable content into the docs output so the SPA can load it
+ */
+function copyContentDir() {
+  const src = path.join(__dirname, '../content');
+  const dest = path.join(__dirname, '../docs/content');
+  if (!fs.existsSync(src)) {
+    console.log('No content/ directory found to copy.');
+    return;
+  }
+
+  console.log(`Copying content from ${src} to ${dest}`);
+
+  function copyRecursive(s, d) {
+    if (!fs.existsSync(d)) fs.mkdirSync(d, { recursive: true });
+    const entries = fs.readdirSync(s, { withFileTypes: true });
+    for (const ent of entries) {
+      const srcPath = path.join(s, ent.name);
+      const destPath = path.join(d, ent.name);
+      if (ent.isDirectory()) {
+        copyRecursive(srcPath, destPath);
+      } else if (ent.isFile()) {
+        const data = fs.readFileSync(srcPath);
+        fs.writeFileSync(destPath, data);
+      }
+    }
+  }
+
+  copyRecursive(src, dest);
+  console.log('Content copied.');
+}
+
+// Call copyContentDir when the script runs directly
+if (import.meta.url === `file://${process.argv[1]}`) {
+  copyContentDir();
+}

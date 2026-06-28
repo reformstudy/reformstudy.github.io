@@ -1,4 +1,4 @@
-import React, { createContext, useContext, ReactNode, useState, useEffect } from 'react';
+import React, { createContext, useContext, ReactNode, useState, useEffect, useCallback } from 'react';
 import {
   BibleVersion,
   Confession,
@@ -29,6 +29,9 @@ interface ResourceContextType {
   
   // Methods
   ensureResourceLoaded: (resourceId: string) => Promise<void>;
+  // Local editable content (e.g. atlas, theology)
+  content: Record<string, any>;
+  loadContent?: (resourceId: string, path: string) => Promise<void>;
 }
 
 const ResourceContext = createContext<ResourceContextType | undefined>(undefined);
@@ -40,6 +43,8 @@ export function ResourceProvider({ children }: { children: ReactNode }) {
   const [commentaries, setCommentaries] = useState<Record<string, Commentary>>({});
   const [strongsGreek, setStrongsGreek] = useState<StrongsConcordance | null>(null);
   const [strongsHebrew, setStrongsHebrew] = useState<StrongsConcordance | null>(null);
+  const [content, setContent] = useState<Record<string, any>>({});
+  const [localContentAvailable, setLocalContentAvailable] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
   const [loadedResources, setLoadedResources] = useState<Set<string>>(new Set());
@@ -60,12 +65,64 @@ export function ResourceProvider({ children }: { children: ReactNode }) {
     initialize();
   }, []);
 
+  // Detect whether the local content server is running (dev only)
+  useEffect(() => {
+    if (!import.meta.env.DEV) return;
+    let mounted = true;
+    (async () => {
+      try {
+        const res = await fetch('http://localhost:4001/health');
+        if (mounted && res.ok) setLocalContentAvailable(true);
+      } catch (err) {
+        // ignore - server likely not running
+      }
+    })();
+    return () => { mounted = false; };
+  }, []);
+
+  const loadContent = useCallback(async (resourceId: string, path: string) => {
+    // Try local content server first when available in dev
+    if (import.meta.env.DEV && localContentAvailable) {
+      try {
+        const res = await fetch(`http://localhost:4001/file/${path}`);
+        if (res.ok) {
+          const json = await res.json();
+          setContent(prev => ({ ...prev, [resourceId]: json }));
+          return;
+        }
+      } catch (err) {
+        // fall through to fallback
+      }
+    }
+
+    // Fallback to built content under /content
+    try {
+      const res = await fetch(`/content/${path}`);
+      if (!res.ok) throw new Error('Failed to load content');
+      const json = await res.json();
+      setContent(prev => ({ ...prev, [resourceId]: json }));
+    } catch (err) {
+      console.warn('Could not load content', path, err);
+    }
+  }, [localContentAvailable]);
+
   const ensureResourceLoaded = async (resourceId: string) => {
     if (loadedResources.has(resourceId)) {
       return; // Already loaded
     }
 
     try {
+      // Support editable local-first content resources
+      if (resourceId === 'atlas') {
+        await loadContent('atlas', 'atlas/eraEvents.json');
+        setLoadedResources(prev => new Set(prev).add(resourceId));
+        return;
+      }
+      if (resourceId === 'theology') {
+        await loadContent('theology', 'theology/theology.json');
+        setLoadedResources(prev => new Set(prev).add(resourceId));
+        return;
+      }
       if (resourceId === 'kjv') {
         const data = await loadBible('bible-kjv.json');
         setBibles(prev => ({ ...prev, [resourceId]: data }));
@@ -106,6 +163,8 @@ export function ResourceProvider({ children }: { children: ReactNode }) {
         isLoading,
         error,
         loadedResources,
+        content,
+        loadContent,
         ensureResourceLoaded
       }}
     >
