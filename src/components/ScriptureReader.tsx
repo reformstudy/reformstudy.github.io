@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { BookOpen } from 'lucide-react';
+import { BookOpen, X, List } from 'lucide-react';
 import { useResources } from '../context/ResourceContext';
 import type { BibleBook } from '../utils/resourceLoader';
 
@@ -46,6 +46,8 @@ export default function ScriptureReader() {
   }, [ensureResourceLoaded]);
 
   const kjv = bibles['kjv'];
+  const [mobileSidebar, setMobileSidebar] = useState<'left' | 'right' | null>(null);
+  const closeMobile = () => setMobileSidebar(null);
 
   if (!kjv) {
     return (
@@ -72,11 +74,27 @@ export default function ScriptureReader() {
   const handleBookSelect = (id: string) => {
     setSelectedBook(id);
     setSelectedChapter(1);
+    closeMobile();
   };
 
   return (
+    <>
+    <div className="mobile-overlay" style={{ opacity: mobileSidebar ? 1 : 0, pointerEvents: mobileSidebar ? 'auto' : 'none' }} onClick={closeMobile} />
+
+    <div className="mobile-panel-bar mobile-only">
+      <button className="mobile-panel-btn" onClick={() => setMobileSidebar('left')}>
+        <List size={15} /> Books
+      </button>
+      <button className="mobile-panel-btn" onClick={() => setMobileSidebar('right')}>
+        <BookOpen size={15} /> Insights
+      </button>
+    </div>
+
     <div className="workspace">
-      <aside className="left-sidebar">
+      <aside className={`left-sidebar${mobileSidebar === 'left' ? ' mobile-open' : ''}`}>
+        <div className="sidebar-close-row mobile-only">
+          <button className="sidebar-close-btn" onClick={closeMobile}><X size={16} /> Close</button>
+        </div>
         <div className="sidebar-label">Old Testament</div>
         <BookList books={otBooks} selectedBook={selectedBook} onSelect={handleBookSelect} />
 
@@ -142,7 +160,10 @@ export default function ScriptureReader() {
         </div>
       </div>
 
-      <aside className="right-sidebar">
+      <aside className={`right-sidebar${mobileSidebar === 'right' ? ' mobile-open' : ''}`}>
+        <div className="sidebar-close-row mobile-only">
+          <button className="sidebar-close-btn" onClick={closeMobile}><X size={16} /> Close</button>
+        </div>
         <div style={{ padding: '24px', backgroundColor: 'var(--bg-surface)', borderBottom: '1px solid var(--border-soft)' }}>
           <h2 style={{ fontSize: '1.1rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: 8 }}>
             <BookOpen size={18} /> Passage Insights
@@ -169,5 +190,6 @@ export default function ScriptureReader() {
         </div>
       </aside>
     </div>
+    </>
   );
 }

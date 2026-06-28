@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { BookMarked, Calendar, MapPin, FileText, ChevronRight } from 'lucide-react';
+import { BookMarked, Calendar, MapPin, FileText, ChevronRight, X, List } from 'lucide-react';
 import { useResources } from '../context/ResourceContext';
 
 export default function ConfessionalArchive() {
@@ -27,11 +27,28 @@ export default function ConfessionalArchive() {
 
   const chapterData = confession?.sections.find(s => s.chapter === selectedChapter);
   const totalChapters = confession?.confession.chapters ?? 0;
+  const [mobileSidebar, setMobileSidebar] = useState<'left' | 'right' | null>(null);
+  const closeMobile = () => setMobileSidebar(null);
 
   return (
+    <>
+    <div className="mobile-overlay" style={{ opacity: mobileSidebar ? 1 : 0, pointerEvents: mobileSidebar ? 'auto' : 'none' }} onClick={closeMobile} />
+
+    <div className="mobile-panel-bar mobile-only">
+      <button className="mobile-panel-btn" onClick={() => setMobileSidebar('left')}>
+        <List size={15} /> Contents
+      </button>
+      <button className="mobile-panel-btn" onClick={() => setMobileSidebar('right')}>
+        <BookMarked size={15} /> Info
+      </button>
+    </div>
+
     <div className="workspace">
       {/* Left sidebar: confession list + chapter nav */}
-      <aside className="left-sidebar">
+      <aside className={`left-sidebar${mobileSidebar === 'left' ? ' mobile-open' : ''}`}>
+        <div className="sidebar-close-row mobile-only">
+          <button className="sidebar-close-btn" onClick={closeMobile}><X size={16} /> Close</button>
+        </div>
         <div className="sidebar-label">Confessions</div>
 
         {availableConfessions.map(c => (
@@ -215,7 +232,10 @@ export default function ConfessionalArchive() {
       </div>
 
       {/* Right sidebar: document info */}
-      <aside className="right-sidebar">
+      <aside className={`right-sidebar${mobileSidebar === 'right' ? ' mobile-open' : ''}`}>
+        <div className="sidebar-close-row mobile-only">
+          <button className="sidebar-close-btn" onClick={closeMobile}><X size={16} /> Close</button>
+        </div>
         <div style={{ padding: '24px', backgroundColor: 'var(--bg-surface)', borderBottom: '1px solid var(--border-soft)' }}>
           <h2 style={{ fontSize: '1.1rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: 8, margin: 0 }}>
             <BookMarked size={18} color="var(--accent-theo)" />
@@ -311,5 +331,6 @@ export default function ConfessionalArchive() {
         </div>
       </aside>
     </div>
+    </>
   );
 }

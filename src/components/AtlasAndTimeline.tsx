@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
-import { Map as MapIcon, BookOpen, Clock, ChevronRight, ZoomIn, ZoomOut, RotateCcw } from 'lucide-react';
+import { Map as MapIcon, BookOpen, Clock, ChevronRight, ZoomIn, ZoomOut, RotateCcw, List, X } from 'lucide-react';
 
 interface EraEvent {
   id: string;
@@ -379,6 +379,11 @@ export default function AtlasAndTimeline() {
   const isDragging = useRef(false);
   const dragOrigin = useRef({ mouseX: 0, mouseY: 0, panX: 0, panY: 0 });
   const mapContainerRef = useRef<HTMLDivElement>(null);
+  const lastPinchDistance = useRef<number | null>(null);
+
+  // Mobile drawer state
+  const [mobileSidebar, setMobileSidebar] = useState<'left' | 'right' | null>(null);
+  const closeMobile = () => setMobileSidebar(null);
 
   useEffect(() => {
     if (!import.meta.env.DEV) return;
@@ -437,6 +442,50 @@ export default function AtlasAndTimeline() {
     isDragging.current = false;
   }, []);
 
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    if (e.touches.length === 1) {
+      isDragging.current = true;
+      dragOrigin.current = { mouseX: e.touches[0].clientX, mouseY: e.touches[0].clientY, panX: pan.x, panY: pan.y };
+    } else if (e.touches.length === 2) {
+      isDragging.current = false;
+      const dx = e.touches[0].clientX - e.touches[1].clientX;
+      const dy = e.touches[0].clientY - e.touches[1].clientY;
+      lastPinchDistance.current = Math.hypot(dx, dy);
+    }
+  }, [pan]);
+
+  const handleTouchMove = useCallback((e: React.TouchEvent) => {
+    e.preventDefault();
+    if (e.touches.length === 1 && isDragging.current) {
+      const dx = e.touches[0].clientX - dragOrigin.current.mouseX;
+      const dy = e.touches[0].clientY - dragOrigin.current.mouseY;
+      setPan({ x: dragOrigin.current.panX + dx, y: dragOrigin.current.panY + dy });
+    } else if (e.touches.length === 2 && lastPinchDistance.current !== null) {
+      const dx = e.touches[0].clientX - e.touches[1].clientX;
+      const dy = e.touches[0].clientY - e.touches[1].clientY;
+      const newDist = Math.hypot(dx, dy);
+      const factor = newDist / lastPinchDistance.current;
+      lastPinchDistance.current = newDist;
+      const midX = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+      const midY = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+      setScale(prev => {
+        const next = clampScale(prev * factor);
+        const rect = mapContainerRef.current?.getBoundingClientRect();
+        if (!rect) return next;
+        const cx = midX - rect.left;
+        const cy = midY - rect.top;
+        const scaleFactor = next / prev;
+        setPan(p => ({ x: cx - scaleFactor * (cx - p.x), y: cy - scaleFactor * (cy - p.y) }));
+        return next;
+      });
+    }
+  }, []);
+
+  const handleTouchEnd = useCallback(() => {
+    isDragging.current = false;
+    lastPinchDistance.current = null;
+  }, []);
+
   const resetView = useCallback(() => {
     setPan({ x: 0, y: 0 });
     setScale(1);
@@ -474,8 +523,23 @@ export default function AtlasAndTimeline() {
   const activeEvent = eraData.events.find((e: EraEvent) => e.id === activeEventId) ?? eraData.events[0];
 
   return (
+    <>
+    <div className="mobile-overlay" style={{ opacity: mobileSidebar ? 1 : 0, pointerEvents: mobileSidebar ? 'auto' : 'none' }} onClick={closeMobile} />
+
+    <div className="mobile-panel-bar mobile-only">
+      <button className="mobile-panel-btn" onClick={() => setMobileSidebar('left')}>
+        <List size={15} /> Eras
+      </button>
+      <button className="mobile-panel-btn" onClick={() => setMobileSidebar('right')}>
+        <BookOpen size={15} /> Details
+      </button>
+    </div>
+
     <div className="workspace">
-      <aside className="left-sidebar">
+      <aside className={`left-sidebar${mobileSidebar === 'left' ? ' mobile-open' : ''}`}>
+        <div className="sidebar-close-row mobile-only">
+          <button className="sidebar-close-btn" onClick={closeMobile}><X size={16} /> Close</button>
+        </div>
         <div className="section-heading" style={{ padding: '24px 24px 16px' }}>Redemptive Epochs</div>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           {eras.map((era: { id: EraKey; label: string }) => {
@@ -498,6 +562,7 @@ export default function AtlasAndTimeline() {
                   setActiveEra(era.id);
                   const nextEvents = eraEvents[era.id]?.events;
                   setActiveEventId(nextEvents?.[0]?.id ?? '');
+                  closeMobile();
                 }}
               >
                 <span>{era.label}</span>
@@ -518,6 +583,9 @@ export default function AtlasAndTimeline() {
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
           onMouseLeave={handleMouseLeave}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
         >
           <svg
             viewBox="0 0 1200 750"
@@ -643,7 +711,10 @@ export default function AtlasAndTimeline() {
         </div>
       </div>
 
-      <aside className="right-sidebar">
+      <aside className={`right-sidebar${mobileSidebar === 'right' ? ' mobile-open' : ''}`}>
+        <div className="sidebar-close-row mobile-only">
+          <button className="sidebar-close-btn" onClick={closeMobile}><X size={16} /> Close</button>
+        </div>
         {activeEvent ? (
           <div style={{ padding: 24, display: 'flex', flexDirection: 'column', gap: 24, height: '100%', overflowY: 'auto' }}>
             <div style={{ padding: '32px 24px 20px', borderBottom: '1px solid var(--border-soft)', backgroundColor: 'var(--bg-subtle)' }}>
@@ -689,5 +760,6 @@ export default function AtlasAndTimeline() {
         )}
       </aside>
     </div>
+    </>
   );
 }
