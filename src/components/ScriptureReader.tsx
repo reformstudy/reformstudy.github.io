@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
-import { BookOpen, MapPin, MessageSquare, Hash } from 'lucide-react';
+import { BookOpen, MapPin, MessageSquare, Hash, X, List } from 'lucide-react';
 import { useResources } from '../context/ResourceContext';
 import type { BibleBook, BibleVerse } from '../utils/resourceLoader';
 
@@ -85,8 +85,7 @@ function VerseRow({ verse, testament, selection, onWordClick }: VerseRowProps) {
 
         const cleanWord = token.toLowerCase().replace(/[^a-z]/g, '');
         const isGeo = BIBLICAL_PLACES.has(cleanWord);
-        const isSelected =
-          isActiveVerse && selection?.cleanWord === cleanWord;
+        const isSelected = isActiveVerse && selection?.cleanWord === cleanWord;
 
         return (
           <span
@@ -229,6 +228,9 @@ export default function ScriptureReader() {
   const [selectedChapter, setSelectedChapter] = useState(1);
   const [wordSelection, setWordSelection] = useState<WordSelection | null>(null);
   const [activeTab, setActiveTab] = useState<InsightTab>('word');
+  const [mobileSidebar, setMobileSidebar] = useState<'left' | 'right' | null>(null);
+
+  const closeMobile = () => setMobileSidebar(null);
 
   useEffect(() => {
     ensureResourceLoaded('kjv');
@@ -238,7 +240,6 @@ export default function ScriptureReader() {
   const kjv = bibles['kjv'];
   const currentBook = kjv?.books.find(b => b.id === selectedBook);
 
-  // Preload the appropriate Strong's when the user changes books
   useEffect(() => {
     if (!currentBook) return;
     const id = currentBook.testament === 'NT' ? 'strongs-greek' : 'strongs-hebrew';
@@ -253,6 +254,7 @@ export default function ScriptureReader() {
   ) => {
     setWordSelection({ word, cleanWord, verse, testament });
     setActiveTab(BIBLICAL_PLACES.has(cleanWord) ? 'geo' : 'word');
+    setMobileSidebar('right');
   }, []);
 
   const strongsLoading =
@@ -314,201 +316,226 @@ export default function ScriptureReader() {
     setSelectedBook(id);
     setSelectedChapter(1);
     setWordSelection(null);
+    closeMobile();
   };
 
   const isGeoWord = wordSelection ? BIBLICAL_PLACES.has(wordSelection.cleanWord) : false;
   const lang = testament === 'NT' ? 'Greek' : 'Hebrew';
 
   return (
-    <div className="workspace">
-      {/* Left sidebar: book + chapter navigation */}
-      <aside className="left-sidebar">
-        <div className="sidebar-label">Old Testament</div>
-        <BookList books={otBooks} selectedBook={selectedBook} onSelect={handleBookSelect} />
+    <>
+      <div
+        className="mobile-overlay"
+        style={{ opacity: mobileSidebar ? 1 : 0, pointerEvents: mobileSidebar ? 'auto' : 'none' }}
+        onClick={closeMobile}
+      />
 
-        <div className="sidebar-label" style={{ marginTop: 20 }}>New Testament</div>
-        <BookList books={ntBooks} selectedBook={selectedBook} onSelect={handleBookSelect} />
-
-        {currentBook && (
-          <div style={{
-            padding: '12px 20px 20px',
-            backgroundColor: 'var(--bg-surface)',
-            borderBottom: '1px solid var(--border-soft)',
-          }}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 6 }}>
-              {Array.from({ length: currentBook.chapters }, (_, i) => i + 1).map((chapter) => (
-                <button
-                  key={chapter}
-                  type="button"
-                  onClick={() => {
-                    setSelectedChapter(chapter);
-                    setWordSelection(null);
-                  }}
-                  style={{
-                    aspectRatio: '1',
-                    borderRadius: 'var(--radius-sm)',
-                    fontSize: '0.85rem',
-                    fontWeight: 600,
-                    cursor: 'pointer',
-                    backgroundColor: chapter === selectedChapter ? 'var(--accent-geo)' : 'transparent',
-                    color: chapter === selectedChapter ? 'var(--bg-surface)' : 'var(--text-secondary)',
-                    border: 'none',
-                  }}
-                >
-                  {chapter}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-      </aside>
-
-      {/* Center: scripture text with clickable words */}
-      <div className="center-content">
-        <div style={{ maxWidth: 680, width: '100%', paddingBottom: 80 }}>
-          {currentBook && (
-            <>
-              <div style={{ textAlign: 'center', marginBottom: 40 }}>
-                <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: '2.5rem', marginBottom: 8 }}>
-                  {currentBook.name} {selectedChapter}
-                </h1>
-                <span style={{
-                  fontSize: '0.8rem',
-                  fontWeight: 700,
-                  backgroundColor: 'var(--bg-geo-light)',
-                  color: 'var(--accent-geo)',
-                  padding: '4px 12px',
-                  borderRadius: 16,
-                  marginRight: 8,
-                }}>
-                  {kjv.version.abbreviation} — {kjv.version.name}
-                </span>
-                <span style={{
-                  fontSize: '0.75rem',
-                  color: 'var(--text-tertiary)',
-                  fontStyle: 'italic',
-                }}>
-                  Click any word for insights
-                </span>
-              </div>
-
-              <div style={{
-                fontFamily: 'var(--font-serif)',
-                fontSize: '1.2rem',
-                lineHeight: 2,
-                color: 'var(--text-primary)',
-              }}>
-                {currentVerses.length > 0 ? (
-                  currentVerses.map((verse) => (
-                    <VerseRow
-                      key={`${verse.book}-${verse.chapter}-${verse.verse}`}
-                      verse={verse}
-                      testament={testament}
-                      selection={wordSelection}
-                      onWordClick={handleWordClick}
-                    />
-                  ))
-                ) : (
-                  <div style={{ color: 'var(--text-secondary)', fontStyle: 'italic' }}>
-                    No verses available for this chapter.
-                  </div>
-                )}
-              </div>
-            </>
-          )}
-        </div>
+      <div className="mobile-panel-bar mobile-only">
+        <button className="mobile-panel-btn" onClick={() => setMobileSidebar('left')}>
+          <List size={15} /> Books
+        </button>
+        <button className="mobile-panel-btn" onClick={() => setMobileSidebar('right')}>
+          <BookOpen size={15} /> Insights
+        </button>
       </div>
 
-      {/* Right sidebar: word insights */}
-      <aside className="right-sidebar">
-        {/* Static header */}
-        <div style={{
-          padding: '20px 24px 16px',
-          backgroundColor: 'var(--bg-surface)',
-          borderBottom: '1px solid var(--border-soft)',
-          flexShrink: 0,
-        }}>
-          <h2 style={{ fontSize: '1rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: 8, margin: 0 }}>
-            <BookOpen size={16} style={{ color: 'var(--accent-exe)' }} />
-            Passage Insights
-          </h2>
+      <div className="workspace">
+        {/* Left sidebar: book + chapter navigation */}
+        <aside className={`left-sidebar${mobileSidebar === 'left' ? ' mobile-open' : ''}`}>
+          <div className="sidebar-close-row mobile-only">
+            <button className="sidebar-close-btn" onClick={closeMobile}><X size={16} /> Close</button>
+          </div>
+          <div className="sidebar-label">Old Testament</div>
+          <BookList books={otBooks} selectedBook={selectedBook} onSelect={handleBookSelect} />
+
+          <div className="sidebar-label" style={{ marginTop: 20 }}>New Testament</div>
+          <BookList books={ntBooks} selectedBook={selectedBook} onSelect={handleBookSelect} />
+
+          {currentBook && (
+            <div style={{
+              padding: '12px 20px 20px',
+              backgroundColor: 'var(--bg-surface)',
+              borderBottom: '1px solid var(--border-soft)',
+            }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 6 }}>
+                {Array.from({ length: currentBook.chapters }, (_, i) => i + 1).map((chapter) => (
+                  <button
+                    key={chapter}
+                    type="button"
+                    onClick={() => {
+                      setSelectedChapter(chapter);
+                      setWordSelection(null);
+                    }}
+                    style={{
+                      aspectRatio: '1',
+                      borderRadius: 'var(--radius-sm)',
+                      fontSize: '0.85rem',
+                      fontWeight: 600,
+                      cursor: 'pointer',
+                      backgroundColor: chapter === selectedChapter ? 'var(--accent-geo)' : 'transparent',
+                      color: chapter === selectedChapter ? 'var(--bg-surface)' : 'var(--text-secondary)',
+                      border: 'none',
+                    }}
+                  >
+                    {chapter}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+        </aside>
+
+        {/* Center: scripture text with clickable words */}
+        <div className="center-content">
+          <div style={{ maxWidth: 680, width: '100%', paddingBottom: 80 }}>
+            {currentBook && (
+              <>
+                <div style={{ textAlign: 'center', marginBottom: 40 }}>
+                  <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: '2.5rem', marginBottom: 8 }}>
+                    {currentBook.name} {selectedChapter}
+                  </h1>
+                  <span style={{
+                    fontSize: '0.8rem',
+                    fontWeight: 700,
+                    backgroundColor: 'var(--bg-geo-light)',
+                    color: 'var(--accent-geo)',
+                    padding: '4px 12px',
+                    borderRadius: 16,
+                    marginRight: 8,
+                  }}>
+                    {kjv.version.abbreviation} — {kjv.version.name}
+                  </span>
+                  <span style={{
+                    fontSize: '0.75rem',
+                    color: 'var(--text-tertiary)',
+                    fontStyle: 'italic',
+                  }}>
+                    Click any word for insights
+                  </span>
+                </div>
+
+                <div style={{
+                  fontFamily: 'var(--font-serif)',
+                  fontSize: '1.2rem',
+                  lineHeight: 2,
+                  color: 'var(--text-primary)',
+                }}>
+                  {currentVerses.length > 0 ? (
+                    currentVerses.map((verse) => (
+                      <VerseRow
+                        key={`${verse.book}-${verse.chapter}-${verse.verse}`}
+                        verse={verse}
+                        testament={testament}
+                        selection={wordSelection}
+                        onWordClick={handleWordClick}
+                      />
+                    ))
+                  ) : (
+                    <div style={{ color: 'var(--text-secondary)', fontStyle: 'italic' }}>
+                      No verses available for this chapter.
+                    </div>
+                  )}
+                </div>
+              </>
+            )}
+          </div>
         </div>
 
-        {!wordSelection ? (
-          /* Empty state */
-          <div style={{ padding: '48px 24px', textAlign: 'center', flex: 1 }}>
-            <div style={{
-              width: 56,
-              height: 56,
-              borderRadius: '50%',
-              backgroundColor: 'var(--bg-exe-light)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              margin: '0 auto 16px',
-            }}>
-              <Hash size={24} style={{ color: 'var(--accent-exe)' }} />
-            </div>
-            <div style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: 8 }}>
-              Select a Word
-            </div>
-            <div style={{ fontSize: '0.85rem', color: 'var(--text-tertiary)', lineHeight: 1.6 }}>
-              Click any word in the scripture to explore word studies, commentary, and geographic context.
-            </div>
-            <div style={{ marginTop: 24, display: 'flex', flexDirection: 'column', gap: 10 }}>
-              {[
-                { icon: <Hash size={14} />, label: 'Word Study', desc: `${lang} lexicon & Strong's`, color: 'var(--accent-exe)', bg: 'var(--bg-exe-light)' },
-                { icon: <MessageSquare size={14} />, label: 'Commentary', desc: "John Gill's exposition", color: 'var(--accent-theo)', bg: 'var(--bg-theo-light)' },
-                { icon: <MapPin size={14} />, label: 'Geography', desc: 'Place names & atlas links', color: 'var(--accent-geo)', bg: 'var(--bg-geo-light)' },
-              ].map(item => (
-                <div key={item.label} style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 10,
-                  padding: '10px 14px',
-                  background: item.bg,
-                  borderRadius: 'var(--radius-md)',
-                  textAlign: 'left',
-                }}>
-                  <span style={{ color: item.color }}>{item.icon}</span>
-                  <div>
-                    <div style={{ fontSize: '0.8rem', fontWeight: 700, color: item.color }}>{item.label}</div>
-                    <div style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)' }}>{item.desc}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
+        {/* Right sidebar: word insights */}
+        <aside className={`right-sidebar${mobileSidebar === 'right' ? ' mobile-open' : ''}`}>
+          <div className="sidebar-close-row mobile-only">
+            <button className="sidebar-close-btn" onClick={closeMobile}><X size={16} /> Close</button>
           </div>
-        ) : (
-          /* Active insight panel */
-          <div style={{ display: 'flex', flexDirection: 'column', flex: 1, overflow: 'hidden' }}>
-            <InsightHeader selection={wordSelection} bookName={currentBook?.name ?? ''} />
-            <TabBar active={activeTab} onChange={setActiveTab} hasGeo={isGeoWord} />
 
-            <div style={{ flex: 1, overflowY: 'auto' }}>
-              {activeTab === 'word' && (
-                <WordStudyPanel
-                  selection={wordSelection}
-                  matches={strongsMatches}
-                  loading={strongsLoading}
-                  lang={lang}
-                />
-              )}
-              {activeTab === 'commentary' && (
-                <CommentaryPanel
-                  selection={wordSelection}
-                  entry={commentaryEntry}
-                  bookName={currentBook?.name ?? ''}
-                />
-              )}
-              {activeTab === 'geo' && (
-                <GeoPanel selection={wordSelection} bookName={currentBook?.name ?? ''} />
-              )}
-            </div>
+          {/* Static header */}
+          <div style={{
+            padding: '20px 24px 16px',
+            backgroundColor: 'var(--bg-surface)',
+            borderBottom: '1px solid var(--border-soft)',
+            flexShrink: 0,
+          }}>
+            <h2 style={{ fontSize: '1rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: 8, margin: 0 }}>
+              <BookOpen size={16} style={{ color: 'var(--accent-exe)' }} />
+              Passage Insights
+            </h2>
           </div>
-        )}
-      </aside>
-    </div>
+
+          {!wordSelection ? (
+            /* Empty state */
+            <div style={{ padding: '48px 24px', textAlign: 'center', flex: 1 }}>
+              <div style={{
+                width: 56,
+                height: 56,
+                borderRadius: '50%',
+                backgroundColor: 'var(--bg-exe-light)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                margin: '0 auto 16px',
+              }}>
+                <Hash size={24} style={{ color: 'var(--accent-exe)' }} />
+              </div>
+              <div style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: 8 }}>
+                Select a Word
+              </div>
+              <div style={{ fontSize: '0.85rem', color: 'var(--text-tertiary)', lineHeight: 1.6 }}>
+                Click any word in the scripture to explore word studies, commentary, and geographic context.
+              </div>
+              <div style={{ marginTop: 24, display: 'flex', flexDirection: 'column', gap: 10 }}>
+                {[
+                  { icon: <Hash size={14} />, label: 'Word Study', desc: `${lang} lexicon & Strong's`, color: 'var(--accent-exe)', bg: 'var(--bg-exe-light)' },
+                  { icon: <MessageSquare size={14} />, label: 'Commentary', desc: "John Gill's exposition", color: 'var(--accent-theo)', bg: 'var(--bg-theo-light)' },
+                  { icon: <MapPin size={14} />, label: 'Geography', desc: 'Place names & atlas links', color: 'var(--accent-geo)', bg: 'var(--bg-geo-light)' },
+                ].map(item => (
+                  <div key={item.label} style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 10,
+                    padding: '10px 14px',
+                    background: item.bg,
+                    borderRadius: 'var(--radius-md)',
+                    textAlign: 'left',
+                  }}>
+                    <span style={{ color: item.color }}>{item.icon}</span>
+                    <div>
+                      <div style={{ fontSize: '0.8rem', fontWeight: 700, color: item.color }}>{item.label}</div>
+                      <div style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)' }}>{item.desc}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : (
+            /* Active insight panel */
+            <div style={{ display: 'flex', flexDirection: 'column', flex: 1, overflow: 'hidden' }}>
+              <InsightHeader selection={wordSelection} bookName={currentBook?.name ?? ''} />
+              <TabBar active={activeTab} onChange={setActiveTab} hasGeo={isGeoWord} />
+
+              <div style={{ flex: 1, overflowY: 'auto' }}>
+                {activeTab === 'word' && (
+                  <WordStudyPanel
+                    selection={wordSelection}
+                    matches={strongsMatches}
+                    loading={strongsLoading}
+                    lang={lang}
+                  />
+                )}
+                {activeTab === 'commentary' && (
+                  <CommentaryPanel
+                    selection={wordSelection}
+                    entry={commentaryEntry}
+                    bookName={currentBook?.name ?? ''}
+                  />
+                )}
+                {activeTab === 'geo' && (
+                  <GeoPanel selection={wordSelection} bookName={currentBook?.name ?? ''} />
+                )}
+              </div>
+            </div>
+          )}
+        </aside>
+      </div>
+    </>
   );
 }
 

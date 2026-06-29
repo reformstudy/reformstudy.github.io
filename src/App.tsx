@@ -124,7 +124,7 @@ function AppContent() {
             onClick={() => setActiveModule(item.id)}
           >
             {item.icon}
-            <span>{item.label}</span>
+            <span className="nav-label">{item.label}</span>
           </button>
         ))}
       </div>
