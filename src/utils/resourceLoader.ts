@@ -424,12 +424,12 @@ export async function loadCommentary(filename: string): Promise<Commentary> {
  * Load Strong's Greek concordance
  */
 export async function loadStrongsGreek(): Promise<StrongsConcordance> {
-  return resourceManager.loadStrongs('strongs-greek');
+  return resourceManager.loadStrongs('greek');
 }
 
 /**
  * Load Strong's Hebrew concordance
  */
 export async function loadStrongsHebrew(): Promise<StrongsConcordance> {
-  return resourceManager.loadStrongs('strongs-hebrew');
+  return resourceManager.loadStrongs('hebrew');
 }
