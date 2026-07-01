@@ -1,5 +1,8 @@
-import { useState } from 'react';
-import { ChevronRight, ChevronDown, BookOpen, AlertTriangle, ArrowLeft, ScrollText, Scale, Users } from 'lucide-react';
+import { useState, useEffect, useMemo } from 'react';
+import { ChevronRight, ChevronDown, BookOpen, AlertTriangle, ArrowLeft, ScrollText, Scale, Users, Pencil, Save, Plus, Trash2 } from 'lucide-react';
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
+import { ReferenceCard } from './ReferenceCard';
+import { parseScriptureRef, parseWcfChapter } from '../utils/parseScriptureRef';
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
@@ -38,12 +41,27 @@ interface Heresy {
   refutedBy: string[];
 }
 
+interface TheologyData {
+  categories: Category[];
+  doctrines: Doctrine[];
+  heresies: Heresy[];
+  doctrineMap: Record<string, Doctrine>;
+  heresyMap: Record<string, Heresy>;
+  categoryMap: Record<string, Category>;
+}
+
+interface TheolayCms {
+  editMode: boolean;
+  onUpdateDoctrine: (d: Doctrine) => void;
+  onUpdateHeresy: (h: Heresy) => void;
+}
+
 type View =
   | { type: 'home' }
   | { type: 'doctrine'; id: string }
   | { type: 'heresy'; id: string };
 
-// ── Data ───────────────────────────────────────────────────────────────────
+// ── Static category structure (not CMS-editable in this version) ──────────
 
 const CATEGORIES: Category[] = [
   { id: 'theology-proper', name: 'Theology Proper', doctrines: ['existence-of-god', 'divine-attributes', 'trinity'] },
@@ -55,8 +73,9 @@ const CATEGORIES: Category[] = [
   { id: 'eschatology', name: 'Eschatology', doctrines: ['second-coming', 'resurrection-dead', 'final-judgment'] },
 ];
 
-const DOCTRINES: Doctrine[] = [
-  // ── Theology Proper ─────────────────────────────────────────────────────
+// ── Default data (fallback when CMS server is unavailable) ────────────────
+
+const DEFAULT_DOCTRINES: Doctrine[] = [
   {
     id: 'existence-of-god',
     name: 'The Existence of God',
@@ -107,8 +126,6 @@ const DOCTRINES: Doctrine[] = [
     ],
     refutedErrors: ['arianism', 'modalism', 'socinianism'],
   },
-
-  // ── Christology ────────────────────────────────────────────────────────
   {
     id: 'eternal-son',
     name: 'The Eternal Sonship of Christ',
@@ -189,8 +206,6 @@ const DOCTRINES: Doctrine[] = [
     ],
     refutedErrors: [],
   },
-
-  // ── Pneumatology ───────────────────────────────────────────────────────
   {
     id: 'person-of-hs',
     name: 'The Person of the Holy Spirit',
@@ -221,8 +236,6 @@ const DOCTRINES: Doctrine[] = [
     ],
     refutedErrors: ['pelagianism', 'semi-pelagianism'],
   },
-
-  // ── Anthropology ───────────────────────────────────────────────────────
   {
     id: 'imago-dei',
     name: 'The Image of God (Imago Dei)',
@@ -269,8 +282,6 @@ const DOCTRINES: Doctrine[] = [
     ],
     refutedErrors: ['pelagianism', 'semi-pelagianism'],
   },
-
-  // ── Soteriology ────────────────────────────────────────────────────────
   {
     id: 'election',
     name: 'Election and Predestination',
@@ -379,8 +390,6 @@ const DOCTRINES: Doctrine[] = [
     ],
     refutedErrors: [],
   },
-
-  // ── Ecclesiology ───────────────────────────────────────────────────────
   {
     id: 'nature-of-church',
     name: 'The Nature of the Church',
@@ -425,8 +434,6 @@ const DOCTRINES: Doctrine[] = [
     ],
     refutedErrors: [],
   },
-
-  // ── Eschatology ────────────────────────────────────────────────────────
   {
     id: 'second-coming',
     name: 'The Second Coming of Christ',
@@ -474,7 +481,7 @@ const DOCTRINES: Doctrine[] = [
   },
 ];
 
-const HERESIES: Heresy[] = [
+const DEFAULT_HERESIES: Heresy[] = [
   {
     id: 'arianism',
     name: 'Arianism',
@@ -598,314 +605,244 @@ const HERESIES: Heresy[] = [
   },
 ];
 
-// Lookup helpers
-const doctrineMap = Object.fromEntries(DOCTRINES.map(d => [d.id, d]));
-const heresyMap = Object.fromEntries(HERESIES.map(h => [h.id, h]));
-const categoryMap = Object.fromEntries(CATEGORIES.map(c => [c.id, c]));
+// ── Shared edit styles ─────────────────────────────────────────────────────
+
+const editInput = (extra?: React.CSSProperties): React.CSSProperties => ({
+  width: '100%',
+  padding: '7px 10px',
+  borderRadius: 8,
+  border: '1px solid var(--border-soft)',
+  background: 'var(--bg-surface)',
+  fontSize: '0.88rem',
+  fontFamily: 'var(--font-sans)',
+  color: 'var(--text-primary)',
+  boxSizing: 'border-box',
+  ...extra,
+});
+
+const fieldLabel: React.CSSProperties = {
+  fontSize: '0.7rem',
+  fontWeight: 700,
+  color: 'var(--text-tertiary)',
+  textTransform: 'uppercase',
+  letterSpacing: '0.05em',
+  marginBottom: 4,
+  display: 'block',
+};
 
 // ── Sub-components ─────────────────────────────────────────────────────────
 
-function SidebarCategoryItem({
-  category,
-  activeView,
-  onSelect,
-}: {
-  category: Category;
-  activeView: View;
-  onSelect: (id: string) => void;
-}) {
-  const [open, setOpen] = useState(() => {
-    if (activeView.type === 'doctrine') {
-      return category.doctrines.includes(activeView.id);
-    }
-    return false;
-  });
-
-  const isActiveDoctrine = (id: string) =>
-    activeView.type === 'doctrine' && activeView.id === id;
-
-  return (
-    <div>
-      <button
-        type="button"
-        onClick={() => setOpen(o => !o)}
-        style={{
-          width: '100%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          padding: '8px 20px',
-          background: 'transparent',
-          border: 'none',
-          cursor: 'pointer',
-          textAlign: 'left',
-          fontSize: '0.875rem',
-          fontWeight: 700,
-          color: 'var(--text-secondary)',
-          gap: 6,
-        }}
-      >
-        <span>{category.name}</span>
-        {open ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
-      </button>
-
-      {open && (
-        <div style={{ paddingLeft: 12 }}>
-          {category.doctrines.map(id => {
-            const doc = doctrineMap[id];
-            if (!doc) return null;
-            const active = isActiveDoctrine(id);
-            return (
-              <button
-                key={id}
-                type="button"
-                onClick={() => onSelect(id)}
-                style={{
-                  width: '100%',
-                  display: 'block',
-                  padding: '6px 16px',
-                  background: active ? 'var(--bg-theo-light)' : 'transparent',
-                  border: 'none',
-                  borderLeft: active ? '2px solid var(--accent-theo)' : '2px solid transparent',
-                  cursor: 'pointer',
-                  textAlign: 'left',
-                  fontSize: '0.85rem',
-                  fontWeight: active ? 600 : 400,
-                  color: active ? 'var(--accent-theo)' : 'var(--text-secondary)',
-                  borderRadius: '0 6px 6px 0',
-                }}
-              >
-                {doc.name}
-              </button>
-            );
-          })}
-        </div>
-      )}
-    </div>
-  );
-}
-
 function DoctrineDetail({
   doctrine,
+  data,
   onNavigate,
+  cms,
 }: {
   doctrine: Doctrine;
+  data: TheologyData;
   onNavigate: (view: View) => void;
+  cms?: TheolayCms;
 }) {
+  const { categoryMap, heresyMap } = data;
   const category = categoryMap[doctrine.categoryId];
   const relatedHeresies = doctrine.refutedErrors.map(id => heresyMap[id]).filter(Boolean);
+  const isEditing = !!cms?.editMode;
+
+  const update = (patch: Partial<Doctrine>) =>
+    cms?.onUpdateDoctrine({ ...doctrine, ...patch });
+
+  const updateScripture = (i: number, field: 'reference' | 'text', val: string) =>
+    update({ scriptures: doctrine.scriptures.map((s, idx) => idx === i ? { ...s, [field]: val } : s) });
+  const removeScripture = (i: number) =>
+    update({ scriptures: doctrine.scriptures.filter((_, idx) => idx !== i) });
+  const addScripture = () =>
+    update({ scriptures: [...doctrine.scriptures, { reference: '', text: '' }] });
+
+  const updateConfession = (i: number, field: 'document' | 'section' | 'quote', val: string) =>
+    update({ confessions: doctrine.confessions.map((c, idx) => idx === i ? { ...c, [field]: val } : c) });
+  const removeConfession = (i: number) =>
+    update({ confessions: doctrine.confessions.filter((_, idx) => idx !== i) });
+  const addConfession = () =>
+    update({ confessions: [...doctrine.confessions, { document: '', section: '', quote: '' }] });
+
+  const removeError = (id: string) =>
+    update({ refutedErrors: doctrine.refutedErrors.filter(e => e !== id) });
+  const addError = (id: string) => {
+    if (!id || doctrine.refutedErrors.includes(id)) return;
+    update({ refutedErrors: [...doctrine.refutedErrors, id] });
+  };
+
+  const availableHeresies = Object.values(heresyMap).filter(h => !doctrine.refutedErrors.includes(h.id));
 
   return (
     <div style={{ padding: '40px 60px', maxWidth: 820 }}>
       <button
         type="button"
         onClick={() => onNavigate({ type: 'home' })}
-        style={{
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: 6,
-          marginBottom: 24,
-          background: 'none',
-          border: 'none',
-          cursor: 'pointer',
-          color: 'var(--text-tertiary)',
-          fontSize: '0.85rem',
-          padding: 0,
-        }}
+        style={{ display: 'inline-flex', alignItems: 'center', gap: 6, marginBottom: 24, background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-tertiary)', fontSize: '0.85rem', padding: 0 }}
       >
         <ArrowLeft size={14} />
         {category?.name ?? 'Back'}
       </button>
 
       <div style={{ marginBottom: 24 }}>
-        <span style={{
-          display: 'inline-block',
-          padding: '2px 10px',
-          borderRadius: 20,
-          fontSize: '0.75rem',
-          fontWeight: 700,
-          textTransform: 'uppercase',
-          letterSpacing: '0.05em',
-          background: 'var(--bg-theo-light)',
-          color: 'var(--accent-theo)',
-          marginBottom: 12,
-        }}>
+        <span style={{ display: 'inline-block', padding: '2px 10px', borderRadius: 20, fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', background: 'var(--bg-theo-light)', color: 'var(--accent-theo)', marginBottom: 12 }}>
           {category?.name}
         </span>
-        <h1 style={{
-          fontFamily: 'var(--font-serif)',
-          fontSize: '1.75rem',
-          fontWeight: 700,
-          color: 'var(--text-primary)',
-          margin: '0 0 16px',
-          lineHeight: 1.3,
-        }}>
-          {doctrine.name}
-        </h1>
-        <p style={{
-          fontSize: '1rem',
-          lineHeight: 1.75,
-          color: 'var(--text-secondary)',
-          margin: 0,
-        }}>
-          {doctrine.description}
-        </p>
+        {isEditing ? (
+          <input
+            value={doctrine.name}
+            onChange={e => update({ name: e.target.value })}
+            style={editInput({ fontSize: '1.5rem', fontFamily: 'var(--font-serif)', fontWeight: 700, marginBottom: 16, display: 'block' })}
+          />
+        ) : (
+          <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.75rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0 0 16px', lineHeight: 1.3 }}>
+            {doctrine.name}
+          </h1>
+        )}
+        {isEditing ? (
+          <textarea
+            value={doctrine.description}
+            onChange={e => update({ description: e.target.value })}
+            rows={6}
+            style={editInput({ lineHeight: 1.65, resize: 'vertical' })}
+          />
+        ) : (
+          <p style={{ fontSize: '1rem', lineHeight: 1.75, color: 'var(--text-secondary)', margin: 0 }}>
+            {doctrine.description}
+          </p>
+        )}
       </div>
 
       <hr style={{ border: 'none', borderTop: '1px solid var(--border-soft)', margin: '32px 0' }} />
 
       {/* Scripture */}
       <section style={{ marginBottom: 36 }}>
-        <h2 style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: 10,
-          fontFamily: 'var(--font-serif)',
-          fontSize: '1.1rem',
-          fontWeight: 700,
-          color: 'var(--text-primary)',
-          marginBottom: 16,
-        }}>
+        <h2 style={{ display: 'flex', alignItems: 'center', gap: 10, fontFamily: 'var(--font-serif)', fontSize: '1.1rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 16 }}>
           <BookOpen size={18} color="var(--accent-exe)" />
           Supporting Scripture
         </h2>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-          {doctrine.scriptures.map((s, i) => (
-            <div
-              key={i}
-              style={{
-                padding: '14px 18px',
-                borderRadius: 'var(--radius-md)',
-                background: 'var(--bg-exe-light)',
-                borderLeft: '3px solid var(--accent-exe)',
-              }}
-            >
-              <div style={{
-                fontSize: '0.8rem',
-                fontWeight: 700,
-                textTransform: 'uppercase',
-                letterSpacing: '0.05em',
-                color: 'var(--accent-exe)',
-                marginBottom: 6,
-              }}>
-                {s.reference}
+          {doctrine.scriptures.map((s, i) =>
+            isEditing ? (
+              <div key={i} style={{ padding: 14, borderRadius: 'var(--radius-md)', border: '1px solid var(--border-soft)', background: 'var(--bg-surface)', display: 'flex', flexDirection: 'column', gap: 8 }}>
+                <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+                  <input value={s.reference} onChange={e => updateScripture(i, 'reference', e.target.value)} placeholder="Reference (e.g. John 3:16)" style={editInput({ flex: 1 } as React.CSSProperties)} />
+                  <button type="button" onClick={() => removeScripture(i)} title="Remove" style={{ border: 'none', background: 'none', cursor: 'pointer', color: 'var(--text-tertiary)', padding: 4, borderRadius: 6, display: 'flex' }}>
+                    <Trash2 size={14} />
+                  </button>
+                </div>
+                <textarea value={s.text} onChange={e => updateScripture(i, 'text', e.target.value)} placeholder="Verse text" rows={2} style={editInput({ resize: 'vertical' })} />
               </div>
-              <div style={{
-                fontFamily: 'var(--font-serif)',
-                fontSize: '0.95rem',
-                lineHeight: 1.65,
-                color: 'var(--text-primary)',
-                fontStyle: 'italic',
-              }}>
-                "{s.text}"
-              </div>
-            </div>
-          ))}
+            ) : (() => {
+              const parsed = parseScriptureRef(s.reference);
+              const to = parsed ? `/reader/${parsed.bookId}/${parsed.chapter}` : undefined;
+              return (
+                <ReferenceCard
+                  key={i}
+                  variant="scripture"
+                  title={s.reference}
+                  excerpt={s.text}
+                  to={to}
+                />
+              );
+            })()
+          )}
+          {isEditing && (
+            <button type="button" onClick={addScripture} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '7px 14px', borderRadius: 20, border: '1px dashed var(--accent-exe)', background: 'transparent', cursor: 'pointer', color: 'var(--accent-exe)', fontSize: '0.82rem', fontWeight: 600, alignSelf: 'flex-start' }}>
+              <Plus size={13} /> Add Scripture
+            </button>
+          )}
         </div>
       </section>
 
       {/* Confessions */}
-      {doctrine.confessions.length > 0 && (
+      {(doctrine.confessions.length > 0 || isEditing) && (
         <section style={{ marginBottom: 36 }}>
-          <h2 style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 10,
-            fontFamily: 'var(--font-serif)',
-            fontSize: '1.1rem',
-            fontWeight: 700,
-            color: 'var(--text-primary)',
-            marginBottom: 16,
-          }}>
+          <h2 style={{ display: 'flex', alignItems: 'center', gap: 10, fontFamily: 'var(--font-serif)', fontSize: '1.1rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 16 }}>
             <ScrollText size={18} color="var(--accent-geo)" />
             Confessional Support
           </h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-            {doctrine.confessions.map((c, i) => (
-              <div
-                key={i}
-                style={{
-                  padding: '14px 18px',
-                  borderRadius: 'var(--radius-md)',
-                  background: 'var(--bg-geo-light)',
-                  borderLeft: '3px solid var(--accent-geo)',
-                }}
-              >
-                <div style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'baseline',
-                  marginBottom: 8,
-                  gap: 12,
-                }}>
-                  <span style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--accent-geo)' }}>
-                    {c.document}
-                  </span>
-                  <span style={{
-                    fontSize: '0.75rem',
-                    color: 'var(--text-tertiary)',
-                    whiteSpace: 'nowrap',
-                    fontWeight: 600,
-                  }}>
-                    {c.section}
-                  </span>
+            {doctrine.confessions.map((c, i) =>
+              isEditing ? (
+                <div key={i} style={{ padding: 14, borderRadius: 'var(--radius-md)', border: '1px solid var(--border-soft)', background: 'var(--bg-surface)', display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  <div style={{ display: 'flex', gap: 8 }}>
+                    <div style={{ flex: 2 }}>
+                      <span style={fieldLabel}>Document</span>
+                      <input value={c.document} onChange={e => updateConfession(i, 'document', e.target.value)} style={editInput()} />
+                    </div>
+                    <div style={{ flex: 1 }}>
+                      <span style={fieldLabel}>Section</span>
+                      <input value={c.section} onChange={e => updateConfession(i, 'section', e.target.value)} style={editInput()} />
+                    </div>
+                    <button type="button" onClick={() => removeConfession(i)} title="Remove" style={{ border: 'none', background: 'none', cursor: 'pointer', color: 'var(--text-tertiary)', padding: 4, borderRadius: 6, display: 'flex', alignSelf: 'flex-end', marginBottom: 2 }}>
+                      <Trash2 size={14} />
+                    </button>
+                  </div>
+                  <div>
+                    <span style={fieldLabel}>Quote</span>
+                    <textarea value={c.quote} onChange={e => updateConfession(i, 'quote', e.target.value)} rows={3} style={editInput({ resize: 'vertical' })} />
+                  </div>
                 </div>
-                <div style={{
-                  fontFamily: 'var(--font-serif)',
-                  fontSize: '0.95rem',
-                  lineHeight: 1.65,
-                  color: 'var(--text-secondary)',
-                  fontStyle: 'italic',
-                }}>
-                  "{c.quote}"
-                </div>
-              </div>
-            ))}
+              ) : (() => {
+                const isWcf = c.document.toLowerCase().includes('westminster confession');
+                const chapter = isWcf ? parseWcfChapter(c.section) : null;
+                const to = isWcf && chapter ? `/archive/wcf/${chapter}` : undefined;
+                return (
+                  <ReferenceCard
+                    key={i}
+                    variant="confession"
+                    title={c.section}
+                    subtitle={c.document}
+                    excerpt={c.quote}
+                    to={to}
+                  />
+                );
+              })()
+            )}
+            {isEditing && (
+              <button type="button" onClick={addConfession} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '7px 14px', borderRadius: 20, border: '1px dashed var(--accent-geo)', background: 'transparent', cursor: 'pointer', color: 'var(--accent-geo)', fontSize: '0.82rem', fontWeight: 600, alignSelf: 'flex-start' }}>
+                <Plus size={13} /> Add Confession
+              </button>
+            )}
           </div>
         </section>
       )}
 
       {/* Errors refuted */}
-      {relatedHeresies.length > 0 && (
+      {(relatedHeresies.length > 0 || isEditing) && (
         <section>
-          <h2 style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 10,
-            fontFamily: 'var(--font-serif)',
-            fontSize: '1.1rem',
-            fontWeight: 700,
-            color: 'var(--text-primary)',
-            marginBottom: 16,
-          }}>
+          <h2 style={{ display: 'flex', alignItems: 'center', gap: 10, fontFamily: 'var(--font-serif)', fontSize: '1.1rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 16 }}>
             <AlertTriangle size={18} color="var(--accent-time)" />
             Errors This Doctrine Refutes
           </h2>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-            {relatedHeresies.map(h => (
-              <button
-                key={h.id}
-                type="button"
-                onClick={() => onNavigate({ type: 'heresy', id: h.id })}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  padding: '12px 16px',
-                  borderRadius: 'var(--radius-md)',
-                  background: 'var(--bg-time-light)',
-                  border: '1px solid transparent',
-                  cursor: 'pointer',
-                  textAlign: 'left',
-                }}
-              >
-                <span style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--accent-time)' }}>
-                  {h.name}
-                </span>
-                <ChevronRight size={14} color="var(--accent-time)" />
-              </button>
-            ))}
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: isEditing ? 12 : 0 }}>
+            {doctrine.refutedErrors.map(id => {
+              const h = heresyMap[id];
+              return isEditing ? (
+                <div key={id} style={{ display: 'inline-flex', alignItems: 'center', gap: 4, padding: '5px 10px', borderRadius: 20, background: 'var(--bg-time-light)', border: '1px solid transparent' }}>
+                  <span style={{ fontSize: '0.82rem', color: 'var(--accent-time)', fontWeight: 600 }}>{h?.name ?? id}</span>
+                  <button type="button" onClick={() => removeError(id)} style={{ border: 'none', background: 'none', cursor: 'pointer', color: 'var(--accent-time)', padding: 0, lineHeight: 1, fontSize: '1rem' }}>×</button>
+                </div>
+              ) : (
+                <button key={id} type="button" onClick={() => onNavigate({ type: 'heresy', id })} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', borderRadius: 'var(--radius-md)', background: 'var(--bg-time-light)', border: '1px solid transparent', cursor: 'pointer', textAlign: 'left', gap: 8 }}>
+                  <span style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--accent-time)' }}>{h?.name ?? id}</span>
+                  <ChevronRight size={14} color="var(--accent-time)" />
+                </button>
+              );
+            })}
           </div>
+          {isEditing && availableHeresies.length > 0 && (
+            <select
+              defaultValue=""
+              onChange={e => { addError(e.target.value); (e.target as HTMLSelectElement).value = ''; }}
+              style={{ padding: '7px 10px', borderRadius: 8, border: '1px solid var(--border-soft)', background: 'var(--bg-surface)', fontSize: '0.85rem', cursor: 'pointer' }}
+            >
+              <option value="" disabled>+ Link a heresy…</option>
+              {availableHeresies.map(h => <option key={h.id} value={h.id}>{h.name}</option>)}
+            </select>
+          )}
         </section>
       )}
     </div>
@@ -914,204 +851,166 @@ function DoctrineDetail({
 
 function HeresyDetail({
   heresy,
+  data,
   onNavigate,
+  cms,
 }: {
   heresy: Heresy;
+  data: TheologyData;
   onNavigate: (view: View) => void;
+  cms?: TheolayCms;
 }) {
+  const { doctrineMap } = data;
   const refutingDoctrines = heresy.refutedBy.map(id => doctrineMap[id]).filter(Boolean);
+  const isEditing = !!cms?.editMode;
+
+  const update = (patch: Partial<Heresy>) =>
+    cms?.onUpdateHeresy({ ...heresy, ...patch });
+
+  const updateProponent = (i: number, val: string) =>
+    update({ proponents: heresy.proponents.map((p, idx) => idx === i ? val : p) });
+  const removeProponent = (i: number) =>
+    update({ proponents: heresy.proponents.filter((_, idx) => idx !== i) });
+  const addProponent = () =>
+    update({ proponents: [...heresy.proponents, ''] });
+
+  const removeRefutedBy = (id: string) =>
+    update({ refutedBy: heresy.refutedBy.filter(d => d !== id) });
+  const addRefutedBy = (id: string) => {
+    if (!id || heresy.refutedBy.includes(id)) return;
+    update({ refutedBy: [...heresy.refutedBy, id] });
+  };
+
+  const availableDoctrines = Object.values(doctrineMap).filter(d => !heresy.refutedBy.includes(d.id));
 
   return (
     <div style={{ padding: '40px 60px', maxWidth: 820 }}>
       <button
         type="button"
         onClick={() => onNavigate({ type: 'home' })}
-        style={{
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: 6,
-          marginBottom: 24,
-          background: 'none',
-          border: 'none',
-          cursor: 'pointer',
-          color: 'var(--text-tertiary)',
-          fontSize: '0.85rem',
-          padding: 0,
-        }}
+        style={{ display: 'inline-flex', alignItems: 'center', gap: 6, marginBottom: 24, background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-tertiary)', fontSize: '0.85rem', padding: 0 }}
       >
         <ArrowLeft size={14} />
         Heresies &amp; Errors
       </button>
 
       <div style={{ marginBottom: 24 }}>
-        <span style={{
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: 6,
-          padding: '2px 10px',
-          borderRadius: 20,
-          fontSize: '0.75rem',
-          fontWeight: 700,
-          textTransform: 'uppercase',
-          letterSpacing: '0.05em',
-          background: 'var(--bg-time-light)',
-          color: 'var(--accent-time)',
-          marginBottom: 12,
-        }}>
+        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '2px 10px', borderRadius: 20, fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', background: 'var(--bg-time-light)', color: 'var(--accent-time)', marginBottom: 12 }}>
           <AlertTriangle size={11} />
           Historical Error
         </span>
-        <h1 style={{
-          fontFamily: 'var(--font-serif)',
-          fontSize: '1.75rem',
-          fontWeight: 700,
-          color: 'var(--text-primary)',
-          margin: '0 0 16px',
-          lineHeight: 1.3,
-        }}>
-          {heresy.name}
-        </h1>
-        <p style={{
-          fontSize: '1rem',
-          lineHeight: 1.75,
-          color: 'var(--text-secondary)',
-          margin: 0,
-        }}>
-          {heresy.description}
-        </p>
+        {isEditing ? (
+          <input
+            value={heresy.name}
+            onChange={e => update({ name: e.target.value })}
+            style={editInput({ fontSize: '1.5rem', fontFamily: 'var(--font-serif)', fontWeight: 700, marginBottom: 16, display: 'block' })}
+          />
+        ) : (
+          <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.75rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0 0 16px', lineHeight: 1.3 }}>
+            {heresy.name}
+          </h1>
+        )}
+        {isEditing ? (
+          <textarea
+            value={heresy.description}
+            onChange={e => update({ description: e.target.value })}
+            rows={6}
+            style={editInput({ lineHeight: 1.65, resize: 'vertical' })}
+          />
+        ) : (
+          <p style={{ fontSize: '1rem', lineHeight: 1.75, color: 'var(--text-secondary)', margin: 0 }}>
+            {heresy.description}
+          </p>
+        )}
       </div>
 
       <hr style={{ border: 'none', borderTop: '1px solid var(--border-soft)', margin: '32px 0' }} />
 
       {/* Proponents */}
       <section style={{ marginBottom: 36 }}>
-        <h2 style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: 10,
-          fontFamily: 'var(--font-serif)',
-          fontSize: '1.1rem',
-          fontWeight: 700,
-          color: 'var(--text-primary)',
-          marginBottom: 16,
-        }}>
+        <h2 style={{ display: 'flex', alignItems: 'center', gap: 10, fontFamily: 'var(--font-serif)', fontSize: '1.1rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 16 }}>
           <Users size={18} color="var(--accent-time)" />
           Proponents
         </h2>
-        <ul style={{
-          margin: 0,
-          paddingLeft: 0,
-          listStyle: 'none',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 8,
-        }}>
-          {heresy.proponents.map((p, i) => (
-            <li
-              key={i}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 10,
-                padding: '8px 14px',
-                borderRadius: 'var(--radius-sm)',
-                background: 'var(--bg-subtle)',
-                border: '1px solid var(--border-soft)',
-                fontSize: '0.9rem',
-                color: 'var(--text-secondary)',
-              }}
-            >
-              <span style={{
-                width: 6,
-                height: 6,
-                borderRadius: '50%',
-                background: 'var(--accent-time)',
-                flexShrink: 0,
-              }} />
-              {p}
-            </li>
-          ))}
-        </ul>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+          {heresy.proponents.map((p, i) =>
+            isEditing ? (
+              <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+                <input value={p} onChange={e => updateProponent(i, e.target.value)} style={editInput({ flex: 1 } as React.CSSProperties)} />
+                <button type="button" onClick={() => removeProponent(i)} title="Remove" style={{ border: 'none', background: 'none', cursor: 'pointer', color: 'var(--text-tertiary)', padding: 4, borderRadius: 6, display: 'flex', flexShrink: 0 }}>
+                  <Trash2 size={14} />
+                </button>
+              </div>
+            ) : (
+              <li key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 14px', borderRadius: 'var(--radius-sm)', background: 'var(--bg-subtle)', border: '1px solid var(--border-soft)', fontSize: '0.9rem', color: 'var(--text-secondary)', listStyle: 'none' }}>
+                <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--accent-time)', flexShrink: 0 }} />
+                {p}
+              </li>
+            )
+          )}
+          {isEditing && (
+            <button type="button" onClick={addProponent} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '7px 14px', borderRadius: 20, border: '1px dashed var(--accent-time)', background: 'transparent', cursor: 'pointer', color: 'var(--accent-time)', fontSize: '0.82rem', fontWeight: 600, alignSelf: 'flex-start' }}>
+              <Plus size={13} /> Add Proponent
+            </button>
+          )}
+        </div>
       </section>
 
       {/* Doctrines that refute it */}
-      {refutingDoctrines.length > 0 && (
+      {(refutingDoctrines.length > 0 || isEditing) && (
         <section>
-          <h2 style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 10,
-            fontFamily: 'var(--font-serif)',
-            fontSize: '1.1rem',
-            fontWeight: 700,
-            color: 'var(--text-primary)',
-            marginBottom: 16,
-          }}>
+          <h2 style={{ display: 'flex', alignItems: 'center', gap: 10, fontFamily: 'var(--font-serif)', fontSize: '1.1rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 16 }}>
             <Scale size={18} color="var(--accent-theo)" />
             Doctrines That Refute This Error
           </h2>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-            {refutingDoctrines.map(d => {
-              const cat = categoryMap[d.categoryId];
-              return (
-                <button
-                  key={d.id}
-                  type="button"
-                  onClick={() => onNavigate({ type: 'doctrine', id: d.id })}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    padding: '12px 16px',
-                    borderRadius: 'var(--radius-md)',
-                    background: 'var(--bg-theo-light)',
-                    border: '1px solid transparent',
-                    cursor: 'pointer',
-                    textAlign: 'left',
-                  }}
-                >
-                  <div>
-                    <div style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--accent-theo)' }}>
-                      {d.name}
+          <div style={{ display: 'flex', flexWrap: isEditing ? 'wrap' : 'nowrap', flexDirection: isEditing ? 'row' : 'column', gap: 8, marginBottom: isEditing ? 12 : 0 }}>
+            {heresy.refutedBy.map(id => {
+              const d = doctrineMap[id];
+              return isEditing ? (
+                <div key={id} style={{ display: 'inline-flex', alignItems: 'center', gap: 4, padding: '5px 10px', borderRadius: 20, background: 'var(--bg-theo-light)', border: '1px solid transparent' }}>
+                  <span style={{ fontSize: '0.82rem', color: 'var(--accent-theo)', fontWeight: 600 }}>{d?.name ?? id}</span>
+                  <button type="button" onClick={() => removeRefutedBy(id)} style={{ border: 'none', background: 'none', cursor: 'pointer', color: 'var(--accent-theo)', padding: 0, lineHeight: 1, fontSize: '1rem' }}>×</button>
+                </div>
+              ) : (
+                d ? (
+                  <button key={id} type="button" onClick={() => onNavigate({ type: 'doctrine', id })} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', borderRadius: 'var(--radius-md)', background: 'var(--bg-theo-light)', border: '1px solid transparent', cursor: 'pointer', textAlign: 'left' }}>
+                    <div>
+                      <div style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--accent-theo)' }}>{d.name}</div>
                     </div>
-                    <div style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', marginTop: 2 }}>
-                      {cat?.name}
-                    </div>
-                  </div>
-                  <ChevronRight size={14} color="var(--accent-theo)" />
-                </button>
+                    <ChevronRight size={14} color="var(--accent-theo)" />
+                  </button>
+                ) : null
               );
             })}
           </div>
+          {isEditing && availableDoctrines.length > 0 && (
+            <select
+              defaultValue=""
+              onChange={e => { addRefutedBy(e.target.value); (e.target as HTMLSelectElement).value = ''; }}
+              style={{ padding: '7px 10px', borderRadius: 8, border: '1px solid var(--border-soft)', background: 'var(--bg-surface)', fontSize: '0.85rem', cursor: 'pointer' }}
+            >
+              <option value="" disabled>+ Link a doctrine…</option>
+              {availableDoctrines.map(d => <option key={d.id} value={d.id}>{d.name}</option>)}
+            </select>
+          )}
         </section>
       )}
     </div>
   );
 }
 
-function HomeView({ onNavigate }: { onNavigate: (view: View) => void }) {
+function HomeView({ data, onNavigate }: { data: TheologyData; onNavigate: (view: View) => void }) {
   return (
     <div style={{ padding: '40px 60px', maxWidth: 820 }}>
-      <h1 style={{
-        fontFamily: 'var(--font-serif)',
-        fontSize: '2rem',
-        fontWeight: 700,
-        color: 'var(--text-primary)',
-        margin: '0 0 12px',
-      }}>
+      <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: '2rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0 0 12px' }}>
         Theology Explorer
       </h1>
-      <p style={{
-        fontSize: '1rem',
-        lineHeight: 1.75,
-        color: 'var(--text-secondary)',
-        marginBottom: 40,
-      }}>
+      <p style={{ fontSize: '1rem', lineHeight: 1.75, color: 'var(--text-secondary)', marginBottom: 40 }}>
         Explore systematic theology from a Reformed perspective. Browse doctrines by category, see their scriptural and confessional foundations, and understand the historical errors they correct.
       </p>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: 16, marginBottom: 40 }}>
-        {CATEGORIES.map(cat => (
+        {data.categories.map(cat => (
           <button
             key={cat.id}
             type="button"
@@ -1119,57 +1018,27 @@ function HomeView({ onNavigate }: { onNavigate: (view: View) => void }) {
               const firstId = cat.doctrines[0];
               if (firstId) onNavigate({ type: 'doctrine', id: firstId });
             }}
-            style={{
-              padding: 20,
-              borderRadius: 'var(--radius-lg)',
-              background: 'var(--bg-surface)',
-              border: '1px solid var(--border-soft)',
-              boxShadow: 'var(--shadow-card)',
-              cursor: 'pointer',
-              textAlign: 'left',
-            }}
+            style={{ padding: 20, borderRadius: 'var(--radius-lg)', background: 'var(--bg-surface)', border: '1px solid var(--border-soft)', boxShadow: 'var(--shadow-card)', cursor: 'pointer', textAlign: 'left' }}
           >
-            <div style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--text-primary)', marginBottom: 4 }}>
-              {cat.name}
-            </div>
-            <div style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)' }}>
-              {cat.doctrines.length} {cat.doctrines.length === 1 ? 'doctrine' : 'doctrines'}
-            </div>
+            <div style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--text-primary)', marginBottom: 4 }}>{cat.name}</div>
+            <div style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)' }}>{cat.doctrines.length} {cat.doctrines.length === 1 ? 'doctrine' : 'doctrines'}</div>
           </button>
         ))}
       </div>
 
       <hr style={{ border: 'none', borderTop: '1px solid var(--border-soft)', margin: '0 0 32px' }} />
 
-      <h2 style={{
-        fontFamily: 'var(--font-serif)',
-        fontSize: '1.2rem',
-        fontWeight: 700,
-        color: 'var(--text-primary)',
-        marginBottom: 16,
-        display: 'flex',
-        alignItems: 'center',
-        gap: 8,
-      }}>
+      <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 16, display: 'flex', alignItems: 'center', gap: 8 }}>
         <AlertTriangle size={18} color="var(--accent-time)" />
         Heresies &amp; Historical Errors
       </h2>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-        {HERESIES.map(h => (
+        {data.heresies.map(h => (
           <button
             key={h.id}
             type="button"
             onClick={() => onNavigate({ type: 'heresy', id: h.id })}
-            style={{
-              padding: '6px 14px',
-              borderRadius: 20,
-              background: 'var(--bg-time-light)',
-              border: '1px solid transparent',
-              cursor: 'pointer',
-              fontSize: '0.85rem',
-              fontWeight: 600,
-              color: 'var(--accent-time)',
-            }}
+            style={{ padding: '6px 14px', borderRadius: 20, background: 'var(--bg-time-light)', border: '1px solid transparent', cursor: 'pointer', fontSize: '0.85rem', fontWeight: 600, color: 'var(--accent-time)' }}
           >
             {h.name}
           </button>
@@ -1182,16 +1051,94 @@ function HomeView({ onNavigate }: { onNavigate: (view: View) => void }) {
 // ── Main Component ─────────────────────────────────────────────────────────
 
 export default function TheologyExplorer() {
-  const [view, setView] = useState<View>({ type: 'home' });
+  const { id: paramId } = useParams<{ id?: string }>();
+  const location = useLocation();
+  const routerNavigate = useNavigate();
+
+  // Derive view from URL path
+  const urlView = useMemo<View>(() => {
+    if (location.pathname.includes('/doctrine/') && paramId) return { type: 'doctrine', id: paramId };
+    if (location.pathname.includes('/heresy/') && paramId) return { type: 'heresy', id: paramId };
+    return { type: 'home' };
+  }, [location.pathname, paramId]);
+
+  const [view, setView] = useState<View>(urlView);
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(() => new Set());
+  const [doctrines, setDoctrines] = useState<Doctrine[]>(DEFAULT_DOCTRINES);
+  const [heresies, setHeresies] = useState<Heresy[]>(DEFAULT_HERESIES);
+
+  const isCmsMode = import.meta.env.VITE_CMS_MODE === 'true';
+  const [cmsEditMode, setCmsEditMode] = useState(false);
+  const [cmsSaving, setCmsSaving] = useState(false);
+  const [cmsSaveMsg, setCmsSaveMsg] = useState('');
+
+  const doctrineMap = useMemo(() => Object.fromEntries(doctrines.map(d => [d.id, d])), [doctrines]);
+  const heresyMap = useMemo(() => Object.fromEntries(heresies.map(h => [h.id, h])), [heresies]);
+  const categoryMap = useMemo(() => Object.fromEntries(CATEGORIES.map(c => [c.id, c])), []);
+
+  const data: TheologyData = { categories: CATEGORIES, doctrines, heresies, doctrineMap, heresyMap, categoryMap };
+
+  // Sync URL → internal view when the URL changes (e.g. back/forward or ReferenceCard link)
+  useEffect(() => {
+    setView(urlView);
+    if (urlView.type === 'doctrine') {
+      const doc = doctrineMap[urlView.id];
+      if (doc) setExpandedCategories(prev => new Set([...prev, doc.categoryId]));
+    }
+  }, [urlView.type, urlView.type === 'home' ? '' : urlView.id]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (!isCmsMode) return;
+    (async () => {
+      try {
+        const res = await fetch('http://localhost:4001/file/theology/data.json');
+        if (!res.ok) return;
+        const json = await res.json();
+        if (Array.isArray(json.doctrines)) setDoctrines(json.doctrines);
+        if (Array.isArray(json.heresies)) setHeresies(json.heresies);
+      } catch {
+        // fall back to defaults
+      }
+    })();
+  }, [isCmsMode]);
+
+  const updateDoctrine = (updated: Doctrine) =>
+    setDoctrines(prev => prev.map(d => d.id === updated.id ? updated : d));
+
+  const updateHeresy = (updated: Heresy) =>
+    setHeresies(prev => prev.map(h => h.id === updated.id ? updated : h));
+
+  const saveToDisk = async () => {
+    setCmsSaving(true);
+    setCmsSaveMsg('');
+    try {
+      const res = await fetch('http://localhost:4001/file/theology/data.json', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: JSON.stringify({ doctrines, heresies }, null, 2) })
+      });
+      if (!res.ok) throw new Error('PUT failed');
+      setCmsSaveMsg('Saved!');
+      setTimeout(() => setCmsSaveMsg(''), 2500);
+    } catch {
+      setCmsSaveMsg('Save failed');
+    } finally {
+      setCmsSaving(false);
+    }
+  };
+
+  const cms: TheolayCms = { editMode: cmsEditMode, onUpdateDoctrine: updateDoctrine, onUpdateHeresy: updateHeresy };
 
   function navigate(next: View) {
     setView(next);
     if (next.type === 'doctrine') {
       const doc = doctrineMap[next.id];
-      if (doc) {
-        setExpandedCategories(prev => new Set([...prev, doc.categoryId]));
-      }
+      if (doc) setExpandedCategories(prev => new Set([...prev, doc.categoryId]));
+      routerNavigate(`/theology/doctrine/${next.id}`);
+    } else if (next.type === 'heresy') {
+      routerNavigate(`/theology/heresy/${next.id}`);
+    } else {
+      routerNavigate('/theology');
     }
   }
 
@@ -1200,25 +1147,11 @@ export default function TheologyExplorer() {
   return (
     <div className="workspace" style={{ display: 'flex', overflow: 'hidden' }}>
       {/* ── Sidebar ── */}
-      <aside
-        className="left-sidebar"
-        style={{ width: 280, flexShrink: 0 }}
-      >
+      <aside className="left-sidebar" style={{ width: 280, flexShrink: 0 }}>
         <div style={{ padding: '20px 20px 8px' }}>
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 8,
-            marginBottom: 4,
-          }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
             <Scale size={16} color="var(--accent-theo)" />
-            <span style={{
-              fontSize: '0.75rem',
-              fontWeight: 700,
-              textTransform: 'uppercase',
-              letterSpacing: '0.08em',
-              color: 'var(--accent-theo)',
-            }}>
+            <span style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--accent-theo)' }}>
               Systematic Theology
             </span>
           </div>
@@ -1238,26 +1171,10 @@ export default function TheologyExplorer() {
                     return next;
                   });
                 }}
-                style={{
-                  width: '100%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  padding: '8px 20px',
-                  background: 'transparent',
-                  border: 'none',
-                  cursor: 'pointer',
-                  textAlign: 'left',
-                  fontSize: '0.875rem',
-                  fontWeight: 700,
-                  color: 'var(--text-secondary)',
-                  gap: 6,
-                }}
+                style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '8px 20px', background: 'transparent', border: 'none', cursor: 'pointer', textAlign: 'left', fontSize: '0.875rem', fontWeight: 700, color: 'var(--text-secondary)', gap: 6 }}
               >
                 <span>{cat.name}</span>
-                {isOpen
-                  ? <ChevronDown size={13} />
-                  : <ChevronRight size={13} />}
+                {isOpen ? <ChevronDown size={13} /> : <ChevronRight size={13} />}
               </button>
 
               {isOpen && (
@@ -1271,22 +1188,7 @@ export default function TheologyExplorer() {
                         key={id}
                         type="button"
                         onClick={() => navigate({ type: 'doctrine', id })}
-                        style={{
-                          width: '100%',
-                          display: 'block',
-                          padding: '6px 16px',
-                          background: active ? 'var(--bg-theo-light)' : 'transparent',
-                          border: 'none',
-                          borderLeft: active
-                            ? '2px solid var(--accent-theo)'
-                            : '2px solid transparent',
-                          cursor: 'pointer',
-                          textAlign: 'left',
-                          fontSize: '0.83rem',
-                          fontWeight: active ? 600 : 400,
-                          color: active ? 'var(--accent-theo)' : 'var(--text-secondary)',
-                          borderRadius: '0 6px 6px 0',
-                        }}
+                        style={{ width: '100%', display: 'block', padding: '6px 16px', background: active ? 'var(--bg-theo-light)' : 'transparent', border: 'none', borderLeft: active ? '2px solid var(--accent-theo)' : '2px solid transparent', cursor: 'pointer', textAlign: 'left', fontSize: '0.83rem', fontWeight: active ? 600 : 400, color: active ? 'var(--accent-theo)' : 'var(--text-secondary)', borderRadius: '0 6px 6px 0' }}
                       >
                         {doc.name}
                       </button>
@@ -1298,53 +1200,25 @@ export default function TheologyExplorer() {
           );
         })}
 
-        {/* Divider */}
-        <div style={{
-          margin: '16px 20px',
-          borderTop: '1px solid var(--border-soft)',
-        }} />
+        <div style={{ margin: '16px 20px', borderTop: '1px solid var(--border-soft)' }} />
 
         <div style={{ padding: '4px 20px 8px' }}>
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 8,
-          }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <AlertTriangle size={14} color="var(--accent-time)" />
-            <span style={{
-              fontSize: '0.75rem',
-              fontWeight: 700,
-              textTransform: 'uppercase',
-              letterSpacing: '0.08em',
-              color: 'var(--accent-time)',
-            }}>
+            <span style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--accent-time)' }}>
               Heresies &amp; Errors
             </span>
           </div>
         </div>
 
-        {HERESIES.map(h => {
+        {heresies.map(h => {
           const active = activeHeresyId === h.id;
           return (
             <button
               key={h.id}
               type="button"
               onClick={() => navigate({ type: 'heresy', id: h.id })}
-              style={{
-                width: '100%',
-                display: 'block',
-                padding: '7px 20px',
-                background: active ? 'var(--bg-time-light)' : 'transparent',
-                border: 'none',
-                borderLeft: active
-                  ? '2px solid var(--accent-time)'
-                  : '2px solid transparent',
-                cursor: 'pointer',
-                textAlign: 'left',
-                fontSize: '0.83rem',
-                fontWeight: active ? 600 : 400,
-                color: active ? 'var(--accent-time)' : 'var(--text-secondary)',
-              }}
+              style={{ width: '100%', display: 'block', padding: '7px 20px', background: active ? 'var(--bg-time-light)' : 'transparent', border: 'none', borderLeft: active ? '2px solid var(--accent-time)' : '2px solid transparent', cursor: 'pointer', textAlign: 'left', fontSize: '0.83rem', fontWeight: active ? 600 : 400, color: active ? 'var(--accent-time)' : 'var(--text-secondary)' }}
             >
               {h.name}
             </button>
@@ -1356,14 +1230,63 @@ export default function TheologyExplorer() {
 
       {/* ── Main Content ── */}
       <main style={{ flex: 1, overflowY: 'auto', background: 'var(--bg-page)' }}>
-        {view.type === 'home' && <HomeView onNavigate={navigate} />}
+        {view.type === 'home' && <HomeView data={data} onNavigate={navigate} />}
         {view.type === 'doctrine' && doctrineMap[view.id] && (
-          <DoctrineDetail doctrine={doctrineMap[view.id]} onNavigate={navigate} />
+          <DoctrineDetail doctrine={doctrineMap[view.id]} data={data} onNavigate={navigate} cms={isCmsMode ? cms : undefined} />
         )}
         {view.type === 'heresy' && heresyMap[view.id] && (
-          <HeresyDetail heresy={heresyMap[view.id]} onNavigate={navigate} />
+          <HeresyDetail heresy={heresyMap[view.id]} data={data} onNavigate={navigate} cms={isCmsMode ? cms : undefined} />
         )}
       </main>
+
+      {/* CMS floating toolbar */}
+      {isCmsMode && (
+        <div style={{
+          position: 'fixed', bottom: 20, right: 20, zIndex: 1000,
+          display: 'flex', alignItems: 'center', gap: 8,
+          background: 'var(--bg-surface)',
+          border: '1px solid var(--border-soft)',
+          borderRadius: 24, padding: '8px 14px',
+          boxShadow: '0 4px 20px rgba(0,0,0,0.14)',
+        }}>
+          <span style={{ fontSize: '0.7rem', fontWeight: 700, color: 'var(--text-tertiary)', letterSpacing: '0.08em', textTransform: 'uppercase' }}>CMS</span>
+          <button
+            type="button"
+            onClick={() => setCmsEditMode(m => !m)}
+            style={{
+              display: 'flex', alignItems: 'center', gap: 5,
+              padding: '5px 12px', borderRadius: 16, border: 'none', cursor: 'pointer',
+              background: cmsEditMode ? 'var(--accent-theo)' : 'var(--bg-sidebar)',
+              color: cmsEditMode ? 'white' : 'var(--text-secondary)',
+              fontWeight: 600, fontSize: '0.82rem',
+            }}
+          >
+            <Pencil size={12} /> {cmsEditMode ? 'Editing' : 'Edit'}
+          </button>
+          {cmsEditMode && (view.type === 'doctrine' || view.type === 'heresy') && (
+            <>
+              {cmsSaveMsg && (
+                <span style={{ fontSize: '0.78rem', fontWeight: 600, color: cmsSaveMsg === 'Saved!' ? 'green' : 'var(--accent-exe)' }}>
+                  {cmsSaveMsg}
+                </span>
+              )}
+              <button
+                type="button"
+                onClick={saveToDisk}
+                disabled={cmsSaving}
+                style={{
+                  display: 'flex', alignItems: 'center', gap: 5,
+                  padding: '5px 12px', borderRadius: 16, border: 'none', cursor: cmsSaving ? 'default' : 'pointer',
+                  background: 'var(--accent-exe)', color: 'white',
+                  fontWeight: 600, fontSize: '0.82rem', opacity: cmsSaving ? 0.7 : 1,
+                }}
+              >
+                <Save size={12} /> {cmsSaving ? 'Saving…' : 'Save'}
+              </button>
+            </>
+          )}
+        </div>
+      )}
     </div>
   );
 }

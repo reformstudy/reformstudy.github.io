@@ -92,6 +92,8 @@ export default function ContentEditor() {
   const [jsonData, setJsonData] = useState<any>(null);
   const [jsonError, setJsonError] = useState<string | null>(null);
   const [message, setMessage] = useState<string>('');
+  const [serverError, setServerError] = useState<string | null>(null);
+  const [filesLoaded, setFilesLoaded] = useState(false);
   const [fileSearch, setFileSearch] = useState('');
   const [contentSearch, setContentSearch] = useState('');
   const [isSaving, setIsSaving] = useState(false);
@@ -128,16 +130,23 @@ export default function ContentEditor() {
   }, [sections]);
 
   useEffect(() => {
+    if (!import.meta.env.DEV) {
+      setFilesLoaded(true);
+      return;
+    }
     async function loadFiles() {
       try {
         const res = await fetch(`${apiBase()}/files`);
         const json = await res.json();
         setFiles(json.files || []);
-      } catch (err) {
-        setMessage('Could not load file list. Is the content server running?');
+        setServerError(null);
+      } catch {
+        setServerError('Could not reach content server at localhost:4001.');
+      } finally {
+        setFilesLoaded(true);
       }
     }
-    if (import.meta.env.DEV) loadFiles();
+    loadFiles();
   }, []);
 
   const parseJson = (text: string) => {
@@ -254,9 +263,25 @@ export default function ContentEditor() {
         />
 
         <div style={{ flex: 1, overflowY: 'auto', display: 'grid', gap: 8 }}>
-          {filteredFiles.length === 0 && (
-            <div style={{ color: 'var(--text-tertiary)', fontStyle: 'italic' }}>
-              {fileSearch ? 'No matching files.' : 'No files found.'}
+          {filteredFiles.length === 0 && filesLoaded && (
+            <div style={{ padding: '12px 4px', display: 'flex', flexDirection: 'column', gap: 8 }}>
+              {!import.meta.env.DEV ? (
+                <div style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: 1.5 }}>
+                  Content Editor is only available in development mode. Run <code style={{ background: 'var(--bg-sidebar)', padding: '1px 5px', borderRadius: 4 }}>npm run dev:cms</code> locally to use this tool.
+                </div>
+              ) : serverError ? (
+                <div style={{ color: 'var(--accent-exe)', fontSize: '0.88rem', lineHeight: 1.5 }}>
+                  <div style={{ fontWeight: 700, marginBottom: 4 }}>Content server not running</div>
+                  <div>{serverError}</div>
+                  <div style={{ marginTop: 8, color: 'var(--text-secondary)' }}>
+                    Start it with: <code style={{ background: 'var(--bg-sidebar)', padding: '1px 5px', borderRadius: 4 }}>npm run dev:cms</code>
+                  </div>
+                </div>
+              ) : (
+                <div style={{ color: 'var(--text-tertiary)', fontStyle: 'italic' }}>
+                  {fileSearch ? 'No matching files.' : 'No files found in content/.'}
+                </div>
+              )}
             </div>
           )}
           {filteredFiles.map(f => {

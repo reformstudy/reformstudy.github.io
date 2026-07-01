@@ -273,7 +273,8 @@ export function buildResources() {
   const strongs = processStrongs();
   
   generateManifest(bibles, confessions, commentaries, strongs);
-  
+  copyContentDir();
+
   console.log('='.repeat(50));
   console.log('Resources built successfully!');
   console.log(`Output directory: ${OUTPUT_DIR}`);

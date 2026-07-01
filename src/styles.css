@@ -336,8 +336,9 @@ button {
   display: none !important;
 }
 
-/* Drawer overlay — shown via .visible class on mobile */
+/* Drawer overlay — desktop: never shown; mobile: controlled by JS state */
 .mobile-overlay {
+  display: none;
   position: fixed;
   inset: 0;
   background: rgba(44, 39, 36, 0.5);
@@ -495,4 +496,17 @@ button {
   .mobile-panel-bar {
     display: flex;
   }
+
+  .mobile-overlay {
+    display: block;
+  }
+}
+
+/* ── ReferenceCard ──────────────────────────────────────────────────────── */
+.reference-card:hover {
+  box-shadow: var(--shadow-card);
+}
+
+.reference-card__link:hover {
+  border-bottom-color: currentColor !important;
 }

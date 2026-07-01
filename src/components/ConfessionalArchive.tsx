@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react';
 import { BookMarked, Calendar, MapPin, FileText, ChevronRight, X, List } from 'lucide-react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useResources } from '../context/ResourceContext';
 
 export default function ConfessionalArchive() {
+  const { confessionId: paramConfessionId, chapter: paramChapter } = useParams<{ confessionId?: string; chapter?: string }>();
+  const routerNavigate = useNavigate();
   const { manifest, confessions, ensureResourceLoaded } = useResources();
-  const [selectedId, setSelectedId] = useState<string | null>(null);
-  const [selectedChapter, setSelectedChapter] = useState(1);
+  const [selectedId, setSelectedId] = useState<string | null>(paramConfessionId ?? null);
+  const [selectedChapter, setSelectedChapter] = useState(paramChapter ? parseInt(paramChapter, 10) : 1);
 
   useEffect(() => {
     if (manifest && manifest.resources.confessions.length > 0 && !selectedId) {
@@ -15,6 +18,19 @@ export default function ConfessionalArchive() {
     }
   }, [manifest, selectedId, ensureResourceLoaded]);
 
+  // Sync URL params → state (handles back/forward and incoming links)
+  useEffect(() => {
+    if (paramConfessionId && paramConfessionId !== selectedId) {
+      setSelectedId(paramConfessionId);
+      ensureResourceLoaded(paramConfessionId);
+    }
+    if (paramChapter) {
+      const ch = parseInt(paramChapter, 10);
+      if (ch !== selectedChapter) setSelectedChapter(ch);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [paramConfessionId, paramChapter]);
+
   const availableConfessions = manifest?.resources.confessions ?? [];
   const confession = selectedId ? confessions[selectedId] : undefined;
   const confessionMeta = availableConfessions.find(c => c.id === selectedId);
@@ -23,6 +39,12 @@ export default function ConfessionalArchive() {
     setSelectedId(id);
     setSelectedChapter(1);
     ensureResourceLoaded(id);
+    routerNavigate(`/archive/${id}/1`);
+  };
+
+  const handleChapterSelect = (ch: number) => {
+    setSelectedChapter(ch);
+    if (selectedId) routerNavigate(`/archive/${selectedId}/${ch}`);
   };
 
   const chapterData = confession?.sections.find(s => s.chapter === selectedChapter);
@@ -87,7 +109,7 @@ export default function ConfessionalArchive() {
                 <button
                   key={ch}
                   type="button"
-                  onClick={() => setSelectedChapter(ch)}
+                  onClick={() => handleChapterSelect(ch)}
                   title={confession.sections.find(s => s.chapter === ch)?.title ?? `Chapter ${ch}`}
                   style={{
                     aspectRatio: '1',
@@ -194,7 +216,7 @@ export default function ConfessionalArchive() {
             <div style={{ display: 'flex', gap: 12, marginTop: 48, justifyContent: 'space-between' }}>
               <button
                 type="button"
-                onClick={() => setSelectedChapter(c => Math.max(1, c - 1))}
+                onClick={() => handleChapterSelect(Math.max(1, selectedChapter - 1))}
                 disabled={selectedChapter <= 1}
                 style={{
                   padding: '10px 20px',
@@ -211,7 +233,7 @@ export default function ConfessionalArchive() {
               </button>
               <button
                 type="button"
-                onClick={() => setSelectedChapter(c => Math.min(totalChapters, c + 1))}
+                onClick={() => handleChapterSelect(Math.min(totalChapters, selectedChapter + 1))}
                 disabled={selectedChapter >= totalChapters}
                 style={{
                   padding: '10px 20px',
