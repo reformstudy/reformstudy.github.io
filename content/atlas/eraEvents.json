@@ -1,0 +1,1514 @@
+{
+  "eraEvents": {
+    "creation": {
+      "title": "Creation & Fall",
+      "timeframe": "Genesis 1 – 3",
+      "events": []
+    },
+    "preflood": {
+      "title": "Pre-Flood Age",
+      "timeframe": "Genesis 4 – 6",
+      "events": []
+    },
+    "patriarchal": {
+      "title": "Patriarchal Age",
+      "timeframe": "c. 2100 – 1800 BC",
+      "events": [
+        {
+          "id": "ur",
+          "date": "c. 2090 BC",
+          "title": "The Call of Abram",
+          "loc": "Ur of the Chaldeans",
+          "coords": {
+            "x": 973,
+            "y": 410
+          },
+          "desc": "God calls Abram out of Ur, establishing the unconditional covenant of grace promising a land, a seed, and a blessing to all nations.",
+          "scripture": "Genesis 12:1-3",
+          "theme": "Covenant of Grace"
+        },
+        {
+          "id": "canaan",
+          "date": "c. 2075 BC",
+          "title": "Arrival in Canaan",
+          "loc": "Shechem",
+          "coords": {
+            "x": 777,
+            "y": 383
+          },
+          "desc": "Abram builds an altar at the oak of Moreh. God promises this land to his offspring.",
+          "scripture": "Genesis 12:6-7",
+          "theme": "Promised Land"
+        },
+        {
+          "id": "moriah",
+          "date": "c. 2050 BC",
+          "title": "Binding of Isaac",
+          "loc": "Mount Moriah",
+          "coords": {
+            "x": 776,
+            "y": 391
+          },
+          "desc": "Abraham's faith is tested. A ram is provided as a substitute, foreshadowing the substitutionary atonement of Christ.",
+          "scripture": "Genesis 22:1-14",
+          "theme": "Substitutionary Atonement"
+        },
+        {
+          "id": "egypt",
+          "date": "c. 1876 BC",
+          "title": "Descent into Egypt",
+          "loc": "Goshen",
+          "coords": {
+            "x": 711,
+            "y": 413
+          },
+          "desc": "Jacob and his family move to Egypt to survive the famine, setting the stage for the Exodus.",
+          "scripture": "Genesis 46:1-7",
+          "theme": "Providence"
+        }
+      ]
+    },
+    "mosaic": {
+      "title": "Exodus & Conquest",
+      "timeframe": "c. 1446 – 1350 BC",
+      "events": [
+        {
+          "id": "exodus",
+          "date": "c. 1446 BC",
+          "title": "The Exodus",
+          "loc": "Rameses, Egypt",
+          "coords": {
+            "x": 717,
+            "y": 413
+          },
+          "desc": "God delivers Israel from slavery in Egypt through ten plagues and the crossing of the Red Sea.",
+          "scripture": "Exodus 12:33-42",
+          "theme": "Redemption"
+        },
+        {
+          "id": "sinai",
+          "date": "c. 1446 BC",
+          "title": "Covenant at Sinai",
+          "loc": "Mount Sinai",
+          "coords": {
+            "x": 753,
+            "y": 457
+          },
+          "desc": "God gives the Law to Moses, establishing the Mosaic Covenant and the sacrificial system.",
+          "scripture": "Exodus 19-20",
+          "theme": "The Law"
+        },
+        {
+          "id": "jordan",
+          "date": "c. 1406 BC",
+          "title": "Crossing the Jordan",
+          "loc": "Gilgal",
+          "coords": {
+            "x": 781,
+            "y": 390
+          },
+          "desc": "Joshua leads the new generation of Israelites into the Promised Land.",
+          "scripture": "Joshua 3:14-17",
+          "theme": "Fulfillment of Promise"
+        }
+      ]
+    },
+    "kingdom": {
+      "title": "The Kingdom Era",
+      "timeframe": "c. 1050 – 586 BC",
+      "events": []
+    },
+    "exile": {
+      "title": "Exile & Return",
+      "timeframe": "586 – 400 BC",
+      "events": []
+    },
+    "church": {
+      "title": "Apostolic & Church Age",
+      "timeframe": "33 AD – Present",
+      "events": [
+        {
+          "id": "pentecost",
+          "date": "c. 33 AD",
+          "title": "Pentecost",
+          "loc": "Jerusalem",
+          "coords": {
+            "x": 776,
+            "y": 391
+          },
+          "desc": "The Holy Spirit is poured out on the disciples, empowering them to preach the gospel to all nations.",
+          "scripture": "Acts 2:1-4",
+          "theme": "New Covenant"
+        },
+        {
+          "id": "antioch",
+          "date": "c. 49 AD",
+          "title": "Missions from Antioch",
+          "loc": "Antioch",
+          "coords": {
+            "x": 792,
+            "y": 299
+          },
+          "desc": "The church at Antioch commissions Paul and Barnabas. It becomes the launchpad for Gentile missions.",
+          "scripture": "Acts 13:1-3",
+          "theme": "Gentile Inclusion"
+        },
+        {
+          "id": "athens",
+          "date": "c. 51 AD",
+          "title": "Paul at the Areopagus",
+          "loc": "Athens, Achaia",
+          "coords": {
+            "x": 578,
+            "y": 259
+          },
+          "desc": "Paul delivers a masterclass in apologetics, using their altar \"To the unknown god\" to declare the sovereign Creator.",
+          "scripture": "Acts 17:22-31",
+          "theme": "General Revelation"
+        },
+        {
+          "id": "rome",
+          "date": "c. 60 AD",
+          "title": "Paul in Rome",
+          "loc": "Rome",
+          "coords": {
+            "x": 386,
+            "y": 174
+          },
+          "desc": "Paul arrives in Rome as a prisoner, preaching the kingdom of God with all boldness and without hindrance.",
+          "scripture": "Acts 28:30-31",
+          "theme": "Gospel Advance"
+        }
+      ]
+    }
+  },
+  "routes": [
+    {
+      "id": "paul-missionary",
+      "name": "Paul's Missionary Route",
+      "color": "#D4A373",
+      "dash": true,
+      "visibleEras": [
+        "church"
+      ],
+      "waypoints": [
+        {
+          "x": 776,
+          "y": 391
+        },
+        {
+          "x": 792,
+          "y": 299
+        },
+        {
+          "x": 724,
+          "y": 285
+        },
+        {
+          "x": 636,
+          "y": 210
+        },
+        {
+          "x": 578,
+          "y": 259
+        },
+        {
+          "x": 557,
+          "y": 237
+        },
+        {
+          "x": 480,
+          "y": 215
+        },
+        {
+          "x": 386,
+          "y": 174
+        }
+      ]
+    }
+  ],
+  "mapStyle": {
+    "water": "#E8F0F2",
+    "land": "#F3EFE8",
+    "border": "#D8D2C4"
+  },
+  "mapGeometry": {
+    "paths": [
+      {
+        "id": "northern-europe",
+        "label": "Northern Europe",
+        "fill": "land",
+        "stroke": false,
+        "strokeWidth": 0,
+        "points": [
+          {
+            "x": 230,
+            "y": 0
+          },
+          {
+            "x": 1200,
+            "y": 0
+          },
+          {
+            "x": 1200,
+            "y": 260
+          },
+          {
+            "x": 1155,
+            "y": 278
+          },
+          {
+            "x": 1072,
+            "y": 262
+          },
+          {
+            "x": 990,
+            "y": 280
+          },
+          {
+            "x": 910,
+            "y": 262
+          },
+          {
+            "x": 872,
+            "y": 158
+          },
+          {
+            "x": 800,
+            "y": 148
+          },
+          {
+            "x": 700,
+            "y": 144
+          },
+          {
+            "x": 642,
+            "y": 168
+          },
+          {
+            "x": 600,
+            "y": 178
+          },
+          {
+            "x": 540,
+            "y": 188
+          },
+          {
+            "x": 450,
+            "y": 178
+          },
+          {
+            "x": 380,
+            "y": 82
+          },
+          {
+            "x": 340,
+            "y": 72
+          },
+          {
+            "x": 295,
+            "y": 28
+          }
+        ]
+      },
+      {
+        "id": "far-east",
+        "label": "Far East Fill",
+        "fill": "land",
+        "stroke": false,
+        "strokeWidth": 0,
+        "points": [
+          {
+            "x": 1155,
+            "y": 278
+          },
+          {
+            "x": 1200,
+            "y": 260
+          },
+          {
+            "x": 1200,
+            "y": 750
+          },
+          {
+            "x": 1040,
+            "y": 750
+          },
+          {
+            "x": 1060,
+            "y": 644
+          },
+          {
+            "x": 1007,
+            "y": 644
+          },
+          {
+            "x": 1045,
+            "y": 574
+          },
+          {
+            "x": 1060,
+            "y": 500
+          },
+          {
+            "x": 1038,
+            "y": 478
+          },
+          {
+            "x": 1060,
+            "y": 484
+          },
+          {
+            "x": 1090,
+            "y": 460
+          },
+          {
+            "x": 1140,
+            "y": 434
+          },
+          {
+            "x": 1175,
+            "y": 364
+          }
+        ]
+      },
+      {
+        "id": "western-europe",
+        "label": "Western Europe",
+        "fill": "land",
+        "stroke": true,
+        "strokeWidth": 0.6,
+        "points": [
+          {
+            "x": 0,
+            "y": 0
+          },
+          {
+            "x": 230,
+            "y": 0
+          },
+          {
+            "x": 295,
+            "y": 28
+          },
+          {
+            "x": 340,
+            "y": 72
+          },
+          {
+            "x": 320,
+            "y": 90
+          },
+          {
+            "x": 310,
+            "y": 108
+          },
+          {
+            "x": 292,
+            "y": 172
+          },
+          {
+            "x": 268,
+            "y": 230
+          },
+          {
+            "x": 238,
+            "y": 272
+          },
+          {
+            "x": 205,
+            "y": 305
+          },
+          {
+            "x": 170,
+            "y": 348
+          },
+          {
+            "x": 128,
+            "y": 388
+          },
+          {
+            "x": 85,
+            "y": 415
+          },
+          {
+            "x": 48,
+            "y": 432
+          },
+          {
+            "x": 0,
+            "y": 440
+          }
+        ]
+      },
+      {
+        "id": "italy",
+        "label": "Italy",
+        "fill": "land",
+        "stroke": true,
+        "strokeWidth": 0.8,
+        "points": [
+          {
+            "x": 310,
+            "y": 108
+          },
+          {
+            "x": 387,
+            "y": 82
+          },
+          {
+            "x": 415,
+            "y": 92
+          },
+          {
+            "x": 448,
+            "y": 122
+          },
+          {
+            "x": 490,
+            "y": 200
+          },
+          {
+            "x": 440,
+            "y": 258
+          },
+          {
+            "x": 416,
+            "y": 254
+          },
+          {
+            "x": 428,
+            "y": 222
+          },
+          {
+            "x": 386,
+            "y": 185
+          },
+          {
+            "x": 344,
+            "y": 188
+          },
+          {
+            "x": 314,
+            "y": 156
+          }
+        ]
+      },
+      {
+        "id": "sicily",
+        "label": "Sicily",
+        "fill": "land",
+        "stroke": true,
+        "strokeWidth": 0.8,
+        "points": [
+          {
+            "x": 386,
+            "y": 256
+          },
+          {
+            "x": 446,
+            "y": 250
+          },
+          {
+            "x": 456,
+            "y": 272
+          },
+          {
+            "x": 427,
+            "y": 287
+          },
+          {
+            "x": 390,
+            "y": 278
+          }
+        ]
+      },
+      {
+        "id": "sardinia",
+        "label": "Sardinia",
+        "fill": "land",
+        "stroke": true,
+        "strokeWidth": 0.6,
+        "points": [
+          {
+            "x": 326,
+            "y": 220
+          },
+          {
+            "x": 348,
+            "y": 208
+          },
+          {
+            "x": 360,
+            "y": 228
+          },
+          {
+            "x": 354,
+            "y": 258
+          },
+          {
+            "x": 334,
+            "y": 260
+          }
+        ]
+      },
+      {
+        "id": "corsica",
+        "label": "Corsica",
+        "fill": "land",
+        "stroke": true,
+        "strokeWidth": 0.6,
+        "points": [
+          {
+            "x": 344,
+            "y": 192
+          },
+          {
+            "x": 359,
+            "y": 182
+          },
+          {
+            "x": 367,
+            "y": 200
+          },
+          {
+            "x": 361,
+            "y": 218
+          },
+          {
+            "x": 346,
+            "y": 215
+          }
+        ]
+      },
+      {
+        "id": "greece",
+        "label": "Greek Mainland",
+        "fill": "land",
+        "stroke": true,
+        "strokeWidth": 0.8,
+        "points": [
+          {
+            "x": 531,
+            "y": 185
+          },
+          {
+            "x": 618,
+            "y": 178
+          },
+          {
+            "x": 660,
+            "y": 196
+          },
+          {
+            "x": 668,
+            "y": 242
+          },
+          {
+            "x": 624,
+            "y": 268
+          },
+          {
+            "x": 596,
+            "y": 286
+          },
+          {
+            "x": 567,
+            "y": 270
+          },
+          {
+            "x": 537,
+            "y": 236
+          }
+        ]
+      },
+      {
+        "id": "peloponnese",
+        "label": "Peloponnese",
+        "fill": "land",
+        "stroke": true,
+        "strokeWidth": 0.7,
+        "points": [
+          {
+            "x": 546,
+            "y": 262
+          },
+          {
+            "x": 612,
+            "y": 260
+          },
+          {
+            "x": 620,
+            "y": 280
+          },
+          {
+            "x": 584,
+            "y": 298
+          },
+          {
+            "x": 547,
+            "y": 282
+          }
+        ]
+      },
+      {
+        "id": "crete",
+        "label": "Crete",
+        "fill": "land",
+        "stroke": true,
+        "strokeWidth": 0.6,
+        "points": [
+          {
+            "x": 586,
+            "y": 324
+          },
+          {
+            "x": 680,
+            "y": 301
+          },
+          {
+            "x": 668,
+            "y": 328
+          },
+          {
+            "x": 679,
+            "y": 373
+          },
+          {
+            "x": 587,
+            "y": 337
+          }
+        ]
+      },
+      {
+        "id": "anatolia",
+        "label": "Anatolia / Turkey",
+        "fill": "land",
+        "stroke": true,
+        "strokeWidth": 0.8,
+        "points": [
+          {
+            "x": 638,
+            "y": 168
+          },
+          {
+            "x": 872,
+            "y": 158
+          },
+          {
+            "x": 910,
+            "y": 178
+          },
+          {
+            "x": 912,
+            "y": 215
+          },
+          {
+            "x": 878,
+            "y": 258
+          },
+          {
+            "x": 838,
+            "y": 275
+          },
+          {
+            "x": 800,
+            "y": 288
+          },
+          {
+            "x": 762,
+            "y": 292
+          },
+          {
+            "x": 722,
+            "y": 284
+          },
+          {
+            "x": 688,
+            "y": 266
+          },
+          {
+            "x": 657,
+            "y": 242
+          },
+          {
+            "x": 638,
+            "y": 210
+          }
+        ]
+      },
+      {
+        "id": "black-sea",
+        "label": "Black Sea",
+        "fill": "water",
+        "stroke": false,
+        "strokeWidth": 0,
+        "points": [
+          {
+            "x": 640,
+            "y": 144
+          },
+          {
+            "x": 700,
+            "y": 138
+          },
+          {
+            "x": 795,
+            "y": 140
+          },
+          {
+            "x": 872,
+            "y": 158
+          },
+          {
+            "x": 840,
+            "y": 172
+          },
+          {
+            "x": 760,
+            "y": 165
+          },
+          {
+            "x": 700,
+            "y": 162
+          },
+          {
+            "x": 658,
+            "y": 168
+          }
+        ]
+      },
+      {
+        "id": "cyprus",
+        "label": "Cyprus",
+        "fill": "land",
+        "stroke": true,
+        "strokeWidth": 0.5,
+        "points": [
+          {
+            "x": 743,
+            "y": 316
+          },
+          {
+            "x": 770,
+            "y": 309
+          },
+          {
+            "x": 788,
+            "y": 318
+          },
+          {
+            "x": 784,
+            "y": 330
+          },
+          {
+            "x": 760,
+            "y": 336
+          },
+          {
+            "x": 741,
+            "y": 328
+          }
+        ]
+      },
+      {
+        "id": "levant",
+        "label": "Levant (Syria/Lebanon/Israel)",
+        "fill": "land",
+        "stroke": true,
+        "strokeWidth": 0.8,
+        "points": [
+          {
+            "x": 792,
+            "y": 285
+          },
+          {
+            "x": 832,
+            "y": 278
+          },
+          {
+            "x": 844,
+            "y": 308
+          },
+          {
+            "x": 840,
+            "y": 350
+          },
+          {
+            "x": 819,
+            "y": 390
+          },
+          {
+            "x": 796,
+            "y": 424
+          },
+          {
+            "x": 772,
+            "y": 449
+          },
+          {
+            "x": 757,
+            "y": 446
+          },
+          {
+            "x": 753,
+            "y": 396
+          },
+          {
+            "x": 760,
+            "y": 350
+          },
+          {
+            "x": 772,
+            "y": 310
+          }
+        ]
+      },
+      {
+        "id": "transjordan",
+        "label": "Transjordan Plateau",
+        "fill": "land",
+        "stroke": true,
+        "strokeWidth": 0.6,
+        "points": [
+          {
+            "x": 796,
+            "y": 424
+          },
+          {
+            "x": 820,
+            "y": 390
+          },
+          {
+            "x": 844,
+            "y": 392
+          },
+          {
+            "x": 852,
+            "y": 428
+          },
+          {
+            "x": 835,
+            "y": 455
+          },
+          {
+            "x": 814,
+            "y": 452
+          }
+        ]
+      },
+      {
+        "id": "north-africa",
+        "label": "North Africa",
+        "fill": "land",
+        "stroke": true,
+        "strokeWidth": 0.8,
+        "points": [
+          {
+            "x": 0,
+            "y": 440
+          },
+          {
+            "x": 48,
+            "y": 432
+          },
+          {
+            "x": 85,
+            "y": 415
+          },
+          {
+            "x": 128,
+            "y": 388
+          },
+          {
+            "x": 170,
+            "y": 348
+          },
+          {
+            "x": 205,
+            "y": 305
+          },
+          {
+            "x": 238,
+            "y": 272
+          },
+          {
+            "x": 284,
+            "y": 282
+          },
+          {
+            "x": 350,
+            "y": 276
+          },
+          {
+            "x": 400,
+            "y": 370
+          },
+          {
+            "x": 464,
+            "y": 396
+          },
+          {
+            "x": 516,
+            "y": 384
+          },
+          {
+            "x": 600,
+            "y": 396
+          },
+          {
+            "x": 684,
+            "y": 402
+          },
+          {
+            "x": 726,
+            "y": 399
+          },
+          {
+            "x": 726,
+            "y": 412
+          },
+          {
+            "x": 730,
+            "y": 430
+          },
+          {
+            "x": 728,
+            "y": 462
+          },
+          {
+            "x": 718,
+            "y": 482
+          },
+          {
+            "x": 706,
+            "y": 534
+          },
+          {
+            "x": 688,
+            "y": 600
+          },
+          {
+            "x": 668,
+            "y": 660
+          },
+          {
+            "x": 635,
+            "y": 718
+          },
+          {
+            "x": 0,
+            "y": 750
+          }
+        ]
+      },
+      {
+        "id": "gulf-syrte",
+        "label": "Gulf of Syrte",
+        "fill": "water",
+        "stroke": false,
+        "strokeWidth": 0,
+        "points": [
+          {
+            "x": 400,
+            "y": 370
+          },
+          {
+            "x": 432,
+            "y": 370
+          },
+          {
+            "x": 464,
+            "y": 396
+          },
+          {
+            "x": 432,
+            "y": 388
+          }
+        ]
+      },
+      {
+        "id": "gulf-suez",
+        "label": "Gulf of Suez",
+        "fill": "water",
+        "stroke": false,
+        "strokeWidth": 0,
+        "points": [
+          {
+            "x": 726,
+            "y": 399
+          },
+          {
+            "x": 752,
+            "y": 393
+          },
+          {
+            "x": 752,
+            "y": 438
+          },
+          {
+            "x": 748,
+            "y": 466
+          },
+          {
+            "x": 728,
+            "y": 462
+          },
+          {
+            "x": 726,
+            "y": 412
+          }
+        ]
+      },
+      {
+        "id": "sinai",
+        "label": "Sinai Peninsula",
+        "fill": "land",
+        "stroke": true,
+        "strokeWidth": 0.7,
+        "points": [
+          {
+            "x": 752,
+            "y": 393
+          },
+          {
+            "x": 790,
+            "y": 388
+          },
+          {
+            "x": 802,
+            "y": 418
+          },
+          {
+            "x": 798,
+            "y": 450
+          },
+          {
+            "x": 773,
+            "y": 484
+          },
+          {
+            "x": 756,
+            "y": 490
+          },
+          {
+            "x": 745,
+            "y": 468
+          },
+          {
+            "x": 748,
+            "y": 438
+          },
+          {
+            "x": 752,
+            "y": 418
+          }
+        ]
+      },
+      {
+        "id": "gulf-aqaba",
+        "label": "Gulf of Aqaba",
+        "fill": "water",
+        "stroke": false,
+        "strokeWidth": 0,
+        "points": [
+          {
+            "x": 790,
+            "y": 388
+          },
+          {
+            "x": 815,
+            "y": 378
+          },
+          {
+            "x": 828,
+            "y": 400
+          },
+          {
+            "x": 824,
+            "y": 446
+          },
+          {
+            "x": 803,
+            "y": 464
+          },
+          {
+            "x": 798,
+            "y": 450
+          },
+          {
+            "x": 802,
+            "y": 418
+          }
+        ]
+      },
+      {
+        "id": "arabia",
+        "label": "Arabian Peninsula",
+        "fill": "land",
+        "stroke": true,
+        "strokeWidth": 0.8,
+        "points": [
+          {
+            "x": 772,
+            "y": 449
+          },
+          {
+            "x": 796,
+            "y": 424
+          },
+          {
+            "x": 814,
+            "y": 452
+          },
+          {
+            "x": 835,
+            "y": 455
+          },
+          {
+            "x": 852,
+            "y": 428
+          },
+          {
+            "x": 844,
+            "y": 392
+          },
+          {
+            "x": 866,
+            "y": 370
+          },
+          {
+            "x": 928,
+            "y": 368
+          },
+          {
+            "x": 994,
+            "y": 388
+          },
+          {
+            "x": 1038,
+            "y": 432
+          },
+          {
+            "x": 1060,
+            "y": 500
+          },
+          {
+            "x": 1045,
+            "y": 574
+          },
+          {
+            "x": 1007,
+            "y": 644
+          },
+          {
+            "x": 940,
+            "y": 704
+          },
+          {
+            "x": 858,
+            "y": 740
+          },
+          {
+            "x": 782,
+            "y": 750
+          },
+          {
+            "x": 756,
+            "y": 692
+          },
+          {
+            "x": 761,
+            "y": 622
+          },
+          {
+            "x": 785,
+            "y": 558
+          },
+          {
+            "x": 800,
+            "y": 498
+          },
+          {
+            "x": 803,
+            "y": 464
+          },
+          {
+            "x": 824,
+            "y": 446
+          },
+          {
+            "x": 828,
+            "y": 400
+          },
+          {
+            "x": 815,
+            "y": 378
+          },
+          {
+            "x": 797,
+            "y": 374
+          },
+          {
+            "x": 773,
+            "y": 385
+          },
+          {
+            "x": 757,
+            "y": 446
+          }
+        ]
+      },
+      {
+        "id": "red-sea",
+        "label": "Red Sea",
+        "fill": "water",
+        "stroke": false,
+        "strokeWidth": 0,
+        "points": [
+          {
+            "x": 718,
+            "y": 482
+          },
+          {
+            "x": 728,
+            "y": 462
+          },
+          {
+            "x": 748,
+            "y": 466
+          },
+          {
+            "x": 745,
+            "y": 468
+          },
+          {
+            "x": 756,
+            "y": 490
+          },
+          {
+            "x": 773,
+            "y": 484
+          },
+          {
+            "x": 800,
+            "y": 498
+          },
+          {
+            "x": 785,
+            "y": 558
+          },
+          {
+            "x": 761,
+            "y": 622
+          },
+          {
+            "x": 756,
+            "y": 692
+          },
+          {
+            "x": 730,
+            "y": 720
+          },
+          {
+            "x": 700,
+            "y": 692
+          },
+          {
+            "x": 678,
+            "y": 640
+          },
+          {
+            "x": 666,
+            "y": 588
+          },
+          {
+            "x": 678,
+            "y": 538
+          },
+          {
+            "x": 695,
+            "y": 484
+          },
+          {
+            "x": 708,
+            "y": 454
+          }
+        ]
+      },
+      {
+        "id": "mesopotamia",
+        "label": "Mesopotamia / Iraq",
+        "fill": "land",
+        "stroke": true,
+        "strokeWidth": 0.8,
+        "points": [
+          {
+            "x": 843,
+            "y": 278
+          },
+          {
+            "x": 910,
+            "y": 262
+          },
+          {
+            "x": 990,
+            "y": 280
+          },
+          {
+            "x": 1038,
+            "y": 334
+          },
+          {
+            "x": 1038,
+            "y": 432
+          },
+          {
+            "x": 994,
+            "y": 388
+          },
+          {
+            "x": 928,
+            "y": 368
+          },
+          {
+            "x": 866,
+            "y": 370
+          },
+          {
+            "x": 844,
+            "y": 350
+          },
+          {
+            "x": 830,
+            "y": 310
+          }
+        ]
+      },
+      {
+        "id": "persian-gulf",
+        "label": "Persian Gulf",
+        "fill": "water",
+        "stroke": false,
+        "strokeWidth": 0,
+        "points": [
+          {
+            "x": 1010,
+            "y": 382
+          },
+          {
+            "x": 1040,
+            "y": 376
+          },
+          {
+            "x": 1056,
+            "y": 439
+          },
+          {
+            "x": 1063,
+            "y": 449
+          },
+          {
+            "x": 1096,
+            "y": 468
+          },
+          {
+            "x": 1060,
+            "y": 484
+          },
+          {
+            "x": 1038,
+            "y": 478
+          },
+          {
+            "x": 999,
+            "y": 438
+          }
+        ]
+      },
+      {
+        "id": "persia",
+        "label": "Persia / Iran",
+        "fill": "land",
+        "stroke": true,
+        "strokeWidth": 0.7,
+        "points": [
+          {
+            "x": 990,
+            "y": 280
+          },
+          {
+            "x": 1072,
+            "y": 262
+          },
+          {
+            "x": 1155,
+            "y": 278
+          },
+          {
+            "x": 1175,
+            "y": 364
+          },
+          {
+            "x": 1140,
+            "y": 434
+          },
+          {
+            "x": 1090,
+            "y": 460
+          },
+          {
+            "x": 1060,
+            "y": 484
+          },
+          {
+            "x": 1096,
+            "y": 468
+          },
+          {
+            "x": 1110,
+            "y": 428
+          },
+          {
+            "x": 1090,
+            "y": 390
+          },
+          {
+            "x": 1040,
+            "y": 376
+          },
+          {
+            "x": 994,
+            "y": 388
+          },
+          {
+            "x": 1038,
+            "y": 432
+          },
+          {
+            "x": 1038,
+            "y": 334
+          }
+        ]
+      }
+    ],
+    "ellipses": [
+      {
+        "id": "dead-sea",
+        "label": "Dead Sea",
+        "cx": 778,
+        "cy": 412,
+        "rx": 5,
+        "ry": 10
+      },
+      {
+        "id": "sea-of-galilee",
+        "label": "Sea of Galilee",
+        "cx": 776,
+        "cy": 368,
+        "rx": 4,
+        "ry": 6
+      }
+    ]
+  }
+}

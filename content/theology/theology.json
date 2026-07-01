@@ -1,0 +1,6 @@
+{
+  "topics": [
+    { "id": "soteriology", "title": "Soteriology", "summary": "Study of salvation, atonement, and justification.", "entries": [ { "id": "justification", "title": "Justification by Faith", "content": "Justification is God's declaration of righteousness..." } ] },
+    { "id": "ecclesiology", "title": "Ecclesiology", "summary": "Doctrine of the church and its offices.", "entries": [] }
+  ]
+}
