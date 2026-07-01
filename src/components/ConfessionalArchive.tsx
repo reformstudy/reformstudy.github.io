@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { BookMarked, Calendar, MapPin, FileText, ChevronRight, X, List } from 'lucide-react';
+import { BookMarked, Calendar, MapPin, FileText, ChevronRight, X, List, BookOpen } from 'lucide-react';
+import { ReferenceCard } from './ReferenceCard';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useResources } from '../context/ResourceContext';
 
@@ -42,8 +43,11 @@ export default function ConfessionalArchive() {
     routerNavigate(`/archive/${id}/1`);
   };
 
+  const [selectedSection, setSelectedSection] = useState<string | null>(null);
+
   const handleChapterSelect = (ch: number) => {
     setSelectedChapter(ch);
+    setSelectedSection(null);
     if (selectedId) routerNavigate(`/archive/${selectedId}/${ch}`);
   };
 
@@ -104,27 +108,29 @@ export default function ConfessionalArchive() {
         {confession && (
           <>
             <div className="sidebar-label" style={{ marginTop: 16 }}>Chapters</div>
-            <div style={{ padding: '4px 12px 16px', display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 6 }}>
-              {Array.from({ length: totalChapters }, (_, i) => i + 1).map(ch => (
-                <button
-                  key={ch}
-                  type="button"
-                  onClick={() => handleChapterSelect(ch)}
-                  title={confession.sections.find(s => s.chapter === ch)?.title ?? `Chapter ${ch}`}
-                  style={{
-                    aspectRatio: '1',
-                    borderRadius: 'var(--radius-sm)',
-                    fontSize: '0.8rem',
-                    fontWeight: 600,
-                    cursor: 'pointer',
-                    backgroundColor: ch === selectedChapter ? 'var(--accent-theo)' : 'transparent',
-                    color: ch === selectedChapter ? 'white' : 'var(--text-secondary)',
-                    border: 'none'
-                  }}
-                >
-                  {ch}
-                </button>
-              ))}
+            <div style={{ padding: '8px 20px 20px', backgroundColor: 'var(--bg-surface)', borderBottom: '1px solid var(--border-soft)' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 6 }}>
+                {Array.from({ length: totalChapters }, (_, i) => i + 1).map(ch => (
+                  <button
+                    key={ch}
+                    type="button"
+                    onClick={() => handleChapterSelect(ch)}
+                    title={confession.sections.find(s => s.chapter === ch)?.title ?? `Chapter ${ch}`}
+                    style={{
+                      aspectRatio: '1',
+                      borderRadius: 'var(--radius-sm)',
+                      fontSize: '0.8rem',
+                      fontWeight: 600,
+                      cursor: 'pointer',
+                      backgroundColor: ch === selectedChapter ? 'var(--accent-theo)' : 'transparent',
+                      color: ch === selectedChapter ? 'white' : 'var(--text-secondary)',
+                      border: 'none'
+                    }}
+                  >
+                    {ch}
+                  </button>
+                ))}
+              </div>
             </div>
           </>
         )}
@@ -169,47 +175,63 @@ export default function ConfessionalArchive() {
 
             {/* Sections */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 28 }}>
-              {chapterData.sections.map(section => (
-                <div
-                  key={section.number}
-                  style={{
-                    display: 'flex',
-                    gap: 20,
-                    padding: '20px 24px',
-                    backgroundColor: 'var(--bg-surface)',
-                    border: '1px solid var(--border-soft)',
-                    borderRadius: 'var(--radius-md)',
-                    boxShadow: 'var(--shadow-card)'
-                  }}
-                >
-                  <div style={{
-                    flexShrink: 0,
-                    width: 40,
-                    height: 40,
-                    borderRadius: '50%',
-                    backgroundColor: 'var(--bg-theo-light)',
-                    color: 'var(--accent-theo)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '0.8rem',
-                    fontWeight: 700,
-                    fontFamily: 'var(--font-sans)'
-                  }}>
-                    §{section.number}
+              {chapterData.sections.map(section => {
+                const isActive = selectedSection === section.number;
+                const hasProofTexts = (section.proofTexts?.length ?? 0) > 0;
+                return (
+                  <div
+                    key={section.number}
+                    onClick={() => setSelectedSection(isActive ? null : section.number)}
+                    style={{
+                      display: 'flex',
+                      gap: 20,
+                      padding: '20px 24px',
+                      backgroundColor: isActive ? 'var(--bg-geo-light)' : 'var(--bg-surface)',
+                      border: isActive ? '1px solid var(--accent-geo)' : '1px solid var(--border-soft)',
+                      borderRadius: 'var(--radius-md)',
+                      boxShadow: 'var(--shadow-card)',
+                      cursor: 'pointer',
+                      transition: 'border-color 0.15s ease, background-color 0.15s ease',
+                    }}
+                  >
+                    <div style={{
+                      flexShrink: 0,
+                      width: 40,
+                      height: 40,
+                      borderRadius: '50%',
+                      backgroundColor: isActive ? 'var(--accent-geo)' : 'var(--bg-theo-light)',
+                      color: isActive ? 'white' : 'var(--accent-theo)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '0.8rem',
+                      fontWeight: 700,
+                      fontFamily: 'var(--font-sans)',
+                      transition: 'background-color 0.15s ease, color 0.15s ease',
+                    }}>
+                      §{section.number}
+                    </div>
+                    <div style={{ flex: 1 }}>
+                      <p style={{
+                        margin: '0 0 8px',
+                        fontFamily: 'var(--font-serif)',
+                        fontSize: '1.1rem',
+                        lineHeight: 1.85,
+                        color: 'var(--text-primary)',
+                      }}>
+                        {section.content}
+                      </p>
+                      {hasProofTexts && (
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: '0.75rem', fontWeight: 600, color: isActive ? 'var(--accent-geo)' : 'var(--text-tertiary)' }}>
+                          <BookOpen size={11} />
+                          {section.proofTexts!.length} proof {section.proofTexts!.length === 1 ? 'text' : 'texts'}
+                          {!isActive && <span style={{ fontWeight: 400 }}>— click to view</span>}
+                        </div>
+                      )}
+                    </div>
                   </div>
-                  <p style={{
-                    margin: 0,
-                    fontFamily: 'var(--font-serif)',
-                    fontSize: '1.1rem',
-                    lineHeight: 1.85,
-                    color: 'var(--text-primary)',
-                    flex: 1
-                  }}>
-                    {section.content}
-                  </p>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
             {/* Chapter navigation */}
@@ -253,71 +275,78 @@ export default function ConfessionalArchive() {
         )}
       </div>
 
-      {/* Right sidebar: document info */}
-      <aside className={`right-sidebar${mobileSidebar === 'right' ? ' mobile-open' : ''}`}>
+      {/* Right sidebar: section insights or document info */}
+      <aside className={`right-sidebar${mobileSidebar === 'right' ? ' mobile-open' : ''}`} style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
         <div className="sidebar-close-row mobile-only">
           <button className="sidebar-close-btn" onClick={closeMobile}><X size={16} /> Close</button>
         </div>
-        <div style={{ padding: '24px', backgroundColor: 'var(--bg-surface)', borderBottom: '1px solid var(--border-soft)' }}>
-          <h2 style={{ fontSize: '1.1rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: 8, margin: 0 }}>
-            <BookMarked size={18} color="var(--accent-theo)" />
-            Document Info
+        <div style={{ padding: '20px 24px 16px', backgroundColor: 'var(--bg-surface)', borderBottom: '1px solid var(--border-soft)', flexShrink: 0 }}>
+          <h2 style={{ fontSize: '1rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: 8, margin: 0 }}>
+            {selectedSection ? (
+              <>
+                <BookOpen size={16} color="var(--accent-exe)" />
+                Section Insights
+              </>
+            ) : (
+              <>
+                <BookMarked size={16} color="var(--accent-theo)" />
+                Document Info
+              </>
+            )}
           </h2>
         </div>
 
-        <div style={{ padding: 20, display: 'flex', flexDirection: 'column', gap: 16, overflowY: 'auto' }}>
+        <div style={{ flex: 1, overflowY: 'auto', padding: 20, display: 'flex', flexDirection: 'column', gap: 16 }}>
           {confessionMeta && confession ? (
-            <>
-              <div className="card">
-                <div style={{
-                  padding: '12px 16px',
-                  fontSize: '0.8rem',
-                  fontWeight: 700,
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.05em',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 8,
-                  borderBottom: '1px solid var(--border-soft)',
-                  backgroundColor: 'var(--bg-theo-light)',
-                  color: 'var(--accent-theo)'
-                }}>
-                  <FileText size={14} />
-                  {confession.confession.abbreviation}
-                </div>
-                <div style={{ padding: '16px', display: 'flex', flexDirection: 'column', gap: 12 }}>
-                  <div>
-                    <div style={{ fontSize: '1rem', fontWeight: 700, fontFamily: 'var(--font-serif)', color: 'var(--text-primary)', lineHeight: 1.3 }}>
-                      {confession.confession.name}
+            selectedSection ? (() => {
+              const section = chapterData?.sections.find(s => s.number === selectedSection);
+              if (!section) return null;
+              return (
+                <>
+                  {/* Section header card */}
+                  <div className="card">
+                    <div style={{
+                      padding: '12px 16px',
+                      fontSize: '0.8rem',
+                      fontWeight: 700,
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.05em',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 8,
+                      borderBottom: '1px solid var(--border-soft)',
+                      backgroundColor: 'var(--bg-geo-light)',
+                      color: 'var(--accent-geo)',
+                    }}>
+                      <FileText size={14} />
+                      §{section.number}
                     </div>
+                    <p style={{ margin: 0, padding: '14px 16px', fontSize: '0.82rem', fontFamily: 'var(--font-serif)', fontStyle: 'italic', color: 'var(--text-secondary)', lineHeight: 1.65 }}>
+                      {section.content.length > 180 ? section.content.slice(0, 180).replace(/\s+\S*$/, '') + '…' : section.content}
+                    </p>
                   </div>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                      <Calendar size={14} color="var(--text-tertiary)" />
-                      <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
-                        {confession.confession.year}
-                      </span>
-                    </div>
-                    <div style={{ display: 'flex', alignItems: 'flex-start', gap: 8 }}>
-                      <MapPin size={14} color="var(--text-tertiary)" style={{ marginTop: 2, flexShrink: 0 }} />
-                      <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
-                        {confession.confession.origin}
-                      </span>
-                    </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                      <ChevronRight size={14} color="var(--text-tertiary)" />
-                      <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
-                        {confession.confession.chapters} chapters
-                      </span>
-                    </div>
-                  </div>
-                  <p style={{ margin: 0, fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
-                    {confession.confession.description}
-                  </p>
-                </div>
-              </div>
 
-              {chapterData && (
+                  {/* Proof texts */}
+                  {(section.proofTexts?.length ?? 0) > 0 ? (
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                      {section.proofTexts!.map((pt, i) => (
+                        <ReferenceCard
+                          key={i}
+                          variant="scripture"
+                          title={pt.reference}
+                          excerpt={pt.text}
+                        />
+                      ))}
+                    </div>
+                  ) : (
+                    <div style={{ padding: '24px 16px', textAlign: 'center', color: 'var(--text-tertiary)', fontSize: '0.85rem', fontStyle: 'italic' }}>
+                      No proof texts available for this section.
+                    </div>
+                  )}
+                </>
+              );
+            })() : (
+              <>
                 <div className="card">
                   <div style={{
                     padding: '12px 16px',
@@ -325,26 +354,77 @@ export default function ConfessionalArchive() {
                     fontWeight: 700,
                     textTransform: 'uppercase',
                     letterSpacing: '0.05em',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 8,
                     borderBottom: '1px solid var(--border-soft)',
-                    backgroundColor: 'var(--bg-sidebar)',
-                    color: 'var(--text-tertiary)'
+                    backgroundColor: 'var(--bg-theo-light)',
+                    color: 'var(--accent-theo)'
                   }}>
-                    Current Chapter
+                    <FileText size={14} />
+                    {confession.confession.abbreviation}
                   </div>
-                  <div style={{ padding: 16 }}>
-                    <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--accent-theo)', marginBottom: 4 }}>
-                      Chapter {selectedChapter}
+                  <div style={{ padding: '16px', display: 'flex', flexDirection: 'column', gap: 12 }}>
+                    <div>
+                      <div style={{ fontSize: '1rem', fontWeight: 700, fontFamily: 'var(--font-serif)', color: 'var(--text-primary)', lineHeight: 1.3 }}>
+                        {confession.confession.name}
+                      </div>
                     </div>
-                    <div style={{ fontFamily: 'var(--font-serif)', fontSize: '0.95rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 8 }}>
-                      {chapterData.title}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                        <Calendar size={14} color="var(--text-tertiary)" />
+                        <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+                          {confession.confession.year}
+                        </span>
+                      </div>
+                      <div style={{ display: 'flex', alignItems: 'flex-start', gap: 8 }}>
+                        <MapPin size={14} color="var(--text-tertiary)" style={{ marginTop: 2, flexShrink: 0 }} />
+                        <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+                          {confession.confession.origin}
+                        </span>
+                      </div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                        <ChevronRight size={14} color="var(--text-tertiary)" />
+                        <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+                          {confession.confession.chapters} chapters
+                        </span>
+                      </div>
                     </div>
-                    <div style={{ fontSize: '0.82rem', color: 'var(--text-secondary)' }}>
-                      {chapterData.sections.length} section{chapterData.sections.length !== 1 ? 's' : ''}
-                    </div>
+                    <p style={{ margin: 0, fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+                      {confession.confession.description}
+                    </p>
                   </div>
                 </div>
-              )}
-            </>
+
+                {chapterData && (
+                  <div className="card">
+                    <div style={{
+                      padding: '12px 16px',
+                      fontSize: '0.8rem',
+                      fontWeight: 700,
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.05em',
+                      borderBottom: '1px solid var(--border-soft)',
+                      backgroundColor: 'var(--bg-sidebar)',
+                      color: 'var(--text-tertiary)'
+                    }}>
+                      Current Chapter
+                    </div>
+                    <div style={{ padding: 16 }}>
+                      <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--accent-theo)', marginBottom: 4 }}>
+                        Chapter {selectedChapter}
+                      </div>
+                      <div style={{ fontFamily: 'var(--font-serif)', fontSize: '0.95rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 8 }}>
+                        {chapterData.title}
+                      </div>
+                      <div style={{ fontSize: '0.82rem', color: 'var(--text-secondary)' }}>
+                        {chapterData.sections.length} section{chapterData.sections.length !== 1 ? 's' : ''} — click any to view proof texts
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </>
+            )
           ) : (
             <div style={{ textAlign: 'center', padding: 32, color: 'var(--text-tertiary)', fontSize: '0.9rem', fontStyle: 'italic' }}>
               Select a confession to view details.

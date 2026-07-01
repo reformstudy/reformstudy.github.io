@@ -59,6 +59,7 @@ export interface ConfessionSection {
 export interface ConfessionSubsection {
   number: string;
   content: string;
+  proofTexts?: Array<{ reference: string; text: string }>;
 }
 
 export interface Commentary {

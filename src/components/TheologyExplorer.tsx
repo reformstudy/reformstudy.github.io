@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { ChevronRight, ChevronDown, BookOpen, AlertTriangle, ArrowLeft, ScrollText, Scale, Users, Pencil, Save, Plus, Trash2 } from 'lucide-react';
+import { ChevronRight, ChevronDown, BookOpen, AlertTriangle, ArrowLeft, ScrollText, Scale, Users, Pencil, Save, Plus, Trash2, List, X } from 'lucide-react';
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import { ReferenceCard } from './ReferenceCard';
 import { parseScriptureRef, parseWcfChapter } from '../utils/parseScriptureRef';
@@ -647,6 +647,7 @@ function DoctrineDetail({
   const category = categoryMap[doctrine.categoryId];
   const relatedHeresies = doctrine.refutedErrors.map(id => heresyMap[id]).filter(Boolean);
   const isEditing = !!cms?.editMode;
+  const routerNavigate = useNavigate();
 
   const update = (patch: Partial<Doctrine>) =>
     cms?.onUpdateDoctrine({ ...doctrine, ...patch });
@@ -716,15 +717,15 @@ function DoctrineDetail({
 
       <hr style={{ border: 'none', borderTop: '1px solid var(--border-soft)', margin: '32px 0' }} />
 
-      {/* Scripture */}
-      <section style={{ marginBottom: 36 }}>
-        <h2 style={{ display: 'flex', alignItems: 'center', gap: 10, fontFamily: 'var(--font-serif)', fontSize: '1.1rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 16 }}>
-          <BookOpen size={18} color="var(--accent-exe)" />
-          Supporting Scripture
-        </h2>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-          {doctrine.scriptures.map((s, i) =>
-            isEditing ? (
+      {/* Scripture — shown only in edit mode; in read mode scripture appears in the right sidebar */}
+      {isEditing && (
+        <section style={{ marginBottom: 36 }}>
+          <h2 style={{ display: 'flex', alignItems: 'center', gap: 10, fontFamily: 'var(--font-serif)', fontSize: '1.1rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 16 }}>
+            <BookOpen size={18} color="var(--accent-exe)" />
+            Supporting Scripture
+          </h2>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+            {doctrine.scriptures.map((s, i) => (
               <div key={i} style={{ padding: 14, borderRadius: 'var(--radius-md)', border: '1px solid var(--border-soft)', background: 'var(--bg-surface)', display: 'flex', flexDirection: 'column', gap: 8 }}>
                 <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
                   <input value={s.reference} onChange={e => updateScripture(i, 'reference', e.target.value)} placeholder="Reference (e.g. John 3:16)" style={editInput({ flex: 1 } as React.CSSProperties)} />
@@ -734,27 +735,13 @@ function DoctrineDetail({
                 </div>
                 <textarea value={s.text} onChange={e => updateScripture(i, 'text', e.target.value)} placeholder="Verse text" rows={2} style={editInput({ resize: 'vertical' })} />
               </div>
-            ) : (() => {
-              const parsed = parseScriptureRef(s.reference);
-              const to = parsed ? `/reader/${parsed.bookId}/${parsed.chapter}` : undefined;
-              return (
-                <ReferenceCard
-                  key={i}
-                  variant="scripture"
-                  title={s.reference}
-                  excerpt={s.text}
-                  to={to}
-                />
-              );
-            })()
-          )}
-          {isEditing && (
+            ))}
             <button type="button" onClick={addScripture} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '7px 14px', borderRadius: 20, border: '1px dashed var(--accent-exe)', background: 'transparent', cursor: 'pointer', color: 'var(--accent-exe)', fontSize: '0.82rem', fontWeight: 600, alignSelf: 'flex-start' }}>
               <Plus size={13} /> Add Scripture
             </button>
-          )}
-        </div>
-      </section>
+          </div>
+        </section>
+      )}
 
       {/* Confessions */}
       {(doctrine.confessions.length > 0 || isEditing) && (
@@ -763,9 +750,9 @@ function DoctrineDetail({
             <ScrollText size={18} color="var(--accent-geo)" />
             Confessional Support
           </h2>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-            {doctrine.confessions.map((c, i) =>
-              isEditing ? (
+          {isEditing ? (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+              {doctrine.confessions.map((c, i) => (
                 <div key={i} style={{ padding: 14, borderRadius: 'var(--radius-md)', border: '1px solid var(--border-soft)', background: 'var(--bg-surface)', display: 'flex', flexDirection: 'column', gap: 8 }}>
                   <div style={{ display: 'flex', gap: 8 }}>
                     <div style={{ flex: 2 }}>
@@ -785,28 +772,50 @@ function DoctrineDetail({
                     <textarea value={c.quote} onChange={e => updateConfession(i, 'quote', e.target.value)} rows={3} style={editInput({ resize: 'vertical' })} />
                   </div>
                 </div>
-              ) : (() => {
+              ))}
+              <button type="button" onClick={addConfession} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '7px 14px', borderRadius: 20, border: '1px dashed var(--accent-geo)', background: 'transparent', cursor: 'pointer', color: 'var(--accent-geo)', fontSize: '0.82rem', fontWeight: 600, alignSelf: 'flex-start' }}>
+                <Plus size={13} /> Add Confession
+              </button>
+            </div>
+          ) : (
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 16 }}>
+              {doctrine.confessions.map((c, i) => {
                 const isWcf = c.document.toLowerCase().includes('westminster confession');
                 const chapter = isWcf ? parseWcfChapter(c.section) : null;
                 const to = isWcf && chapter ? `/archive/wcf/${chapter}` : undefined;
                 return (
-                  <ReferenceCard
+                  <div
                     key={i}
-                    variant="confession"
-                    title={c.section}
-                    subtitle={c.document}
-                    excerpt={c.quote}
-                    to={to}
-                  />
+                    onClick={() => to && routerNavigate(to)}
+                    style={{
+                      padding: 20,
+                      background: 'var(--bg-surface)',
+                      border: '1px solid var(--border-soft)',
+                      borderTop: '3px solid var(--accent-geo)',
+                      borderRadius: 'var(--radius-md)',
+                      boxShadow: 'var(--shadow-card)',
+                      cursor: to ? 'pointer' : 'default',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: 10,
+                    }}
+                  >
+                    <div>
+                      <div style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--accent-geo)', marginBottom: 2 }}>
+                        {c.section}
+                      </div>
+                      <div style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>
+                        {c.document}
+                      </div>
+                    </div>
+                    <p style={{ fontFamily: 'var(--font-serif)', fontSize: '0.88rem', fontStyle: 'italic', color: 'var(--text-secondary)', lineHeight: 1.65, margin: 0 }}>
+                      "{c.quote.length > 220 ? c.quote.slice(0, 220).replace(/\s+\S*$/, '') + '…' : c.quote}"
+                    </p>
+                  </div>
                 );
-              })()
-            )}
-            {isEditing && (
-              <button type="button" onClick={addConfession} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '7px 14px', borderRadius: 20, border: '1px dashed var(--accent-geo)', background: 'transparent', cursor: 'pointer', color: 'var(--accent-geo)', fontSize: '0.82rem', fontWeight: 600, alignSelf: 'flex-start' }}>
-                <Plus size={13} /> Add Confession
-              </button>
-            )}
-          </div>
+              })}
+            </div>
+          )}
         </section>
       )}
 
@@ -817,31 +826,64 @@ function DoctrineDetail({
             <AlertTriangle size={18} color="var(--accent-time)" />
             Errors This Doctrine Refutes
           </h2>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: isEditing ? 12 : 0 }}>
-            {doctrine.refutedErrors.map(id => {
-              const h = heresyMap[id];
-              return isEditing ? (
-                <div key={id} style={{ display: 'inline-flex', alignItems: 'center', gap: 4, padding: '5px 10px', borderRadius: 20, background: 'var(--bg-time-light)', border: '1px solid transparent' }}>
-                  <span style={{ fontSize: '0.82rem', color: 'var(--accent-time)', fontWeight: 600 }}>{h?.name ?? id}</span>
-                  <button type="button" onClick={() => removeError(id)} style={{ border: 'none', background: 'none', cursor: 'pointer', color: 'var(--accent-time)', padding: 0, lineHeight: 1, fontSize: '1rem' }}>×</button>
-                </div>
-              ) : (
-                <button key={id} type="button" onClick={() => onNavigate({ type: 'heresy', id })} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', borderRadius: 'var(--radius-md)', background: 'var(--bg-time-light)', border: '1px solid transparent', cursor: 'pointer', textAlign: 'left', gap: 8 }}>
-                  <span style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--accent-time)' }}>{h?.name ?? id}</span>
-                  <ChevronRight size={14} color="var(--accent-time)" />
-                </button>
-              );
-            })}
-          </div>
-          {isEditing && availableHeresies.length > 0 && (
-            <select
-              defaultValue=""
-              onChange={e => { addError(e.target.value); (e.target as HTMLSelectElement).value = ''; }}
-              style={{ padding: '7px 10px', borderRadius: 8, border: '1px solid var(--border-soft)', background: 'var(--bg-surface)', fontSize: '0.85rem', cursor: 'pointer' }}
-            >
-              <option value="" disabled>+ Link a heresy…</option>
-              {availableHeresies.map(h => <option key={h.id} value={h.id}>{h.name}</option>)}
-            </select>
+          {isEditing ? (
+            <>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 12 }}>
+                {doctrine.refutedErrors.map(id => {
+                  const h = heresyMap[id];
+                  return (
+                    <div key={id} style={{ display: 'inline-flex', alignItems: 'center', gap: 4, padding: '5px 10px', borderRadius: 20, background: 'var(--bg-time-light)', border: '1px solid transparent' }}>
+                      <span style={{ fontSize: '0.82rem', color: 'var(--accent-time)', fontWeight: 600 }}>{h?.name ?? id}</span>
+                      <button type="button" onClick={() => removeError(id)} style={{ border: 'none', background: 'none', cursor: 'pointer', color: 'var(--accent-time)', padding: 0, lineHeight: 1, fontSize: '1rem' }}>×</button>
+                    </div>
+                  );
+                })}
+              </div>
+              {availableHeresies.length > 0 && (
+                <select
+                  defaultValue=""
+                  onChange={e => { addError(e.target.value); (e.target as HTMLSelectElement).value = ''; }}
+                  style={{ padding: '7px 10px', borderRadius: 8, border: '1px solid var(--border-soft)', background: 'var(--bg-surface)', fontSize: '0.85rem', cursor: 'pointer' }}
+                >
+                  <option value="" disabled>+ Link a heresy…</option>
+                  {availableHeresies.map(h => <option key={h.id} value={h.id}>{h.name}</option>)}
+                </select>
+              )}
+            </>
+          ) : (
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 16 }}>
+              {doctrine.refutedErrors.map(id => {
+                const h = heresyMap[id];
+                if (!h) return null;
+                return (
+                  <button
+                    key={id}
+                    type="button"
+                    onClick={() => onNavigate({ type: 'heresy', id })}
+                    style={{
+                      padding: 20,
+                      background: 'var(--bg-time-light)',
+                      border: '1px solid transparent',
+                      borderTop: '3px solid var(--accent-time)',
+                      borderRadius: 'var(--radius-md)',
+                      cursor: 'pointer',
+                      textAlign: 'left',
+                      width: '100%',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: 10,
+                    }}
+                  >
+                    <div style={{ fontWeight: 700, fontSize: '0.9rem', color: 'var(--accent-time)' }}>
+                      {h.name}
+                    </div>
+                    <p style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.6, margin: 0 }}>
+                      {h.description.length > 160 ? h.description.slice(0, 160).replace(/\s+\S*$/, '') + '…' : h.description}
+                    </p>
+                  </button>
+                );
+              })}
+            </div>
           )}
         </section>
       )}
@@ -1048,6 +1090,166 @@ function HomeView({ data, onNavigate }: { data: TheologyData; onNavigate: (view:
   );
 }
 
+// ── Right sidebar insight panel ────────────────────────────────────────────
+
+function TheologyInsightPanel({
+  view,
+  data,
+  onNavigate,
+}: {
+  view: View;
+  data: TheologyData;
+  onNavigate: (v: View) => void;
+}) {
+  if (view.type === 'home') {
+    return (
+      <div style={{ padding: 20, display: 'flex', flexDirection: 'column', gap: 16 }}>
+        <div className="card">
+          <div style={{ padding: '12px 16px', fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', display: 'flex', alignItems: 'center', gap: 8, borderBottom: '1px solid var(--border-soft)', backgroundColor: 'var(--bg-theo-light)', color: 'var(--accent-theo)' }}>
+            <Scale size={12} /> At a Glance
+          </div>
+          <div style={{ padding: 16, display: 'flex', flexDirection: 'column', gap: 10 }}>
+            {([
+              ['Categories', data.categories.length, 'var(--accent-theo)'],
+              ['Doctrines', data.doctrines.length, 'var(--accent-theo)'],
+              ['Heresies documented', data.heresies.length, 'var(--accent-time)'],
+            ] as [string, number, string][]).map(([label, value, color]) => (
+              <div key={label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>{label}</span>
+                <span style={{ fontSize: '0.9rem', fontWeight: 700, color }}>{value}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="card">
+          <div style={{ padding: '12px 16px', fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', borderBottom: '1px solid var(--border-soft)', backgroundColor: 'var(--bg-sidebar)', color: 'var(--text-tertiary)' }}>
+            Color Guide
+          </div>
+          <div style={{ padding: 16, display: 'flex', flexDirection: 'column', gap: 10 }}>
+            {([
+              ['var(--accent-theo)', 'Doctrine', 'Theological positions'],
+              ['var(--accent-time)', 'Heresy', 'Historical errors'],
+              ['var(--accent-exe)',  'Scripture', 'Biblical references'],
+              ['var(--accent-geo)',  'Confession', 'Credal statements'],
+            ] as [string, string, string][]).map(([color, label, desc]) => (
+              <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                <span style={{ width: 10, height: 10, borderRadius: '50%', background: color, flexShrink: 0 }} />
+                <div>
+                  <div style={{ fontSize: '0.8rem', fontWeight: 700, color }}>{label}</div>
+                  <div style={{ fontSize: '0.72rem', color: 'var(--text-tertiary)' }}>{desc}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (view.type === 'doctrine') {
+    const doctrine = data.doctrineMap[view.id];
+    if (!doctrine) return null;
+
+    return (
+      <div style={{ padding: 20, display: 'flex', flexDirection: 'column', gap: 12 }}>
+        {doctrine.scriptures.length === 0 ? (
+          <div style={{ padding: '32px 16px', textAlign: 'center', color: 'var(--text-tertiary)', fontSize: '0.85rem', fontStyle: 'italic' }}>
+            No scripture references for this doctrine.
+          </div>
+        ) : (
+          doctrine.scriptures.map((s, i) => {
+            const parsed = parseScriptureRef(s.reference);
+            const to = parsed ? `/reader/${parsed.bookId}/${parsed.chapter}` : undefined;
+            return (
+              <ReferenceCard
+                key={i}
+                variant="scripture"
+                title={s.reference}
+                excerpt={s.text}
+                to={to}
+              />
+            );
+          })
+        )}
+      </div>
+    );
+  }
+
+  if (view.type === 'heresy') {
+    const heresy = data.heresyMap[view.id];
+    if (!heresy) return null;
+    const refutingDoctrines = heresy.refutedBy.map(id => data.doctrineMap[id]).filter(Boolean);
+
+    return (
+      <div style={{ padding: 20, display: 'flex', flexDirection: 'column', gap: 16 }}>
+        {/* Doctrines that refute this heresy */}
+        {refutingDoctrines.length > 0 && (
+          <div className="card">
+            <div style={{ padding: '12px 16px', fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', display: 'flex', alignItems: 'center', gap: 8, borderBottom: '1px solid var(--border-soft)', backgroundColor: 'var(--bg-theo-light)', color: 'var(--accent-theo)' }}>
+              <Scale size={12} /> Refuted By
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              {refutingDoctrines.map((doc, idx) => (
+                <button
+                  key={doc.id}
+                  type="button"
+                  onClick={() => onNavigate({ type: 'doctrine', id: doc.id })}
+                  style={{
+                    padding: '9px 16px', background: 'transparent', border: 'none',
+                    borderLeft: '3px solid transparent',
+                    borderBottom: idx < refutingDoctrines.length - 1 ? '1px solid var(--border-soft)' : 'none',
+                    cursor: 'pointer', textAlign: 'left',
+                    fontSize: '0.83rem', fontWeight: 400, color: 'var(--accent-theo)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                  }}
+                >
+                  {doc.name}
+                  <ChevronRight size={12} />
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Proponents */}
+        <div className="card">
+          <div style={{ padding: '12px 16px', fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', display: 'flex', alignItems: 'center', gap: 8, borderBottom: '1px solid var(--border-soft)', backgroundColor: 'var(--bg-time-light)', color: 'var(--accent-time)' }}>
+            <Users size={12} /> Proponents
+          </div>
+          <div style={{ padding: 16, display: 'flex', flexDirection: 'column', gap: 8 }}>
+            {heresy.proponents.map((p, i) => (
+              <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8 }}>
+                <span style={{ width: 5, height: 5, borderRadius: '50%', background: 'var(--accent-time)', marginTop: 7, flexShrink: 0 }} />
+                <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>{p}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Cross-ref stats */}
+        <div className="card">
+          <div style={{ padding: '12px 16px', fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', borderBottom: '1px solid var(--border-soft)', backgroundColor: 'var(--bg-sidebar)', color: 'var(--text-tertiary)' }}>
+            Cross-references
+          </div>
+          <div style={{ padding: 16, display: 'flex', flexDirection: 'column', gap: 8 }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Refuting doctrines</span>
+              <span style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--accent-theo)' }}>{refutingDoctrines.length}</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>Known proponents</span>
+              <span style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--accent-time)' }}>{heresy.proponents.length}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return null;
+}
+
 // ── Main Component ─────────────────────────────────────────────────────────
 
 export default function TheologyExplorer() {
@@ -1129,6 +1331,9 @@ export default function TheologyExplorer() {
 
   const cms: TheolayCms = { editMode: cmsEditMode, onUpdateDoctrine: updateDoctrine, onUpdateHeresy: updateHeresy };
 
+  const [mobileSidebar, setMobileSidebar] = useState<'left' | 'right' | null>(null);
+  const closeMobile = () => setMobileSidebar(null);
+
   function navigate(next: View) {
     setView(next);
     if (next.type === 'doctrine') {
@@ -1145,148 +1350,171 @@ export default function TheologyExplorer() {
   const activeHeresyId = view.type === 'heresy' ? view.id : null;
 
   return (
-    <div className="workspace" style={{ display: 'flex', overflow: 'hidden' }}>
-      {/* ── Sidebar ── */}
-      <aside className="left-sidebar" style={{ width: 280, flexShrink: 0 }}>
-        <div style={{ padding: '20px 20px 8px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
-            <Scale size={16} color="var(--accent-theo)" />
-            <span style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--accent-theo)' }}>
-              Systematic Theology
-            </span>
+    <>
+      <div
+        className="mobile-overlay"
+        style={{ opacity: mobileSidebar ? 1 : 0, pointerEvents: mobileSidebar ? 'auto' : 'none' }}
+        onClick={closeMobile}
+      />
+
+      <div className="mobile-panel-bar mobile-only">
+        <button className="mobile-panel-btn" onClick={() => setMobileSidebar('left')}>
+          <List size={15} /> Doctrines
+        </button>
+        <button className="mobile-panel-btn" onClick={() => setMobileSidebar('right')}>
+          <Scale size={15} /> Insights
+        </button>
+      </div>
+
+      <div className="workspace" style={{ display: 'flex', overflow: 'hidden' }}>
+        {/* ── Left Sidebar ── */}
+        <aside className={`left-sidebar${mobileSidebar === 'left' ? ' mobile-open' : ''}`} style={{ width: 280, flexShrink: 0 }}>
+          <div className="sidebar-close-row mobile-only">
+            <button className="sidebar-close-btn" onClick={closeMobile}><X size={16} /> Close</button>
           </div>
-        </div>
 
-        {CATEGORIES.map(cat => {
-          const isOpen = expandedCategories.has(cat.id);
-          return (
-            <div key={cat.id}>
+          <div className="sidebar-label">Systematic Theology</div>
+
+          {CATEGORIES.map(cat => {
+            const isOpen = expandedCategories.has(cat.id);
+            return (
+              <div key={cat.id}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setExpandedCategories(prev => {
+                      const next = new Set(prev);
+                      if (next.has(cat.id)) next.delete(cat.id);
+                      else next.add(cat.id);
+                      return next;
+                    });
+                  }}
+                  style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '8px 20px', background: 'transparent', border: 'none', cursor: 'pointer', textAlign: 'left', fontSize: '0.875rem', fontWeight: 700, color: 'var(--text-secondary)', gap: 6 }}
+                >
+                  <span>{cat.name}</span>
+                  {isOpen ? <ChevronDown size={13} /> : <ChevronRight size={13} />}
+                </button>
+
+                {isOpen && (
+                  <div style={{ paddingLeft: 8 }}>
+                    {cat.doctrines.map(id => {
+                      const doc = doctrineMap[id];
+                      if (!doc) return null;
+                      const active = view.type === 'doctrine' && view.id === id;
+                      return (
+                        <button
+                          key={id}
+                          type="button"
+                          onClick={() => { navigate({ type: 'doctrine', id }); closeMobile(); }}
+                          style={{ width: '100%', display: 'block', padding: '6px 16px', background: active ? 'var(--bg-theo-light)' : 'transparent', border: 'none', borderLeft: active ? '2px solid var(--accent-theo)' : '2px solid transparent', cursor: 'pointer', textAlign: 'left', fontSize: '0.83rem', fontWeight: active ? 600 : 400, color: active ? 'var(--accent-theo)' : 'var(--text-secondary)', borderRadius: '0 6px 6px 0' }}
+                        >
+                          {doc.name}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+
+          <div style={{ margin: '16px 20px', borderTop: '1px solid var(--border-soft)' }} />
+
+          <div className="sidebar-label">Heresies &amp; Errors</div>
+
+          {heresies.map(h => {
+            const active = activeHeresyId === h.id;
+            return (
               <button
+                key={h.id}
                 type="button"
-                onClick={() => {
-                  setExpandedCategories(prev => {
-                    const next = new Set(prev);
-                    if (next.has(cat.id)) next.delete(cat.id);
-                    else next.add(cat.id);
-                    return next;
-                  });
-                }}
-                style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '8px 20px', background: 'transparent', border: 'none', cursor: 'pointer', textAlign: 'left', fontSize: '0.875rem', fontWeight: 700, color: 'var(--text-secondary)', gap: 6 }}
+                onClick={() => { navigate({ type: 'heresy', id: h.id }); closeMobile(); }}
+                style={{ width: '100%', display: 'block', padding: '7px 20px', background: active ? 'var(--bg-time-light)' : 'transparent', border: 'none', borderLeft: active ? '2px solid var(--accent-time)' : '2px solid transparent', cursor: 'pointer', textAlign: 'left', fontSize: '0.83rem', fontWeight: active ? 600 : 400, color: active ? 'var(--accent-time)' : 'var(--text-secondary)' }}
               >
-                <span>{cat.name}</span>
-                {isOpen ? <ChevronDown size={13} /> : <ChevronRight size={13} />}
+                {h.name}
               </button>
+            );
+          })}
 
-              {isOpen && (
-                <div style={{ paddingLeft: 8 }}>
-                  {cat.doctrines.map(id => {
-                    const doc = doctrineMap[id];
-                    if (!doc) return null;
-                    const active = view.type === 'doctrine' && view.id === id;
-                    return (
-                      <button
-                        key={id}
-                        type="button"
-                        onClick={() => navigate({ type: 'doctrine', id })}
-                        style={{ width: '100%', display: 'block', padding: '6px 16px', background: active ? 'var(--bg-theo-light)' : 'transparent', border: 'none', borderLeft: active ? '2px solid var(--accent-theo)' : '2px solid transparent', cursor: 'pointer', textAlign: 'left', fontSize: '0.83rem', fontWeight: active ? 600 : 400, color: active ? 'var(--accent-theo)' : 'var(--text-secondary)', borderRadius: '0 6px 6px 0' }}
-                      >
-                        {doc.name}
-                      </button>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
-          );
-        })}
+          <div style={{ height: 24 }} />
+        </aside>
 
-        <div style={{ margin: '16px 20px', borderTop: '1px solid var(--border-soft)' }} />
-
-        <div style={{ padding: '4px 20px 8px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <AlertTriangle size={14} color="var(--accent-time)" />
-            <span style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--accent-time)' }}>
-              Heresies &amp; Errors
-            </span>
-          </div>
-        </div>
-
-        {heresies.map(h => {
-          const active = activeHeresyId === h.id;
-          return (
-            <button
-              key={h.id}
-              type="button"
-              onClick={() => navigate({ type: 'heresy', id: h.id })}
-              style={{ width: '100%', display: 'block', padding: '7px 20px', background: active ? 'var(--bg-time-light)' : 'transparent', border: 'none', borderLeft: active ? '2px solid var(--accent-time)' : '2px solid transparent', cursor: 'pointer', textAlign: 'left', fontSize: '0.83rem', fontWeight: active ? 600 : 400, color: active ? 'var(--accent-time)' : 'var(--text-secondary)' }}
-            >
-              {h.name}
-            </button>
-          );
-        })}
-
-        <div style={{ height: 24 }} />
-      </aside>
-
-      {/* ── Main Content ── */}
-      <main style={{ flex: 1, overflowY: 'auto', background: 'var(--bg-page)' }}>
-        {view.type === 'home' && <HomeView data={data} onNavigate={navigate} />}
-        {view.type === 'doctrine' && doctrineMap[view.id] && (
-          <DoctrineDetail doctrine={doctrineMap[view.id]} data={data} onNavigate={navigate} cms={isCmsMode ? cms : undefined} />
-        )}
-        {view.type === 'heresy' && heresyMap[view.id] && (
-          <HeresyDetail heresy={heresyMap[view.id]} data={data} onNavigate={navigate} cms={isCmsMode ? cms : undefined} />
-        )}
-      </main>
-
-      {/* CMS floating toolbar */}
-      {isCmsMode && (
-        <div style={{
-          position: 'fixed', bottom: 20, right: 20, zIndex: 1000,
-          display: 'flex', alignItems: 'center', gap: 8,
-          background: 'var(--bg-surface)',
-          border: '1px solid var(--border-soft)',
-          borderRadius: 24, padding: '8px 14px',
-          boxShadow: '0 4px 20px rgba(0,0,0,0.14)',
-        }}>
-          <span style={{ fontSize: '0.7rem', fontWeight: 700, color: 'var(--text-tertiary)', letterSpacing: '0.08em', textTransform: 'uppercase' }}>CMS</span>
-          <button
-            type="button"
-            onClick={() => setCmsEditMode(m => !m)}
-            style={{
-              display: 'flex', alignItems: 'center', gap: 5,
-              padding: '5px 12px', borderRadius: 16, border: 'none', cursor: 'pointer',
-              background: cmsEditMode ? 'var(--accent-theo)' : 'var(--bg-sidebar)',
-              color: cmsEditMode ? 'white' : 'var(--text-secondary)',
-              fontWeight: 600, fontSize: '0.82rem',
-            }}
-          >
-            <Pencil size={12} /> {cmsEditMode ? 'Editing' : 'Edit'}
-          </button>
-          {cmsEditMode && (view.type === 'doctrine' || view.type === 'heresy') && (
-            <>
-              {cmsSaveMsg && (
-                <span style={{ fontSize: '0.78rem', fontWeight: 600, color: cmsSaveMsg === 'Saved!' ? 'green' : 'var(--accent-exe)' }}>
-                  {cmsSaveMsg}
-                </span>
-              )}
-              <button
-                type="button"
-                onClick={saveToDisk}
-                disabled={cmsSaving}
-                style={{
-                  display: 'flex', alignItems: 'center', gap: 5,
-                  padding: '5px 12px', borderRadius: 16, border: 'none', cursor: cmsSaving ? 'default' : 'pointer',
-                  background: 'var(--accent-exe)', color: 'white',
-                  fontWeight: 600, fontSize: '0.82rem', opacity: cmsSaving ? 0.7 : 1,
-                }}
-              >
-                <Save size={12} /> {cmsSaving ? 'Saving…' : 'Save'}
-              </button>
-            </>
+        {/* ── Main Content ── */}
+        <main style={{ flex: 1, overflowY: 'auto', background: 'var(--bg-page)' }}>
+          {view.type === 'home' && <HomeView data={data} onNavigate={navigate} />}
+          {view.type === 'doctrine' && doctrineMap[view.id] && (
+            <DoctrineDetail doctrine={doctrineMap[view.id]} data={data} onNavigate={navigate} cms={isCmsMode ? cms : undefined} />
           )}
-        </div>
-      )}
-    </div>
+          {view.type === 'heresy' && heresyMap[view.id] && (
+            <HeresyDetail heresy={heresyMap[view.id]} data={data} onNavigate={navigate} cms={isCmsMode ? cms : undefined} />
+          )}
+        </main>
+
+        {/* ── Right Sidebar ── */}
+        <aside className={`right-sidebar${mobileSidebar === 'right' ? ' mobile-open' : ''}`} style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+          <div className="sidebar-close-row mobile-only">
+            <button className="sidebar-close-btn" onClick={closeMobile}><X size={16} /> Close</button>
+          </div>
+          <div style={{ padding: '20px 24px 16px', backgroundColor: 'var(--bg-surface)', borderBottom: '1px solid var(--border-soft)', flexShrink: 0 }}>
+            <h2 style={{ fontSize: '1rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: 8, margin: 0 }}>
+              <Scale size={16} style={{ color: 'var(--accent-theo)' }} />
+              Theology Insights
+            </h2>
+          </div>
+          <div style={{ flex: 1, overflowY: 'auto' }}>
+            <TheologyInsightPanel view={view} data={data} onNavigate={navigate} />
+          </div>
+        </aside>
+
+        {/* CMS floating toolbar */}
+        {isCmsMode && (
+          <div style={{
+            position: 'fixed', bottom: 20, right: 20, zIndex: 1000,
+            display: 'flex', alignItems: 'center', gap: 8,
+            background: 'var(--bg-surface)',
+            border: '1px solid var(--border-soft)',
+            borderRadius: 24, padding: '8px 14px',
+            boxShadow: '0 4px 20px rgba(0,0,0,0.14)',
+          }}>
+            <span style={{ fontSize: '0.7rem', fontWeight: 700, color: 'var(--text-tertiary)', letterSpacing: '0.08em', textTransform: 'uppercase' }}>CMS</span>
+            <button
+              type="button"
+              onClick={() => setCmsEditMode(m => !m)}
+              style={{
+                display: 'flex', alignItems: 'center', gap: 5,
+                padding: '5px 12px', borderRadius: 16, border: 'none', cursor: 'pointer',
+                background: cmsEditMode ? 'var(--accent-theo)' : 'var(--bg-sidebar)',
+                color: cmsEditMode ? 'white' : 'var(--text-secondary)',
+                fontWeight: 600, fontSize: '0.82rem',
+              }}
+            >
+              <Pencil size={12} /> {cmsEditMode ? 'Editing' : 'Edit'}
+            </button>
+            {cmsEditMode && (view.type === 'doctrine' || view.type === 'heresy') && (
+              <>
+                {cmsSaveMsg && (
+                  <span style={{ fontSize: '0.78rem', fontWeight: 600, color: cmsSaveMsg === 'Saved!' ? 'green' : 'var(--accent-exe)' }}>
+                    {cmsSaveMsg}
+                  </span>
+                )}
+                <button
+                  type="button"
+                  onClick={saveToDisk}
+                  disabled={cmsSaving}
+                  style={{
+                    display: 'flex', alignItems: 'center', gap: 5,
+                    padding: '5px 12px', borderRadius: 16, border: 'none', cursor: cmsSaving ? 'default' : 'pointer',
+                    background: 'var(--accent-exe)', color: 'white',
+                    fontWeight: 600, fontSize: '0.82rem', opacity: cmsSaving ? 0.7 : 1,
+                  }}
+                >
+                  <Save size={12} /> {cmsSaving ? 'Saving…' : 'Save'}
+                </button>
+              </>
+            )}
+          </div>
+        )}
+      </div>
+    </>
   );
 }
