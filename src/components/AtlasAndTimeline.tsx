@@ -1,6 +1,6 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
 import {
-  Map as MapIcon, BookOpen, Clock, ChevronRight, ZoomIn, ZoomOut, RotateCcw,
+  Map as MapIcon, BookOpen, Clock, ChevronRight, ChevronDown, ZoomIn, ZoomOut, RotateCcw,
   List, X, Pencil, Save, Plus, Trash2, Route, Palette, Move,
 } from 'lucide-react';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -20,10 +20,29 @@ interface EraEvent {
   theme: string;
 }
 
+interface EraSubGroup {
+  id: string;
+  label: string;
+  events: EraEvent[];
+}
+
+interface EraGroup {
+  id: string;
+  label: string;
+  children: EraSubGroup[];
+}
+
+interface EraChildEra {
+  id: string;
+  label: string;
+  timeframe?: string;
+  groups: EraGroup[];
+}
+
 interface EraData {
   title: string;
   timeframe: string;
-  events: EraEvent[];
+  childEras: EraChildEra[];
 }
 
 interface MapRoute {
@@ -88,41 +107,6 @@ const eras = [
 ] as const;
 
 type EraKey = typeof eras[number]['id'];
-
-// ── Default era events ─────────────────────────────────────────────────────
-
-const defaultEraEvents: Record<EraKey, EraData> = {
-  creation:    { title: 'Creation & Fall',       timeframe: 'Genesis 1 – 3',       events: [] },
-  preflood:    { title: 'Pre-Flood Age',          timeframe: 'Genesis 4 – 6',       events: [] },
-  patriarchal: {
-    title: 'Patriarchal Age', timeframe: 'c. 2100 – 1800 BC',
-    events: [
-      { id: 'ur',     date: 'c. 2090 BC', title: 'The Call of Abram',    loc: 'Ur of the Chaldeans', coords: { x: 973, y: 410 }, desc: 'God calls Abram out of Ur, establishing the unconditional covenant of grace promising a land, a seed, and a blessing to all nations.', scripture: 'Genesis 12:1-3',  theme: 'Covenant of Grace' },
-      { id: 'canaan', date: 'c. 2075 BC', title: 'Arrival in Canaan',    loc: 'Shechem',             coords: { x: 777, y: 383 }, desc: 'Abram builds an altar at the oak of Moreh. God promises this land to his offspring.',                                                   scripture: 'Genesis 12:6-7',  theme: 'Promised Land' },
-      { id: 'moriah', date: 'c. 2050 BC', title: 'Binding of Isaac',     loc: 'Mount Moriah',        coords: { x: 776, y: 391 }, desc: 'Abraham\'s faith is tested. A ram is provided as a substitute, foreshadowing the substitutionary atonement of Christ.',               scripture: 'Genesis 22:1-14', theme: 'Substitutionary Atonement' },
-      { id: 'egypt',  date: 'c. 1876 BC', title: 'Descent into Egypt',   loc: 'Goshen',              coords: { x: 711, y: 413 }, desc: 'Jacob and his family move to Egypt to survive the famine, setting the stage for the Exodus.',                                        scripture: 'Genesis 46:1-7',  theme: 'Providence' },
-    ],
-  },
-  mosaic: {
-    title: 'Exodus & Conquest', timeframe: 'c. 1446 – 1350 BC',
-    events: [
-      { id: 'exodus', date: 'c. 1446 BC', title: 'The Exodus',           loc: 'Rameses, Egypt',  coords: { x: 717, y: 413 }, desc: 'God delivers Israel from slavery in Egypt through ten plagues and the crossing of the Red Sea.',   scripture: 'Exodus 12:33-42', theme: 'Redemption' },
-      { id: 'sinai',  date: 'c. 1446 BC', title: 'Covenant at Sinai',    loc: 'Mount Sinai',     coords: { x: 753, y: 457 }, desc: 'God gives the Law to Moses, establishing the Mosaic Covenant and the sacrificial system.',          scripture: 'Exodus 19-20',    theme: 'The Law' },
-      { id: 'jordan', date: 'c. 1406 BC', title: 'Crossing the Jordan',  loc: 'Gilgal',          coords: { x: 781, y: 390 }, desc: 'Joshua leads the new generation of Israelites into the Promised Land.',                           scripture: 'Joshua 3:14-17',  theme: 'Fulfillment of Promise' },
-    ],
-  },
-  kingdom: { title: 'The Kingdom Era',    timeframe: 'c. 1050 – 586 BC', events: [] },
-  exile:   { title: 'Exile & Return',     timeframe: '586 – 400 BC',     events: [] },
-  church: {
-    title: 'Apostolic & Church Age', timeframe: '33 AD – Present',
-    events: [
-      { id: 'pentecost', date: 'c. 33 AD', title: 'Pentecost',              loc: 'Jerusalem',      coords: { x: 776, y: 391 }, desc: 'The Holy Spirit is poured out on the disciples, empowering them to preach the gospel to all nations.', scripture: 'Acts 2:1-4',    theme: 'New Covenant' },
-      { id: 'antioch',   date: 'c. 49 AD', title: 'Missions from Antioch', loc: 'Antioch',        coords: { x: 792, y: 299 }, desc: 'The church at Antioch commissions Paul and Barnabas. It becomes the launchpad for Gentile missions.',  scripture: 'Acts 13:1-3',   theme: 'Gentile Inclusion' },
-      { id: 'athens',    date: 'c. 51 AD', title: 'Paul at the Areopagus', loc: 'Athens, Achaia', coords: { x: 578, y: 259 }, desc: 'Paul delivers a masterclass in apologetics, using their altar "To the unknown god" to declare the sovereign Creator.', scripture: 'Acts 17:22-31', theme: 'General Revelation' },
-      { id: 'rome',      date: 'c. 60 AD', title: 'Paul in Rome',           loc: 'Rome',           coords: { x: 386, y: 174 }, desc: 'Paul arrives in Rome as a prisoner, preaching the kingdom of God with all boldness and without hindrance.', scripture: 'Acts 28:30-31', theme: 'Gospel Advance' },
-    ],
-  },
-};
 
 // ── Default routes ─────────────────────────────────────────────────────────
 
@@ -319,8 +303,14 @@ export default function AtlasAndTimeline() {
 
   const initialEra: EraKey = (eraId && eras.some(e => e.id === eraId) ? eraId : 'church') as EraKey;
   const [activeEra, setActiveEra]         = useState<EraKey>(initialEra);
-  const [activeEventId, setActiveEventId] = useState('athens');
-  const [eraEvents, setEraEvents]         = useState<Record<EraKey, EraData>>(defaultEraEvents);
+  const [activeChildEraId, setActiveChildEraId] = useState<string | null>(null);
+  const [activeGroupId, setActiveGroupId]       = useState<string | null>(null);
+  const [activeSubGroupId, setActiveSubGroupId] = useState<string | null>(null);
+  const [expandedEras, setExpandedEras]         = useState<Set<EraKey>>(new Set([initialEra]));
+  const [expandedChildEras, setExpandedChildEras] = useState<Set<string>>(new Set());
+  const [expandedGroups, setExpandedGroups]     = useState<Set<string>>(new Set());
+  const [activeEventId, setActiveEventId] = useState('');
+  const [eraEvents, setEraEvents]         = useState<Record<EraKey, EraData>>({} as Record<EraKey, EraData>);
   const [routes, setRoutes]               = useState<MapRoute[]>(DEFAULT_ROUTES);
   const [mapStyle, setMapStyle]           = useState<MapStyle>(DEFAULT_MAP_STYLE);
   const [mapGeometry, setMapGeometry]     = useState<MapGeometry>(DEFAULT_MAP_GEOMETRY);
@@ -330,6 +320,9 @@ export default function AtlasAndTimeline() {
   const [cmsTab, setCmsTab]               = useState<CmsTab>('event');
   const [cmsSaving, setCmsSaving]         = useState(false);
   const [cmsSaveMsg, setCmsSaveMsg]       = useState('');
+  const [cmsChildEraId, setCmsChildEraId] = useState<string>('');
+  const [cmsGroupId, setCmsGroupId]       = useState<string>('');
+  const [cmsSubGroupId, setCmsSubGroupId] = useState<string>('');
   const [activeRouteId, setActiveRouteId] = useState(DEFAULT_ROUTES[0]?.id ?? '');
   const [addingWaypoint, setAddingWaypoint] = useState(false);
   const [vertexEditMode, setVertexEditMode] = useState(false);
@@ -356,26 +349,29 @@ export default function AtlasAndTimeline() {
   const [mobileSidebar, setMobileSidebar] = useState<'left' | 'right' | null>(null);
   const closeMobile = () => setMobileSidebar(null);
 
-  // ── CMS data load ──────────────────────────────────────────────────────
+  // ── Content load ───────────────────────────────────────────────────────
 
   useEffect(() => {
-    if (!isCmsMode) return;
+    const url = isCmsMode
+      ? 'http://localhost:4001/file/atlas/eraEvents.json'
+      : import.meta.env.DEV
+        ? '/docs/content/atlas/eraEvents.json'
+        : '/content/atlas/eraEvents.json';
     (async () => {
       try {
-        const res = await fetch('http://localhost:4001/file/atlas/eraEvents.json');
+        const res = await fetch(url);
         if (!res.ok) return;
         const json = await res.json();
         if (json.eraEvents) {
-          setEraEvents(prev => ({ ...prev, ...(json.eraEvents as Record<EraKey, EraData>) }));
+          setEraEvents(json.eraEvents as Record<EraKey, EraData>);
           if (Array.isArray(json.routes))   setRoutes(json.routes as MapRoute[]);
           if (json.mapStyle)                setMapStyle(json.mapStyle as MapStyle);
           if (json.mapGeometry)             setMapGeometry(json.mapGeometry as MapGeometry);
-        } else {
-          setEraEvents(prev => ({ ...prev, ...(json as Record<EraKey, EraData>) }));
         }
       } catch { /* fall back to defaults */ }
     })();
-  }, [isCmsMode]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Escape key: exit any drawing/edit mode
   useEffect(() => {
@@ -442,29 +438,53 @@ export default function AtlasAndTimeline() {
     if (eraId && eras.some(e => e.id === eraId) && eraId !== activeEra) {
       const key = eraId as EraKey;
       setActiveEra(key);
-      setActiveEventId(eraEvents[key]?.events?.[0]?.id ?? '');
+      setActiveChildEraId(null);
+      setActiveGroupId(null);
+      setActiveSubGroupId(null);
+      setExpandedEras(prev => new Set([...prev, key]));
+      const firstEvent = eraEvents[key]?.childEras?.[0]?.groups?.[0]?.children?.[0]?.events?.[0];
+      setActiveEventId(firstEvent?.id ?? '');
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [eraId]);
 
-  // Auto-focus when active era changes
+  // Auto-focus when active era, child era, group, or sub-group changes
   useEffect(() => {
-    const events = eraEvents[activeEra]?.events ?? [];
-    if (events.length === 0) { animateTo({ x: 0, y: 0 }, 1); return; }
-    const target = computeFitForEvents(events);
+    const childEras = eraEvents[activeEra]?.childEras ?? [];
+    const allGroups = childEras.flatMap(ce => ce.groups);
+    let allEvents: EraEvent[];
+    if (activeSubGroupId) {
+      const sg = allGroups.flatMap(g => g.children).find(sg => sg.id === activeSubGroupId);
+      allEvents = sg?.events ?? [];
+    } else if (activeGroupId) {
+      const group = allGroups.find(g => g.id === activeGroupId);
+      allEvents = group?.children.flatMap(sg => sg.events) ?? [];
+    } else if (activeChildEraId) {
+      const ce = childEras.find(ce => ce.id === activeChildEraId);
+      allEvents = ce?.groups.flatMap(g => g.children.flatMap(sg => sg.events)) ?? [];
+    } else {
+      allEvents = childEras.flatMap(ce => ce.groups.flatMap(g => g.children.flatMap(sg => sg.events)));
+    }
+    if (allEvents.length === 0) { animateTo({ x: 0, y: 0 }, 1); return; }
+    const target = computeFitForEvents(allEvents);
     if (target) animateTo(target.pan, target.scale);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeEra]);
+  }, [activeEra, activeChildEraId, activeGroupId, activeSubGroupId]);
 
-  // Initial focus on mount
+  // Set initial event and focus once era data loads
+  const eraDataLoaded = Object.keys(eraEvents).length > 0;
   useEffect(() => {
+    if (!eraDataLoaded) return;
+    const firstEvent = eraEvents[initialEra]?.childEras?.[0]?.groups?.[0]?.children?.[0]?.events?.[0];
+    if (firstEvent) setActiveEventId(firstEvent.id);
     requestAnimationFrame(() => {
-      const events = eraEvents['church'].events;
+      const childEras = eraEvents[initialEra]?.childEras ?? [];
+      const events = childEras.flatMap(ce => ce.groups.flatMap(g => g.children.flatMap(sg => sg.events)));
       const target = computeFitForEvents(events);
       if (target) { setPan(target.pan); setScale(target.scale); }
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [eraDataLoaded]);
 
   const switchCmsTab = (tab: CmsTab) => {
     setCmsTab(tab);
@@ -480,12 +500,21 @@ export default function AtlasAndTimeline() {
       ...prev,
       [activeEra]: {
         ...prev[activeEra],
-        events: prev[activeEra].events.map(e => {
-          if (e.id !== activeEventId) return e;
-          if (field === 'coords.x') return { ...e, coords: { ...e.coords, x: Number(value) } };
-          if (field === 'coords.y') return { ...e, coords: { ...e.coords, y: Number(value) } };
-          return { ...e, [field]: value as string };
-        }),
+        childEras: prev[activeEra].childEras.map(ce => ({
+          ...ce,
+          groups: ce.groups.map(g => ({
+            ...g,
+            children: g.children.map(sg => ({
+              ...sg,
+              events: sg.events.map(e => {
+                if (e.id !== activeEventId) return e;
+                if (field === 'coords.x') return { ...e, coords: { ...e.coords, x: Number(value) } };
+                if (field === 'coords.y') return { ...e, coords: { ...e.coords, y: Number(value) } };
+                return { ...e, [field]: value as string };
+              }),
+            })),
+          })),
+        })),
       },
     }));
   };
@@ -493,14 +522,49 @@ export default function AtlasAndTimeline() {
   const addEvent = () => {
     const id = `event-${Date.now()}`;
     const newEvent: EraEvent = { id, date: 'c. Year', title: 'New Event', loc: 'Location', coords: { x: 776, y: 391 }, desc: 'Description', scripture: 'Reference', theme: 'Theme' };
-    setEraEvents(prev => ({ ...prev, [activeEra]: { ...prev[activeEra], events: [...prev[activeEra].events, newEvent] } }));
+    const era               = eraEvents[activeEra];
+    const targetChildEraId  = cmsChildEraId  || era.childEras[0]?.id;
+    const targetChildEra    = era.childEras.find(ce => ce.id === targetChildEraId);
+    const targetGroupId     = cmsGroupId     || targetChildEra?.groups[0]?.id;
+    const targetGroup       = targetChildEra?.groups.find(g => g.id === targetGroupId);
+    const targetSubGroupId  = cmsSubGroupId  || targetGroup?.children[0]?.id;
+    setEraEvents(prev => ({
+      ...prev,
+      [activeEra]: {
+        ...prev[activeEra],
+        childEras: prev[activeEra].childEras.map(ce =>
+          ce.id !== targetChildEraId ? ce : {
+            ...ce,
+            groups: ce.groups.map(g =>
+              g.id !== targetGroupId ? g : {
+                ...g,
+                children: g.children.map(sg =>
+                  sg.id !== targetSubGroupId ? sg : { ...sg, events: [...sg.events, newEvent] }
+                ),
+              }
+            ),
+          }
+        ),
+      },
+    }));
     setActiveEventId(id);
   };
 
   const deleteActiveEvent = () => {
-    const remaining = eraEvents[activeEra].events.filter(e => e.id !== activeEventId);
-    setEraEvents(prev => ({ ...prev, [activeEra]: { ...prev[activeEra], events: remaining } }));
-    setActiveEventId(remaining[0]?.id ?? '');
+    setEraEvents(prev => {
+      const newChildEras = prev[activeEra].childEras.map(ce => ({
+        ...ce,
+        groups: ce.groups.map(g => ({
+          ...g,
+          children: g.children.map(sg => ({
+            ...sg, events: sg.events.filter(e => e.id !== activeEventId),
+          })),
+        })),
+      }));
+      const remaining = newChildEras.flatMap(ce => ce.groups.flatMap(g => g.children.flatMap(sg => sg.events)));
+      setActiveEventId(remaining[0]?.id ?? '');
+      return { ...prev, [activeEra]: { ...prev[activeEra], childEras: newChildEras } };
+    });
   };
 
   const updateRoute = (routeId: string, patch: Partial<MapRoute>) =>
@@ -727,9 +791,30 @@ export default function AtlasAndTimeline() {
 
   // ── Derived ────────────────────────────────────────────────────────────
 
-  const eraData     = eraEvents[activeEra] ?? { title: 'Era', timeframe: '', events: [] };
-  const activeEvent = eraData.events.find(e => e.id === activeEventId) ?? eraData.events[0];
-  const activeRoute = routes.find(r => r.id === activeRouteId);
+  const eraData       = eraEvents[activeEra] ?? { title: 'Era', timeframe: '', childEras: [] };
+  const eraChildEras  = eraData.childEras ?? [];
+  const allEraGroups  = eraChildEras.flatMap(ce => ce.groups);
+  const allEraEvents  = allEraGroups.flatMap(g => g.children.flatMap(sg => sg.events));
+  const visibleEvents = (() => {
+    if (activeSubGroupId) {
+      const sg = allEraGroups.flatMap(g => g.children).find(sg => sg.id === activeSubGroupId);
+      return sg?.events ?? [];
+    }
+    if (activeGroupId) {
+      const group = allEraGroups.find(g => g.id === activeGroupId);
+      return group?.children.flatMap(sg => sg.events) ?? [];
+    }
+    if (activeChildEraId) {
+      const ce = eraChildEras.find(ce => ce.id === activeChildEraId);
+      return ce?.groups.flatMap(g => g.children.flatMap(sg => sg.events)) ?? [];
+    }
+    return allEraEvents;
+  })();
+  const activeEvent  = visibleEvents.find(e => e.id === activeEventId) ?? visibleEvents[0];
+  const activeRoute  = routes.find(r => r.id === activeRouteId);
+  const cmsChildEra  = eraChildEras.find(ce => ce.id === cmsChildEraId) ?? eraChildEras[0];
+  const cmsGroup     = cmsChildEra?.groups.find(g => g.id === cmsGroupId) ?? cmsChildEra?.groups[0];
+  const cmsSubGroup  = cmsGroup?.children.find(sg => sg.id === cmsSubGroupId) ?? cmsGroup?.children[0];
 
   const showVertices   = isCmsMode && cmsEditMode && cmsTab === 'shape' && vertexEditMode && !!activePathId;
   const activePath     = activePathId ? mapGeometry.paths.find(p => p.id === activePathId) ?? null : null;
@@ -752,19 +837,162 @@ export default function AtlasAndTimeline() {
           <button className="sidebar-close-btn" onClick={closeMobile}><X size={16} /> Close</button>
         </div>
         <div className="sidebar-label">Redemptive Epochs</div>
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          {eras.map(era => {
-            const isActive = era.id === activeEra;
-            return (
-              <button key={era.id} type="button" className="nav-pill"
-                style={{ justifyContent: 'space-between', width: '100%', padding: '10px 20px', backgroundColor: 'transparent', color: isActive ? 'var(--accent-geo)' : 'var(--text-secondary)', borderLeft: isActive ? '3px solid var(--accent-geo)' : '3px solid transparent', borderBottom: '1px solid var(--border-soft)' }}
-                onClick={() => { setActiveEra(era.id); setActiveEventId(eraEvents[era.id]?.events?.[0]?.id ?? ''); closeMobile(); routerNavigate(`/atlas/${era.id}`); }}>
+        {eras.map(era => {
+          const isEraActive   = era.id === activeEra;
+          const isEraExpanded = expandedEras.has(era.id as EraKey);
+          const thisChildEras = eraEvents[era.id as EraKey]?.childEras ?? [];
+          return (
+            <div key={era.id}>
+              {/* Era row */}
+              <button
+                type="button"
+                onClick={() => {
+                  const key = era.id as EraKey;
+                  setExpandedEras(prev => { const next = new Set(prev); if (next.has(key)) next.delete(key); else next.add(key); return next; });
+                  setActiveEra(key);
+                  setActiveChildEraId(null);
+                  setActiveGroupId(null);
+                  setActiveSubGroupId(null);
+                  const firstEvent = eraEvents[key]?.childEras?.[0]?.groups?.[0]?.children?.[0]?.events?.[0];
+                  setActiveEventId(firstEvent?.id ?? '');
+                  routerNavigate(`/atlas/${key}`);
+                  closeMobile();
+                }}
+                style={{
+                  width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                  padding: '9px 20px', background: 'transparent', border: 'none',
+                  borderLeft: isEraActive && !activeChildEraId ? '3px solid var(--accent-geo)' : '3px solid transparent',
+                  borderBottom: '1px solid var(--border-soft)', cursor: 'pointer', textAlign: 'left',
+                  fontSize: '0.875rem', fontWeight: 700,
+                  color: isEraActive ? 'var(--accent-geo)' : 'var(--text-secondary)',
+                }}
+              >
                 <span>{era.label}</span>
-                {isActive && <ChevronRight size={16} />}
+                {isEraExpanded ? <ChevronDown size={13} /> : <ChevronRight size={13} />}
               </button>
-            );
-          })}
-        </div>
+
+              {isEraExpanded && (
+                <div style={{ paddingBottom: 4 }}>
+                  {thisChildEras.map(childEra => {
+                    const isChildEraActive   = isEraActive && activeChildEraId === childEra.id;
+                    const isChildEraExpanded = expandedChildEras.has(childEra.id);
+                    return (
+                      <div key={childEra.id}>
+                        {/* Child Era row */}
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const key = era.id as EraKey;
+                            setExpandedChildEras(prev => { const next = new Set(prev); if (next.has(childEra.id)) next.delete(childEra.id); else next.add(childEra.id); return next; });
+                            setActiveEra(key);
+                            setActiveChildEraId(childEra.id);
+                            setActiveGroupId(null);
+                            setActiveSubGroupId(null);
+                            const firstEvent = childEra.groups?.[0]?.children?.[0]?.events?.[0];
+                            setActiveEventId(firstEvent?.id ?? '');
+                            routerNavigate(`/atlas/${key}`);
+                            closeMobile();
+                          }}
+                          style={{
+                            width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                            padding: '7px 12px 7px 20px', background: 'transparent', border: 'none',
+                            borderLeft: isChildEraActive && !activeGroupId ? '2px solid var(--accent-geo)' : '2px solid transparent',
+                            cursor: 'pointer', textAlign: 'left', fontSize: '0.84rem',
+                            fontWeight: isChildEraActive ? 700 : 500,
+                            color: isChildEraActive ? 'var(--accent-geo)' : 'var(--text-secondary)',
+                          }}
+                        >
+                          <span style={{ display: 'flex', flexDirection: 'column', gap: 1, flex: 1 }}>
+                            <span>{childEra.label}</span>
+                            {childEra.timeframe && <span style={{ fontSize: '0.7rem', fontWeight: 400, color: 'var(--text-tertiary)' }}>{childEra.timeframe}</span>}
+                          </span>
+                          {isChildEraExpanded ? <ChevronDown size={12} /> : <ChevronRight size={12} />}
+                        </button>
+
+                        {isChildEraExpanded && (
+                          <div style={{ paddingBottom: 2 }}>
+                            {childEra.groups.map(group => {
+                              const isGroupActive   = isChildEraActive && activeGroupId === group.id;
+                              const isGroupExpanded = expandedGroups.has(group.id);
+                              return (
+                                <div key={group.id}>
+                                  {/* Group row */}
+                                  <button
+                                    type="button"
+                                    onClick={() => {
+                                      const key = era.id as EraKey;
+                                      setExpandedGroups(prev => { const next = new Set(prev); if (next.has(group.id)) next.delete(group.id); else next.add(group.id); return next; });
+                                      setActiveEra(key);
+                                      setActiveChildEraId(childEra.id);
+                                      setActiveGroupId(group.id);
+                                      setActiveSubGroupId(null);
+                                      const firstEvent = group.children?.[0]?.events?.[0];
+                                      setActiveEventId(firstEvent?.id ?? '');
+                                      routerNavigate(`/atlas/${key}`);
+                                      closeMobile();
+                                    }}
+                                    style={{
+                                      width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                                      padding: '6px 12px 6px 32px', background: 'transparent', border: 'none',
+                                      borderLeft: isGroupActive && !activeSubGroupId ? '2px solid var(--accent-geo)' : '2px solid transparent',
+                                      cursor: 'pointer', textAlign: 'left', fontSize: '0.81rem',
+                                      fontWeight: isGroupActive ? 600 : 400,
+                                      color: isGroupActive ? 'var(--accent-geo)' : 'var(--text-secondary)',
+                                    }}
+                                  >
+                                    <span>{group.label}</span>
+                                    {isGroupExpanded ? <ChevronDown size={10} /> : <ChevronRight size={10} />}
+                                  </button>
+
+                                  {isGroupExpanded && (
+                                    <div style={{ paddingBottom: 2 }}>
+                                      {group.children.map(subGroup => {
+                                        const isSubActive = isGroupActive && activeSubGroupId === subGroup.id;
+                                        return (
+                                          <button
+                                            key={subGroup.id}
+                                            type="button"
+                                            onClick={() => {
+                                              const key = era.id as EraKey;
+                                              setActiveEra(key);
+                                              setActiveChildEraId(childEra.id);
+                                              setActiveGroupId(group.id);
+                                              setActiveSubGroupId(subGroup.id);
+                                              setActiveEventId(subGroup.events[0]?.id ?? '');
+                                              routerNavigate(`/atlas/${key}`);
+                                              closeMobile();
+                                            }}
+                                            style={{
+                                              width: '100%', display: 'block', padding: '4px 12px 4px 48px',
+                                              background: isSubActive ? 'var(--bg-geo-light)' : 'transparent',
+                                              border: 'none',
+                                              borderLeft: isSubActive ? '2px solid var(--accent-geo)' : '2px solid transparent',
+                                              cursor: 'pointer', textAlign: 'left', fontSize: '0.76rem',
+                                              fontWeight: isSubActive ? 600 : 400,
+                                              color: isSubActive ? 'var(--accent-geo)' : 'var(--text-tertiary)',
+                                              borderRadius: '0 6px 6px 0',
+                                            }}
+                                          >
+                                            {subGroup.label}
+                                          </button>
+                                        );
+                                      })}
+                                    </div>
+                                  )}
+                                </div>
+                              );
+                            })}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          );
+        })}
+        <div style={{ height: 24 }} />
       </aside>
 
       {/* ── Center: map + timeline ── */}
@@ -792,7 +1020,7 @@ export default function AtlasAndTimeline() {
               />
 
               {/* Event markers */}
-              {eraData.events.map(event => {
+              {visibleEvents.map(event => {
                 const isActive = event.id === activeEventId;
                 return (
                   <g key={event.id} transform={`translate(${event.coords.x}, ${event.coords.y})`}
@@ -917,14 +1145,14 @@ export default function AtlasAndTimeline() {
             )}
           </div>
           <div style={{ flex: 1, position: 'relative', padding: '20px 40px', display: 'flex', alignItems: 'center' }}>
-            {eraData.events.length > 0 ? (
+            {visibleEvents.length > 0 ? (
               <>
                 <div style={{ position: 'absolute', top: '50%', left: 40, right: 40, height: 4, backgroundColor: 'var(--bg-sidebar)', transform: 'translateY(-50%)', zIndex: 1, borderRadius: 2 }} />
-                <div style={{ position: 'absolute', top: '50%', left: 40, width: `${((eraData.events.findIndex(e => e.id === activeEventId) || 0) / Math.max(eraData.events.length - 1, 1)) * 100}%`, height: 4, backgroundColor: 'var(--accent-gold)', transform: 'translateY(-50%)', zIndex: 1, borderRadius: 2, transition: 'width 0.3s ease' }} />
+                <div style={{ position: 'absolute', top: '50%', left: 40, width: `${((visibleEvents.findIndex(e => e.id === activeEventId) || 0) / Math.max(visibleEvents.length - 1, 1)) * 100}%`, height: 4, backgroundColor: 'var(--accent-gold)', transform: 'translateY(-50%)', zIndex: 1, borderRadius: 2, transition: 'width 0.3s ease' }} />
                 <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', position: 'relative', zIndex: 2 }}>
-                  {eraData.events.map((event, index) => {
+                  {visibleEvents.map((event, index) => {
                     const isActive = event.id === activeEventId;
-                    const isPast = eraData.events.findIndex(e => e.id === activeEventId) >= index;
+                    const isPast = visibleEvents.findIndex(e => e.id === activeEventId) >= index;
                     return (
                       <button key={event.id} type="button" onClick={() => { setActiveEventId(event.id); focusOnCoords(event.coords); }} style={{ background: 'transparent', border: 'none', cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                         <div style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)', marginBottom: 8, fontWeight: 600 }}>{event.date}</div>
@@ -944,7 +1172,7 @@ export default function AtlasAndTimeline() {
           {isCmsMode && cmsEditMode && cmsTab === 'event' && (
             <div style={{ padding: '8px 24px 12px', borderTop: '1px solid var(--border-soft)', display: 'flex', justifyContent: 'center' }}>
               <button type="button" onClick={addEvent} style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '6px 16px', borderRadius: 20, border: '1px dashed var(--accent-geo)', background: 'transparent', cursor: 'pointer', color: 'var(--accent-geo)', fontSize: '0.82rem', fontWeight: 600 }}>
-                <Plus size={13} /> Add Event to this Era
+                <Plus size={13} /> Add Event to "{cmsGroup?.label ?? 'Group'}"
               </button>
             </div>
           )}
@@ -988,33 +1216,104 @@ export default function AtlasAndTimeline() {
             <>
               {/* ── Event tab ── */}
               {cmsTab === 'event' && (
-                activeEvent ? (
-                  <div style={{ padding: 16, display: 'flex', flexDirection: 'column', gap: 10 }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 2 }}>
-                      <span style={{ fontSize: '0.68rem', fontWeight: 700, color: 'var(--accent-geo)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Edit Event</span>
-                      <button type="button" onClick={deleteActiveEvent} style={{ display: 'flex', alignItems: 'center', gap: 4, padding: '4px 10px', borderRadius: 8, border: 'none', background: 'var(--bg-sidebar)', color: '#d44', fontSize: '0.75rem', fontWeight: 600, cursor: 'pointer' }}>
-                        <Trash2 size={11} /> Delete
+                <div style={{ padding: 16, display: 'flex', flexDirection: 'column', gap: 10 }}>
+                  {/* Child Era selector */}
+                  <label style={labelStyle}>
+                    <span style={labelTextStyle}>Period</span>
+                    <select
+                      value={cmsChildEraId || eraChildEras[0]?.id || ''}
+                      onChange={e => {
+                        const ce = eraChildEras.find(ce => ce.id === e.target.value);
+                        setCmsChildEraId(e.target.value);
+                        setCmsGroupId('');
+                        setCmsSubGroupId('');
+                        setActiveEventId(ce?.groups?.[0]?.children?.[0]?.events?.[0]?.id ?? '');
+                      }}
+                      style={inputStyle}
+                    >
+                      {eraChildEras.map(ce => <option key={ce.id} value={ce.id}>{ce.label}</option>)}
+                    </select>
+                  </label>
+
+                  {/* Group selector */}
+                  {cmsChildEra && cmsChildEra.groups.length > 0 && (
+                    <label style={labelStyle}>
+                      <span style={labelTextStyle}>Group</span>
+                      <select
+                        value={cmsGroupId || cmsChildEra.groups[0]?.id || ''}
+                        onChange={e => {
+                          const g = cmsChildEra.groups.find(g => g.id === e.target.value);
+                          setCmsGroupId(e.target.value);
+                          setCmsSubGroupId('');
+                          setActiveEventId(g?.children?.[0]?.events?.[0]?.id ?? '');
+                        }}
+                        style={inputStyle}
+                      >
+                        {cmsChildEra.groups.map(g => <option key={g.id} value={g.id}>{g.label}</option>)}
+                      </select>
+                    </label>
+                  )}
+
+                  {/* Sub-group selector */}
+                  {cmsGroup && cmsGroup.children.length > 0 && (
+                    <label style={labelStyle}>
+                      <span style={labelTextStyle}>Sub-Group</span>
+                      <select
+                        value={cmsSubGroupId || cmsGroup.children[0]?.id || ''}
+                        onChange={e => {
+                          const sg = cmsGroup.children.find(sg => sg.id === e.target.value);
+                          setCmsSubGroupId(e.target.value);
+                          setActiveEventId(sg?.events?.[0]?.id ?? '');
+                        }}
+                        style={inputStyle}
+                      >
+                        {cmsGroup.children.map(sg => <option key={sg.id} value={sg.id}>{sg.label}</option>)}
+                      </select>
+                    </label>
+                  )}
+
+                  {/* Event selector within sub-group */}
+                  {cmsSubGroup && cmsSubGroup.events.length > 0 && (
+                    <label style={labelStyle}>
+                      <span style={labelTextStyle}>Event</span>
+                      <select
+                        value={activeEventId}
+                        onChange={e => setActiveEventId(e.target.value)}
+                        style={inputStyle}
+                      >
+                        {cmsSubGroup.events.map(ev => <option key={ev.id} value={ev.id}>{ev.title}</option>)}
+                      </select>
+                    </label>
+                  )}
+
+                  {activeEvent ? (
+                    <>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 4 }}>
+                        <span style={{ fontSize: '0.68rem', fontWeight: 700, color: 'var(--accent-geo)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Edit Event</span>
+                        <button type="button" onClick={deleteActiveEvent} style={{ display: 'flex', alignItems: 'center', gap: 4, padding: '4px 10px', borderRadius: 8, border: 'none', background: 'var(--bg-sidebar)', color: '#d44', fontSize: '0.75rem', fontWeight: 600, cursor: 'pointer' }}>
+                          <Trash2 size={11} /> Delete
+                        </button>
+                      </div>
+                      <label style={labelStyle}><span style={labelTextStyle}>Title</span><input style={inputStyle} value={activeEvent.title} onChange={e => updateActiveEventField('title', e.target.value)} /></label>
+                      <label style={labelStyle}><span style={labelTextStyle}>Date</span><input style={inputStyle} value={activeEvent.date} onChange={e => updateActiveEventField('date', e.target.value)} /></label>
+                      <label style={labelStyle}><span style={labelTextStyle}>Location</span><input style={inputStyle} value={activeEvent.loc} onChange={e => updateActiveEventField('loc', e.target.value)} /></label>
+                      <div style={{ display: 'flex', gap: 8 }}>
+                        <label style={{ ...labelStyle, flex: 1 }}><span style={labelTextStyle}>Map X</span><input style={inputStyle} type="number" value={activeEvent.coords.x} onChange={e => updateActiveEventField('coords.x', e.target.value)} /></label>
+                        <label style={{ ...labelStyle, flex: 1 }}><span style={labelTextStyle}>Map Y</span><input style={inputStyle} type="number" value={activeEvent.coords.y} onChange={e => updateActiveEventField('coords.y', e.target.value)} /></label>
+                      </div>
+                      <label style={labelStyle}><span style={labelTextStyle}>Description</span><textarea value={activeEvent.desc} onChange={e => updateActiveEventField('desc', e.target.value)} rows={4} style={{ ...inputStyle, resize: 'vertical', lineHeight: 1.5 }} /></label>
+                      <label style={labelStyle}><span style={labelTextStyle}>Scripture</span><input style={inputStyle} value={activeEvent.scripture} onChange={e => updateActiveEventField('scripture', e.target.value)} /></label>
+                      <label style={labelStyle}><span style={labelTextStyle}>Theme</span><input style={inputStyle} value={activeEvent.theme} onChange={e => updateActiveEventField('theme', e.target.value)} /></label>
+                    </>
+                  ) : (
+                    <div style={{ padding: 20, textAlign: 'center', color: 'var(--text-tertiary)', fontSize: '0.88rem' }}>
+                      <div style={{ marginBottom: 12 }}>No events in this sub-group.</div>
+                      <button type="button" onClick={addEvent} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '7px 16px', borderRadius: 20, border: '1px dashed var(--accent-geo)', background: 'transparent', cursor: 'pointer', color: 'var(--accent-geo)', fontSize: '0.82rem', fontWeight: 600 }}>
+                        <Plus size={13} /> Add First Event
                       </button>
                     </div>
-                    <label style={labelStyle}><span style={labelTextStyle}>Title</span><input style={inputStyle} value={activeEvent.title} onChange={e => updateActiveEventField('title', e.target.value)} /></label>
-                    <label style={labelStyle}><span style={labelTextStyle}>Date</span><input style={inputStyle} value={activeEvent.date} onChange={e => updateActiveEventField('date', e.target.value)} /></label>
-                    <label style={labelStyle}><span style={labelTextStyle}>Location</span><input style={inputStyle} value={activeEvent.loc} onChange={e => updateActiveEventField('loc', e.target.value)} /></label>
-                    <div style={{ display: 'flex', gap: 8 }}>
-                      <label style={{ ...labelStyle, flex: 1 }}><span style={labelTextStyle}>Map X</span><input style={inputStyle} type="number" value={activeEvent.coords.x} onChange={e => updateActiveEventField('coords.x', e.target.value)} /></label>
-                      <label style={{ ...labelStyle, flex: 1 }}><span style={labelTextStyle}>Map Y</span><input style={inputStyle} type="number" value={activeEvent.coords.y} onChange={e => updateActiveEventField('coords.y', e.target.value)} /></label>
-                    </div>
-                    <label style={labelStyle}><span style={labelTextStyle}>Description</span><textarea value={activeEvent.desc} onChange={e => updateActiveEventField('desc', e.target.value)} rows={4} style={{ ...inputStyle, resize: 'vertical', lineHeight: 1.5 }} /></label>
-                    <label style={labelStyle}><span style={labelTextStyle}>Scripture</span><input style={inputStyle} value={activeEvent.scripture} onChange={e => updateActiveEventField('scripture', e.target.value)} /></label>
-                    <label style={labelStyle}><span style={labelTextStyle}>Theme</span><input style={inputStyle} value={activeEvent.theme} onChange={e => updateActiveEventField('theme', e.target.value)} /></label>
-                  </div>
-                ) : (
-                  <div style={{ padding: 32, textAlign: 'center', color: 'var(--text-tertiary)', fontSize: '0.88rem' }}>
-                    <div style={{ marginBottom: 12 }}>No events in this era.</div>
-                    <button type="button" onClick={addEvent} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '7px 16px', borderRadius: 20, border: '1px dashed var(--accent-geo)', background: 'transparent', cursor: 'pointer', color: 'var(--accent-geo)', fontSize: '0.82rem', fontWeight: 600 }}>
-                      <Plus size={13} /> Add First Event
-                    </button>
-                  </div>
-                )
+                  )}
+                </div>
               )}
 
               {/* ── Routes tab ── */}

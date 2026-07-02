@@ -2,182 +2,656 @@
   "eraEvents": {
     "creation": {
       "title": "Creation & Fall",
-      "timeframe": "Genesis 1 – 3",
-      "events": []
+      "timeframe": "Genesis 1–3",
+      "childEras": [
+        {
+          "id": "creation-creation",
+          "label": "The Creation",
+          "timeframe": "Genesis 1–2",
+          "groups": [
+            {
+              "id": "creation-week",
+              "label": "The Six Days of Creation",
+              "children": [
+                {
+                  "id": "forming-days",
+                  "label": "Days 1–3: Forming the World",
+                  "events": [
+                    { "id": "ex-nihilo",  "date": "Day One",   "title": "Creation ex Nihilo",     "loc": "The Heavens & Earth", "coords": { "x": 920, "y": 370 }, "desc": "God speaks all things into being from nothing. 'In the beginning God created the heavens and the earth.' The Triune God alone is eternal and self-existent; everything else derives its being from his sovereign creative word.", "scripture": "Genesis 1:1",   "theme": "Divine Omnipotence" },
+                    { "id": "day2-sky",   "date": "Day Two",   "title": "Sky & Waters Separated", "loc": "The Heavens & Earth", "coords": { "x": 920, "y": 370 }, "desc": "God separates the waters above from the waters below, forming the expanse of sky. He is ordering and distinguishing creation, demonstrating that he is a God of order whose creative word brings structure out of formlessness.", "scripture": "Genesis 1:6-8",  "theme": "Divine Order" },
+                    { "id": "day3-land",  "date": "Day Three", "title": "Dry Land & Vegetation",  "loc": "The Heavens & Earth", "coords": { "x": 920, "y": 370 }, "desc": "God calls the dry land to appear and commands it to bring forth vegetation bearing seed. The earth obeys. All plant life reproduces 'after its kind' — an early affirmation of fixed created categories built into the fabric of the world.", "scripture": "Genesis 1:9-13", "theme": "Created Order" }
+                  ]
+                },
+                {
+                  "id": "filling-days",
+                  "label": "Days 4–6: Filling the World",
+                  "events": [
+                    { "id": "day4-lights",    "date": "Day Four", "title": "Sun, Moon & Stars",           "loc": "The Heavens", "coords": { "x": 920, "y": 370 }, "desc": "God creates the sun, moon, and stars to govern day and night and to serve as signs for seasons. The luminaries that ancient peoples worshipped as gods are here made servants — creatures appointed to minister to humanity under God's sovereign reign.", "scripture": "Genesis 1:14-18", "theme": "Creation vs. Idolatry" },
+                    { "id": "day5-creatures", "date": "Day Five", "title": "Sea & Sky Creatures",         "loc": "The Earth",   "coords": { "x": 920, "y": 370 }, "desc": "God fills the sea and sky with creatures. He speaks life into the waters and air, and blesses them to be fruitful and multiply. The living world becomes a theatre of God's generosity and creative power.", "scripture": "Genesis 1:20-23", "theme": "Blessing & Abundance" },
+                    { "id": "image-of-god",   "date": "Day Six",  "title": "Man Created as Image of God", "loc": "Garden of Eden", "coords": { "x": 940, "y": 375 }, "desc": "God forms Adam from the ground and breathes life into his nostrils, making him a living being. Man and woman are made in God's image as his vicegerents, bearers of his likeness with delegated dominion over all the earth. Eve is formed from Adam's side as his covenantal partner and complement.", "scripture": "Genesis 1:26-28", "theme": "Imago Dei" }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "creation-fall",
+          "label": "The Fall",
+          "timeframe": "Genesis 3",
+          "groups": [
+            {
+              "id": "the-fall",
+              "label": "The Fall",
+              "children": [
+                {
+                  "id": "temptation-sub",
+                  "label": "The Temptation",
+                  "events": [
+                    { "id": "garden-command", "date": "After Day Six", "title": "The Garden & the Command",   "loc": "Garden of Eden", "coords": { "x": 940, "y": 378 }, "desc": "God places Adam in the Garden of Eden to work it and keep it. He gives a single prohibition: not to eat of the tree of the knowledge of good and evil. This Covenant of Works sets the conditions for blessing or curse based on perfect, personal obedience.", "scripture": "Genesis 2:15-17", "theme": "Covenant of Works" },
+                    { "id": "temptation",     "date": "After Eden",    "title": "The Serpent's Temptation", "loc": "Garden of Eden", "coords": { "x": 940, "y": 378 }, "desc": "The serpent questions God's word and character, tempting Eve to doubt and then disobey. Adam, present with her, fails to guard the garden. Both eat the forbidden fruit. The Covenant of Works is broken; guilt, shame, and death enter the world.", "scripture": "Genesis 3:1-7",  "theme": "Original Sin" }
+                  ]
+                },
+                {
+                  "id": "judgment-promise",
+                  "label": "Judgment & First Promise",
+                  "events": [
+                    { "id": "proto-gospel", "date": "After the Fall", "title": "The Protoevangelium",       "loc": "Garden of Eden", "coords": { "x": 940, "y": 383 }, "desc": "God pronounces judgment on the serpent and promises that the seed of the woman will crush the serpent's head. This is the very first proclamation of the gospel — the Covenant of Grace — revealing that God's redemptive purpose was established before the foundation of the world.", "scripture": "Genesis 3:15",    "theme": "Covenant of Grace" },
+                    { "id": "expulsion",    "date": "After the Fall", "title": "Expulsion from the Garden", "loc": "East of Eden",   "coords": { "x": 950, "y": 375 }, "desc": "God clothes Adam and Eve with garments of skin — the first blood sacrifice covering human nakedness and shame — then expels them from the Garden and guards the tree of life with cherubim. Exile from God's presence is the consequence of sin; return to his presence is the goal of all redemption.", "scripture": "Genesis 3:22-24", "theme": "Exile & Atonement" }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
     },
     "preflood": {
       "title": "Pre-Flood Age",
-      "timeframe": "Genesis 4 – 6",
-      "events": []
+      "timeframe": "Genesis 4–8",
+      "childEras": [
+        {
+          "id": "preflood-first-gens",
+          "label": "The First Generations",
+          "timeframe": "Genesis 4–5",
+          "groups": [
+            {
+              "id": "cain-abel",
+              "label": "Cain & Abel",
+              "children": [
+                {
+                  "id": "two-offerings",
+                  "label": "The Two Offerings",
+                  "events": [
+                    { "id": "offerings",   "date": "After the Fall", "title": "Cain & Abel's Offerings", "loc": "East of Eden", "coords": { "x": 945, "y": 373 }, "desc": "Cain brings an offering from the fruit of the ground; Abel brings the firstborn of his flock. The Lord regards Abel's offering but not Cain's. The contrast reveals the necessity of blood sacrifice and the disposition of the heart — Abel offers in faith, Cain merely in form.", "scripture": "Genesis 4:3-5", "theme": "True Worship" },
+                    { "id": "cain-warning","date": "After the Fall", "title": "God Warns Cain",         "loc": "East of Eden", "coords": { "x": 945, "y": 373 }, "desc": "God confronts Cain's anger and jealousy with a gracious warning: 'If you do well, will you not be accepted? And if you do not do well, sin is crouching at the door.' Cain is not beyond redemption, but he must rule over sin rather than be ruled by it.", "scripture": "Genesis 4:6-7", "theme": "Grace & Responsibility" }
+                  ]
+                },
+                {
+                  "id": "murder-exile",
+                  "label": "Murder & Exile",
+                  "events": [
+                    { "id": "cain-murder", "date": "After the Fall", "title": "Cain Murders Abel",     "loc": "East of Eden", "coords": { "x": 945, "y": 376 }, "desc": "Cain lures his brother to the field and kills him — the first murder. Abel's blood cries out to God from the ground. The pattern of the righteous suffering at the hands of the wicked begins here and runs through all of Scripture until the blood of Christ speaks a better word.", "scripture": "Genesis 4:8",    "theme": "Sin & Judgment" },
+                    { "id": "cain-exile",  "date": "After the Fall", "title": "Cain's Exile to Nod",  "loc": "Land of Nod",  "coords": { "x": 960, "y": 365 }, "desc": "God curses Cain to be a wandering fugitive. Cain protests that the punishment is too great to bear, fearing anyone who finds him will kill him. God marks Cain for his own protection — a strange mercy that preserves even the murderer while justice is deferred.", "scripture": "Genesis 4:12-16", "theme": "Judgment & Mercy" }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "preflood-flood",
+          "label": "Noah & the Flood",
+          "timeframe": "Genesis 6–9",
+          "groups": [
+            {
+              "id": "noah-flood",
+              "label": "Noah & the Great Flood",
+              "children": [
+                {
+                  "id": "ark-command-sub",
+                  "label": "The Command to Build",
+                  "events": [
+                    { "id": "wickedness",  "date": "c. 2450 BC", "title": "Humanity's Total Wickedness", "loc": "Mesopotamia", "coords": { "x": 950, "y": 378 }, "desc": "God sees that every intention of man's heart is only evil continually. He grieves that he made man and determines to blot out all flesh. Yet Noah finds grace in God's eyes. This divine grief and gracious exception is the template for all of God's redemptive acts: judgment interrupted by sovereign grace.", "scripture": "Genesis 6:5-8",   "theme": "Total Depravity" },
+                    { "id": "ark-command", "date": "c. 2450 BC", "title": "The Ark Commanded",            "loc": "Mesopotamia", "coords": { "x": 950, "y": 378 }, "desc": "God commands Noah, one righteous man in a corrupt generation, to build a massive ark of salvation. Noah becomes a type of Christ: the one through whom the remnant is preserved. By faith, Noah obeys an apparently foolish command and prepares a way of escape for his household.", "scripture": "Genesis 6:13-14", "theme": "Salvation by Grace" }
+                  ]
+                },
+                {
+                  "id": "flood-waters",
+                  "label": "The Great Flood",
+                  "events": [
+                    { "id": "flood",         "date": "c. 2450 BC", "title": "The Flood Waters Rise", "loc": "All the Earth", "coords": { "x": 700, "y": 300 }, "desc": "The fountains of the great deep burst open and the windows of heaven pour rain for forty days. Every living thing on dry land dies. The flood is the most sweeping divine judgment in history and a foreshadowing of the final judgment — yet within the ark, eight souls are kept safe by God's grace.", "scripture": "Genesis 7:17-24", "theme": "Divine Judgment" },
+                    { "id": "waters-recede", "date": "c. 2449 BC", "title": "The Waters Recede",     "loc": "Mount Ararat",  "coords": { "x": 892, "y": 248 }, "desc": "God remembers Noah. The waters decrease steadily and the ark rests on the mountains of Ararat. Noah sends out a raven and then a dove; the returning dove with an olive branch signals that life is returning to the earth. A new creation is dawning.", "scripture": "Genesis 8:1-5",   "theme": "New Creation" }
+                  ]
+                },
+                {
+                  "id": "noahic-covenant",
+                  "label": "The Noahic Covenant",
+                  "events": [
+                    { "id": "noahs-altar",      "date": "c. 2449 BC", "title": "Noah's Altar",       "loc": "Mount Ararat", "coords": { "x": 892, "y": 248 }, "desc": "The first act Noah performs on dry land is to build an altar and offer burnt offerings from every clean animal. The aroma of the sacrifice pleases God. Worship through blood sacrifice is the divinely ordained response to God's saving acts — a pattern reaching its fulfilment in Christ's once-for-all offering.", "scripture": "Genesis 8:20-21", "theme": "Worship & Sacrifice" },
+                    { "id": "rainbow-covenant", "date": "c. 2449 BC", "title": "The Noahic Covenant", "loc": "Mount Ararat", "coords": { "x": 892, "y": 248 }, "desc": "God establishes his covenant with all creation, promising never again to destroy the earth by flood. The rainbow is the sign — God's bow laid down, a weapon of war transformed into a sign of peace. This covenant of common grace preserves the created order so redemption can be accomplished.", "scripture": "Genesis 9:11-17", "theme": "Common Grace" }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
     },
     "patriarchal": {
       "title": "Patriarchal Age",
-      "timeframe": "c. 2100 – 1800 BC",
-      "events": [
+      "timeframe": "c. 2100–1800 BC",
+      "childEras": [
         {
-          "id": "ur",
-          "date": "c. 2090 BC",
-          "title": "The Call of Abram",
-          "loc": "Ur of the Chaldeans",
-          "coords": {
-            "x": 973,
-            "y": 410
-          },
-          "desc": "God calls Abram out of Ur, establishing the unconditional covenant of grace promising a land, a seed, and a blessing to all nations.",
-          "scripture": "Genesis 12:1-3",
-          "theme": "Covenant of Grace"
+          "id": "patriarchal-abraham",
+          "label": "The Age of Abraham",
+          "timeframe": "c. 2090–2050 BC",
+          "groups": [
+            {
+              "id": "abraham",
+              "label": "Abraham",
+              "children": [
+                {
+                  "id": "call-journey",
+                  "label": "The Call & Journey",
+                  "events": [
+                    { "id": "ur",     "date": "c. 2090 BC", "title": "The Call of Abram",    "loc": "Ur of the Chaldeans", "coords": { "x": 973, "y": 410 }, "desc": "God calls Abram out of pagan Ur with a three-fold promise: a land, a great nation, and a blessing to all peoples of the earth. This unconditional Abrahamic Covenant is the foundation of all subsequent redemptive history. The ultimate seed of Abraham is Jesus Christ, in whom all nations are blessed.", "scripture": "Genesis 12:1-3",  "theme": "Covenant of Grace" },
+                    { "id": "haran",  "date": "c. 2085 BC", "title": "Departure from Haran", "loc": "Haran",               "coords": { "x": 855, "y": 295 }, "desc": "Abram departs from Haran at age 75, taking Sarai, Lot, and all their household. He goes, not knowing where he is going — the great paradigm of faith as obedience to a divine call without full knowledge of the destination. Faith is allegiance to the word of God rather than certainty about the path.", "scripture": "Genesis 12:4-5",  "theme": "Faith & Obedience" },
+                    { "id": "canaan", "date": "c. 2075 BC", "title": "Arrival in Canaan",    "loc": "Shechem",             "coords": { "x": 777, "y": 383 }, "desc": "Abram enters Canaan and builds an altar at the oak of Moreh in Shechem. God reaffirms his promise: 'To your offspring I will give this land.' Abram's altar-building throughout Canaan is an act of claiming the land in faith before receiving it in fact — a pattern of prophetic anticipation.", "scripture": "Genesis 12:6-7",  "theme": "Promised Land" }
+                  ]
+                },
+                {
+                  "id": "abrahamic-covenant",
+                  "label": "The Covenant Sealed",
+                  "events": [
+                    { "id": "covenant-15",  "date": "c. 2080 BC", "title": "The Covenant of the Pieces", "loc": "Hebron", "coords": { "x": 775, "y": 398 }, "desc": "God enters into a formal covenant with Abram in a dramatic ceremony of blood and fire. Abram falls into a deep sleep and only God passes between the divided animals — making this a unilateral, unconditional covenant. God alone bears the covenant oath. Its fulfilment rests entirely on his faithfulness, not Abram's.", "scripture": "Genesis 15:1-18", "theme": "Covenant Faithfulness" },
+                    { "id": "circumcision", "date": "c. 2067 BC", "title": "Sign of Circumcision",       "loc": "Hebron", "coords": { "x": 775, "y": 398 }, "desc": "God gives circumcision as the covenant sign and changes Abram's name to Abraham. Circumcision marks membership in the covenant community and points toward the deeper circumcision of the heart. In the New Covenant, baptism fulfils the same covenantal-sign function for the new Israel.", "scripture": "Genesis 17:9-14", "theme": "Covenant Sign" }
+                  ]
+                },
+                {
+                  "id": "isaac-test",
+                  "label": "The Test of Faith",
+                  "events": [
+                    { "id": "isaac-born", "date": "c. 2065 BC", "title": "Isaac Born",       "loc": "Beersheba",    "coords": { "x": 774, "y": 408 }, "desc": "In his old age — Abraham 100, Sarah 90 — the promised son Isaac is born. What was biologically impossible becomes actual through God's sovereign power. Isaac is the child of promise, not of natural generation, foreshadowing the supernatural birth of the true Seed of Abraham, Jesus Christ.", "scripture": "Genesis 21:1-7",  "theme": "Promise & Miracle" },
+                    { "id": "moriah",     "date": "c. 2050 BC", "title": "Binding of Isaac", "loc": "Mount Moriah", "coords": { "x": 776, "y": 391 }, "desc": "God commands Abraham to offer Isaac as a burnt offering on Mount Moriah. At the last moment, God provides a ram caught in the thicket as a substitute. This is the most complete Old Testament type of penal substitution: the Father providing a sacrifice in place of the beloved son, on the very hill where the true sacrifice would one day be made.", "scripture": "Genesis 22:1-14", "theme": "Substitutionary Atonement" }
+                  ]
+                }
+              ]
+            }
+          ]
         },
         {
-          "id": "canaan",
-          "date": "c. 2075 BC",
-          "title": "Arrival in Canaan",
-          "loc": "Shechem",
-          "coords": {
-            "x": 777,
-            "y": 383
-          },
-          "desc": "Abram builds an altar at the oak of Moreh. God promises this land to his offspring.",
-          "scripture": "Genesis 12:6-7",
-          "theme": "Promised Land"
+          "id": "patriarchal-jacob",
+          "label": "Isaac & Jacob",
+          "timeframe": "c. 1930–1908 BC",
+          "groups": [
+            {
+              "id": "jacob",
+              "label": "Isaac & Jacob",
+              "children": [
+                {
+                  "id": "jacob-flight",
+                  "label": "Jacob's Flight",
+                  "events": [
+                    { "id": "blessing", "date": "c. 1930 BC", "title": "Jacob Receives the Blessing", "loc": "Beersheba", "coords": { "x": 774, "y": 408 }, "desc": "Jacob deceives his aging father Isaac and receives the patriarchal blessing intended for Esau. Though Jacob's method is sinful, God's sovereign purpose is at work: the elder will serve the younger. God's election operates not through human merit or natural birthright but through his own inscrutable purpose.", "scripture": "Genesis 27:1-40",  "theme": "Election & Providence" },
+                    { "id": "bethel",   "date": "c. 1929 BC", "title": "Jacob's Ladder at Bethel",  "loc": "Bethel",    "coords": { "x": 775, "y": 385 }, "desc": "Fleeing Esau, Jacob sleeps at Bethel and dreams of a ladder connecting heaven and earth, with angels ascending and descending. God reaffirms the Abrahamic promises. Christ applies this image to himself — he is the true ladder, the mediator between God and man through whom all access to the Father is made possible.", "scripture": "Genesis 28:10-19", "theme": "Mediation" }
+                  ]
+                },
+                {
+                  "id": "jacob-return",
+                  "label": "Jacob's Return & Transformation",
+                  "events": [
+                    { "id": "peniel",          "date": "c. 1908 BC", "title": "Jacob Wrestles with God",  "loc": "Peniel",     "coords": { "x": 798, "y": 395 }, "desc": "Jacob wrestles through the night with the Angel of the Lord and prevails by clinging to him in desperation. His hip is wrenched. He is renamed Israel — 'he strives with God.' This encounter defines the character of God's people: those who prevail not through their own strength, but by clinging to God and refusing to let him go.", "scripture": "Genesis 32:24-30", "theme": "Persevering Faith" },
+                    { "id": "reconciliation", "date": "c. 1908 BC", "title": "Reconciliation with Esau", "loc": "Near Seir", "coords": { "x": 800, "y": 430 }, "desc": "After twenty years of separation, Jacob and Esau are reconciled. Esau, who had sworn to kill Jacob, runs to meet him and embraces him. Jacob, who expected wrath, receives grace. He declares, 'I have seen your face as one sees the face of God.' Reconciliation between estranged brothers becomes a type of cosmic reconciliation.", "scripture": "Genesis 33:1-11",  "theme": "Reconciliation" }
+                  ]
+                }
+              ]
+            }
+          ]
         },
         {
-          "id": "moriah",
-          "date": "c. 2050 BC",
-          "title": "Binding of Isaac",
-          "loc": "Mount Moriah",
-          "coords": {
-            "x": 776,
-            "y": 391
-          },
-          "desc": "Abraham's faith is tested. A ram is provided as a substitute, foreshadowing the substitutionary atonement of Christ.",
-          "scripture": "Genesis 22:1-14",
-          "theme": "Substitutionary Atonement"
-        },
-        {
-          "id": "egypt",
-          "date": "c. 1876 BC",
-          "title": "Descent into Egypt",
-          "loc": "Goshen",
-          "coords": {
-            "x": 711,
-            "y": 413
-          },
-          "desc": "Jacob and his family move to Egypt to survive the famine, setting the stage for the Exodus.",
-          "scripture": "Genesis 46:1-7",
-          "theme": "Providence"
+          "id": "patriarchal-joseph",
+          "label": "Joseph & Egypt",
+          "timeframe": "c. 1898–1876 BC",
+          "groups": [
+            {
+              "id": "joseph",
+              "label": "Joseph & Egypt",
+              "children": [
+                {
+                  "id": "joseph-betrayal",
+                  "label": "Betrayal & Slavery",
+                  "events": [
+                    { "id": "joseph-dreams", "date": "c. 1898 BC", "title": "Joseph's Dreams", "loc": "Hebron", "coords": { "x": 775, "y": 398 }, "desc": "Joseph dreams that his brothers' sheaves bow to his, and that the sun, moon, and eleven stars bow to him. His brothers hate him for his dreams and his father's favoritism. The dreams are prophetic — but before they are fulfilled, Joseph must pass through betrayal, slavery, and prison.", "scripture": "Genesis 37:5-11",  "theme": "Providence through Suffering" },
+                    { "id": "joseph-pit",   "date": "c. 1898 BC", "title": "Sold into Egypt",  "loc": "Dothan", "coords": { "x": 777, "y": 374 }, "desc": "Joseph is thrown into a pit by his brothers, then sold to Ishmaelite traders for twenty pieces of silver. He is taken to Egypt as a slave. His innocent suffering at the hands of his brothers, his later exaltation, and his saving of the very men who rejected him makes Joseph the most complete type of Christ in Genesis.", "scripture": "Genesis 37:23-28", "theme": "Type of Christ" }
+                  ]
+                },
+                {
+                  "id": "joseph-exaltation",
+                  "label": "Exaltation in Egypt",
+                  "events": [
+                    { "id": "pharaoh-dream", "date": "c. 1886 BC", "title": "Joseph Interprets Pharaoh's Dream", "loc": "Egypt", "coords": { "x": 700, "y": 425 }, "desc": "After two years in prison, Joseph is summoned before Pharaoh to interpret his dreams of seven fat and seven lean cows. Joseph reveals that God is showing Pharaoh seven years of abundance followed by seven years of famine. His interpretation is vindicated and God's sovereign plan through suffering is beginning to unfold.", "scripture": "Genesis 41:1-44",  "theme": "Wisdom & Sovereignty" },
+                    { "id": "joseph-vizier", "date": "c. 1886 BC", "title": "Joseph Made Vizier of Egypt",       "loc": "Egypt", "coords": { "x": 700, "y": 425 }, "desc": "Pharaoh recognizes the Spirit of God in Joseph and elevates him to second-in-command over all Egypt. Joseph, who entered Egypt as a slave, now has authority over the most powerful empire on earth. What his brothers intended for evil, God intended for good — to save many lives.", "scripture": "Genesis 41:41-45", "theme": "Exaltation through Suffering" }
+                  ]
+                },
+                {
+                  "id": "joseph-reconcile",
+                  "label": "Reconciliation & the Move to Egypt",
+                  "events": [
+                    { "id": "joseph-reveal", "date": "c. 1876 BC", "title": "Joseph Reveals Himself", "loc": "Egypt",  "coords": { "x": 700, "y": 425 }, "desc": "When Joseph can no longer control himself before his brothers, he clears the room and weeps. 'I am Joseph. Is my father still alive?' The brothers are terrified, but Joseph reassures them: 'Do not be grieved or angry with yourselves. God sent me before you to preserve life.' He forgives the unforgivable — a picture of divine reconciliation.", "scripture": "Genesis 45:1-15", "theme": "Forgiveness & Reconciliation" },
+                    { "id": "egypt",         "date": "c. 1876 BC", "title": "Descent into Egypt",     "loc": "Goshen", "coords": { "x": 711, "y": 413 }, "desc": "Jacob and his entire family — seventy souls — descend to Egypt at Pharaoh's invitation. God reaffirms his promise to Jacob at Beersheba, assuring him that he will go with him and bring his people back. This descent into Egypt sets the stage for 400 years of sojourning and the great Exodus that will define Israel's identity forever.", "scripture": "Genesis 46:1-7",  "theme": "Providence" }
+                  ]
+                }
+              ]
+            }
+          ]
         }
       ]
     },
     "mosaic": {
       "title": "Exodus & Conquest",
-      "timeframe": "c. 1446 – 1350 BC",
-      "events": [
+      "timeframe": "c. 1446–1350 BC",
+      "childEras": [
         {
-          "id": "exodus",
-          "date": "c. 1446 BC",
-          "title": "The Exodus",
-          "loc": "Rameses, Egypt",
-          "coords": {
-            "x": 717,
-            "y": 413
-          },
-          "desc": "God delivers Israel from slavery in Egypt through ten plagues and the crossing of the Red Sea.",
-          "scripture": "Exodus 12:33-42",
-          "theme": "Redemption"
+          "id": "mosaic-exodus",
+          "label": "The Plagues & Exodus",
+          "timeframe": "c. 1446 BC",
+          "groups": [
+            {
+              "id": "the-exodus",
+              "label": "The Plagues & Exodus",
+              "children": [
+                {
+                  "id": "moses-commission",
+                  "label": "Moses' Commission",
+                  "events": [
+                    { "id": "burning-bush", "date": "c. 1446 BC", "title": "The Burning Bush", "loc": "Mount Horeb", "coords": { "x": 753, "y": 457 }, "desc": "God appears to Moses in a bush that burns without being consumed and reveals his covenant name: 'I AM WHO I AM.' Moses is commissioned as the deliverer of Israel. God's self-revelation as the eternal, unchanging I AM forms the ground of his faithfulness to his covenant promises.", "scripture": "Exodus 3:1-14",  "theme": "Divine Revelation" },
+                    { "id": "return-egypt", "date": "c. 1446 BC", "title": "Return to Egypt",  "loc": "Egypt",       "coords": { "x": 715, "y": 420 }, "desc": "Moses returns to Egypt and appears before Pharaoh demanding Israel's release. Pharaoh's heart is hardened — not as an arbitrary act, but in fulfilment of God's sovereign purpose to display his power through the ten plagues and demonstrate to all the earth that he alone is Lord.", "scripture": "Exodus 4:29-31", "theme": "Divine Authority" }
+                  ]
+                },
+                {
+                  "id": "plagues-sub",
+                  "label": "The Ten Plagues",
+                  "events": [
+                    { "id": "first-plagues", "date": "c. 1446 BC", "title": "The Nine Plagues",       "loc": "Egypt", "coords": { "x": 710, "y": 420 }, "desc": "God sends nine escalating plagues against Egypt — water to blood, frogs, gnats, flies, livestock death, boils, hail, locusts, darkness — each targeting a specific Egyptian deity. The plagues are acts of divine warfare against the gods of Egypt, demonstrating that the Lord alone controls nature, life, and death.", "scripture": "Exodus 7–10",    "theme": "God over All Gods" },
+                    { "id": "final-plague",  "date": "c. 1446 BC", "title": "Death of the Firstborn", "loc": "Egypt", "coords": { "x": 710, "y": 420 }, "desc": "At midnight, the Lord strikes down every firstborn in Egypt — from Pharaoh's son to the firstborn of the prisoner — but passes over the houses marked with the blood of the lamb. Egypt mourns while Israel prepares to leave. The final plague breaks Pharaoh's will and demonstrates the absolute sovereignty of Israel's God.", "scripture": "Exodus 12:29-30", "theme": "Judgment & Redemption" }
+                  ]
+                },
+                {
+                  "id": "departure",
+                  "label": "The Exodus",
+                  "events": [
+                    { "id": "passover", "date": "c. 1446 BC", "title": "Institution of the Passover", "loc": "Rameses, Egypt", "coords": { "x": 717, "y": 413 }, "desc": "God institutes the Passover: a lamb is slaughtered, its blood applied to doorposts, and the flesh eaten in haste. The blood protects Israel from the destroying angel. This is the Old Testament's most complete type of atonement: 'Christ, our Passover lamb, has been sacrificed' (1 Cor 5:7). Every element points to the cross.", "scripture": "Exodus 12:1-14",  "theme": "Atonement" },
+                    { "id": "red-sea",  "date": "c. 1446 BC", "title": "Crossing the Red Sea",        "loc": "Gulf of Suez",   "coords": { "x": 737, "y": 448 }, "desc": "Trapped between Pharaoh's army and the sea, Israel cries out in fear. God commands Moses to stretch out his hand; the sea parts and Israel crosses on dry ground. The Egyptian army that pursues is drowned as the waters return. Israel's redemption is complete — deliverance achieved by God's power alone, through no effort of the redeemed.", "scripture": "Exodus 14:21-22", "theme": "Redemption" }
+                  ]
+                }
+              ]
+            }
+          ]
         },
         {
-          "id": "sinai",
-          "date": "c. 1446 BC",
-          "title": "Covenant at Sinai",
-          "loc": "Mount Sinai",
-          "coords": {
-            "x": 753,
-            "y": 457
-          },
-          "desc": "God gives the Law to Moses, establishing the Mosaic Covenant and the sacrificial system.",
-          "scripture": "Exodus 19-20",
-          "theme": "The Law"
+          "id": "mosaic-wilderness",
+          "label": "The Wilderness Years",
+          "timeframe": "c. 1446–1406 BC",
+          "groups": [
+            {
+              "id": "the-wilderness",
+              "label": "The Wilderness & Law",
+              "children": [
+                {
+                  "id": "sinai-covenant",
+                  "label": "The Sinai Covenant",
+                  "events": [
+                    { "id": "sinai",            "date": "c. 1446 BC", "title": "The Sinai Covenant",   "loc": "Mount Sinai", "coords": { "x": 753, "y": 457 }, "desc": "God descends on Sinai in fire and thunder. Moses ascends into the cloud. God gives the Law to Israel, establishing the Mosaic Covenant — a conditional covenant of national blessing or curse. The Law reveals God's holiness, exposes human sinfulness, and in its sacrificial system drives Israel toward a coming Redeemer.", "scripture": "Exodus 19–20",    "theme": "The Law" },
+                    { "id": "ten-commandments", "date": "c. 1446 BC", "title": "The Ten Commandments", "loc": "Mount Sinai", "coords": { "x": 753, "y": 457 }, "desc": "God speaks the Ten Commandments directly to Israel from the mountain — the moral law summarized in two tables. The first table governs love for God; the second, love for neighbor. Christ will later summarize the whole Law under these two commandments and fulfill both in his perfect life of obedience on behalf of his people.", "scripture": "Exodus 20:1-17",  "theme": "Moral Law" }
+                  ]
+                },
+                {
+                  "id": "tabernacle-sub",
+                  "label": "The Tabernacle",
+                  "events": [
+                    { "id": "golden-calf", "date": "c. 1446 BC", "title": "The Golden Calf",       "loc": "Mount Sinai (base)", "coords": { "x": 756, "y": 460 }, "desc": "While Moses is on the mountain receiving the Law, Israel below makes a golden calf and worships it. This catastrophic apostasy at the very moment the covenant is being established reveals the depth of Israel's inability to keep what they have sworn. Moses intercedes, and God shows mercy — a preview of Christ's intercessory work.", "scripture": "Exodus 32:1-6",   "theme": "Apostasy & Intercession" },
+                    { "id": "tabernacle",  "date": "c. 1445 BC", "title": "The Tabernacle Erected", "loc": "Sinai Wilderness", "coords": { "x": 757, "y": 450 }, "desc": "On the first day of the second year, Moses erects the Tabernacle. The cloud of God's glory fills it, so Moses cannot enter. Every element — the ark, the mercy seat, the bronze altar, the golden lampstand, the bread of the Presence, the veil — is a divinely-designed shadow of the person and work of Christ, the true and greater Tabernacle.", "scripture": "Exodus 40:33-34", "theme": "Typology" }
+                  ]
+                },
+                {
+                  "id": "wilderness-wander",
+                  "label": "Forty Years of Wandering",
+                  "events": [
+                    { "id": "kadesh",        "date": "c. 1446 BC", "title": "Rebellion at Kadesh-Barnea", "loc": "Kadesh-Barnea", "coords": { "x": 763, "y": 445 }, "desc": "The twelve spies return from Canaan. Ten bring a bad report and the people rebel in unbelief. God sentences that entire generation to die in the wilderness — only Caleb and Joshua, who believed God's promise, will enter the land. Unbelief is treated as a covenant-breaking offense that forfeits the promised inheritance.", "scripture": "Numbers 14:1-4",  "theme": "Unbelief & Judgment" },
+                    { "id": "bronze-serpent", "date": "c. 1407 BC", "title": "The Bronze Serpent",         "loc": "Desert Route", "coords": { "x": 770, "y": 440 }, "desc": "The people complain against God and Moses, and God sends fiery serpents among them. Many die. God commands Moses to make a bronze serpent and lift it on a pole; all who look at it live. Jesus explicitly interprets this event as a foreshadowing of his own lifting up on the cross: 'As Moses lifted up the serpent, so must the Son of Man be lifted up.'", "scripture": "Numbers 21:8-9", "theme": "Type of Christ" }
+                  ]
+                }
+              ]
+            }
+          ]
         },
         {
-          "id": "jordan",
-          "date": "c. 1406 BC",
-          "title": "Crossing the Jordan",
-          "loc": "Gilgal",
-          "coords": {
-            "x": 781,
-            "y": 390
-          },
-          "desc": "Joshua leads the new generation of Israelites into the Promised Land.",
-          "scripture": "Joshua 3:14-17",
-          "theme": "Fulfillment of Promise"
+          "id": "mosaic-conquest",
+          "label": "The Conquest of Canaan",
+          "timeframe": "c. 1406–1375 BC",
+          "groups": [
+            {
+              "id": "the-conquest",
+              "label": "The Conquest of Canaan",
+              "children": [
+                {
+                  "id": "entry-canaan",
+                  "label": "Entry into Canaan",
+                  "events": [
+                    { "id": "jordan",              "date": "c. 1406 BC", "title": "Crossing the Jordan",    "loc": "Gilgal", "coords": { "x": 781, "y": 390 }, "desc": "Joshua leads the new generation of Israelites across the Jordan as the waters miraculously part at the feet of the priests. Twelve stones are set up as a memorial. The crossing mirrors the Red Sea and signals the fulfilment of God's promise. Joshua (Hebrew: Yehoshua = 'the Lord saves') leads the people into their inheritance — as Jesus does for his people.", "scripture": "Joshua 3:14-17", "theme": "Fulfillment of Promise" },
+                    { "id": "circumcision-gilgal", "date": "c. 1406 BC", "title": "Circumcision at Gilgal", "loc": "Gilgal", "coords": { "x": 781, "y": 390 }, "desc": "Before the campaign begins, God commands the circumcision of all males born in the wilderness. The covenant sign that had lapsed during the forty years is renewed. God says, 'Today I have rolled away the reproach of Egypt from you.' Gilgal becomes the base camp, a place of covenant renewal before conquest.", "scripture": "Joshua 5:2-9",   "theme": "Covenant Renewal" }
+                  ]
+                },
+                {
+                  "id": "central-campaign",
+                  "label": "The Central Campaign",
+                  "events": [
+                    { "id": "jericho",      "date": "c. 1406 BC", "title": "The Fall of Jericho", "loc": "Jericho", "coords": { "x": 780, "y": 396 }, "desc": "God gives Jericho into Israel's hands not through conventional warfare but through a week of priestly processions and a trumpet blast. The walls collapse. The victory is entirely God's. Rahab the prostitute, who hid the spies and tied a scarlet cord in her window, is saved with her household — a Gentile woman in the lineage of the Messiah.", "scripture": "Joshua 6:20",   "theme": "Divine Warfare" },
+                    { "id": "ai-conquered", "date": "c. 1406 BC", "title": "Ai Conquered",         "loc": "Ai",      "coords": { "x": 778, "y": 388 }, "desc": "After Achan's sin causes a disastrous initial defeat at Ai, Joshua confesses the sin, executes judgment on Achan, and leads a successful ambush. The defeat and subsequent victory illustrate that covenant sin must be dealt with before Israel can advance, and that God's blessing is conditional on covenant faithfulness.", "scripture": "Joshua 8:1-29", "theme": "Holiness in the Camp" }
+                  ]
+                },
+                {
+                  "id": "settle-land",
+                  "label": "Settling the Land",
+                  "events": [
+                    { "id": "land-lots",       "date": "c. 1398 BC", "title": "Land Divided by Lot", "loc": "Shiloh",  "coords": { "x": 777, "y": 382 }, "desc": "At Shiloh, the Tabernacle is set up and the remaining land is divided among the tribes by lot. Casting lots is not random chance but a means by which God makes his sovereign allocation known. Each tribe receives its appointed inheritance — a foretaste of the eternal inheritance reserved for God's people in Christ.", "scripture": "Joshua 18:10",    "theme": "Inheritance" },
+                    { "id": "joshua-farewell", "date": "c. 1375 BC", "title": "Joshua's Farewell",   "loc": "Shechem", "coords": { "x": 777, "y": 383 }, "desc": "At the end of his life, Joshua gathers all Israel at Shechem and calls them to covenant fidelity. 'Choose this day whom you will serve... but as for me and my house, we will serve the Lord.' The covenant is renewed at the place where Abraham first built an altar in Canaan, the land coming full circle to its promise.", "scripture": "Joshua 24:14-15", "theme": "Covenant Decision" }
+                  ]
+                }
+              ]
+            }
+          ]
         }
       ]
     },
     "kingdom": {
       "title": "The Kingdom Era",
-      "timeframe": "c. 1050 – 586 BC",
-      "events": []
+      "timeframe": "c. 1050–586 BC",
+      "childEras": [
+        {
+          "id": "kingdom-united",
+          "label": "The United Kingdom",
+          "timeframe": "c. 1050–931 BC",
+          "groups": [
+            {
+              "id": "united-kingdom",
+              "label": "The United Kingdom",
+              "children": [
+                {
+                  "id": "saul-era",
+                  "label": "Samuel & Saul",
+                  "events": [
+                    { "id": "saul-anointed",     "date": "c. 1050 BC", "title": "Saul Anointed as King", "loc": "Mizpah", "coords": { "x": 776, "y": 388 }, "desc": "Israel demands a king like the nations. Samuel warns them of the consequences, but God grants their request. Saul, the man of Benjamin, is anointed — tall, impressive, and initially humble. Yet his tragic career of partial obedience and self-justification shows that no mere human king can ultimately satisfy the yearning for God's own rule over his people.", "scripture": "1 Samuel 10:1",    "theme": "Divine Kingship" },
+                    { "id": "saul-disobedience", "date": "c. 1028 BC", "title": "Saul's Disobedience",  "loc": "Gilgal", "coords": { "x": 781, "y": 390 }, "desc": "When Samuel delays, Saul offers sacrifice himself — a role reserved for the priest. Later he spares King Agag against God's command. Samuel pronounces judgment: 'To obey is better than sacrifice... Because you have rejected the word of the Lord, he has also rejected you from being king.' Partial obedience is treated as complete disobedience.", "scripture": "1 Samuel 15:22-23", "theme": "Obedience over Sacrifice" }
+                  ]
+                },
+                {
+                  "id": "david-era",
+                  "label": "David's Rise & Reign",
+                  "events": [
+                    { "id": "david-goliath",    "date": "c. 1025 BC", "title": "David & Goliath",      "loc": "Valley of Elah", "coords": { "x": 772, "y": 394 }, "desc": "The young shepherd David, anointed but not yet king, defeats the Philistine champion Goliath with a sling and a stone in the name of the Lord of hosts. David's victory as Israel's representative champion — winning the battle on behalf of the whole people — is the great foreshadowing of Christ's victory over the devil, sin, and death at the cross.", "scripture": "1 Samuel 17:45-50", "theme": "Representative Victory" },
+                    { "id": "davidic-covenant", "date": "c. 1000 BC", "title": "The Davidic Covenant", "loc": "Jerusalem",      "coords": { "x": 776, "y": 391 }, "desc": "God promises David through Nathan the prophet that his house, kingdom, and throne will endure forever. One of his sons will be God's son, and his kingdom will be established eternally. This covenant establishes the Messianic expectation at the center of all Old Testament prophecy: the coming Son of David who will rule in righteousness without end.", "scripture": "2 Samuel 7:12-16",  "theme": "Messianic Promise" }
+                  ]
+                },
+                {
+                  "id": "solomon-era",
+                  "label": "Solomon's Reign",
+                  "events": [
+                    { "id": "solomon-wisdom", "date": "c. 970 BC", "title": "Solomon Asks for Wisdom", "loc": "Jerusalem", "coords": { "x": 776, "y": 391 }, "desc": "At Gibeon, God appears to Solomon in a dream and offers him whatever he asks. Solomon asks for wisdom to govern God's people. God grants his request and adds riches and honor. This is the apogee of Israel's obedience under the monarchy, and Solomon's wisdom becomes a foretaste of the One who is greater than Solomon.", "scripture": "1 Kings 3:9-12",  "theme": "Wisdom" },
+                    { "id": "temple",         "date": "c. 959 BC", "title": "The Temple Dedicated",    "loc": "Jerusalem", "coords": { "x": 776, "y": 391 }, "desc": "Solomon builds and dedicates the First Temple. The cloud of God's glory fills the house so that the priests cannot stand to minister. The Temple is the dwelling place of God among his people and the center of Israel's sacrificial worship — a type of Christ, in whom the fullness of the Godhead dwells bodily, and of the church, which is God's temple by his Spirit.", "scripture": "1 Kings 8:10-11", "theme": "Divine Presence" }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "kingdom-divided",
+          "label": "The Divided Kingdom",
+          "timeframe": "931–722 BC",
+          "groups": [
+            {
+              "id": "divided-kingdom",
+              "label": "The Divided Kingdom",
+              "children": [
+                {
+                  "id": "schism-sub",
+                  "label": "The Schism",
+                  "events": [
+                    { "id": "schism",        "date": "931 BC", "title": "Division of the Kingdom",  "loc": "Shechem",      "coords": { "x": 777, "y": 383 }, "desc": "After Solomon's death, Rehoboam's refusal to lighten the people's burden leads to the revolt of the ten northern tribes under Jeroboam. The united kingdom permanently divides into Israel (north) and Judah (south). God declares this is his doing, and his sovereign purpose is at work even in Israel's political fracture.", "scripture": "1 Kings 12:16-20", "theme": "Covenant Consequences" },
+                    { "id": "golden-calves", "date": "931 BC", "title": "Jeroboam's Golden Calves", "loc": "Dan & Bethel", "coords": { "x": 782, "y": 366 }, "desc": "Jeroboam, fearing the people will return to Jerusalem to worship, sets up two golden calves at Dan and Bethel, declaring, 'Here are your gods, O Israel, who brought you up out of Egypt.' This deliberate echo of the golden calf apostasy sets the religious template for the northern kingdom's 200-year slide into judgment.", "scripture": "1 Kings 12:28-29", "theme": "Apostasy" }
+                  ]
+                },
+                {
+                  "id": "elijah-sub",
+                  "label": "Elijah's Ministry",
+                  "events": [
+                    { "id": "widow-zarephath", "date": "c. 875 BC", "title": "Widow of Zarephath",     "loc": "Zarephath",    "coords": { "x": 780, "y": 356 }, "desc": "During the three-year drought, God sends Elijah to a Gentile widow in Zarephath. Her jar of flour and jug of oil do not run out throughout the famine. When her son dies, Elijah raises him by prayer. Jesus cites this episode to illustrate that God's grace goes to Gentiles when Israel rejects the prophet's word.", "scripture": "1 Kings 17:8-16", "theme": "Grace to the Gentiles" },
+                    { "id": "carmel",          "date": "c. 870 BC", "title": "Elijah on Mount Carmel", "loc": "Mount Carmel", "coords": { "x": 773, "y": 368 }, "desc": "Elijah challenges 450 prophets of Baal and 400 prophets of Asherah in a dramatic contest on Carmel. The Lord answers with fire from heaven, consuming the sacrifice, the altar stones, the soil, and the water in the trench. The people fall on their faces: 'The Lord, he is God.' Baal's prophets are executed. The contest is a declaration of holy war against a false god.", "scripture": "1 Kings 18:36-39", "theme": "God's Absolute Sovereignty" }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "kingdom-decline",
+          "label": "The Prophets & Decline",
+          "timeframe": "740–586 BC",
+          "groups": [
+            {
+              "id": "prophets-fall",
+              "label": "The Prophets & the Fall",
+              "children": [
+                {
+                  "id": "isaiah-sub",
+                  "label": "Isaiah's Ministry",
+                  "events": [
+                    { "id": "isaiah-vision", "date": "740 BC", "title": "Isaiah's Throne-Room Vision", "loc": "Jerusalem", "coords": { "x": 776, "y": 391 }, "desc": "In the year King Uzziah dies, Isaiah sees the Lord seated on his throne, high and exalted. Seraphim cry, 'Holy, holy, holy is the Lord of hosts.' Isaiah is undone by the vision of God's holiness and his own sinfulness, then cleansed by a burning coal. Commissioned to preach to a hard-hearted people, Isaiah becomes the great evangelical prophet of the Old Testament.", "scripture": "Isaiah 6:1-8",  "theme": "Prophetic Calling" },
+                    { "id": "immanuel",      "date": "735 BC", "title": "The Immanuel Prophecy",        "loc": "Jerusalem", "coords": { "x": 776, "y": 391 }, "desc": "During the Syro-Ephraimite crisis, Isaiah delivers the Immanuel sign to King Ahaz: 'A virgin shall conceive and bear a son, and shall call his name Immanuel — God with us.' The immediate sign is a child born in Ahaz's day, but its ultimate fulfilment is the virgin birth of Jesus Christ, God incarnate in the flesh.", "scripture": "Isaiah 7:14", "theme": "Messianic Prophecy" }
+                  ]
+                },
+                {
+                  "id": "north-south-fall",
+                  "label": "The Fall of Both Kingdoms",
+                  "events": [
+                    { "id": "samaria-falls", "date": "722 BC", "title": "Fall of Samaria",       "loc": "Samaria",   "coords": { "x": 775, "y": 377 }, "desc": "The Assyrian empire under Sargon II besieges and captures Samaria, deporting the Israelite population and repopulating the land with foreign peoples. The ten northern tribes are scattered and largely disappear from history. This is the fulfilment of the covenant curses for generations of apostasy, idolatry, and rejection of God's prophets.", "scripture": "2 Kings 17:5-6",   "theme": "Covenant Judgment" },
+                    { "id": "josiah-reform", "date": "622 BC", "title": "Josiah's Reformation",   "loc": "Jerusalem", "coords": { "x": 776, "y": 391 }, "desc": "During repairs to the Temple, the Book of the Law is discovered and read to King Josiah. He tears his garments in repentance and initiates the most sweeping religious reformation in Judah's history: destroying the high places, smashing the Asherah poles, and reinstating the Passover. Yet the reforms come too late; the judgment decreed against Judah cannot be turned back.", "scripture": "2 Kings 22:8-13", "theme": "Reformation & Judgment" }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
     },
     "exile": {
       "title": "Exile & Return",
-      "timeframe": "586 – 400 BC",
-      "events": []
+      "timeframe": "605–400 BC",
+      "childEras": [
+        {
+          "id": "exile-babylon",
+          "label": "The Babylonian Captivity",
+          "timeframe": "605–538 BC",
+          "groups": [
+            {
+              "id": "babylonian-exile",
+              "label": "The Babylonian Exile",
+              "children": [
+                {
+                  "id": "jerusalem-fall-sub",
+                  "label": "Fall of Jerusalem",
+                  "events": [
+                    { "id": "siege",           "date": "588 BC", "title": "Siege of Jerusalem",        "loc": "Jerusalem", "coords": { "x": 776, "y": 391 }, "desc": "Nebuchadnezzar lays siege to Jerusalem for eighteen months. The city is slowly starved into submission. Jeremiah weeps and prophesies, urging surrender as God's appointed judgment. The city that was the joy of all the earth is brought low. Lamentations will be written over her ruins.", "scripture": "2 Kings 25:1-4",   "theme": "Covenant Judgment" },
+                    { "id": "jerusalem-falls", "date": "586 BC", "title": "Destruction of the Temple", "loc": "Jerusalem", "coords": { "x": 776, "y": 391 }, "desc": "On the ninth of Av, Nebuchadnezzar's forces burn the Temple and tear down Jerusalem's walls. The Ark of the Covenant disappears from history. The people of Judah are led in chains to Babylon. The covenant curses of Deuteronomy 28 are fully executed. Yet even in judgment, God promises a new covenant, a new heart, and a future hope.", "scripture": "2 Kings 25:8-12", "theme": "Judgment & Future Hope" }
+                  ]
+                },
+                {
+                  "id": "daniel-sub",
+                  "label": "Daniel in Babylon",
+                  "events": [
+                    { "id": "daniel-babylon", "date": "605 BC",    "title": "Daniel's Faithfulness", "loc": "Babylon", "coords": { "x": 940, "y": 395 }, "desc": "Daniel and his three friends — Hananiah, Mishael, and Azariah — are taken to Babylon and trained for the king's service. They resolve not to defile themselves with the royal food and wine. God grants them wisdom beyond all the Babylonian wise men. The covenant people, in the heart of exile, demonstrate that faithfulness to God is possible anywhere.", "scripture": "Daniel 1:8",    "theme": "Faithfulness in Exile" },
+                    { "id": "fiery-furnace",  "date": "c. 580 BC", "title": "The Fiery Furnace",     "loc": "Babylon", "coords": { "x": 940, "y": 395 }, "desc": "Shadrach, Meshach, and Abednego refuse to bow to Nebuchadnezzar's golden image. They are thrown into a furnace heated seven times hotter than normal. The king looks in and sees four men walking unharmed — the fourth is like a son of the gods. They emerge without so much as the smell of smoke. God's presence sustains his people through the fiercest trials.", "scripture": "Daniel 3:17-18", "theme": "God's Presence in Suffering" }
+                  ]
+                },
+                {
+                  "id": "ezekiel-sub",
+                  "label": "Ezekiel's Visions",
+                  "events": [
+                    { "id": "dry-bones",         "date": "c. 593 BC", "title": "Vision of the Dry Bones", "loc": "Babylon", "coords": { "x": 940, "y": 400 }, "desc": "God sets Ezekiel in a valley full of very dry bones and commands him to prophesy. The bones come together with a rattling sound, flesh and sinew cover them, and the breath of God enters them: they live, a vast army. This vision of Israel's national resurrection is also a prophecy of the new birth and the coming of the Spirit in the New Covenant.", "scripture": "Ezekiel 37:1-14", "theme": "New Creation" },
+                    { "id": "new-temple-vision", "date": "c. 571 BC", "title": "The New Temple Vision",  "loc": "Babylon", "coords": { "x": 940, "y": 400 }, "desc": "In the twenty-fifth year of exile, Ezekiel is given a detailed vision of a restored Temple in a transformed land, with a river flowing out from under the threshold that brings life wherever it goes. This vision of perfect worship and divine presence foreshadows the new Jerusalem in Revelation, where God himself is the Temple and the river of life flows from his throne.", "scripture": "Ezekiel 40–48", "theme": "Eschatological Hope" }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "exile-restoration",
+          "label": "The Persian Restoration",
+          "timeframe": "538–400 BC",
+          "groups": [
+            {
+              "id": "persian-restoration",
+              "label": "The Persian Restoration",
+              "children": [
+                {
+                  "id": "cyrus-sub",
+                  "label": "Cyrus's Edict",
+                  "events": [
+                    { "id": "cyrus-edict",  "date": "538 BC", "title": "Cyrus's Edict of Return", "loc": "Babylon",   "coords": { "x": 940, "y": 395 }, "desc": "In the first year of Cyrus king of Persia, God stirs his spirit to issue a decree allowing the Jewish exiles to return to Judah and rebuild the Temple. Isaiah had named Cyrus as God's 'shepherd' and 'anointed' over 150 years before his birth — a stunning proof of God's absolute sovereignty over the rise and fall of empires in service of his redemptive plan.", "scripture": "Ezra 1:1-4",   "theme": "Divine Sovereignty" },
+                    { "id": "first-return", "date": "537 BC", "title": "The First Return",          "loc": "Jerusalem", "coords": { "x": 776, "y": 391 }, "desc": "About 50,000 exiles return to Judah under the leadership of Zerubbabel, a descendant of David, and Joshua, the high priest. They carry the Temple vessels Nebuchadnezzar had taken. The return fulfils Jeremiah's prophecy of a seventy-year exile. A remnant preserved through judgment is restored to the land — a pattern of death and resurrection.", "scripture": "Ezra 2:1-2",   "theme": "Remnant & Restoration" }
+                  ]
+                },
+                {
+                  "id": "temple-rebuild-sub",
+                  "label": "Rebuilding Jerusalem",
+                  "events": [
+                    { "id": "temple-rebuilt", "date": "516 BC", "title": "Second Temple Completed",    "loc": "Jerusalem", "coords": { "x": 776, "y": 391 }, "desc": "After delays and fierce opposition, the Second Temple is completed in the sixth year of Darius and dedicated with joy and sacrifice. The prophets Haggai and Zechariah encourage the builders with visions of a greater glory to come: 'The latter glory of this house shall be greater than the former.' That greater glory arrives when Jesus enters it.", "scripture": "Ezra 6:14-16",   "theme": "Restoration" },
+                    { "id": "nehemiah-wall",  "date": "445 BC", "title": "Nehemiah Rebuilds the Wall", "loc": "Jerusalem", "coords": { "x": 776, "y": 391 }, "desc": "Nehemiah receives news of Jerusalem's broken walls, prays, and requests permission from King Artaxerxes to rebuild. He returns as governor and, despite ridicule and plots, completes the wall in just 52 days. The surrounding nations recognize that the work was accomplished with God's help. Rebuilding the walls is both a physical and spiritual act of restoration.", "scripture": "Nehemiah 6:15-16", "theme": "Covenant Renewal" }
+                  ]
+                },
+                {
+                  "id": "covenant-renewal-sub",
+                  "label": "Covenant Renewal",
+                  "events": [
+                    { "id": "ezra-reads-law",  "date": "444 BC", "title": "Ezra Reads the Law",   "loc": "Jerusalem", "coords": { "x": 776, "y": 391 }, "desc": "On the first day of the seventh month, Ezra the scribe reads the Book of the Law aloud to all the people from morning until midday. The Levites help the people understand what is read. The people weep as they hear the Law — they realize how far they have fallen. The Feast of Booths is celebrated for the first time since Joshua's day.", "scripture": "Nehemiah 8:1-8",  "theme": "The Word of God" },
+                    { "id": "covenant-signed", "date": "444 BC", "title": "The Covenant Renewed", "loc": "Jerusalem", "coords": { "x": 776, "y": 391 }, "desc": "The people separate themselves from foreigners, confess their sins, and the leaders put their seals to a binding covenant: to walk in God's Law, to refrain from mixed marriages, to keep the Sabbath, to support the Temple. This covenant renewal at the end of the Old Testament era closes the Hebrew canon with a call to faithfulness and an implied longing for the One who will write the law on hearts.", "scripture": "Nehemiah 9:38", "theme": "Covenant Faithfulness" }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
     },
     "church": {
       "title": "Apostolic & Church Age",
       "timeframe": "33 AD – Present",
-      "events": [
+      "childEras": [
         {
-          "id": "pentecost",
-          "date": "c. 33 AD",
-          "title": "Pentecost",
-          "loc": "Jerusalem",
-          "coords": {
-            "x": 776,
-            "y": 391
-          },
-          "desc": "The Holy Spirit is poured out on the disciples, empowering them to preach the gospel to all nations.",
-          "scripture": "Acts 2:1-4",
-          "theme": "New Covenant"
+          "id": "church-apostolic",
+          "label": "The Apostolic Age",
+          "timeframe": "33–70 AD",
+          "groups": [
+            {
+              "id": "apostolic",
+              "label": "The Apostolic Age",
+              "children": [
+                {
+                  "id": "jerusalem-ministry",
+                  "label": "Jerusalem Ministry",
+                  "events": [
+                    { "id": "pentecost",      "date": "c. 33 AD", "title": "Pentecost",               "loc": "Jerusalem", "coords": { "x": 776, "y": 391 }, "desc": "On the day of Pentecost, the Holy Spirit is poured out on the disciples gathered in the upper room. They speak in the languages of every nation present in Jerusalem. Peter preaches and 3,000 are added to the church in a single day. Babel is reversed; the new covenant is inaugurated; the age of the Spirit has begun.", "scripture": "Acts 2:1-4",   "theme": "New Covenant" },
+                    { "id": "three-thousand", "date": "c. 33 AD", "title": "Three Thousand Converted", "loc": "Jerusalem", "coords": { "x": 776, "y": 391 }, "desc": "In response to Peter's Pentecost sermon, three thousand people are cut to the heart, repent, and are baptized. The Jerusalem church is immediately marked by the apostles' teaching, fellowship, breaking of bread, and prayer. This devoted community becomes the model for Christian corporate life: Word, sacrament, prayer, and mutual care.", "scripture": "Acts 2:41-47", "theme": "The Church" }
+                  ]
+                },
+                {
+                  "id": "persecution-scatter",
+                  "label": "Persecution & Scattering",
+                  "events": [
+                    { "id": "stephen",        "date": "c. 35 AD", "title": "Stephen Martyred",  "loc": "Jerusalem", "coords": { "x": 776, "y": 391 }, "desc": "Stephen, the first Christian martyr, delivers a sweeping review of Israel's history before the Sanhedrin and declares that the risen Christ stands at God's right hand. He is stoned to death. His prayer — 'Lord, do not hold this sin against them' — echoes Christ's prayer from the cross. His death scatters the church and accelerates the gospel's spread.", "scripture": "Acts 7:55-60", "theme": "Witness & Persecution" },
+                    { "id": "philip-samaria", "date": "c. 35 AD", "title": "Philip in Samaria", "loc": "Samaria",   "coords": { "x": 775, "y": 377 }, "desc": "Philip goes down to Samaria and proclaims Christ. The crowds, hearing and seeing the signs he performed, pay close attention. There is great joy in the city. The Samaritans — long excluded from the Jewish covenant community — receive the gospel, fulfilling Acts 1:8 and breaking down the ancient wall between Jew and Samaritan.", "scripture": "Acts 8:5-8",   "theme": "Gospel Expansion" }
+                  ]
+                },
+                {
+                  "id": "paul-conv-sub",
+                  "label": "Paul's Conversion",
+                  "events": [
+                    { "id": "paul-conversion", "date": "c. 35 AD", "title": "Paul on the Damascus Road", "loc": "Road to Damascus", "coords": { "x": 800, "y": 316 }, "desc": "Saul of Tarsus, breathing murderous threats against the disciples, is struck down by a blinding light on the road to Damascus. The risen Christ speaks: 'Saul, Saul, why are you persecuting me?' Saul asks, 'Who are you, Lord?' — 'I am Jesus.' This encounter transforms the church's chief persecutor into its greatest apostle, proving the resurrection and demonstrating irresistible grace.", "scripture": "Acts 9:1-6",   "theme": "Sovereign Grace" },
+                    { "id": "paul-damascus",   "date": "c. 35 AD", "title": "Paul Escapes Damascus",     "loc": "Damascus",         "coords": { "x": 800, "y": 316 }, "desc": "After his conversion and time in Arabia, Paul returns to Damascus and begins proclaiming Jesus as the Son of God. The Jews plot to kill him; the disciples let him down the city wall in a basket at night. The great apostle who will carry the gospel to the ends of the earth begins his ministry as a fugitive — weakness made strong in Christ.", "scripture": "Acts 9:23-25", "theme": "Weakness & Power" }
+                  ]
+                }
+              ]
+            }
+          ]
         },
         {
-          "id": "antioch",
-          "date": "c. 49 AD",
-          "title": "Missions from Antioch",
-          "loc": "Antioch",
-          "coords": {
-            "x": 792,
-            "y": 299
-          },
-          "desc": "The church at Antioch commissions Paul and Barnabas. It becomes the launchpad for Gentile missions.",
-          "scripture": "Acts 13:1-3",
-          "theme": "Gentile Inclusion"
+          "id": "church-paul",
+          "label": "Paul's Missionary Journeys",
+          "timeframe": "48–68 AD",
+          "groups": [
+            {
+              "id": "paul-missions",
+              "label": "Paul's Missionary Journeys",
+              "children": [
+                {
+                  "id": "first-journey",
+                  "label": "First Journey",
+                  "events": [
+                    { "id": "antioch",          "date": "c. 48 AD", "title": "Commissioned at Antioch",    "loc": "Antioch",          "coords": { "x": 792, "y": 299 }, "desc": "The church at Antioch, directed by the Holy Spirit during worship and fasting, commissions Paul and Barnabas: 'Set apart for me Barnabas and Saul for the work to which I have called them.' They are sent out and sail to Cyprus. This is the first intentional Gentile mission, and Antioch — not Jerusalem — becomes the launchpad for world evangelization.", "scripture": "Acts 13:1-3",   "theme": "Missional Sending" },
+                    { "id": "pisidian-antioch", "date": "c. 48 AD", "title": "Pisidian Antioch Synagogue", "loc": "Pisidian Antioch", "coords": { "x": 708, "y": 280 }, "desc": "In the synagogue at Pisidian Antioch, Paul delivers his first recorded sermon, tracing redemptive history from the patriarchs to the resurrection of Christ. When the Jews reject the message, Paul declares he is turning to the Gentiles. Throughout the journey, this pattern repeats: the gospel goes to the Jew first, then to the Gentile.", "scripture": "Acts 13:14-52", "theme": "To the Jew First" }
+                  ]
+                },
+                {
+                  "id": "second-journey",
+                  "label": "Second Journey",
+                  "events": [
+                    { "id": "macedonia-call", "date": "c. 50 AD", "title": "The Macedonian Call",   "loc": "Troas",        "coords": { "x": 613, "y": 258 }, "desc": "At Troas, Paul has a vision in the night: a man from Macedonia standing and appealing, 'Come over to Macedonia and help us.' Immediately they set sail, concluding that God had called them to preach the gospel there. The gospel crosses from Asia into Europe — one of the most consequential geographical movements in church history.", "scripture": "Acts 16:9-10",  "theme": "Providential Guidance" },
+                    { "id": "athens",         "date": "c. 51 AD", "title": "Paul at the Areopagus", "loc": "Athens, Achaia", "coords": { "x": 578, "y": 259 }, "desc": "Paul addresses the Athenian philosophers at the Areopagus, using their altar 'To the Unknown God' as a bridge to declare the sovereign Creator who commands all people everywhere to repent. He does not shy away from the resurrection. Some sneer; a few believe. This sermon is the New Testament's definitive model for engaging pagan intellectual culture with the gospel.", "scripture": "Acts 17:22-31", "theme": "Apologetics & Proclamation" }
+                  ]
+                },
+                {
+                  "id": "third-journey",
+                  "label": "Third Journey & Rome",
+                  "events": [
+                    { "id": "ephesus", "date": "c. 53 AD", "title": "Paul in Ephesus", "loc": "Ephesus", "coords": { "x": 642, "y": 274 }, "desc": "Paul spends three years in Ephesus — his longest stay anywhere. He lectures daily in the hall of Tyrannus for two years. The word of God spreads so powerfully throughout Asia that the silversmiths who made shrines for Artemis riot because their trade is threatened. The economic and religious power structures of the city are shaken by the gospel.", "scripture": "Acts 19:1-10",  "theme": "Gospel Power" },
+                    { "id": "rome",    "date": "c. 60 AD", "title": "Paul in Rome",    "loc": "Rome",    "coords": { "x": 386, "y": 174 }, "desc": "After trials before Felix, Festus, and Agrippa, and a shipwreck on Malta, Paul arrives in Rome as a prisoner. Yet he preaches the kingdom of God with all boldness and without hindrance. The gospel has reached the capital of the Gentile world. The gospel advance that began at Pentecost in Jerusalem has fulfilled Christ's commission: to the ends of the earth.", "scripture": "Acts 28:30-31", "theme": "Gospel Advance" }
+                  ]
+                }
+              ]
+            }
+          ]
         },
         {
-          "id": "athens",
-          "date": "c. 51 AD",
-          "title": "Paul at the Areopagus",
-          "loc": "Athens, Achaia",
-          "coords": {
-            "x": 578,
-            "y": 259
-          },
-          "desc": "Paul delivers a masterclass in apologetics, using their altar \"To the unknown god\" to declare the sovereign Creator.",
-          "scripture": "Acts 17:22-31",
-          "theme": "General Revelation"
-        },
-        {
-          "id": "rome",
-          "date": "c. 60 AD",
-          "title": "Paul in Rome",
-          "loc": "Rome",
-          "coords": {
-            "x": 386,
-            "y": 174
-          },
-          "desc": "Paul arrives in Rome as a prisoner, preaching the kingdom of God with all boldness and without hindrance.",
-          "scripture": "Acts 28:30-31",
-          "theme": "Gospel Advance"
+          "id": "church-early",
+          "label": "The Early Church",
+          "timeframe": "70–500 AD",
+          "groups": [
+            {
+              "id": "early-church",
+              "label": "The Early Church",
+              "children": [
+                {
+                  "id": "jerusalem-70-sub",
+                  "label": "Jerusalem's Fall",
+                  "events": [
+                    { "id": "jerusalem-70ad", "date": "70 AD", "title": "Destruction of Jerusalem",  "loc": "Jerusalem", "coords": { "x": 776, "y": 391 }, "desc": "The Roman general Titus lays siege to Jerusalem, destroys the city, and burns the Second Temple to the ground. Over one million people die. Christ had predicted this event precisely: 'Not one stone here will be left on another' (Matt 24:2). This catastrophe marks the definitive end of the Old Covenant sacrificial system and confirms Jesus' identity as the prophet greater than Moses.", "scripture": "Matthew 24:1-2", "theme": "Prophetic Fulfillment" },
+                    { "id": "diaspora-church", "date": "70 AD", "title": "The Church in the Empire", "loc": "Rome",      "coords": { "x": 386, "y": 174 }, "desc": "With Jerusalem destroyed, the church dispersed throughout the Roman Empire becomes the primary vehicle of the gospel. Christian communities stretch from Rome to Antioch to Alexandria to Carthage. The destruction of Jerusalem paradoxically accelerates the spread of Christianity among both Jews and Gentiles — God's judgment on one era opens the door of the next.", "scripture": "Acts 8:1",       "theme": "Gospel Expansion" }
+                  ]
+                },
+                {
+                  "id": "councils-sub",
+                  "label": "Councils & Creeds",
+                  "events": [
+                    { "id": "nicaea",         "date": "325 AD", "title": "Council of Nicaea",         "loc": "Nicaea, Bithynia",   "coords": { "x": 672, "y": 228 }, "desc": "The first ecumenical council convenes under Constantine to address Arianism, which taught that the Son was a created being — 'there was a time when he was not.' The council condemns Arianism and affirms that the Son is 'of the same substance' (homoousios) as the Father. The Nicene Creed guards the deity of Christ and the doctrine of the Trinity for every subsequent generation of the church.", "scripture": "John 1:1",            "theme": "Orthodoxy" },
+                    { "id": "constantinople", "date": "381 AD", "title": "Council of Constantinople", "loc": "Constantinople",     "coords": { "x": 645, "y": 202 }, "desc": "The second ecumenical council completes the Nicene Creed, affirming the full deity and personhood of the Holy Spirit against the Pneumatomachians who denied it. The council also condemns Apollinarianism, which denied the full humanity of Christ. The church's theology of the Trinity and the hypostatic union is now substantially established.", "scripture": "2 Corinthians 13:14", "theme": "Trinitarian Orthodoxy" }
+                  ]
+                }
+              ]
+            }
+          ]
         }
       ]
     }
@@ -188,42 +662,16 @@
       "name": "Paul's Missionary Route",
       "color": "#D4A373",
       "dash": true,
-      "visibleEras": [
-        "church"
-      ],
+      "visibleEras": ["church"],
       "waypoints": [
-        {
-          "x": 776,
-          "y": 391
-        },
-        {
-          "x": 792,
-          "y": 299
-        },
-        {
-          "x": 724,
-          "y": 285
-        },
-        {
-          "x": 636,
-          "y": 210
-        },
-        {
-          "x": 578,
-          "y": 259
-        },
-        {
-          "x": 557,
-          "y": 237
-        },
-        {
-          "x": 480,
-          "y": 215
-        },
-        {
-          "x": 386,
-          "y": 174
-        }
+        { "x": 776, "y": 391 },
+        { "x": 792, "y": 299 },
+        { "x": 724, "y": 285 },
+        { "x": 636, "y": 210 },
+        { "x": 578, "y": 259 },
+        { "x": 557, "y": 237 },
+        { "x": 480, "y": 215 },
+        { "x": 386, "y": 174 }
       ]
     }
   ],
@@ -234,1281 +682,35 @@
   },
   "mapGeometry": {
     "paths": [
-      {
-        "id": "northern-europe",
-        "label": "Northern Europe",
-        "fill": "land",
-        "stroke": false,
-        "strokeWidth": 0,
-        "points": [
-          {
-            "x": 230,
-            "y": 0
-          },
-          {
-            "x": 1200,
-            "y": 0
-          },
-          {
-            "x": 1200,
-            "y": 260
-          },
-          {
-            "x": 1155,
-            "y": 278
-          },
-          {
-            "x": 1072,
-            "y": 262
-          },
-          {
-            "x": 990,
-            "y": 280
-          },
-          {
-            "x": 910,
-            "y": 262
-          },
-          {
-            "x": 872,
-            "y": 158
-          },
-          {
-            "x": 800,
-            "y": 148
-          },
-          {
-            "x": 700,
-            "y": 144
-          },
-          {
-            "x": 642,
-            "y": 168
-          },
-          {
-            "x": 600,
-            "y": 178
-          },
-          {
-            "x": 540,
-            "y": 188
-          },
-          {
-            "x": 450,
-            "y": 178
-          },
-          {
-            "x": 380,
-            "y": 82
-          },
-          {
-            "x": 340,
-            "y": 72
-          },
-          {
-            "x": 295,
-            "y": 28
-          }
-        ]
-      },
-      {
-        "id": "far-east",
-        "label": "Far East Fill",
-        "fill": "land",
-        "stroke": false,
-        "strokeWidth": 0,
-        "points": [
-          {
-            "x": 1155,
-            "y": 278
-          },
-          {
-            "x": 1200,
-            "y": 260
-          },
-          {
-            "x": 1200,
-            "y": 750
-          },
-          {
-            "x": 1040,
-            "y": 750
-          },
-          {
-            "x": 1060,
-            "y": 644
-          },
-          {
-            "x": 1007,
-            "y": 644
-          },
-          {
-            "x": 1045,
-            "y": 574
-          },
-          {
-            "x": 1060,
-            "y": 500
-          },
-          {
-            "x": 1038,
-            "y": 478
-          },
-          {
-            "x": 1060,
-            "y": 484
-          },
-          {
-            "x": 1090,
-            "y": 460
-          },
-          {
-            "x": 1140,
-            "y": 434
-          },
-          {
-            "x": 1175,
-            "y": 364
-          }
-        ]
-      },
-      {
-        "id": "western-europe",
-        "label": "Western Europe",
-        "fill": "land",
-        "stroke": true,
-        "strokeWidth": 0.6,
-        "points": [
-          {
-            "x": 0,
-            "y": 0
-          },
-          {
-            "x": 230,
-            "y": 0
-          },
-          {
-            "x": 295,
-            "y": 28
-          },
-          {
-            "x": 340,
-            "y": 72
-          },
-          {
-            "x": 320,
-            "y": 90
-          },
-          {
-            "x": 310,
-            "y": 108
-          },
-          {
-            "x": 292,
-            "y": 172
-          },
-          {
-            "x": 268,
-            "y": 230
-          },
-          {
-            "x": 238,
-            "y": 272
-          },
-          {
-            "x": 205,
-            "y": 305
-          },
-          {
-            "x": 170,
-            "y": 348
-          },
-          {
-            "x": 128,
-            "y": 388
-          },
-          {
-            "x": 85,
-            "y": 415
-          },
-          {
-            "x": 48,
-            "y": 432
-          },
-          {
-            "x": 0,
-            "y": 440
-          }
-        ]
-      },
-      {
-        "id": "italy",
-        "label": "Italy",
-        "fill": "land",
-        "stroke": true,
-        "strokeWidth": 0.8,
-        "points": [
-          {
-            "x": 310,
-            "y": 108
-          },
-          {
-            "x": 387,
-            "y": 82
-          },
-          {
-            "x": 415,
-            "y": 92
-          },
-          {
-            "x": 448,
-            "y": 122
-          },
-          {
-            "x": 490,
-            "y": 200
-          },
-          {
-            "x": 440,
-            "y": 258
-          },
-          {
-            "x": 416,
-            "y": 254
-          },
-          {
-            "x": 428,
-            "y": 222
-          },
-          {
-            "x": 386,
-            "y": 185
-          },
-          {
-            "x": 344,
-            "y": 188
-          },
-          {
-            "x": 314,
-            "y": 156
-          }
-        ]
-      },
-      {
-        "id": "sicily",
-        "label": "Sicily",
-        "fill": "land",
-        "stroke": true,
-        "strokeWidth": 0.8,
-        "points": [
-          {
-            "x": 386,
-            "y": 256
-          },
-          {
-            "x": 446,
-            "y": 250
-          },
-          {
-            "x": 456,
-            "y": 272
-          },
-          {
-            "x": 427,
-            "y": 287
-          },
-          {
-            "x": 390,
-            "y": 278
-          }
-        ]
-      },
-      {
-        "id": "sardinia",
-        "label": "Sardinia",
-        "fill": "land",
-        "stroke": true,
-        "strokeWidth": 0.6,
-        "points": [
-          {
-            "x": 326,
-            "y": 220
-          },
-          {
-            "x": 348,
-            "y": 208
-          },
-          {
-            "x": 360,
-            "y": 228
-          },
-          {
-            "x": 354,
-            "y": 258
-          },
-          {
-            "x": 334,
-            "y": 260
-          }
-        ]
-      },
-      {
-        "id": "corsica",
-        "label": "Corsica",
-        "fill": "land",
-        "stroke": true,
-        "strokeWidth": 0.6,
-        "points": [
-          {
-            "x": 344,
-            "y": 192
-          },
-          {
-            "x": 359,
-            "y": 182
-          },
-          {
-            "x": 367,
-            "y": 200
-          },
-          {
-            "x": 361,
-            "y": 218
-          },
-          {
-            "x": 346,
-            "y": 215
-          }
-        ]
-      },
-      {
-        "id": "greece",
-        "label": "Greek Mainland",
-        "fill": "land",
-        "stroke": true,
-        "strokeWidth": 0.8,
-        "points": [
-          {
-            "x": 531,
-            "y": 185
-          },
-          {
-            "x": 618,
-            "y": 178
-          },
-          {
-            "x": 660,
-            "y": 196
-          },
-          {
-            "x": 668,
-            "y": 242
-          },
-          {
-            "x": 624,
-            "y": 268
-          },
-          {
-            "x": 596,
-            "y": 286
-          },
-          {
-            "x": 567,
-            "y": 270
-          },
-          {
-            "x": 537,
-            "y": 236
-          }
-        ]
-      },
-      {
-        "id": "peloponnese",
-        "label": "Peloponnese",
-        "fill": "land",
-        "stroke": true,
-        "strokeWidth": 0.7,
-        "points": [
-          {
-            "x": 546,
-            "y": 262
-          },
-          {
-            "x": 612,
-            "y": 260
-          },
-          {
-            "x": 620,
-            "y": 280
-          },
-          {
-            "x": 584,
-            "y": 298
-          },
-          {
-            "x": 547,
-            "y": 282
-          }
-        ]
-      },
-      {
-        "id": "crete",
-        "label": "Crete",
-        "fill": "land",
-        "stroke": true,
-        "strokeWidth": 0.6,
-        "points": [
-          {
-            "x": 586,
-            "y": 324
-          },
-          {
-            "x": 680,
-            "y": 301
-          },
-          {
-            "x": 668,
-            "y": 328
-          },
-          {
-            "x": 679,
-            "y": 373
-          },
-          {
-            "x": 587,
-            "y": 337
-          }
-        ]
-      },
-      {
-        "id": "anatolia",
-        "label": "Anatolia / Turkey",
-        "fill": "land",
-        "stroke": true,
-        "strokeWidth": 0.8,
-        "points": [
-          {
-            "x": 638,
-            "y": 168
-          },
-          {
-            "x": 872,
-            "y": 158
-          },
-          {
-            "x": 910,
-            "y": 178
-          },
-          {
-            "x": 912,
-            "y": 215
-          },
-          {
-            "x": 878,
-            "y": 258
-          },
-          {
-            "x": 838,
-            "y": 275
-          },
-          {
-            "x": 800,
-            "y": 288
-          },
-          {
-            "x": 762,
-            "y": 292
-          },
-          {
-            "x": 722,
-            "y": 284
-          },
-          {
-            "x": 688,
-            "y": 266
-          },
-          {
-            "x": 657,
-            "y": 242
-          },
-          {
-            "x": 638,
-            "y": 210
-          }
-        ]
-      },
-      {
-        "id": "black-sea",
-        "label": "Black Sea",
-        "fill": "water",
-        "stroke": false,
-        "strokeWidth": 0,
-        "points": [
-          {
-            "x": 640,
-            "y": 144
-          },
-          {
-            "x": 700,
-            "y": 138
-          },
-          {
-            "x": 795,
-            "y": 140
-          },
-          {
-            "x": 872,
-            "y": 158
-          },
-          {
-            "x": 840,
-            "y": 172
-          },
-          {
-            "x": 760,
-            "y": 165
-          },
-          {
-            "x": 700,
-            "y": 162
-          },
-          {
-            "x": 658,
-            "y": 168
-          }
-        ]
-      },
-      {
-        "id": "cyprus",
-        "label": "Cyprus",
-        "fill": "land",
-        "stroke": true,
-        "strokeWidth": 0.5,
-        "points": [
-          {
-            "x": 743,
-            "y": 316
-          },
-          {
-            "x": 770,
-            "y": 309
-          },
-          {
-            "x": 788,
-            "y": 318
-          },
-          {
-            "x": 784,
-            "y": 330
-          },
-          {
-            "x": 760,
-            "y": 336
-          },
-          {
-            "x": 741,
-            "y": 328
-          }
-        ]
-      },
-      {
-        "id": "levant",
-        "label": "Levant (Syria/Lebanon/Israel)",
-        "fill": "land",
-        "stroke": true,
-        "strokeWidth": 0.8,
-        "points": [
-          {
-            "x": 792,
-            "y": 285
-          },
-          {
-            "x": 832,
-            "y": 278
-          },
-          {
-            "x": 844,
-            "y": 308
-          },
-          {
-            "x": 840,
-            "y": 350
-          },
-          {
-            "x": 819,
-            "y": 390
-          },
-          {
-            "x": 796,
-            "y": 424
-          },
-          {
-            "x": 772,
-            "y": 449
-          },
-          {
-            "x": 757,
-            "y": 446
-          },
-          {
-            "x": 753,
-            "y": 396
-          },
-          {
-            "x": 760,
-            "y": 350
-          },
-          {
-            "x": 772,
-            "y": 310
-          }
-        ]
-      },
-      {
-        "id": "transjordan",
-        "label": "Transjordan Plateau",
-        "fill": "land",
-        "stroke": true,
-        "strokeWidth": 0.6,
-        "points": [
-          {
-            "x": 796,
-            "y": 424
-          },
-          {
-            "x": 820,
-            "y": 390
-          },
-          {
-            "x": 844,
-            "y": 392
-          },
-          {
-            "x": 852,
-            "y": 428
-          },
-          {
-            "x": 835,
-            "y": 455
-          },
-          {
-            "x": 814,
-            "y": 452
-          }
-        ]
-      },
-      {
-        "id": "north-africa",
-        "label": "North Africa",
-        "fill": "land",
-        "stroke": true,
-        "strokeWidth": 0.8,
-        "points": [
-          {
-            "x": 0,
-            "y": 440
-          },
-          {
-            "x": 48,
-            "y": 432
-          },
-          {
-            "x": 85,
-            "y": 415
-          },
-          {
-            "x": 128,
-            "y": 388
-          },
-          {
-            "x": 170,
-            "y": 348
-          },
-          {
-            "x": 205,
-            "y": 305
-          },
-          {
-            "x": 238,
-            "y": 272
-          },
-          {
-            "x": 284,
-            "y": 282
-          },
-          {
-            "x": 350,
-            "y": 276
-          },
-          {
-            "x": 400,
-            "y": 370
-          },
-          {
-            "x": 464,
-            "y": 396
-          },
-          {
-            "x": 516,
-            "y": 384
-          },
-          {
-            "x": 600,
-            "y": 396
-          },
-          {
-            "x": 684,
-            "y": 402
-          },
-          {
-            "x": 726,
-            "y": 399
-          },
-          {
-            "x": 726,
-            "y": 412
-          },
-          {
-            "x": 730,
-            "y": 430
-          },
-          {
-            "x": 728,
-            "y": 462
-          },
-          {
-            "x": 718,
-            "y": 482
-          },
-          {
-            "x": 706,
-            "y": 534
-          },
-          {
-            "x": 688,
-            "y": 600
-          },
-          {
-            "x": 668,
-            "y": 660
-          },
-          {
-            "x": 635,
-            "y": 718
-          },
-          {
-            "x": 0,
-            "y": 750
-          }
-        ]
-      },
-      {
-        "id": "gulf-syrte",
-        "label": "Gulf of Syrte",
-        "fill": "water",
-        "stroke": false,
-        "strokeWidth": 0,
-        "points": [
-          {
-            "x": 400,
-            "y": 370
-          },
-          {
-            "x": 432,
-            "y": 370
-          },
-          {
-            "x": 464,
-            "y": 396
-          },
-          {
-            "x": 432,
-            "y": 388
-          }
-        ]
-      },
-      {
-        "id": "gulf-suez",
-        "label": "Gulf of Suez",
-        "fill": "water",
-        "stroke": false,
-        "strokeWidth": 0,
-        "points": [
-          {
-            "x": 726,
-            "y": 399
-          },
-          {
-            "x": 752,
-            "y": 393
-          },
-          {
-            "x": 752,
-            "y": 438
-          },
-          {
-            "x": 748,
-            "y": 466
-          },
-          {
-            "x": 728,
-            "y": 462
-          },
-          {
-            "x": 726,
-            "y": 412
-          }
-        ]
-      },
-      {
-        "id": "sinai",
-        "label": "Sinai Peninsula",
-        "fill": "land",
-        "stroke": true,
-        "strokeWidth": 0.7,
-        "points": [
-          {
-            "x": 752,
-            "y": 393
-          },
-          {
-            "x": 790,
-            "y": 388
-          },
-          {
-            "x": 802,
-            "y": 418
-          },
-          {
-            "x": 798,
-            "y": 450
-          },
-          {
-            "x": 773,
-            "y": 484
-          },
-          {
-            "x": 756,
-            "y": 490
-          },
-          {
-            "x": 745,
-            "y": 468
-          },
-          {
-            "x": 748,
-            "y": 438
-          },
-          {
-            "x": 752,
-            "y": 418
-          }
-        ]
-      },
-      {
-        "id": "gulf-aqaba",
-        "label": "Gulf of Aqaba",
-        "fill": "water",
-        "stroke": false,
-        "strokeWidth": 0,
-        "points": [
-          {
-            "x": 790,
-            "y": 388
-          },
-          {
-            "x": 815,
-            "y": 378
-          },
-          {
-            "x": 828,
-            "y": 400
-          },
-          {
-            "x": 824,
-            "y": 446
-          },
-          {
-            "x": 803,
-            "y": 464
-          },
-          {
-            "x": 798,
-            "y": 450
-          },
-          {
-            "x": 802,
-            "y": 418
-          }
-        ]
-      },
-      {
-        "id": "arabia",
-        "label": "Arabian Peninsula",
-        "fill": "land",
-        "stroke": true,
-        "strokeWidth": 0.8,
-        "points": [
-          {
-            "x": 772,
-            "y": 449
-          },
-          {
-            "x": 796,
-            "y": 424
-          },
-          {
-            "x": 814,
-            "y": 452
-          },
-          {
-            "x": 835,
-            "y": 455
-          },
-          {
-            "x": 852,
-            "y": 428
-          },
-          {
-            "x": 844,
-            "y": 392
-          },
-          {
-            "x": 866,
-            "y": 370
-          },
-          {
-            "x": 928,
-            "y": 368
-          },
-          {
-            "x": 994,
-            "y": 388
-          },
-          {
-            "x": 1038,
-            "y": 432
-          },
-          {
-            "x": 1060,
-            "y": 500
-          },
-          {
-            "x": 1045,
-            "y": 574
-          },
-          {
-            "x": 1007,
-            "y": 644
-          },
-          {
-            "x": 940,
-            "y": 704
-          },
-          {
-            "x": 858,
-            "y": 740
-          },
-          {
-            "x": 782,
-            "y": 750
-          },
-          {
-            "x": 756,
-            "y": 692
-          },
-          {
-            "x": 761,
-            "y": 622
-          },
-          {
-            "x": 785,
-            "y": 558
-          },
-          {
-            "x": 800,
-            "y": 498
-          },
-          {
-            "x": 803,
-            "y": 464
-          },
-          {
-            "x": 824,
-            "y": 446
-          },
-          {
-            "x": 828,
-            "y": 400
-          },
-          {
-            "x": 815,
-            "y": 378
-          },
-          {
-            "x": 797,
-            "y": 374
-          },
-          {
-            "x": 773,
-            "y": 385
-          },
-          {
-            "x": 757,
-            "y": 446
-          }
-        ]
-      },
-      {
-        "id": "red-sea",
-        "label": "Red Sea",
-        "fill": "water",
-        "stroke": false,
-        "strokeWidth": 0,
-        "points": [
-          {
-            "x": 718,
-            "y": 482
-          },
-          {
-            "x": 728,
-            "y": 462
-          },
-          {
-            "x": 748,
-            "y": 466
-          },
-          {
-            "x": 745,
-            "y": 468
-          },
-          {
-            "x": 756,
-            "y": 490
-          },
-          {
-            "x": 773,
-            "y": 484
-          },
-          {
-            "x": 800,
-            "y": 498
-          },
-          {
-            "x": 785,
-            "y": 558
-          },
-          {
-            "x": 761,
-            "y": 622
-          },
-          {
-            "x": 756,
-            "y": 692
-          },
-          {
-            "x": 730,
-            "y": 720
-          },
-          {
-            "x": 700,
-            "y": 692
-          },
-          {
-            "x": 678,
-            "y": 640
-          },
-          {
-            "x": 666,
-            "y": 588
-          },
-          {
-            "x": 678,
-            "y": 538
-          },
-          {
-            "x": 695,
-            "y": 484
-          },
-          {
-            "x": 708,
-            "y": 454
-          }
-        ]
-      },
-      {
-        "id": "mesopotamia",
-        "label": "Mesopotamia / Iraq",
-        "fill": "land",
-        "stroke": true,
-        "strokeWidth": 0.8,
-        "points": [
-          {
-            "x": 843,
-            "y": 278
-          },
-          {
-            "x": 910,
-            "y": 262
-          },
-          {
-            "x": 990,
-            "y": 280
-          },
-          {
-            "x": 1038,
-            "y": 334
-          },
-          {
-            "x": 1038,
-            "y": 432
-          },
-          {
-            "x": 994,
-            "y": 388
-          },
-          {
-            "x": 928,
-            "y": 368
-          },
-          {
-            "x": 866,
-            "y": 370
-          },
-          {
-            "x": 844,
-            "y": 350
-          },
-          {
-            "x": 830,
-            "y": 310
-          }
-        ]
-      },
-      {
-        "id": "persian-gulf",
-        "label": "Persian Gulf",
-        "fill": "water",
-        "stroke": false,
-        "strokeWidth": 0,
-        "points": [
-          {
-            "x": 1010,
-            "y": 382
-          },
-          {
-            "x": 1040,
-            "y": 376
-          },
-          {
-            "x": 1056,
-            "y": 439
-          },
-          {
-            "x": 1063,
-            "y": 449
-          },
-          {
-            "x": 1096,
-            "y": 468
-          },
-          {
-            "x": 1060,
-            "y": 484
-          },
-          {
-            "x": 1038,
-            "y": 478
-          },
-          {
-            "x": 999,
-            "y": 438
-          }
-        ]
-      },
-      {
-        "id": "persia",
-        "label": "Persia / Iran",
-        "fill": "land",
-        "stroke": true,
-        "strokeWidth": 0.7,
-        "points": [
-          {
-            "x": 990,
-            "y": 280
-          },
-          {
-            "x": 1072,
-            "y": 262
-          },
-          {
-            "x": 1155,
-            "y": 278
-          },
-          {
-            "x": 1175,
-            "y": 364
-          },
-          {
-            "x": 1140,
-            "y": 434
-          },
-          {
-            "x": 1090,
-            "y": 460
-          },
-          {
-            "x": 1060,
-            "y": 484
-          },
-          {
-            "x": 1096,
-            "y": 468
-          },
-          {
-            "x": 1110,
-            "y": 428
-          },
-          {
-            "x": 1090,
-            "y": 390
-          },
-          {
-            "x": 1040,
-            "y": 376
-          },
-          {
-            "x": 994,
-            "y": 388
-          },
-          {
-            "x": 1038,
-            "y": 432
-          },
-          {
-            "x": 1038,
-            "y": 334
-          }
-        ]
-      }
+      { "id": "northern-europe", "label": "Northern Europe",    "fill": "land",  "stroke": false, "strokeWidth": 0,   "points": [{"x":230,"y":0},{"x":1200,"y":0},{"x":1200,"y":260},{"x":1155,"y":278},{"x":1072,"y":262},{"x":990,"y":280},{"x":910,"y":262},{"x":872,"y":158},{"x":800,"y":148},{"x":700,"y":144},{"x":642,"y":168},{"x":600,"y":178},{"x":540,"y":188},{"x":450,"y":178},{"x":380,"y":82},{"x":340,"y":72},{"x":295,"y":28}] },
+      { "id": "far-east",        "label": "Far East Fill",      "fill": "land",  "stroke": false, "strokeWidth": 0,   "points": [{"x":1155,"y":278},{"x":1200,"y":260},{"x":1200,"y":750},{"x":1040,"y":750},{"x":1060,"y":644},{"x":1007,"y":644},{"x":1045,"y":574},{"x":1060,"y":500},{"x":1038,"y":478},{"x":1060,"y":484},{"x":1090,"y":460},{"x":1140,"y":434},{"x":1175,"y":364}] },
+      { "id": "western-europe",  "label": "Western Europe",     "fill": "land",  "stroke": true,  "strokeWidth": 0.6, "points": [{"x":0,"y":0},{"x":230,"y":0},{"x":295,"y":28},{"x":340,"y":72},{"x":320,"y":90},{"x":310,"y":108},{"x":292,"y":172},{"x":268,"y":230},{"x":238,"y":272},{"x":205,"y":305},{"x":170,"y":348},{"x":128,"y":388},{"x":85,"y":415},{"x":48,"y":432},{"x":0,"y":440}] },
+      { "id": "italy",           "label": "Italy",              "fill": "land",  "stroke": true,  "strokeWidth": 0.8, "points": [{"x":310,"y":108},{"x":387,"y":82},{"x":415,"y":92},{"x":448,"y":122},{"x":490,"y":200},{"x":440,"y":258},{"x":416,"y":254},{"x":428,"y":222},{"x":386,"y":185},{"x":344,"y":188},{"x":314,"y":156}] },
+      { "id": "sicily",          "label": "Sicily",             "fill": "land",  "stroke": true,  "strokeWidth": 0.8, "points": [{"x":386,"y":256},{"x":446,"y":250},{"x":456,"y":272},{"x":427,"y":287},{"x":390,"y":278}] },
+      { "id": "sardinia",        "label": "Sardinia",           "fill": "land",  "stroke": true,  "strokeWidth": 0.6, "points": [{"x":326,"y":220},{"x":348,"y":208},{"x":360,"y":228},{"x":354,"y":258},{"x":334,"y":260}] },
+      { "id": "corsica",         "label": "Corsica",            "fill": "land",  "stroke": true,  "strokeWidth": 0.6, "points": [{"x":344,"y":192},{"x":359,"y":182},{"x":367,"y":200},{"x":361,"y":218},{"x":346,"y":215}] },
+      { "id": "greece",          "label": "Greek Mainland",     "fill": "land",  "stroke": true,  "strokeWidth": 0.8, "points": [{"x":531,"y":185},{"x":618,"y":178},{"x":660,"y":196},{"x":668,"y":242},{"x":624,"y":268},{"x":596,"y":286},{"x":567,"y":270},{"x":537,"y":236}] },
+      { "id": "peloponnese",     "label": "Peloponnese",        "fill": "land",  "stroke": true,  "strokeWidth": 0.7, "points": [{"x":546,"y":262},{"x":612,"y":260},{"x":620,"y":280},{"x":584,"y":298},{"x":547,"y":282}] },
+      { "id": "crete",           "label": "Crete",              "fill": "land",  "stroke": true,  "strokeWidth": 0.6, "points": [{"x":586,"y":324},{"x":652,"y":317},{"x":668,"y":328},{"x":645,"y":340},{"x":587,"y":337}] },
+      { "id": "anatolia",        "label": "Anatolia / Turkey",  "fill": "land",  "stroke": true,  "strokeWidth": 0.8, "points": [{"x":638,"y":168},{"x":872,"y":158},{"x":910,"y":178},{"x":912,"y":215},{"x":878,"y":258},{"x":838,"y":275},{"x":800,"y":288},{"x":762,"y":292},{"x":722,"y":284},{"x":688,"y":266},{"x":657,"y":242},{"x":638,"y":210}] },
+      { "id": "black-sea",       "label": "Black Sea",          "fill": "water", "stroke": false, "strokeWidth": 0,   "points": [{"x":640,"y":144},{"x":700,"y":138},{"x":795,"y":140},{"x":872,"y":158},{"x":840,"y":172},{"x":760,"y":165},{"x":700,"y":162},{"x":658,"y":168}] },
+      { "id": "cyprus",          "label": "Cyprus",             "fill": "land",  "stroke": true,  "strokeWidth": 0.5, "points": [{"x":743,"y":316},{"x":770,"y":309},{"x":788,"y":318},{"x":784,"y":330},{"x":760,"y":336},{"x":741,"y":328}] },
+      { "id": "levant",          "label": "Levant (Syria/Lebanon/Israel)", "fill": "land", "stroke": true, "strokeWidth": 0.8, "points": [{"x":792,"y":285},{"x":832,"y":278},{"x":844,"y":308},{"x":840,"y":350},{"x":819,"y":390},{"x":796,"y":424},{"x":772,"y":449},{"x":757,"y":446},{"x":753,"y":396},{"x":760,"y":350},{"x":772,"y":310}] },
+      { "id": "transjordan",     "label": "Transjordan Plateau","fill": "land",  "stroke": true,  "strokeWidth": 0.6, "points": [{"x":796,"y":424},{"x":820,"y":390},{"x":844,"y":392},{"x":852,"y":428},{"x":835,"y":455},{"x":814,"y":452}] },
+      { "id": "north-africa",    "label": "North Africa",       "fill": "land",  "stroke": true,  "strokeWidth": 0.8, "points": [{"x":0,"y":440},{"x":48,"y":432},{"x":85,"y":415},{"x":128,"y":388},{"x":170,"y":348},{"x":205,"y":305},{"x":238,"y":272},{"x":284,"y":282},{"x":350,"y":276},{"x":400,"y":370},{"x":464,"y":396},{"x":516,"y":384},{"x":600,"y":396},{"x":684,"y":402},{"x":726,"y":399},{"x":726,"y":412},{"x":730,"y":430},{"x":728,"y":462},{"x":718,"y":482},{"x":706,"y":534},{"x":688,"y":600},{"x":668,"y":660},{"x":635,"y":718},{"x":0,"y":750}] },
+      { "id": "gulf-syrte",      "label": "Gulf of Syrte",      "fill": "water", "stroke": false, "strokeWidth": 0,   "points": [{"x":400,"y":370},{"x":432,"y":370},{"x":464,"y":396},{"x":432,"y":388}] },
+      { "id": "gulf-suez",       "label": "Gulf of Suez",       "fill": "water", "stroke": false, "strokeWidth": 0,   "points": [{"x":726,"y":399},{"x":752,"y":393},{"x":752,"y":438},{"x":748,"y":466},{"x":728,"y":462},{"x":726,"y":412}] },
+      { "id": "sinai",           "label": "Sinai Peninsula",    "fill": "land",  "stroke": true,  "strokeWidth": 0.7, "points": [{"x":752,"y":393},{"x":790,"y":388},{"x":802,"y":418},{"x":798,"y":450},{"x":773,"y":484},{"x":756,"y":490},{"x":745,"y":468},{"x":748,"y":438},{"x":752,"y":418}] },
+      { "id": "gulf-aqaba",      "label": "Gulf of Aqaba",      "fill": "water", "stroke": false, "strokeWidth": 0,   "points": [{"x":790,"y":388},{"x":815,"y":378},{"x":828,"y":400},{"x":824,"y":446},{"x":803,"y":464},{"x":798,"y":450},{"x":802,"y":418}] },
+      { "id": "arabia",          "label": "Arabian Peninsula",  "fill": "land",  "stroke": true,  "strokeWidth": 0.8, "points": [{"x":772,"y":449},{"x":796,"y":424},{"x":814,"y":452},{"x":835,"y":455},{"x":852,"y":428},{"x":844,"y":392},{"x":866,"y":370},{"x":928,"y":368},{"x":994,"y":388},{"x":1038,"y":432},{"x":1060,"y":500},{"x":1045,"y":574},{"x":1007,"y":644},{"x":940,"y":704},{"x":858,"y":740},{"x":782,"y":750},{"x":756,"y":692},{"x":761,"y":622},{"x":785,"y":558},{"x":800,"y":498},{"x":803,"y":464},{"x":824,"y":446},{"x":828,"y":400},{"x":815,"y":378},{"x":797,"y":374},{"x":773,"y":385},{"x":757,"y":446}] },
+      { "id": "red-sea",         "label": "Red Sea",            "fill": "water", "stroke": false, "strokeWidth": 0,   "points": [{"x":718,"y":482},{"x":728,"y":462},{"x":748,"y":466},{"x":745,"y":468},{"x":756,"y":490},{"x":773,"y":484},{"x":800,"y":498},{"x":785,"y":558},{"x":761,"y":622},{"x":756,"y":692},{"x":730,"y":720},{"x":700,"y":692},{"x":678,"y":640},{"x":666,"y":588},{"x":678,"y":538},{"x":695,"y":484},{"x":708,"y":454}] },
+      { "id": "mesopotamia",     "label": "Mesopotamia / Iraq", "fill": "land",  "stroke": true,  "strokeWidth": 0.8, "points": [{"x":843,"y":278},{"x":910,"y":262},{"x":990,"y":280},{"x":1038,"y":334},{"x":1038,"y":432},{"x":994,"y":388},{"x":928,"y":368},{"x":866,"y":370},{"x":844,"y":350},{"x":830,"y":310}] },
+      { "id": "persian-gulf",    "label": "Persian Gulf",       "fill": "water", "stroke": false, "strokeWidth": 0,   "points": [{"x":994,"y":388},{"x":1040,"y":376},{"x":1090,"y":390},{"x":1110,"y":428},{"x":1096,"y":468},{"x":1060,"y":484},{"x":1038,"y":478},{"x":1038,"y":432}] },
+      { "id": "persia",          "label": "Persia / Iran",      "fill": "land",  "stroke": true,  "strokeWidth": 0.7, "points": [{"x":990,"y":280},{"x":1072,"y":262},{"x":1155,"y":278},{"x":1175,"y":364},{"x":1140,"y":434},{"x":1090,"y":460},{"x":1060,"y":484},{"x":1096,"y":468},{"x":1110,"y":428},{"x":1090,"y":390},{"x":1040,"y":376},{"x":994,"y":388},{"x":1038,"y":432},{"x":1038,"y":334}] }
     ],
     "ellipses": [
-      {
-        "id": "dead-sea",
-        "label": "Dead Sea",
-        "cx": 778,
-        "cy": 412,
-        "rx": 5,
-        "ry": 10
-      },
-      {
-        "id": "sea-of-galilee",
-        "label": "Sea of Galilee",
-        "cx": 776,
-        "cy": 368,
-        "rx": 4,
-        "ry": 6
-      }
+      { "id": "dead-sea",       "label": "Dead Sea",        "cx": 778, "cy": 412, "rx": 5, "ry": 10 },
+      { "id": "sea-of-galilee", "label": "Sea of Galilee",  "cx": 776, "cy": 368, "rx": 4, "ry": 6  }
     ]
   }
 }
