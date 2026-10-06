@@ -9,6 +9,11 @@
     "build": "tsc && vite build",
     "content-server": "node scripts/content-server.js",
     "build:resources": "node scripts/build-resources.js",
+    "validate:resources": "node scripts/validate-resources.js",
+    "ingest:kjv": "node scripts/ingest/kjv.js",
+    "ingest:bsb": "node scripts/ingest/bsb.js",
+    "ingest:gill": "node scripts/ingest/gill.js",
+    "test": "node --test scripts/tests/*.test.js",
     "convert:resources": "node scripts/convert-text-to-json.js",
     "preview": "vite preview"
   },

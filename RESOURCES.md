@@ -2,6 +2,17 @@
 
 The ReformStudy platform uses a modular resource system for managing biblical and theological content. Resources (Bible versions, commentaries, confessions, Strong's concordances) are not bundled into the SPA, but rather served as static JSON files that the app fetches on-demand.
 
+## Content Pipeline
+
+Bible and commentary text is downloaded and converted by scripts, never typed in:
+
+1. **Ingest** (`scripts/ingest/`): `kjv.js`, `bsb.js` and `gill.js` download a source, convert it to the formats below, and write it under `res/`. Each has a pure convert function with a fixture test in `scripts/tests/`.
+2. **Commit**: the converted files are committed, so builds never depend on another site being up. Bible files are written one verse per line, so a corrected verse is a one-line diff.
+3. **Validate** (`scripts/validate-resources.js`, also run by every build): all 66 books in canon order, chapter counts, verse order and text. The KJV must have exactly 31,102 verses with no gaps. Other translations are compared with it, and differences are printed as warnings.
+4. **Build** (`scripts/build-resources.js`): writes each Bible as one whole file (for search), plus an index and one file per book (for the reader). Chaptered commentaries are copied one file per chapter. `manifest.json` lists everything and names `defaultBible`.
+
+The BSB and Gill come from bible.helloao.org, which some sandboxes can't reach. The **Fetch sources** GitHub Action downloads them. It runs on pull requests that change `scripts/ingest/**` and commits the data to that branch, and can be run by hand from the Actions tab.
+
 ## Architecture
 
 ### Advantages of This Approach
@@ -241,9 +252,9 @@ resourceManager.clearCache();
 
 ### Adding a Bible Version
 
-1. Create `res/bibles/{id}.json` with the Bible data
-2. Follow the format in [res/bibles/README.md](res/bibles/README.md)
-3. Run `npm run build` to process
+1. Write `scripts/ingest/{id}.js` that produces `res/bibles/{id}/{id}.json` in the format in [res/bibles/README.md](res/bibles/README.md), using the book IDs in `scripts/lib/canon.js`
+2. Add a fixture test for its convert function in `scripts/tests/`
+3. Run it, then `npm run validate:resources` and `npm run build`
 
 ### Adding a Confession
 
@@ -253,9 +264,8 @@ resourceManager.clearCache();
 
 ### Adding a Commentary
 
-1. Create `res/commentaries/{id}.json` with the commentary data
-2. Follow the format in [res/commentaries/README.md](res/commentaries/README.md)
-3. Run `npm run build` to process
+1. For a whole-Bible commentary, use the chaptered layout in [res/commentaries/README.md](res/commentaries/README.md) (see `scripts/ingest/gill.js`)
+2. Run `npm run build` to validate and publish it
 
 ### Adding Strong's Data
 

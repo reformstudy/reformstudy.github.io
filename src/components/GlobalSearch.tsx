@@ -25,7 +25,7 @@ const FILTERS: { id: FilterId; label: string; type?: SearchResultType }[] = [
 const RESULT_LIMIT = 20;
 
 export default function GlobalSearch() {
-  const { bibles, confessions, ensureResourceLoaded } = useResources();
+  const { bibles, confessions, ensureResourceLoaded, defaultBibleId } = useResources();
   const [searchTerm, setSearchTerm] = useState('Abraham');
   const [debouncedTerm, setDebouncedTerm] = useState(searchTerm);
   const [results, setResults] = useState<SearchResult[]>([]);
@@ -33,9 +33,9 @@ export default function GlobalSearch() {
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    ensureResourceLoaded('kjv');
+    if (defaultBibleId) ensureResourceLoaded(defaultBibleId);
     ensureResourceLoaded('wcf');
-  }, [ensureResourceLoaded]);
+  }, [defaultBibleId, ensureResourceLoaded]);
 
   useEffect(() => {
     if (debounceRef.current) clearTimeout(debounceRef.current);
@@ -48,14 +48,14 @@ export default function GlobalSearch() {
     const term = debouncedTerm.toLowerCase().trim();
     if (!term) { setResults([]); return; }
 
-    const kjv = bibles['kjv'];
-    if (kjv) {
-      for (const book of kjv.books) {
+    const bible = defaultBibleId ? bibles[defaultBibleId] : undefined;
+    if (bible) {
+      for (const book of bible.books) {
         for (const verse of book.verses) {
           if (verse.text.toLowerCase().includes(term)) {
             newResults.push({
               type: 'scripture',
-              title: `${book.name} ${verse.chapter}:${verse.verse}`,
+              title: `${book.name} ${verse.chapter}:${verse.verse} (${bible.version.abbreviation})`,
               text: verse.text.length > 150 ? verse.text.substring(0, 150) + '…' : verse.text,
               label: 'Scripture Reference',
               theme: '--accent-exe',
@@ -87,7 +87,7 @@ export default function GlobalSearch() {
     }
 
     setResults(newResults);
-  }, [debouncedTerm, bibles, confessions]);
+  }, [debouncedTerm, bibles, confessions, defaultBibleId]);
 
   const [mobileFilters, setMobileFilters] = useState(false);
 

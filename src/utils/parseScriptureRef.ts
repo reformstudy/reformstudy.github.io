@@ -32,7 +32,7 @@ const BOOK_NAME_TO_ID: Record<string, string> = {
   'obadiah': 'OBA', 'oba': 'OBA',
   'jonah': 'JON', 'jon': 'JON',
   'micah': 'MIC', 'mic': 'MIC',
-  'nahum': 'NAH', 'nah': 'NAH',
+  'nahum': 'NAM', 'nah': 'NAM', 'nam': 'NAM',
   'habakkuk': 'HAB', 'hab': 'HAB',
   'zephaniah': 'ZEP', 'zep': 'ZEP',
   'haggai': 'HAG', 'hag': 'HAG',

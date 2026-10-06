@@ -11,6 +11,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { validateResources, printReport } from './validate-resources.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -18,6 +19,9 @@ const __dirname = path.dirname(__filename);
 const RES_DIR = path.join(__dirname, '../res');
 const OUTPUT_DIR = path.join(__dirname, '../docs/resources');
 const MANIFEST_FILE = path.join(OUTPUT_DIR, 'manifest.json');
+
+/** The first of these that exists becomes the Bible the app opens in. */
+const DEFAULT_BIBLE_PREFERENCE = ['bsb', 'kjv'];
 
 /**
  * Ensure output directory exists
@@ -98,6 +102,7 @@ function processBibles() {
         
         const outputPath = path.join(OUTPUT_DIR, `bible-${versionId}.json`);
         fs.writeFileSync(outputPath, JSON.stringify(result.data));
+        writeBibleBooks(versionId, result.data);
       }
     } else {
       console.error(`  ✗ Failed to load ${filePath}: ${result.error}`);
@@ -105,6 +110,28 @@ function processBibles() {
   });
   
   return output;
+}
+
+/**
+ * Write one file per book plus an index (book list and verse counts, no text),
+ * so the reader downloads only the book it shows.
+ */
+function writeBibleBooks(versionId, bible) {
+  const dir = path.join(OUTPUT_DIR, 'bibles', versionId);
+  fs.rmSync(dir, { recursive: true, force: true });
+  fs.mkdirSync(dir, { recursive: true });
+  const index = {
+    version: bible.version,
+    books: bible.books.map(({ verses, subtitles, ...meta }) => {
+      const verseCounts = new Array(meta.chapters).fill(0);
+      for (const v of verses) verseCounts[v.chapter - 1] = Math.max(verseCounts[v.chapter - 1], v.verse);
+      return { ...meta, verseCounts };
+    }),
+  };
+  fs.writeFileSync(path.join(dir, 'index.json'), JSON.stringify(index));
+  for (const book of bible.books) {
+    fs.writeFileSync(path.join(dir, `${book.id}.json`), JSON.stringify(book));
+  }
 }
 
 /**
@@ -154,7 +181,26 @@ function processCommentaries() {
     return output;
   }
   
-  const files = findJsonFiles(commentariesDir);
+  const chapteredDirs = fs.readdirSync(commentariesDir, { withFileTypes: true })
+    .filter(ent => ent.isDirectory() && fs.existsSync(path.join(commentariesDir, ent.name, 'meta.json')))
+    .map(ent => ent.name);
+
+  // Chaptered commentaries are copied as they are: one file per chapter.
+  const chapteredOut = path.join(OUTPUT_DIR, 'commentaries');
+  fs.rmSync(chapteredOut, { recursive: true, force: true });
+  for (const id of chapteredDirs) {
+    const src = path.join(commentariesDir, id);
+    const meta = JSON.parse(fs.readFileSync(path.join(src, 'meta.json'), 'utf-8'));
+    copyJsonTree(src, path.join(chapteredOut, id));
+    output[id] = { ...meta, format: 'chapters' };
+    const chapterCount = meta.books.reduce((n, b) => n + b.chapters.length, 0);
+    console.log(`  ✓ Loaded Commentary: ${meta.commentary.name} (${meta.books.length} books, ${chapterCount} chapters)`);
+  }
+
+  const files = chapteredDirs.reduce(
+    (list, id) => list.filter(f => !f.startsWith(path.join(commentariesDir, id) + path.sep)),
+    findJsonFiles(commentariesDir)
+  );
   
   files.forEach(filePath => {
     const result = processResourceFile(filePath, 'commentary');
@@ -173,6 +219,16 @@ function processCommentaries() {
   });
   
   return output;
+}
+
+function copyJsonTree(src, dest) {
+  fs.mkdirSync(dest, { recursive: true });
+  for (const ent of fs.readdirSync(src, { withFileTypes: true })) {
+    const from = path.join(src, ent.name);
+    const to = path.join(dest, ent.name);
+    if (ent.isDirectory()) copyJsonTree(from, to);
+    else if (ent.name.endsWith('.json')) fs.writeFileSync(to, JSON.stringify(JSON.parse(fs.readFileSync(from, 'utf-8'))));
+  }
 }
 
 /**
@@ -215,8 +271,10 @@ function processStrongs() {
 function generateManifest(bibles, confessions, commentaries, strongs) {
   console.log('Generating manifest...');
   
+  const defaultBible = DEFAULT_BIBLE_PREFERENCE.find(id => bibles[id]) ?? Object.keys(bibles)[0] ?? null;
   const manifest = {
     timestamp: new Date().toISOString(),
+    defaultBible,
     resources: {
       bibles: Object.keys(bibles).map(id => ({
         id,
@@ -224,6 +282,8 @@ function generateManifest(bibles, confessions, commentaries, strongs) {
         abbreviation: bibles[id].version?.abbreviation,
         language: bibles[id].version?.language,
         file: `bible-${id}.json`,
+        index: `bibles/${id}/index.json`,
+        bookPath: `bibles/${id}/{book}.json`,
         description: bibles[id].version?.description
       })),
       confessions: Object.keys(confessions).map(id => ({
@@ -234,14 +294,25 @@ function generateManifest(bibles, confessions, commentaries, strongs) {
         file: `confession-${id}.json`,
         description: confessions[id].confession?.description
       })),
-      commentaries: Object.keys(commentaries).map(id => ({
-        id,
-        name: commentaries[id].commentary?.name,
-        author: commentaries[id].commentary?.author,
-        book: commentaries[id].commentary?.book,
-        file: `commentary-${id}.json`,
-        description: commentaries[id].commentary?.description
-      })),
+      commentaries: Object.keys(commentaries).map(id => commentaries[id].format === 'chapters'
+        ? {
+            id,
+            format: 'chapters',
+            name: commentaries[id].commentary?.name,
+            author: commentaries[id].commentary?.author,
+            path: `commentaries/${id}`,
+            description: commentaries[id].commentary?.description,
+            books: commentaries[id].books
+          }
+        : {
+            id,
+            format: 'entries',
+            name: commentaries[id].commentary?.name,
+            author: commentaries[id].commentary?.author,
+            book: commentaries[id].commentary?.book,
+            file: `commentary-${id}.json`,
+            description: commentaries[id].commentary?.description
+          }),
       strongs: Object.keys(strongs).map(id => ({
         id,
         name: strongs[id].concordance?.name,
@@ -265,6 +336,13 @@ export function buildResources() {
   console.log('Building Resources');
   console.log('='.repeat(50));
   
+  console.log('Validating resources...');
+  const report = validateResources(RES_DIR);
+  printReport(report);
+  if (report.errors.length) {
+    throw new Error(`Resource validation failed with ${report.errors.length} error(s); see above.`);
+  }
+
   ensureOutputDir();
   
   const bibles = processBibles();

@@ -68,8 +68,9 @@ function AppContent() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  // The WCF is small and several screens link into it. Bible text is loaded
+  // per book by the screens that show it.
   useEffect(() => {
-    ensureResourceLoaded('kjv');
     ensureResourceLoaded('wcf');
   }, [ensureResourceLoaded]);
 
@@ -83,16 +84,6 @@ function AppContent() {
             <BookOpen size={20} />
           </div>
           <div className="brand-title">ReformStudy</div>
-        </div>
-
-        <div className="search-bar">
-          <Search size={18} color="var(--text-tertiary)" />
-          <input type="text" placeholder="Search scriptures, keywords, or references..." />
-        </div>
-
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-          <span className="user-label">My Study</span>
-          <div className="user-avatar">JB</div>
         </div>
       </header>
 
