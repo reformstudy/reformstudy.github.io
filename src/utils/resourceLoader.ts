@@ -18,6 +18,7 @@ export interface BibleVersion {
     releaseDate: string;
     copyright: string;
     description: string;
+    source?: { name: string; url: string };
   };
   books: BibleBook[];
 }
@@ -27,7 +28,25 @@ export interface BibleBook {
   name: string;
   testament: 'OT' | 'NT';
   chapters: number;
+  /** Psalm titles, keyed by chapter number. */
+  subtitles?: Record<string, string>;
   verses: BibleVerse[];
+}
+
+/** A book's details without its text, from a Bible's index file. */
+export interface BibleIndexBook {
+  id: string;
+  name: string;
+  testament: 'OT' | 'NT';
+  chapters: number;
+  /** Number of the last verse in each chapter, in chapter order. */
+  verseCounts: number[];
+}
+
+/** The book list for one translation, loaded before any text. */
+export interface BibleIndex {
+  version: BibleVersion['version'];
+  books: BibleIndexBook[];
 }
 
 export interface BibleVerse {
@@ -113,6 +132,8 @@ export interface StrongsConcordance {
 
 export interface ResourceManifest {
   timestamp: string;
+  /** The translation the app opens in. */
+  defaultBible?: string | null;
   resources: {
     bibles: BibleManifestEntry[];
     confessions: ConfessionManifestEntry[];
@@ -126,7 +147,12 @@ export interface BibleManifestEntry {
   name: string;
   abbreviation: string;
   language: string;
+  /** The whole translation in one file (used by search). */
   file: string;
+  /** Book list without text. */
+  index?: string;
+  /** Path to one book, with {book} in place of the book ID. */
+  bookPath?: string;
   description: string;
 }
 
@@ -141,11 +167,17 @@ export interface ConfessionManifestEntry {
 
 export interface CommentaryManifestEntry {
   id: string;
+  /** 'entries': one file of verse notes. 'chapters': one file per chapter under `path`. */
+  format?: 'entries' | 'chapters';
   name: string;
   author: string;
-  book: string;
-  file: string;
   description: string;
+  /** 'entries' format only. */
+  book?: string;
+  file?: string;
+  /** 'chapters' format only. */
+  path?: string;
+  books?: { id: string; name: string; chapters: number[]; hasIntroduction?: boolean }[];
 }
 
 export interface StrongsManifestEntry {
@@ -165,6 +197,7 @@ export class ResourceManager {
   private manifestUrl: string;
   private resourceBaseUrl: string;
   private manifest: ResourceManifest | null = null;
+  private manifestPromise: Promise<ResourceManifest> | null = null;
   private cache: Map<string, any> = new Map();
   private loadingPromises: Map<string, Promise<any>> = new Map();
 
@@ -185,19 +218,33 @@ export class ResourceManager {
     if (this.manifest) {
       return this.manifest;
     }
-
-    try {
-      const response = await fetch(this.manifestUrl);
-      if (!response.ok) {
-        throw new Error(`Failed to fetch manifest: ${response.statusText}`);
-      }
-      const manifest = (await response.json()) as ResourceManifest;
-      this.manifest = manifest;
-      return manifest;
-    } catch (error) {
-      console.error('Error loading manifest:', error);
-      throw error;
+    // Share one request between callers that ask before it finishes.
+    if (!this.manifestPromise) {
+      this.manifestPromise = (async () => {
+        try {
+          const response = await fetch(this.manifestUrl);
+          if (!response.ok) {
+            throw new Error(`Failed to fetch manifest: ${response.statusText}`);
+          }
+          const manifest = (await response.json()) as ResourceManifest;
+          this.manifest = manifest;
+          return manifest;
+        } catch (error) {
+          console.error('Error loading manifest:', error);
+          this.manifestPromise = null;
+          throw error;
+        }
+      })();
     }
+    return this.manifestPromise;
+  }
+
+  /**
+   * Fetch a file under the resources folder. Each file is requested once;
+   * concurrent callers share the same request and later callers get the cache.
+   */
+  loadFile<T>(filePath: string): Promise<T> {
+    return this.fetchResource<T>(filePath);
   }
 
   /**
@@ -267,8 +314,8 @@ export class ResourceManager {
   async loadCommentary(commentaryId: string): Promise<Commentary> {
     const manifest = await this.getManifest();
     const commentaryEntry = manifest.resources.commentaries.find(c => c.id === commentaryId);
-    if (!commentaryEntry) {
-      throw new Error(`Commentary not found: ${commentaryId}`);
+    if (!commentaryEntry?.file) {
+      throw new Error(`Single-file commentary not found: ${commentaryId}`);
     }
     return this.fetchResource<Commentary>(commentaryEntry.file);
   }
@@ -371,13 +418,6 @@ export async function getAvailableStrongs(): Promise<StrongsManifestEntry[]> {
 // Convenience Export Functions for ResourceContext
 // ============================================================================
 
-const getResourceBaseUrl = () => {
-  const isDev = import.meta.env.DEV;
-  // If a local content server is available, app components (Atlas/Theology)
-  // may fetch files directly from it (http://localhost:4001/file/...).
-  return isDev ? '/docs/resources' : '/resources';
-};
-
 /**
  * Load the resource manifest
  */
@@ -389,36 +429,35 @@ export async function loadResourceManifest(): Promise<ResourceManifest> {
  * Load a Bible by filename
  */
 export async function loadBible(filename: string): Promise<BibleVersion> {
-  const url = `${getResourceBaseUrl()}/${filename}`;
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error(`Failed to load Bible: ${response.statusText}`);
-  }
-  return response.json();
+  return resourceManager.loadFile<BibleVersion>(filename);
 }
 
 /**
  * Load a confession by filename
  */
 export async function loadConfession(filename: string): Promise<Confession> {
-  const url = `${getResourceBaseUrl()}/${filename}`;
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error(`Failed to load confession: ${response.statusText}`);
-  }
-  return response.json();
+  return resourceManager.loadFile<Confession>(filename);
 }
 
 /**
  * Load a commentary by filename
  */
 export async function loadCommentary(filename: string): Promise<Commentary> {
-  const url = `${getResourceBaseUrl()}/${filename}`;
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error(`Failed to load commentary: ${response.statusText}`);
-  }
-  return response.json();
+  return resourceManager.loadFile<Commentary>(filename);
+}
+
+/**
+ * Load a translation's book list (no text)
+ */
+export async function loadBibleIndex(filePath: string): Promise<BibleIndex> {
+  return resourceManager.loadFile<BibleIndex>(filePath);
+}
+
+/**
+ * Load one book of a translation
+ */
+export async function loadBibleBook(filePath: string): Promise<BibleBook> {
+  return resourceManager.loadFile<BibleBook>(filePath);
 }
 
 /**

@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo, useCallback } from 'react';
 import { BookOpen, MapPin, MessageSquare, Hash, X, List, Pencil, Bookmark } from 'lucide-react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useResources } from '../context/ResourceContext';
-import type { BibleBook, BibleVerse } from '../utils/resourceLoader';
+import type { BibleVerse } from '../utils/resourceLoader';
 import { useWordRefs } from '../hooks/useWordRefs';
 import type { WordRef } from '../hooks/useWordRefs';
 
@@ -30,7 +30,7 @@ interface WordSelection {
 }
 
 interface BookListProps {
-  books: BibleBook[];
+  books: { id: string; name: string }[];
   selectedBook: string;
   onSelect: (id: string) => void;
 }
@@ -415,8 +415,9 @@ function WordRefEditorPanel({
 
 export default function ScriptureReader() {
   const {
-    bibles, commentaries, strongsGreek, strongsHebrew, confessions,
+    commentaries, strongsGreek, strongsHebrew, confessions,
     loadedResources, ensureResourceLoaded, content,
+    bibleIndexes, bibleBooks, defaultBibleId, ensureBibleIndex, ensureBibleBook,
   } = useResources();
   const { getRef, saveRef, canEdit } = useWordRefs();
   const { book: paramBook, chapter: paramChapter } = useParams<{ book?: string; chapter?: string }>();
@@ -453,18 +454,28 @@ export default function ScriptureReader() {
   }, [paramBook, paramChapter]);
 
   useEffect(() => {
-    ensureResourceLoaded('kjv');
     ensureResourceLoaded('matthew-gill');
   }, [ensureResourceLoaded]);
 
-  const kjv = bibles['kjv'];
-  const currentBook = kjv?.books.find(b => b.id === selectedBook);
+  // Load the translation's book list, then only the book being read.
+  const bibleId = defaultBibleId;
+  useEffect(() => {
+    if (bibleId) ensureBibleIndex(bibleId);
+  }, [bibleId, ensureBibleIndex]);
+
+  const bibleIndex = bibleId ? bibleIndexes[bibleId] : undefined;
+  const bookInfo = bibleIndex?.books.find(b => b.id === selectedBook);
+  const currentBook = bibleId ? bibleBooks[`${bibleId}/${selectedBook}`] : undefined;
 
   useEffect(() => {
-    if (!currentBook) return;
-    const id = currentBook.testament === 'NT' ? 'strongs-greek' : 'strongs-hebrew';
-    ensureResourceLoaded(id);
-  }, [currentBook, ensureResourceLoaded]);
+    if (bibleId && bookInfo) ensureBibleBook(bibleId, bookInfo.id);
+  }, [bibleId, bookInfo, ensureBibleBook]);
+
+  const bookTestament = bookInfo?.testament;
+  useEffect(() => {
+    if (!bookTestament) return;
+    ensureResourceLoaded(bookTestament === 'NT' ? 'strongs-greek' : 'strongs-hebrew');
+  }, [bookTestament, ensureResourceLoaded]);
 
   // Load atlas events and WCF when edit is available
   useEffect(() => {
@@ -650,7 +661,7 @@ export default function ScriptureReader() {
     ) ?? null;
   }, [wordSelection, commentaries]);
 
-  if (!kjv) {
+  if (!bibleIndex) {
     return (
       <div className="workspace">
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '600px' }}>
@@ -667,9 +678,10 @@ export default function ScriptureReader() {
   const currentVerses = currentBook
     ? currentBook.verses.filter(v => v.chapter === selectedChapter)
     : [];
-  const otBooks = kjv.books.filter(b => b.testament === 'OT');
-  const ntBooks = kjv.books.filter(b => b.testament === 'NT');
-  const testament = currentBook?.testament ?? 'NT';
+  const subtitle = currentBook?.subtitles?.[selectedChapter];
+  const otBooks = bibleIndex.books.filter(b => b.testament === 'OT');
+  const ntBooks = bibleIndex.books.filter(b => b.testament === 'NT');
+  const testament = bookInfo?.testament ?? 'NT';
 
   const handleBookSelect = (id: string) => {
     setSelectedBook(id);
@@ -711,14 +723,14 @@ export default function ScriptureReader() {
           <div className="sidebar-label" style={{ marginTop: 20 }}>New Testament</div>
           <BookList books={ntBooks} selectedBook={selectedBook} onSelect={handleBookSelect} />
 
-          {currentBook && (
+          {bookInfo && (
             <div style={{
               padding: '12px 20px 20px',
               backgroundColor: 'var(--bg-surface)',
               borderBottom: '1px solid var(--border-soft)',
             }}>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 6 }}>
-                {Array.from({ length: currentBook.chapters }, (_, i) => i + 1).map((chapter) => (
+                {Array.from({ length: bookInfo.chapters }, (_, i) => i + 1).map((chapter) => (
                   <button
                     key={chapter}
                     type="button"
@@ -749,18 +761,18 @@ export default function ScriptureReader() {
         {/* Center: scripture text with clickable words */}
         <div className="center-content">
           <div style={{ maxWidth: 680, width: '100%', paddingBottom: 80 }}>
-            {currentBook && (
+            {bookInfo && (
               <>
                 <div style={{ textAlign: 'center', marginBottom: 40 }}>
                   <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: '2.5rem', marginBottom: 8 }}>
-                    {currentBook.name} {selectedChapter}
+                    {bookInfo.name} {selectedChapter}
                   </h1>
                   <span style={{
                     fontSize: '0.8rem', fontWeight: 700,
                     backgroundColor: 'var(--bg-geo-light)', color: 'var(--accent-geo)',
                     padding: '4px 12px', borderRadius: 16, marginRight: 8,
                   }}>
-                    {kjv.version.abbreviation} — {kjv.version.name}
+                    {bibleIndex.version.abbreviation} — {bibleIndex.version.name}
                   </span>
                   <span style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)', fontStyle: 'italic' }}>
                     Click any word for insights
@@ -773,7 +785,16 @@ export default function ScriptureReader() {
                   lineHeight: 2,
                   color: 'var(--text-primary)',
                 }}>
-                  {currentVerses.length > 0 ? (
+                  {subtitle && (
+                    <p style={{ fontStyle: 'italic', fontSize: '1rem', color: 'var(--text-secondary)', margin: '0 0 16px' }}>
+                      {subtitle}
+                    </p>
+                  )}
+                  {!currentBook ? (
+                    <div style={{ color: 'var(--text-secondary)', fontStyle: 'italic' }}>
+                      Loading {bookInfo.name}…
+                    </div>
+                  ) : currentVerses.length > 0 ? (
                     currentVerses.map((verse) => (
                       <VerseRow
                         key={`${verse.book}-${verse.chapter}-${verse.verse}`}
@@ -856,7 +877,7 @@ export default function ScriptureReader() {
             <div style={{ display: 'flex', flexDirection: 'column', flex: 1, overflow: 'hidden' }}>
               <InsightHeader
                 selection={wordSelection}
-                bookName={currentBook?.name ?? ''}
+                bookName={bookInfo?.name ?? ''}
                 activeRef={activeRef}
                 canEdit={canEdit}
                 isEditing={isEditingLinks}
@@ -896,13 +917,13 @@ export default function ScriptureReader() {
                       <CommentaryPanel
                         selection={wordSelection}
                         entry={commentaryEntry}
-                        bookName={currentBook?.name ?? ''}
+                        bookName={bookInfo?.name ?? ''}
                       />
                     )}
                     {activeTab === 'geo' && (
                       <GeoPanel
                         selection={wordSelection}
-                        bookName={currentBook?.name ?? ''}
+                        bookName={bookInfo?.name ?? ''}
                         linkedEvent={linkedAtlasEvent}
                       />
                     )}

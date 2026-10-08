@@ -92,47 +92,6 @@ button {
   color: var(--accent-geo);
 }
 
-.search-bar {
-  flex: 1;
-  max-width: 400px;
-  margin: 0 24px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background-color: var(--bg-sidebar);
-  border-radius: 24px;
-  padding: 10px 20px;
-}
-
-.search-bar input {
-  width: 100%;
-  border: none;
-  background: transparent;
-  outline: none;
-  font-family: var(--font-sans);
-  font-size: 0.95rem;
-  color: var(--text-primary);
-}
-
-.user-label {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--text-secondary);
-}
-
-.user-avatar {
-  width: 36px;
-  height: 36px;
-  background-color: var(--accent-geo);
-  color: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 0.85rem;
-}
-
 .sub-nav {
   background-color: var(--bg-surface);
   padding: 12px 32px;
@@ -421,14 +380,6 @@ button {
   .header {
     height: 56px;
     padding: 0 16px;
-  }
-
-  .search-bar {
-    display: none;
-  }
-
-  .user-label {
-    display: none;
   }
 
   /* ---- Sub-nav ---- */
