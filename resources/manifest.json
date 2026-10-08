@@ -1,5 +1,6 @@
 {
-  "timestamp": "2026-07-02T13:03:05.347Z",
+  "timestamp": "2026-10-08T01:53:18.207Z",
+  "defaultBible": "kjv",
   "resources": {
     "bibles": [
       {
@@ -8,7 +9,9 @@
         "abbreviation": "KJV",
         "language": "en",
         "file": "bible-kjv.json",
-        "description": "The King James Version is an English translation of the Christian Bible originally published in 1611."
+        "index": "bibles/kjv/index.json",
+        "bookPath": "bibles/kjv/{book}.json",
+        "description": "The Authorized Version of 1611, in the standard 1769 Oxford text. The translation John Gill quotes throughout his commentary."
       }
     ],
     "confessions": [
@@ -24,6 +27,7 @@
     "commentaries": [
       {
         "id": "matthew-gill",
+        "format": "entries",
         "name": "John Gill's Exposition of the Entire Bible - Matthew",
         "author": "John Gill",
         "book": "MAT",
