@@ -101,7 +101,7 @@ After the corrections there are 1,854 proof references. All of them resolve to K
 **Findings.**
 
 - **Coverage is complete:**
-  - all 1,189 chapters and 66 book introductions;
+  - all 1,189 chapters, and introductions to 61 books (the source has none for the other 5);
   - 4,253 passage sections, which together cover every verse;
   - about 6.4 million words, as expected for the full commentary.
 - **Spot checks pass.** Well-known passages are present word for word, among them Gen 2 ("not made out of his head to rule over him, nor out of his feet to be trampled upon by him, but out of his side to be equal with him…"), John 3 and Romans 8.
