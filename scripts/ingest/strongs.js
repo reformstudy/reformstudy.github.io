@@ -15,7 +15,8 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { parseArgs, writeJson } from '../lib/io.js';
+import { fetchBuffer, parseArgs, writeJson } from '../lib/io.js';
+import { checkLock, sha256 } from '../lib/lock.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const RES = path.join(__dirname, '../../res/strongs');
@@ -73,14 +74,11 @@ export function convertDictionary(dict, lang) {
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   for (const lang of LANGUAGES) {
-    let js;
-    if (args['source-dir']) {
-      js = fs.readFileSync(path.join(args['source-dir'], lang.file), 'utf8');
-    } else {
-      const res = await fetch(`${RAW_BASE}/${lang.file}`);
-      if (!res.ok) throw new Error(`HTTP ${res.status} for ${RAW_BASE}/${lang.file}`);
-      js = await res.text();
-    }
+    const raw = args['source-dir']
+      ? fs.readFileSync(path.join(args['source-dir'], lang.file))
+      : await fetchBuffer(`${RAW_BASE}/${lang.file}`);
+    checkLock(`strongs-${lang.id}`, { source: `${SOURCE_REPO}@${SOURCE_COMMIT}/${lang.file}`, sha256: sha256(raw), files: 1 });
+    const js = raw.toString('utf8');
     const out = convertDictionary(parseDictionaryJs(js), lang);
     const file = path.join(RES, lang.id, `${lang.id}.json`);
     writeJson(file, out);

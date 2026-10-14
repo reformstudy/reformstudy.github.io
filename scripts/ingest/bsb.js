@@ -17,6 +17,7 @@ import { fileURLToPath } from 'url';
 import { CANON } from '../lib/canon.js';
 import { normalizeText, parseArgs, writeBibleFile } from '../lib/io.js';
 import { readZip } from '../lib/zip.js';
+import { checkLock, sha256 } from '../lib/lock.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUTPUT = path.join(__dirname, '../../res/bibles/bsb/bsb.json');
@@ -138,6 +139,7 @@ async function main() {
     if (!res.ok) throw new Error(`HTTP ${res.status} for ${SOURCE_URL}`);
     zip = Buffer.from(await res.arrayBuffer());
   }
+  checkLock('bsb', { source: SOURCE_URL, sha256: sha256(zip), files: 1 });
   const bible = convertBsb(readZip(zip));
   writeBibleFile(OUTPUT, bible);
   const total = bible.books.reduce((n, b) => n + b.verses.length, 0);

@@ -16,6 +16,8 @@ This directory contains build scripts for processing and bundling resource files
 
 `validate-resources.js` checks it all (also run by every build), and `npm test` runs the converter tests in `tests/`. Shared code is in `lib/`: the canon (`canon.js`), reference parsing (`refs.js`), a ZIP reader (`zip.js`) and file helpers (`io.js`). Sources and licenses are listed in [RESOURCES.md](../RESOURCES.md#sources).
 
+Each script checks its download against `ingest/sources.lock.json` (SHA-256 of the verified files; helpers in `lib/lock.js`) and stops on a mismatch. After deliberately changing a source and re-verifying it ([res/SOURCES.md](../res/SOURCES.md)), record the new checksums with `UPDATE_SOURCE_LOCK=1 npm run ingest`. `ingest/kjv-corrections.json` and `ingest/wcf-corrections.json` hold the verified fixes to those sources; each entry must match exactly once or ingest fails.
+
 ## Scripts
 
 ### `build-resources.js`

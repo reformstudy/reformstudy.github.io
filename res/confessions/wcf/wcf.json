@@ -10,6 +10,11 @@
   "source": {
    "name": "NonlinearFruit/Creeds.json",
    "url": "https://github.com/NonlinearFruit/Creeds.json/tree/2ae21a4c5387ecc91f474c9d3d67c826d2a6b9d5"
+  },
+  "corrections": {
+   "text": 15,
+   "proofs": 17,
+   "file": "scripts/ingest/wcf-corrections.json"
   }
  },
  "sections": [
@@ -184,8 +189,8 @@
     },
     {
      "number": "1.2",
-     "content": "Under the name of holy Scripture, or the Word of God written, are now contained all the books of the Old and New Testaments, which are these: Of the Old Testament: Genesis, Exodus, Leviticus, Numbers, Deuteronomy, Joshua, Judges, Ruth, 1 Samuel, 2 Samuel, 1 Kings, 2 Kings, 1 Chronicles, 2 Chronicles, Ezra, Nehemiah, Esther, Job, Psalms, Proverbs, Ecclesiastes, The Song of Songs, Isaiah, Jeremiah, Lamentations, Ezekiel, Daniel, Hosea, Joel, Amos, Obadiah, Jonah, Micah, Nahum, Habakkuk, Zephaniah, Haggai, Zechariah, Malachi; Of the New Testament: The Gospels according to Matthew, Mark, Luke, John. The Acts of the Apostles, Paul's Epistles to the Romans, 1 Corinthians, 2 Corinthians, Galatians, Ephesians, Philippians, Colossians, 1 Thessalonians, 2 Thessalonians, 1 Timothy, 2 Timothy, Titus, Philemon, The Epistle to the Hebrews, The Epistle of James, The First and Second Epistles of Peter, The First, Second, and Third Epistles of John, The Epistle of Jude, The Revelation. All which are given by inspiration of God, to be the rule of faith and life.",
-     "contentWithProofs": "Under the name of holy Scripture, or the Word of God written, are now contained all the books of the Old and New Testaments, which are these: Of the Old Testament: Genesis, Exodus, Leviticus, Numbers, Deuteronomy, Joshua, Judges, Ruth, 1 Samuel, 2 Samuel, 1 Kings, 2 Kings, 1 Chronicles, 2 Chronicles, Ezra, Nehemiah, Esther, Job, Psalms, Proverbs, Ecclesiastes, The Song of Songs, Isaiah, Jeremiah, Lamentations, Ezekiel, Daniel, Hosea, Joel, Amos, Obadiah, Jonah, Micah, Nahum, Habakkuk, Zephaniah, Haggai, Zechariah, Malachi; Of the New Testament: The Gospels according to Matthew, Mark, Luke, John. The Acts of the Apostles, Paul's Epistles to the Romans, 1 Corinthians, 2 Corinthians, Galatians, Ephesians, Philippians, Colossians, 1 Thessalonians, 2 Thessalonians, 1 Timothy, 2 Timothy, Titus, Philemon, The Epistle to the Hebrews, The Epistle of James, The First and Second Epistles of Peter, The First, Second, and Third Epistles of John, The Epistle of Jude, The Revelation. All which are given by inspiration of God, to be the rule of faith and life.[1]",
+     "content": "Under the name of holy Scripture, or the Word of God written, are now contained all the books of the Old and New Testament, which are these: Of the Old Testament: Genesis, Exodus, Leviticus, Numbers, Deuteronomy, Joshua, Judges, Ruth, 1 Samuel, 2 Samuel, 1 Kings, 2 Kings, 1 Chronicles, 2 Chronicles, Ezra, Nehemiah, Esther, Job, Psalms, Proverbs, Ecclesiastes, The Song of Songs, Isaiah, Jeremiah, Lamentations, Ezekiel, Daniel, Hosea, Joel, Amos, Obadiah, Jonah, Micah, Nahum, Habakkuk, Zephaniah, Haggai, Zechariah, Malachi; Of the New Testament: The Gospels according to Matthew, Mark, Luke, John. The Acts of the Apostles, Paul's Epistles to the Romans, 1 Corinthians, 2 Corinthians, Galatians, Ephesians, Philippians, Colossians, 1 Thessalonians, 2 Thessalonians, 1 Timothy, 2 Timothy, Titus, Philemon, The Epistle to the Hebrews, The Epistle of James, The First and Second Epistles of Peter, The First, Second, and Third Epistles of John, The Epistle of Jude, The Revelation. All which are given by inspiration of God, to be the rule of faith and life.",
+     "contentWithProofs": "Under the name of holy Scripture, or the Word of God written, are now contained all the books of the Old and New Testament, which are these: Of the Old Testament: Genesis, Exodus, Leviticus, Numbers, Deuteronomy, Joshua, Judges, Ruth, 1 Samuel, 2 Samuel, 1 Kings, 2 Kings, 1 Chronicles, 2 Chronicles, Ezra, Nehemiah, Esther, Job, Psalms, Proverbs, Ecclesiastes, The Song of Songs, Isaiah, Jeremiah, Lamentations, Ezekiel, Daniel, Hosea, Joel, Amos, Obadiah, Jonah, Micah, Nahum, Habakkuk, Zephaniah, Haggai, Zechariah, Malachi; Of the New Testament: The Gospels according to Matthew, Mark, Luke, John. The Acts of the Apostles, Paul's Epistles to the Romans, 1 Corinthians, 2 Corinthians, Galatians, Ephesians, Philippians, Colossians, 1 Thessalonians, 2 Thessalonians, 1 Timothy, 2 Timothy, Titus, Philemon, The Epistle to the Hebrews, The Epistle of James, The First and Second Epistles of Peter, The First, Second, and Third Epistles of John, The Epistle of Jude, The Revelation. All which are given by inspiration of God, to be the rule of faith and life.[1]",
      "proofs": [
       {
        "id": 1,
@@ -641,16 +646,16 @@
       {
        "id": 1,
        "refs": [
-        "ACT.15.15",
+        "ACT.15.15-16",
         "2PE.1.20-21"
        ]
       }
      ],
      "proofTexts": [
       {
-       "reference": "Acts 15:15",
-       "ref": "ACT.15.15",
-       "text": "And to this agree the words of the prophets; as it is written,",
+       "reference": "Acts 15:15–16",
+       "ref": "ACT.15.15-16",
+       "text": "And to this agree the words of the prophets; as it is written, After this I will return, and will build again the tabernacle of David, which is fallen down; and I will build again the ruins thereof, and I will set it up:",
        "footnote": 1
       },
       {
@@ -1010,7 +1015,7 @@
       {
        "reference": "Revelation 4:8",
        "ref": "REV.4.8",
-       "text": "And the four beasts had each of them six wings about him; and they were full of eyes within: and they rest not day and night, saying, Holy, holy, holy, LORD God Almighty, which was, and is, and is to come.",
+       "text": "And the four beasts had each of them six wings about him; and they were full of eyes within: and they rest not day and night, saying, Holy, holy, holy, Lord God Almighty, which was, and is, and is to come.",
        "footnote": 12
       },
       {
@@ -1028,7 +1033,7 @@
       {
        "reference": "Revelation 4:8",
        "ref": "REV.4.8",
-       "text": "And the four beasts had each of them six wings about him; and they were full of eyes within: and they rest not day and night, saying, Holy, holy, holy, LORD God Almighty, which was, and is, and is to come.",
+       "text": "And the four beasts had each of them six wings about him; and they were full of eyes within: and they rest not day and night, saying, Holy, holy, holy, Lord God Almighty, which was, and is, and is to come.",
        "footnote": 14
       },
       {
@@ -2914,8 +2919,8 @@
     },
     {
      "number": "5.5",
-     "content": "The most wise, righteous, and gracious God doth oftentimes leave for a season his own children to manifold temptations and the corruption of their own hearts, to chastise them for their former sins, or to discover unto them the hidden strength of corruption and deceitfulness of their hearts, that they be humbled; and to raise them to a more close and constant dependence for their support unto himself, and to make them more watchful against all future occasions of sin, and for sundry other just and holy ends.",
-     "contentWithProofs": "The most wise, righteous, and gracious God doth oftentimes leave for a season his own children to manifold temptations and the corruption of their own hearts, to chastise them for their former sins, or to discover unto them the hidden strength of corruption and deceitfulness of their hearts, that they be humbled;[1] and to raise them to a more close and constant dependence for their support unto himself, and to make them more watchful against all future occasions of sin, and for sundry other just and holy ends.[2]",
+     "content": "The most wise, righteous, and gracious God doth oftentimes leave for a season his own children to manifold temptations and the corruption of their own hearts, to chastise them for their former sins, or to discover unto them the hidden strength of corruption and deceitfulness of their hearts, that they be humbled; and to raise them to a more close and constant dependence for their support upon himself, and to make them more watchful against all future occasions of sin, and for sundry other just and holy ends.",
+     "contentWithProofs": "The most wise, righteous, and gracious God doth oftentimes leave for a season his own children to manifold temptations and the corruption of their own hearts, to chastise them for their former sins, or to discover unto them the hidden strength of corruption and deceitfulness of their hearts, that they be humbled;[1] and to raise them to a more close and constant dependence for their support upon himself, and to make them more watchful against all future occasions of sin, and for sundry other just and holy ends.[2]",
      "proofs": [
       {
        "id": 1,
@@ -2996,8 +3001,8 @@
     },
     {
      "number": "5.6",
-     "content": "As for those wicked and ungodly men whom God, as a righteous judge, for former sins, doth blind and harden, from them he not only withholdeth his grace, whereby they might have been enlightened in their understandings and wrought upon in their hearts, but sometimes also withdraweth the gifts which they had, and exposeth them to such objects as their corruption makes occasion of sin; and withal, gives them over to their own lusts, the temptations of the world, and the power of Satan; whereby it comes to pass that they harden themselves, even under those means which God useth for the softening of others.",
-     "contentWithProofs": "As for those wicked and ungodly men whom God, as a righteous judge, for former sins, doth blind and harden,[1] from them he not only withholdeth his grace, whereby they might have been enlightened in their understandings and wrought upon in their hearts,[2] but sometimes also withdraweth the gifts which they had,[3] and exposeth them to such objects as their corruption makes occasion of sin;[4] and withal, gives them over to their own lusts, the temptations of the world, and the power of Satan;[5] whereby it comes to pass that they harden themselves, even under those means which God useth for the softening of others.[6]",
+     "content": "As for those wicked and ungodly men whom God, as a righteous judge, for former sins, doth blind and harden, from them he not only withholdeth his grace, whereby they might have been enlightened in their understandings and wrought upon in their hearts, but sometimes also withdraweth the gifts which they had, and exposeth them to such objects as their corruption makes occasions of sin; and withal, gives them over to their own lusts, the temptations of the world, and the power of Satan; whereby it comes to pass that they harden themselves, even under those means which God useth for the softening of others.",
+     "contentWithProofs": "As for those wicked and ungodly men whom God, as a righteous judge, for former sins, doth blind and harden,[1] from them he not only withholdeth his grace, whereby they might have been enlightened in their understandings and wrought upon in their hearts,[2] but sometimes also withdraweth the gifts which they had,[3] and exposeth them to such objects as their corruption makes occasions of sin;[4] and withal, gives them over to their own lusts, the temptations of the world, and the power of Satan;[5] whereby it comes to pass that they harden themselves, even under those means which God useth for the softening of others.[6]",
      "proofs": [
       {
        "id": 1,
@@ -3325,7 +3330,7 @@
       {
        "reference": "Genesis 6:5",
        "ref": "GEN.6.5",
-       "text": "And God saw that the wickedness of man was great in the earth, and that every imagination of the thoughts of his heart was only evil continually.",
+       "text": "And GOD saw that the wickedness of man was great in the earth, and that every imagination of the thoughts of his heart was only evil continually.",
        "footnote": 3
       },
       {
@@ -3510,7 +3515,7 @@
       {
        "reference": "Genesis 6:5",
        "ref": "GEN.6.5",
-       "text": "And God saw that the wickedness of man was great in the earth, and that every imagination of the thoughts of his heart was only evil continually.",
+       "text": "And GOD saw that the wickedness of man was great in the earth, and that every imagination of the thoughts of his heart was only evil continually.",
        "footnote": 2
       },
       {
@@ -3925,8 +3930,8 @@
     },
     {
      "number": "7.3",
-     "content": "Man by his fall having made himself incapable of life by that covenant, the Lord was pleased to make a second, commonly called the covenant of grace: wherein he freely offered unto sinners life and salvation by Jesus Christ, requiring of them faith in him that they may be saved, and promising to give unto all those that are ordained unto life his Holy Spirit, to make them willing and able to believe.",
-     "contentWithProofs": "Man by his fall having made himself incapable of life by that covenant, the Lord was pleased to make a second,[1] commonly called the covenant of grace: wherein he freely offered unto sinners life and salvation by Jesus Christ, requiring of them faith in him that they may be saved,[2] and promising to give unto all those that are ordained unto life his Holy Spirit, to make them willing and able to believe.[3]",
+     "content": "Man by his fall having made himself incapable of life by that covenant, the Lord was pleased to make a second, commonly called the covenant of grace: wherein he freely offereth unto sinners life and salvation by Jesus Christ, requiring of them faith in him that they may be saved, and promising to give unto all those that are ordained unto life his Holy Spirit, to make them willing and able to believe.",
+     "contentWithProofs": "Man by his fall having made himself incapable of life by that covenant, the Lord was pleased to make a second,[1] commonly called the covenant of grace: wherein he freely offereth unto sinners life and salvation by Jesus Christ, requiring of them faith in him that they may be saved,[2] and promising to give unto all those that are ordained unto life his Holy Spirit, to make them willing and able to believe.[3]",
      "proofs": [
       {
        "id": 1,
@@ -4291,7 +4296,7 @@
       {
        "reference": "Acts 15:11",
        "ref": "ACT.15.11",
-       "text": "But we believe that through the grace of the LORD Jesus Christ we shall be saved, even as they.",
+       "text": "But we believe that through the grace of the Lord Jesus Christ we shall be saved, even as they.",
        "footnote": 6
       },
       {
@@ -4360,7 +4365,7 @@
        "refs": [
         "ISA.42.1",
         "JHN.3.16",
-        "2TI.2.5",
+        "1TI.2.5",
         "1PE.1.19-20"
        ]
       },
@@ -4432,9 +4437,9 @@
        "footnote": 1
       },
       {
-       "reference": "2 Timothy 2:5",
-       "ref": "2TI.2.5",
-       "text": "And if a man also strive for masteries, yet is he not crowned, except he strive lawfully.",
+       "reference": "1 Timothy 2:5",
+       "ref": "1TI.2.5",
+       "text": "For there is one God, and one mediator between God and men, the man Christ Jesus;",
        "footnote": 1
       },
       {
@@ -5033,7 +5038,7 @@
       {
        "reference": "John 20:25",
        "ref": "JHN.20.25",
-       "text": "The other disciples therefore said unto him, We have seen the LORD. But he said unto them, Except I shall see in his hands the print of the nails, and put my finger into the print of the nails, and thrust my hand into his side, I will not believe.",
+       "text": "The other disciples therefore said unto him, We have seen the Lord. But he said unto them, Except I shall see in his hands the print of the nails, and put my finger into the print of the nails, and thrust my hand into his side, I will not believe.",
        "footnote": 9
       },
       {
@@ -5534,8 +5539,8 @@
     },
     {
      "number": "9.2",
-     "content": "Man, in his state of innocency, had freedom and power to will and to do that which is good and well-pleasing to God, but yet mutably, so that he might fall from it.",
-     "contentWithProofs": "Man, in his state of innocency, had freedom and power to will and to do that which is good and well-pleasing to God,[1] but yet mutably, so that he might fall from it.[2]",
+     "content": "Man, in his state of innocency, had freedom and power to will and to do that which was good and well-pleasing to God, but yet mutably, so that he might fall from it.",
+     "contentWithProofs": "Man, in his state of innocency, had freedom and power to will and to do that which was good and well-pleasing to God,[1] but yet mutably, so that he might fall from it.[2]",
      "proofs": [
       {
        "id": 1,
@@ -6218,7 +6223,7 @@
       {
        "reference": "Acts 2:38–39",
        "ref": "ACT.2.38-39",
-       "text": "Then Peter said unto them, Repent, and be baptized every one of you in the name of Jesus Christ for the remission of sins, and ye shall receive the gift of the Holy Ghost. For the promise is unto you, and to your children, and to all that are afar off, even as many as the LORD our God shall call.",
+       "text": "Then Peter said unto them, Repent, and be baptized every one of you in the name of Jesus Christ for the remission of sins, and ye shall receive the gift of the Holy Ghost. For the promise is unto you, and to your children, and to all that are afar off, even as many as the Lord our God shall call.",
        "footnote": 1
       },
       {
@@ -7237,7 +7242,7 @@
       {
        "reference": "Lamentations 3:31",
        "ref": "LAM.3.31",
-       "text": "For the LORD will not cast off for ever:",
+       "text": "For the Lord will not cast off for ever:",
        "footnote": 11
       },
       {
@@ -7550,7 +7555,7 @@
       {
        "reference": "2 Corinthians 3:18",
        "ref": "2CO.3.18",
-       "text": "But we all, with open face beholding as in a glass the glory of the Lord, are changed into the same image from glory to glory, even as by the Spirit of the LORD.",
+       "text": "But we all, with open face beholding as in a glass the glory of the Lord, are changed into the same image from glory to glory, even as by the Spirit of the Lord.",
        "footnote": 3
       },
       {
@@ -7780,7 +7785,7 @@
       {
        "reference": "Acts 15:11",
        "ref": "ACT.15.11",
-       "text": "But we believe that through the grace of the LORD Jesus Christ we shall be saved, even as they.",
+       "text": "But we believe that through the grace of the Lord Jesus Christ we shall be saved, even as they.",
        "footnote": 5
       },
       {
@@ -8667,7 +8672,7 @@
        "id": 1,
        "refs": [
         "EZK.36.26-27",
-        "JHN.15.4-6"
+        "JHN.15.4-5"
        ]
       },
       {
@@ -8701,9 +8706,9 @@
        "footnote": 1
       },
       {
-       "reference": "John 15:4–6",
-       "ref": "JHN.15.4-6",
-       "text": "Abide in me, and I in you. As the branch cannot bear fruit of itself, except it abide in the vine; no more can ye, except ye abide in me. I am the vine, ye are the branches: He that abideth in me, and I in him, the same bringeth forth much fruit: for without me ye can do nothing. If a man abide not in me, he is cast forth as a branch, and is withered; and men gather them, and cast them into the fire, and they are burned.",
+       "reference": "John 15:4–5",
+       "ref": "JHN.15.4-5",
+       "text": "Abide in me, and I in you. As the branch cannot bear fruit of itself, except it abide in the vine; no more can ye, except ye abide in me. I am the vine, ye are the branches: He that abideth in me, and I in him, the same bringeth forth much fruit: for without me ye can do nothing.",
        "footnote": 1
       },
       {
@@ -9103,7 +9108,7 @@
       {
        "id": 2,
        "refs": [
-        "GEN.4.3-5",
+        "GEN.4.5",
         "HEB.11.4",
         "HEB.11.6"
        ]
@@ -9141,7 +9146,8 @@
         "PSA.14.4",
         "PSA.36.3",
         "MAT.23.23",
-        "MAT.25.41-45"
+        "MAT.25.41-43",
+        "MAT.25.45"
        ]
       }
      ],
@@ -9177,9 +9183,9 @@
        "footnote": 1
       },
       {
-       "reference": "Genesis 4:3–5",
-       "ref": "GEN.4.3-5",
-       "text": "And in process of time it came to pass, that Cain brought of the fruit of the ground an offering unto the LORD. And Abel, he also brought of the firstlings of his flock and of the fat thereof. And the LORD had respect unto Abel and to his offering: But unto Cain and to his offering he had not respect. And Cain was very wroth, and his countenance fell.",
+       "reference": "Genesis 4:5",
+       "ref": "GEN.4.5",
+       "text": "But unto Cain and to his offering he had not respect. And Cain was very wroth, and his countenance fell.",
        "footnote": 2
       },
       {
@@ -9285,9 +9291,15 @@
        "footnote": 6
       },
       {
-       "reference": "Matthew 25:41–45",
-       "ref": "MAT.25.41-45",
-       "text": "Then shall he say also unto them on the left hand, Depart from me, ye cursed, into everlasting fire, prepared for the devil and his angels: For I was an hungred, and ye gave me no meat: I was thirsty, and ye gave me no drink: I was a stranger, and ye took me not in: naked, and ye clothed me not: sick, and in prison, and ye visited me not. Then shall they also answer him, saying, Lord, when saw we thee an hungred, or athirst, or a stranger, or naked, or sick, or in prison, and did not minister unto thee? Then shall he answer them, saying, Verily I say unto you, Inasmuch as ye did it not to one of the least of these, ye did it not to me.",
+       "reference": "Matthew 25:41–43",
+       "ref": "MAT.25.41-43",
+       "text": "Then shall he say also unto them on the left hand, Depart from me, ye cursed, into everlasting fire, prepared for the devil and his angels: For I was an hungred, and ye gave me no meat: I was thirsty, and ye gave me no drink: I was a stranger, and ye took me not in: naked, and ye clothed me not: sick, and in prison, and ye visited me not.",
+       "footnote": 6
+      },
+      {
+       "reference": "Matthew 25:45",
+       "ref": "MAT.25.45",
+       "text": "Then shall he answer them, saying, Verily I say unto you, Inasmuch as ye did it not to one of the least of these, ye did it not to me.",
        "footnote": 6
       }
      ]
@@ -9737,8 +9749,8 @@
    "sections": [
     {
      "number": "18.1",
-     "content": "Although hypocrites and other unregenerate men may vainly deceive themselves with false hopes and carnal presumptions of being in the favour of God and estate of salvation, which hope of theirs shall perish: yet such as truly believe in the Lord Jesus, and love him in sincerity, endeavoring to walk in all good conscience before him, may in this life be certainly assured that they are in a state of grace, and may rejoice in the hope of the glory of God, which hope shall never make them ashamed.",
-     "contentWithProofs": "Although hypocrites and other unregenerate men may vainly deceive themselves with false hopes and carnal presumptions of being in the favour of God and estate of salvation,[1] which hope of theirs shall perish:[2] yet such as truly believe in the Lord Jesus, and love him in sincerity, endeavoring to walk in all good conscience before him, may in this life be certainly assured that they are in a state of grace,[3] and may rejoice in the hope of the glory of God, which hope shall never make them ashamed.[4]",
+     "content": "Although hypocrites and other unregenerate men may vainly deceive themselves with false hopes and carnal presumptions of being in the favour of God and estate of salvation, which hope of theirs shall perish: yet such as truly believe in the Lord Jesus, and love him in sincerity, endeavoring to walk in all good conscience before him, may in this life be certainly assured that they are in the state of grace, and may rejoice in the hope of the glory of God, which hope shall never make them ashamed.",
+     "contentWithProofs": "Although hypocrites and other unregenerate men may vainly deceive themselves with false hopes and carnal presumptions of being in the favour of God and estate of salvation,[1] which hope of theirs shall perish:[2] yet such as truly believe in the Lord Jesus, and love him in sincerity, endeavoring to walk in all good conscience before him, may in this life be certainly assured that they are in the state of grace,[3] and may rejoice in the hope of the glory of God, which hope shall never make them ashamed.[4]",
      "proofs": [
       {
        "id": 1,
@@ -10424,7 +10436,7 @@
       {
        "reference": "Job 28:28",
        "ref": "JOB.28.28",
-       "text": "And unto man he said, Behold, the fear of the LORD, that is wisdom; and to depart from evil is understanding.",
+       "text": "And unto man he said, Behold, the fear of the Lord, that is wisdom; and to depart from evil is understanding.",
        "footnote": 1
       },
       {
@@ -10658,6 +10670,7 @@
         "GEN.49.10",
         "1PE.2.13-14",
         "EXO.21",
+        "EXO.22.1-29",
         "MAT.5.17",
         "MAT.5.38-39",
         "1CO.9.8-10"
@@ -10681,6 +10694,12 @@
        "reference": "Exodus 21",
        "ref": "EXO.21",
        "text": "Now these are the judgments which thou shalt set before them. If thou buy an Hebrew servant, six years he shall serve: and in the seventh he shall go out free for nothing. If he came in by himself, he shall go out by himself: if he were married, then his wife shall go out with him. If his master have given him a wife, and she have born him sons or daughters; the wife and her children shall be her master’s, and he shall go out by himself. And if the servant shall plainly say, I love my master, my wife, and my children; I will not go out free: Then his master shall bring him unto the judges; he shall also bring him to the door, or unto the door post; and his master shall bore his ear through with an aul; and he shall serve him for ever. And if a man sell his daughter to be a maidservant, she shall not go out as the menservants do. If she please not her master, who hath betrothed her to himself, then shall he let her be redeemed: to sell her unto a strange nation he shall have no power, seeing he hath dealt deceitfully with her. And if he have betrothed her unto his son, he shall deal with her after the manner of daughters. If he take him another wife; her food, her raiment, and her duty of marriage, shall he not diminish. And if he do not these three unto her, then shall she go out free without money. He that smiteth a man, so that he die, shall be surely put to death. And if a man lie not in wait, but God deliver him into his hand; then I will appoint thee a place whither he shall flee. But if a man come presumptuously upon his neighbour, to slay him with guile; thou shalt take him from mine altar, that he may die. And he that smiteth his father, or his mother, shall be surely put to death. And he that stealeth a man, and selleth him, or if he be found in his hand, he shall surely be put to death. And he that curseth his father, or his mother, shall surely be put to death. And if men strive together, and one smite another with a stone, or with his fist, and he die not, but keepeth his bed: If he rise again, and walk abroad upon his staff, then shall he that smote him be quit: only he shall pay for the loss of his time, and shall cause him to be thoroughly healed. And if a man smite his servant, or his maid, with a rod, and he die under his hand; he shall be surely punished. Notwithstanding, if he continue a day or two, he shall not be punished: for he is his money. If men strive, and hurt a woman with child, so that her fruit depart from her, and yet no mischief follow: he shall be surely punished, according as the woman’s husband will lay upon him; and he shall pay as the judges determine. And if any mischief follow, then thou shalt give life for life, Eye for eye, tooth for tooth, hand for hand, foot for foot, Burning for burning, wound for wound, stripe for stripe. And if a man smite the eye of his servant, or the eye of his maid, that it perish; he shall let him go free for his eye’s sake. And if he smite out his manservant’s tooth, or his maidservant’s tooth; he shall let him go free for his tooth’s sake. If an ox gore a man or a woman, that they die: then the ox shall be surely stoned, and his flesh shall not be eaten; but the owner of the ox shall be quit. But if the ox were wont to push with his horn in time past, and it hath been testified to his owner, and he hath not kept him in, but that he hath killed a man or a woman; the ox shall be stoned, and his owner also shall be put to death. If there be laid on him a sum of money, then he shall give for the ransom of his life whatsoever is laid upon him. Whether he have gored a son, or have gored a daughter, according to this judgment shall it be done unto him. If the ox shall push a manservant or a maidservant; he shall give unto their master thirty shekels of silver, and the ox shall be stoned. And if a man shall open a pit, or if a man shall dig a pit, and not cover it, and an ox or an ass fall therein; The owner of the pit shall make it good, and give money unto the owner of them; and the dead beast shall be his. And if one man’s ox hurt another’s, that he die; then they shall sell the live ox, and divide the money of it; and the dead ox also they shall divide. Or if it be known that the ox hath used to push in time past, and his owner hath not kept him in; he shall surely pay ox for ox; and the dead shall be his own.",
+       "footnote": 1
+      },
+      {
+       "reference": "Exodus 22:1–29",
+       "ref": "EXO.22.1-29",
+       "text": "If a man shall steal an ox, or a sheep, and kill it, or sell it; he shall restore five oxen for an ox, and four sheep for a sheep. If a thief be found breaking up, and be smitten that he die, there shall no blood be shed for him. If the sun be risen upon him, there shall be blood shed for him; for he should make full restitution; if he have nothing, then he shall be sold for his theft. If the theft be certainly found in his hand alive, whether it be ox, or ass, or sheep; he shall restore double. If a man shall cause a field or vineyard to be eaten, and shall put in his beast, and shall feed in another man’s field; of the best of his own field, and of the best of his own vineyard, shall he make restitution. If fire break out, and catch in thorns, so that the stacks of corn, or the standing corn, or the field, be consumed therewith; he that kindled the fire shall surely make restitution. If a man shall deliver unto his neighbour money or stuff to keep, and it be stolen out of the man’s house; if the thief be found, let him pay double. If the thief be not found, then the master of the house shall be brought unto the judges, to see whether he have put his hand unto his neighbour’s goods. For all manner of trespass, whether it be for ox, for ass, for sheep, for raiment, or for any manner of lost thing, which another challengeth to be his, the cause of both parties shall come before the judges; and whom the judges shall condemn, he shall pay double unto his neighbour. If a man deliver unto his neighbour an ass, or an ox, or a sheep, or any beast, to keep; and it die, or be hurt, or driven away, no man seeing it: Then shall an oath of the LORD be between them both, that he hath not put his hand unto his neighbour’s goods; and the owner of it shall accept thereof, and he shall not make it good. And if it be stolen from him, he shall make restitution unto the owner thereof. If it be torn in pieces, then let him bring it for witness, and he shall not make good that which was torn. And if a man borrow ought of his neighbour, and it be hurt, or die, the owner thereof being not with it, he shall surely make it good. But if the owner thereof be with it, he shall not make it good: if it be an hired thing, it came for his hire. And if a man entice a maid that is not betrothed, and lie with her, he shall surely endow her to be his wife. If her father utterly refuse to give her unto him, he shall pay money according to the dowry of virgins. Thou shalt not suffer a witch to live. Whosoever lieth with a beast shall surely be put to death. He that sacrificeth unto any god, save unto the LORD only, he shall be utterly destroyed. Thou shalt neither vex a stranger, nor oppress him: for ye were strangers in the land of Egypt. Ye shall not afflict any widow, or fatherless child. If thou afflict them in any wise, and they cry at all unto me, I will surely hear their cry; And my wrath shall wax hot, and I will kill you with the sword; and your wives shall be widows, and your children fatherless. If thou lend money to any of my people that is poor by thee, thou shalt not be to him as an usurer, neither shalt thou lay upon him usury. If thou at all take thy neighbour’s raiment to pledge, thou shalt deliver it unto him by that the sun goeth down: For that is his covering only, it is his raiment for his skin: wherein shall he sleep? and it shall come to pass, when he crieth unto me, that I will hear; for I am gracious. Thou shalt not revile the gods, nor curse the ruler of thy people. Thou shalt not delay to offer the first of thy ripe fruits, and of thy liquors: the firstborn of thy sons shalt thou give unto me.",
        "footnote": 1
       },
       {
@@ -10855,9 +10874,7 @@
       {
        "id": 8,
        "refs": [
-        "LEV.26.1",
-        "LEV.26.10",
-        "LEV.26.14",
+        "LEV.26.1-14",
         "2CO.6.16",
         "PSA.19.11",
         "PSA.37.11",
@@ -11059,21 +11076,9 @@
        "footnote": 7
       },
       {
-       "reference": "Leviticus 26:1",
-       "ref": "LEV.26.1",
-       "text": "Ye shall make you no idols nor graven image, neither rear you up a standing image, neither shall ye set up any image of stone in your land, to bow down unto it: for I am the LORD your God.",
-       "footnote": 8
-      },
-      {
-       "reference": "Leviticus 26:10",
-       "ref": "LEV.26.10",
-       "text": "And ye shall eat old store, and bring forth the old because of the new.",
-       "footnote": 8
-      },
-      {
-       "reference": "Leviticus 26:14",
-       "ref": "LEV.26.14",
-       "text": "But if ye will not hearken unto me, and will not do all these commandments;",
+       "reference": "Leviticus 26:1–14",
+       "ref": "LEV.26.1-14",
+       "text": "Ye shall make you no idols nor graven image, neither rear you up a standing image, neither shall ye set up any image of stone in your land, to bow down unto it: for I am the LORD your God. Ye shall keep my sabbaths, and reverence my sanctuary: I am the LORD. If ye walk in my statutes, and keep my commandments, and do them; Then I will give you rain in due season, and the land shall yield her increase, and the trees of the field shall yield their fruit. And your threshing shall reach unto the vintage, and the vintage shall reach unto the sowing time: and ye shall eat your bread to the full, and dwell in your land safely. And I will give peace in the land, and ye shall lie down, and none shall make you afraid: and I will rid evil beasts out of the land, neither shall the sword go through your land. And ye shall chase your enemies, and they shall fall before you by the sword. And five of you shall chase an hundred, and an hundred of you shall put ten thousand to flight: and your enemies shall fall before you by the sword. For I will have respect unto you, and make you fruitful, and multiply you, and establish my covenant with you. And ye shall eat old store, and bring forth the old because of the new. And I will set my tabernacle among you: and my soul shall not abhor you. And I will walk among you, and will be your God, and ye shall be my people. I am the LORD your God, which brought you forth out of the land of Egypt, that ye should not be their bondmen; and I have broken the bands of your yoke, and made you go upright. But if ye will not hearken unto me, and will not do all these commandments;",
        "footnote": 8
       },
       {
@@ -11380,7 +11385,7 @@
       {
        "reference": "Acts 15:10–11",
        "ref": "ACT.15.10-11",
-       "text": "Now therefore why tempt ye God, to put a yoke upon the neck of the disciples, which neither our fathers nor we were able to bear? But we believe that through the grace of the LORD Jesus Christ we shall be saved, even as they.",
+       "text": "Now therefore why tempt ye God, to put a yoke upon the neck of the disciples, which neither our fathers nor we were able to bear? But we believe that through the grace of the Lord Jesus Christ we shall be saved, even as they.",
        "footnote": 7
       },
       {
@@ -11434,15 +11439,15 @@
       {
        "reference": "2 Corinthians 3:17–18",
        "ref": "2CO.3.17-18",
-       "text": "Now the Lord is that Spirit: and where the Spirit of the Lord is, there is liberty. But we all, with open face beholding as in a glass the glory of the Lord, are changed into the same image from glory to glory, even as by the Spirit of the LORD.",
+       "text": "Now the Lord is that Spirit: and where the Spirit of the Lord is, there is liberty. But we all, with open face beholding as in a glass the glory of the Lord, are changed into the same image from glory to glory, even as by the Spirit of the Lord.",
        "footnote": 9
       }
      ]
     },
     {
      "number": "20.2",
-     "content": "God alone is Lord of the conscience, and hath left it free from the doctrines and commandments of men which are in anything contrary to his Word, or beside it, in matters of faith or worship. So that to believe such doctrines, or to obey such commands out of conscience, is to betray true liberty of conscience; and the requiring of an implicit faith, and an absolute and blind obedience, is to destroy liberty of conscience, and reason also.",
-     "contentWithProofs": "God alone is Lord of the conscience,[1] and hath left it free from the doctrines and commandments of men which are in anything contrary to his Word, or beside it, in matters of faith or worship.[2] So that to believe such doctrines, or to obey such commands out of conscience, is to betray true liberty of conscience;[3] and the requiring of an implicit faith, and an absolute and blind obedience, is to destroy liberty of conscience, and reason also.[4]",
+     "content": "God alone is Lord of the conscience, and hath left it free from the doctrines and commandments of men which are in anything contrary to his Word, or beside it, if matters of faith or worship. So that to believe such doctrines, or to obey such commands out of conscience, is to betray true liberty of conscience; and the requiring of an implicit faith, and an absolute and blind obedience, is to destroy liberty of conscience, and reason also.",
+     "contentWithProofs": "God alone is Lord of the conscience,[1] and hath left it free from the doctrines and commandments of men which are in anything contrary to his Word, or beside it, if matters of faith or worship.[2] So that to believe such doctrines, or to obey such commands out of conscience, is to betray true liberty of conscience;[3] and the requiring of an implicit faith, and an absolute and blind obedience, is to destroy liberty of conscience, and reason also.[4]",
      "proofs": [
       {
        "id": 1,
@@ -11469,7 +11474,8 @@
         "GAL.1.10",
         "GAL.2.4-5",
         "GAL.5.1",
-        "COL.2.20-23"
+        "COL.2.20",
+        "COL.2.22-23"
        ]
       },
       {
@@ -11561,9 +11567,15 @@
        "footnote": 3
       },
       {
-       "reference": "Colossians 2:20–23",
-       "ref": "COL.2.20-23",
-       "text": "Wherefore if ye be dead with Christ from the rudiments of the world, why, as though living in the world, are ye subject to ordinances, (Touch not; taste not; handle not; Which all are to perish with the using;) after the commandments and doctrines of men? Which things have indeed a shew of wisdom in will worship, and humility, and neglecting of the body; not in any honour to the satisfying of the flesh.",
+       "reference": "Colossians 2:20",
+       "ref": "COL.2.20",
+       "text": "Wherefore if ye be dead with Christ from the rudiments of the world, why, as though living in the world, are ye subject to ordinances,",
+       "footnote": 3
+      },
+      {
+       "reference": "Colossians 2:22–23",
+       "ref": "COL.2.22-23",
+       "text": "Which all are to perish with the using;) after the commandments and doctrines of men? Which things have indeed a shew of wisdom in will worship, and humility, and neglecting of the body; not in any honour to the satisfying of the flesh.",
        "footnote": 3
       },
       {
@@ -11673,8 +11685,8 @@
     },
     {
      "number": "20.4",
-     "content": "And because the power which God hath ordained, and the liberty which Christ hath purchased, are not intended by God to destroy, but mutually to uphold and preserve one another; they who, upon pretense of Christian liberty, shall oppose any lawful power, or the lawful exercise of it, whether it be civil or ecclesiastical, resist the ordinance of God. And for their publishing of such opinions, or maintaining of such practices, as are contrary to the light of nature, or to the known principles of Christianity, whether concerning faith, worship, or conversation; or to the power of godliness; or such erroneous opinions or practices as, either in their own nature, or in the manner of publishing or maintaining them, are destructive to the external peace and order which Christ hath established in the Church; they may lawfully be called to account, and proceeded against by the censures of the Church, and by the power of the Civil Magistrate.",
-     "contentWithProofs": "And because the power which God hath ordained, and the liberty which Christ hath purchased, are not intended by God to destroy, but mutually to uphold and preserve one another; they who, upon pretense of Christian liberty, shall oppose any lawful power, or the lawful exercise of it, whether it be civil or ecclesiastical, resist the ordinance of God.[1] And for their publishing of such opinions, or maintaining of such practices, as are contrary to the light of nature, or to the known principles of Christianity, whether concerning faith, worship, or conversation; or to the power of godliness; or such erroneous opinions or practices as, either in their own nature, or in the manner of publishing or maintaining them, are destructive to the external peace and order which Christ hath established in the Church; they may lawfully be called to account,[2] and proceeded against by the censures of the Church, and by the power of the Civil Magistrate.[3]",
+     "content": "And because the powers which God hath ordained, and the liberty which Christ hath purchased, are not intended by God to destroy, but mutually to uphold and preserve one another; they who, upon pretense of Christian liberty, shall oppose any lawful power, or the lawful exercise of it, whether it be civil or ecclesiastical, resist the ordinance of God. And for their publishing of such opinions, or maintaining of such practices, as are contrary to the light of nature, or to the known principles of Christianity, whether concerning faith, worship, or conversation; or to the power of godliness; or such erroneous opinions or practices as, either in their own nature, or in the manner of publishing or maintaining them, are destructive to the external peace and order which Christ hath established in the Church; they may lawfully be called to account, and proceeded against by the censures of the Church, and by the power of the Civil Magistrate.",
+     "contentWithProofs": "And because the powers which God hath ordained, and the liberty which Christ hath purchased, are not intended by God to destroy, but mutually to uphold and preserve one another; they who, upon pretense of Christian liberty, shall oppose any lawful power, or the lawful exercise of it, whether it be civil or ecclesiastical, resist the ordinance of God.[1] And for their publishing of such opinions, or maintaining of such practices, as are contrary to the light of nature, or to the known principles of Christianity, whether concerning faith, worship, or conversation; or to the power of godliness; or such erroneous opinions or practices as, either in their own nature, or in the manner of publishing or maintaining them, are destructive to the external peace and order which Christ hath established in the Church; they may lawfully be called to account,[2] and proceeded against by the censures of the Church, and by the power of the Civil Magistrate.[3]",
      "proofs": [
       {
        "id": 1,
@@ -11712,6 +11724,8 @@
        "id": 3,
        "refs": [
         "DEU.13.6-12",
+        "EZR.7.23",
+        "EZR.7.25-28",
         "2KI.23.5-6",
         "2KI.23.9",
         "2KI.23.20-21",
@@ -11874,6 +11888,18 @@
        "footnote": 3
       },
       {
+       "reference": "Ezra 7:23",
+       "ref": "EZR.7.23",
+       "text": "Whatsoever is commanded by the God of heaven, let it be diligently done for the house of the God of heaven: for why should there be wrath against the realm of the king and his sons?",
+       "footnote": 3
+      },
+      {
+       "reference": "Ezra 7:25–28",
+       "ref": "EZR.7.25-28",
+       "text": "And thou, Ezra, after the wisdom of thy God, that is in thine hand, set magistrates and judges, which may judge all the people that are beyond the river, all such as know the laws of thy God; and teach ye them that know them not. And whosoever will not do the law of thy God, and the law of the king, let judgment be executed speedily upon him, whether it be unto death, or to banishment, or to confiscation of goods, or to imprisonment. Blessed be the LORD God of our fathers, which hath put such a thing as this in the king’s heart, to beautify the house of the LORD which is in Jerusalem: And hath extended mercy unto me before the king, and his counsellors, and before all the king’s mighty princes. And I was strengthened as the hand of the LORD my God was upon me, and I gathered together out of Israel chief men to go up with me.",
+       "footnote": 3
+      },
+      {
        "reference": "2 Kings 23:5–6",
        "ref": "2KI.23.5-6",
        "text": "And he put down the idolatrous priests, whom the kings of Judah had ordained to burn incense in the high places in the cities of Judah, and in the places round about Jerusalem; them also that burned incense unto Baal, to the sun, and to the moon, and to the planets, and to all the host of heaven. And he brought out the grove from the house of the LORD, without Jerusalem, unto the brook Kidron, and burned it at the brook Kidron, and stamped it small to powder, and cast the powder thereof upon the graves of the children of the people.",
@@ -11997,8 +12023,8 @@
    "sections": [
     {
      "number": "21.1",
-     "content": "The light of nature showeth that there is a God, who hath lordship and sovereignty over all; is good, and doeth good unto all; and is therefore to be feared, loved, praised, called upon, trusted in, and served with all the heart, and with all the soul, and with all the might. But the acceptable way of worshipping the true God is instituted by himself, and so limited to his own revealed will, that he may not be worshipped according to the imaginations and devices of men, or the suggestions of Satan, under any visible representations or any other way not prescribed in the Holy Scripture.",
-     "contentWithProofs": "The light of nature showeth that there is a God, who hath lordship and sovereignty over all; is good, and doeth good unto all; and is therefore to be feared, loved, praised, called upon, trusted in, and served with all the heart, and with all the soul, and with all the might.[1] But the acceptable way of worshipping the true God is instituted by himself, and so limited to his own revealed will, that he may not be worshipped according to the imaginations and devices of men, or the suggestions of Satan, under any visible representations or any other way not prescribed in the Holy Scripture.[2]",
+     "content": "The light of nature showeth that there is a God, who hath lordship and sovereignty over all; is good, and doth good unto all; and is therefore to be feared, loved, praised, called upon, trusted in, and served with all the heart, and with all the soul, and with all the might. But the acceptable way of worshipping the true God is instituted by himself, and so limited by his own revealed will, that he may not be worshipped according to the imaginations and devices of men, or the suggestions of Satan, under any visible representation or any other way not prescribed in the Holy Scripture.",
+     "contentWithProofs": "The light of nature showeth that there is a God, who hath lordship and sovereignty over all; is good, and doth good unto all; and is therefore to be feared, loved, praised, called upon, trusted in, and served with all the heart, and with all the soul, and with all the might.[1] But the acceptable way of worshipping the true God is instituted by himself, and so limited by his own revealed will, that he may not be worshipped according to the imaginations and devices of men, or the suggestions of Satan, under any visible representation or any other way not prescribed in the Holy Scripture.[2]",
      "proofs": [
       {
        "id": 1,
@@ -12326,7 +12352,7 @@
       {
        "reference": "Genesis 18:27",
        "ref": "GEN.18.27",
-       "text": "And Abraham answered and said, Behold now, I have taken upon me to speak unto the LORD, which am but dust and ashes:",
+       "text": "And Abraham answered and said, Behold now, I have taken upon me to speak unto the Lord, which am but dust and ashes:",
        "footnote": 6
       },
       {
@@ -12491,8 +12517,8 @@
     },
     {
      "number": "21.5",
-     "content": "The reading of the Scriptures with godly fear; the sound preaching; and conscionable hearing of the Word, in obedience unto God with understanding, faith, and reverence; singing of Psalms with grace in the heart; as, also, the due administration and worthy receiving of the sacraments instituted by Christ; are all parts of the ordinary religious worship of God: besides religious oaths, vows, solemn fastings, and thanksgivings upon several occasions; which are, in their several times and seasons, to be used in an holy and religious manner.",
-     "contentWithProofs": "The reading of the Scriptures with godly fear;[1] the sound preaching;[2] and conscionable hearing of the Word, in obedience unto God with understanding, faith, and reverence;[3] singing of Psalms with grace in the heart;[4] as, also, the due administration and worthy receiving of the sacraments instituted by Christ; are all parts of the ordinary religious worship of God:[5] besides religious oaths,[6] vows,[7] solemn fastings,[8] and thanksgivings upon several occasions;[9] which are, in their several times and seasons, to be used in an holy and religious manner.[10]",
+     "content": "The reading of the Scriptures with godly fear; the sound preaching; and conscionable hearing of the Word, in obedience unto God with understanding, faith, and reverence; singing of Psalms with grace in the heart; as, also, the due administration and worthy receiving of the sacraments instituted by Christ; are all parts of the ordinary religious worship of God: besides religious oaths, vows, solemn fastings, and thanksgivings upon special occasions; which are, in their several times and seasons, to be used in an holy and religious manner.",
+     "contentWithProofs": "The reading of the Scriptures with godly fear;[1] the sound preaching;[2] and conscionable hearing of the Word, in obedience unto God with understanding, faith, and reverence;[3] singing of Psalms with grace in the heart;[4] as, also, the due administration and worthy receiving of the sacraments instituted by Christ; are all parts of the ordinary religious worship of God:[5] besides religious oaths,[6] vows,[7] solemn fastings,[8] and thanksgivings upon special occasions;[9] which are, in their several times and seasons, to be used in an holy and religious manner.[10]",
      "proofs": [
       {
        "id": 1,
@@ -13048,7 +13074,8 @@
         "EXO.16.29-30",
         "EXO.31.15-17",
         "ISA.58.13",
-        "NEH.13.15-22"
+        "NEH.13.15-19",
+        "NEH.13.21-22"
        ]
       },
       {
@@ -13097,9 +13124,15 @@
        "footnote": 1
       },
       {
-       "reference": "Nehemiah 13:15–22",
-       "ref": "NEH.13.15-22",
-       "text": "In those days saw I in Judah some treading wine presses on the sabbath, and bringing in sheaves, and lading asses; as also wine, grapes, and figs, and all manner of burdens, which they brought into Jerusalem on the sabbath day: and I testified against them in the day wherein they sold victuals. There dwelt men of Tyre also therein, which brought fish, and all manner of ware, and sold on the sabbath unto the children of Judah, and in Jerusalem. Then I contended with the nobles of Judah, and said unto them, What evil thing is this that ye do, and profane the sabbath day? Did not your fathers thus, and did not our God bring all this evil upon us, and upon this city? yet ye bring more wrath upon Israel by profaning the sabbath. And it came to pass, that when the gates of Jerusalem began to be dark before the sabbath, I commanded that the gates should be shut, and charged that they should not be opened till after the sabbath: and some of my servants set I at the gates, that there should no burden be brought in on the sabbath day. So the merchants and sellers of all kind of ware lodged without Jerusalem once or twice. Then I testified against them, and said unto them, Why lodge ye about the wall? if ye do so again, I will lay hands on you. From that time forth came they no more on the sabbath. And I commanded the Levites that they should cleanse themselves, and that they should come and keep the gates, to sanctify the sabbath day. Remember me, O my God, concerning this also, and spare me according to the greatness of thy mercy.",
+       "reference": "Nehemiah 13:15–19",
+       "ref": "NEH.13.15-19",
+       "text": "In those days saw I in Judah some treading wine presses on the sabbath, and bringing in sheaves, and lading asses; as also wine, grapes, and figs, and all manner of burdens, which they brought into Jerusalem on the sabbath day: and I testified against them in the day wherein they sold victuals. There dwelt men of Tyre also therein, which brought fish, and all manner of ware, and sold on the sabbath unto the children of Judah, and in Jerusalem. Then I contended with the nobles of Judah, and said unto them, What evil thing is this that ye do, and profane the sabbath day? Did not your fathers thus, and did not our God bring all this evil upon us, and upon this city? yet ye bring more wrath upon Israel by profaning the sabbath. And it came to pass, that when the gates of Jerusalem began to be dark before the sabbath, I commanded that the gates should be shut, and charged that they should not be opened till after the sabbath: and some of my servants set I at the gates, that there should no burden be brought in on the sabbath day.",
+       "footnote": 1
+      },
+      {
+       "reference": "Nehemiah 13:21–22",
+       "ref": "NEH.13.21-22",
+       "text": "Then I testified against them, and said unto them, Why lodge ye about the wall? if ye do so again, I will lay hands on you. From that time forth came they no more on the sabbath. And I commanded the Levites that they should cleanse themselves, and that they should come and keep the gates, to sanctify the sabbath day. Remember me, O my God, concerning this also, and spare me according to the greatness of thy mercy.",
        "footnote": 1
       },
       {
@@ -13209,7 +13242,7 @@
        "id": 4,
        "refs": [
         "1KI.8.31",
-        "EZR.10.25",
+        "EZR.10.5",
         "NEH.13.25"
        ]
       }
@@ -13276,9 +13309,9 @@
        "footnote": 4
       },
       {
-       "reference": "Ezra 10:25",
-       "ref": "EZR.10.25",
-       "text": "Moreover of Israel: of the sons of Parosh; Ramiah, and Jeziah, and Malchiah, and Miamin, and Eleazar, and Malchijah, and Benaiah.",
+       "reference": "Ezra 10:5",
+       "ref": "EZR.10.5",
+       "text": "Then arose Ezra, and made the chief priests, the Levites, and all Israel, to swear that they should do according to this word. And they sware.",
        "footnote": 4
       },
       {
@@ -13521,8 +13554,7 @@
        "id": 2,
        "refs": [
         "GEN.28.20-22",
-        "DEU.23.21",
-        "DEU.23.23",
+        "DEU.23.21-23",
         "1SA.1.11",
         "PSA.50.14",
         "PSA.66.13-14",
@@ -13550,15 +13582,9 @@
        "footnote": 2
       },
       {
-       "reference": "Deuteronomy 23:21",
-       "ref": "DEU.23.21",
-       "text": "When thou shalt vow a vow unto the LORD thy God, thou shalt not slack to pay it: for the LORD thy God will surely require it of thee; and it would be sin in thee.",
-       "footnote": 2
-      },
-      {
-       "reference": "Deuteronomy 23:23",
-       "ref": "DEU.23.23",
-       "text": "That which is gone out of thy lips thou shalt keep and perform; even a freewill offering, according as thou hast vowed unto the LORD thy God, which thou hast promised with thy mouth.",
+       "reference": "Deuteronomy 23:21–23",
+       "ref": "DEU.23.21-23",
+       "text": "When thou shalt vow a vow unto the LORD thy God, thou shalt not slack to pay it: for the LORD thy God will surely require it of thee; and it would be sin in thee. But if thou shalt forbear to vow, it shall be no sin in thee. That which is gone out of thy lips thou shalt keep and perform; even a freewill offering, according as thou hast vowed unto the LORD thy God, which thou hast promised with thy mouth.",
        "footnote": 2
       },
       {
@@ -13589,8 +13615,8 @@
     },
     {
      "number": "22.7",
-     "content": "No man may vow to do anything forbidden in the Word of God, or what would hinder any duty therein commanded, or which is not in his own power, and for the performance whereof he hath no promise or ability from God. In which respect, Popish monastical vows of perpetual single life, professed poverty, and regular obedience, are so far from being degrees of higher perfection, that they are superstitious and sinful snares, in which no Christian may entangle himself.",
-     "contentWithProofs": "No man may vow to do anything forbidden in the Word of God, or what would hinder any duty therein commanded, or which is not in his own power, and for the performance whereof he hath no promise or ability from God.[1] In which respect, Popish monastical vows of perpetual single life, professed poverty, and regular obedience, are so far from being degrees of higher perfection, that they are superstitious and sinful snares, in which no Christian may entangle himself.[2]",
+     "content": "No man may vow to do anything forbidden in the Word of God, or what would hinder any duty therein commanded, or which is not in his own power, and for the performance whereof he hath no promise of ability from God. In which respects, Popish monastical vows of perpetual single life, professed poverty, and regular obedience, are so far from being degrees of higher perfection, that they are superstitious and sinful snares, in which no Christian may entangle himself.",
+     "contentWithProofs": "No man may vow to do anything forbidden in the Word of God, or what would hinder any duty therein commanded, or which is not in his own power, and for the performance whereof he hath no promise of ability from God.[1] In which respects, Popish monastical vows of perpetual single life, professed poverty, and regular obedience, are so far from being degrees of higher perfection, that they are superstitious and sinful snares, in which no Christian may entangle himself.[2]",
      "proofs": [
       {
        "id": 1,
@@ -13875,7 +13901,8 @@
         "1CH.13.1-9",
         "2CH.15.12-13",
         "2CH.34.33",
-        "EZR.7.23-28",
+        "EZR.7.23",
+        "EZR.7.25-28",
         "PSA.122.9",
         "ISA.49.23"
        ]
@@ -13953,7 +13980,7 @@
       {
        "reference": "Leviticus 24:16",
        "ref": "LEV.24.16",
-       "text": "And he that blasphemeth the name of the LORD, he shall surely be put to death, and all the congregation shall certainly stone him: as well the stranger, as he that is born in the land, when he blasphemeth the name of the Lord, shall be put to death.",
+       "text": "And he that blasphemeth the name of the LORD, he shall surely be put to death, and all the congregation shall certainly stone him: as well the stranger, as he that is born in the land, when he blasphemeth the name of the LORD, shall be put to death.",
        "footnote": 2
       },
       {
@@ -13987,9 +14014,15 @@
        "footnote": 2
       },
       {
-       "reference": "Ezra 7:23–28",
-       "ref": "EZR.7.23-28",
-       "text": "Whatsoever is commanded by the God of heaven, let it be diligently done for the house of the God of heaven: for why should there be wrath against the realm of the king and his sons? Also we certify you, that touching any of the priests and Levites, singers, porters, Nethinims, or ministers of this house of God, it shall not be lawful to impose toll, tribute, or custom, upon them. And thou, Ezra, after the wisdom of thy God, that is in thine hand, set magistrates and judges, which may judge all the people that are beyond the river, all such as know the laws of thy God; and teach ye them that know them not. And whosoever will not do the law of thy God, and the law of the king, let judgment be executed speedily upon him, whether it be unto death, or to banishment, or to confiscation of goods, or to imprisonment. Blessed be the LORD God of our fathers, which hath put such a thing as this in the king’s heart, to beautify the house of the LORD which is in Jerusalem: And hath extended mercy unto me before the king, and his counsellors, and before all the king’s mighty princes. And I was strengthened as the hand of the LORD my God was upon me, and I gathered together out of Israel chief men to go up with me.",
+       "reference": "Ezra 7:23",
+       "ref": "EZR.7.23",
+       "text": "Whatsoever is commanded by the God of heaven, let it be diligently done for the house of the God of heaven: for why should there be wrath against the realm of the king and his sons?",
+       "footnote": 2
+      },
+      {
+       "reference": "Ezra 7:25–28",
+       "ref": "EZR.7.25-28",
+       "text": "And thou, Ezra, after the wisdom of thy God, that is in thine hand, set magistrates and judges, which may judge all the people that are beyond the river, all such as know the laws of thy God; and teach ye them that know them not. And whosoever will not do the law of thy God, and the law of the king, let judgment be executed speedily upon him, whether it be unto death, or to banishment, or to confiscation of goods, or to imprisonment. Blessed be the LORD God of our fathers, which hath put such a thing as this in the king’s heart, to beautify the house of the LORD which is in Jerusalem: And hath extended mercy unto me before the king, and his counsellors, and before all the king’s mighty princes. And I was strengthened as the hand of the LORD my God was upon me, and I gathered together out of Israel chief men to go up with me.",
        "footnote": 2
       },
       {
@@ -14026,8 +14059,8 @@
     },
     {
      "number": "23.4",
-     "content": "It is the duty of people to pray for magistrates, to honor their persons, to pay them tribute and other dues, to obey their lawful commands, and to be subject to their authority, for conscience' sake. Infidelity or difference in religion doth not make void the magistrate's just and legal authority, nor free the people from their due obedience to him: from which ecclesiastical persons are not exempted; much less hath the Pope any power or jurisdiction over them in their dominions, or over any of their people; and least of all to deprive them of their dominions or lives, if he shall judge them to be heretics, or upon any other pretense whatsoever.",
-     "contentWithProofs": "It is the duty of people to pray for magistrates,[1] to honor their persons,[2] to pay them tribute and other dues,[3] to obey their lawful commands, and to be subject to their authority, for conscience' sake.[4] Infidelity or difference in religion doth not make void the magistrate's just and legal authority, nor free the people from their due obedience to him:[5] from which ecclesiastical persons are not exempted;[6] much less hath the Pope any power or jurisdiction over them in their dominions, or over any of their people; and least of all to deprive them of their dominions or lives, if he shall judge them to be heretics, or upon any other pretense whatsoever.[7]",
+     "content": "It is the duty of people to pray for magistrates, to honor their persons, to pay them tribute and other dues, to obey their lawful commands, and to be subject to their authority, for conscience' sake. Infidelity or difference in religion doth not make void the magistrate's just and legal authority, nor free the people from their due obedience to him: from which ecclesiastical persons are not exempted; much less hath the Pope any power and jurisdiction over them in their dominions, or over any of their people; and least of all to deprive them of their dominions or lives, if he shall judge them to be heretics, or upon any other pretense whatsoever.",
+     "contentWithProofs": "It is the duty of people to pray for magistrates,[1] to honor their persons,[2] to pay them tribute and other dues,[3] to obey their lawful commands, and to be subject to their authority, for conscience' sake.[4] Infidelity or difference in religion doth not make void the magistrate's just and legal authority, nor free the people from their due obedience to him:[5] from which ecclesiastical persons are not exempted;[6] much less hath the Pope any power and jurisdiction over them in their dominions, or over any of their people; and least of all to deprive them of their dominions or lives, if he shall judge them to be heretics, or upon any other pretense whatsoever.[7]",
      "proofs": [
       {
        "id": 1,
@@ -14469,7 +14502,7 @@
       {
        "reference": "Matthew 1:18–20",
        "ref": "MAT.1.18-20",
-       "text": "Now the birth of Jesus Christ was on this wise: When as his mother Mary was espoused to Joseph, before they came together, she was found with child of the Holy Ghost. Then Joseph her husband, being a just man, and not willing to make her a publick example, was minded to put her away privily. But while he thought on these things, behold, the angel of the LORD appeared unto him in a dream, saying, Joseph, thou son of David, fear not to take unto thee Mary thy wife: for that which is conceived in her is of the Holy Ghost.",
+       "text": "Now the birth of Jesus Christ was on this wise: When as his mother Mary was espoused to Joseph, before they came together, she was found with child of the Holy Ghost. Then Joseph her husband, being a just man, and not willing to make her a publick example, was minded to put her away privily. But while he thought on these things, behold, the angel of the Lord appeared unto him in a dream, saying, Joseph, thou son of David, fear not to take unto thee Mary thy wife: for that which is conceived in her is of the Holy Ghost.",
        "footnote": 1
       },
       {
@@ -14700,7 +14733,7 @@
       {
        "reference": "Acts 2:39",
        "ref": "ACT.2.39",
-       "text": "For the promise is unto you, and to your children, and to all that are afar off, even as many as the LORD our God shall call.",
+       "text": "For the promise is unto you, and to your children, and to all that are afar off, even as many as the Lord our God shall call.",
        "footnote": 2
       },
       {
@@ -15551,7 +15584,6 @@
       {
        "id": 1,
        "refs": [
-        "MAT.28.19-20",
         "MAT.28.19",
         "1CO.4.1",
         "1CO.11.20",
@@ -15561,12 +15593,6 @@
       }
      ],
      "proofTexts": [
-      {
-       "reference": "Matthew 28:19–20",
-       "ref": "MAT.28.19-20",
-       "text": "Go ye therefore, and teach all nations, baptizing them in the name of the Father, and of the Son, and of the Holy Ghost: Teaching them to observe all things whatsoever I have commanded you: and, lo, I am with you alway, even unto the end of the world. Amen.",
-       "footnote": 1
-      },
       {
        "reference": "Matthew 28:19",
        "ref": "MAT.28.19",
@@ -15904,7 +15930,7 @@
       {
        "reference": "Acts 2:38–39",
        "ref": "ACT.2.38-39",
-       "text": "Then Peter said unto them, Repent, and be baptized every one of you in the name of Jesus Christ for the remission of sins, and ye shall receive the gift of the Holy Ghost. For the promise is unto you, and to your children, and to all that are afar off, even as many as the LORD our God shall call.",
+       "text": "Then Peter said unto them, Repent, and be baptized every one of you in the name of Jesus Christ for the remission of sins, and ye shall receive the gift of the Holy Ghost. For the promise is unto you, and to your children, and to all that are afar off, even as many as the Lord our God shall call.",
        "footnote": 2
       },
       {
@@ -16282,7 +16308,7 @@
         "MAT.26.26-28",
         "MRK.14.22-24",
         "LUK.22.19-20",
-        "1CO.11.23-27"
+        "1CO.11.23-26"
        ]
       },
       {
@@ -16313,9 +16339,9 @@
        "footnote": 1
       },
       {
-       "reference": "1 Corinthians 11:23–27",
-       "ref": "1CO.11.23-27",
-       "text": "For I have received of the Lord that which also I delivered unto you, That the Lord Jesus the same night in which he was betrayed took bread: And when he had given thanks, he brake it, and said, Take, eat: this is my body, which is broken for you: this do in remembrance of me. After the same manner also he took the cup, when he had supped, saying, This cup is the new testament in my blood: this do ye, as oft as ye drink it, in remembrance of me. For as often as ye eat this bread, and drink this cup, ye do shew the Lord’s death till he come. Wherefore whosoever shall eat this bread, and drink this cup of the Lord, unworthily, shall be guilty of the body and blood of the Lord.",
+       "reference": "1 Corinthians 11:23–26",
+       "ref": "1CO.11.23-26",
+       "text": "For I have received of the Lord that which also I delivered unto you, That the Lord Jesus the same night in which he was betrayed took bread: And when he had given thanks, he brake it, and said, Take, eat: this is my body, which is broken for you: this do in remembrance of me. After the same manner also he took the cup, when he had supped, saying, This cup is the new testament in my blood: this do ye, as oft as ye drink it, in remembrance of me. For as often as ye eat this bread, and drink this cup, ye do shew the Lord’s death till he come.",
        "footnote": 1
       },
       {
@@ -17323,7 +17349,8 @@
       {
        "id": 2,
        "refs": [
-        "JHN.5.22"
+        "JHN.5.22",
+        "JHN.5.27"
        ]
       },
       {
@@ -17342,7 +17369,7 @@
         "ROM.2.16",
         "ROM.14.10",
         "ROM.14.12",
-        "2CO.5.12"
+        "2CO.5.10"
        ]
       }
      ],
@@ -17357,6 +17384,12 @@
        "reference": "John 5:22",
        "ref": "JHN.5.22",
        "text": "For the Father judgeth no man, but hath committed all judgment unto the Son:",
+       "footnote": 2
+      },
+      {
+       "reference": "John 5:27",
+       "ref": "JHN.5.27",
+       "text": "And hath given him authority to execute judgment also, because he is the Son of man.",
        "footnote": 2
       },
       {
@@ -17408,9 +17441,9 @@
        "footnote": 4
       },
       {
-       "reference": "2 Corinthians 5:12",
-       "ref": "2CO.5.12",
-       "text": "For we commend not ourselves again unto you, but give you occasion to glory on our behalf, that ye may have somewhat to answer them which glory in appearance, and not in heart.",
+       "reference": "2 Corinthians 5:10",
+       "ref": "2CO.5.10",
+       "text": "For we must all appear before the judgment seat of Christ; that every one may receive the things done in his body, according to that he hath done, whether it be good or bad.",
        "footnote": 4
       }
      ]

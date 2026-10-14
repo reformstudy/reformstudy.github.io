@@ -25,7 +25,8 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { CANON, CANON_BY_ID } from '../lib/canon.js';
-import { fetchJson, parseArgs, writeJson } from '../lib/io.js';
+import { fetchBuffer, parseArgs, writeJson } from '../lib/io.js';
+import { checkLock, digestFiles } from '../lib/lock.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUT_DIR = path.join(__dirname, '../../res/commentaries/henry');
@@ -107,17 +108,18 @@ async function main() {
   const bad = requested.filter(id => !CANON_BY_ID.has(id));
   if (bad.length) throw new Error(`Unknown book IDs: ${bad.join(', ')}`);
 
-  const load = args['source-dir']
-    ? async rel => {
-        const file = path.join(args['source-dir'], rel);
-        return fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : null;
-      }
-    : async rel => {
-        const res = await fetch(`${RAW_BASE}/${rel}`);
-        if (res.status === 404) return null;
-        if (!res.ok) return fetchJson(`${RAW_BASE}/${rel}`); // retries with backoff
-        return res.json();
-      };
+  const raw = new Map();
+  const load = async rel => {
+    let data;
+    if (args['source-dir']) {
+      const file = path.join(args['source-dir'], rel);
+      data = fs.existsSync(file) ? fs.readFileSync(file) : null;
+    } else {
+      data = await fetchBuffer(`${RAW_BASE}/${rel}`, { allowMissing: true });
+    }
+    raw.set(rel, data);
+    return data === null ? null : JSON.parse(data.toString('utf8'));
+  };
 
   const metaPath = path.join(OUT_DIR, 'meta.json');
   const meta = fs.existsSync(metaPath) ? JSON.parse(fs.readFileSync(metaPath, 'utf8')) : { books: [] };
@@ -154,6 +156,13 @@ async function main() {
     const chapters = written.filter(n => n !== null);
     metaBooks.set(bookId, { id: bookId, name: canon.name, chapters, hasIntroduction: Boolean(intro) });
     console.log(`  ${bookId}: ${chapters.length}/${canon.chapters} chapters${intro ? ', introduction' : ''}`);
+  }
+
+  // The checksum covers every file, so only a full run (all books) can be checked.
+  if (requested.length === CANON.length) {
+    checkLock('henry', { source: `${SOURCE_REPO}@${SOURCE_COMMIT}/en/henry`, ...digestFiles(raw) });
+  } else {
+    console.warn('  Partial download: source checksums are only verified when every book is downloaded.');
   }
 
   meta.books = CANON.filter(c => metaBooks.has(c.id)).map(c => metaBooks.get(c.id));

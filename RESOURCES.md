@@ -13,7 +13,7 @@ Bible and commentary text is downloaded and converted by scripts, never typed in
 
 ### Sources
 
-Every source is pinned, so rerunning the pipeline gives the same files until the pin is changed.
+Every source is pinned, so rerunning the pipeline gives the same files until the pin is changed. The SHA-256 of each verified download is recorded in `scripts/ingest/sources.lock.json`, and ingest stops if a download doesn't match. Known errors in a source are fixed by correction files applied at ingest (`scripts/ingest/kjv-corrections.json`, `scripts/ingest/wcf-corrections.json`). How each source was checked against independent copies, and what was corrected, is in [res/SOURCES.md](res/SOURCES.md).
 
 | Resource | Script | Source (pinned) | License |
 |----------|--------|-----------------|---------|

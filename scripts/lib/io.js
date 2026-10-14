@@ -6,13 +6,18 @@
 import fs from 'fs';
 import path from 'path';
 
-export async function fetchJson(url, { retries = 3 } = {}) {
+/**
+ * Download a file as a Buffer, retrying with backoff. With `allowMissing`,
+ * a 404 resolves to null instead of failing.
+ */
+export async function fetchBuffer(url, { retries = 3, allowMissing = false } = {}) {
   let lastError;
   for (let attempt = 0; attempt <= retries; attempt++) {
     try {
       const res = await fetch(url);
+      if (allowMissing && res.status === 404) return null;
       if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
-      return await res.json();
+      return Buffer.from(await res.arrayBuffer());
     } catch (err) {
       lastError = err;
       if (attempt < retries) {
@@ -21,6 +26,10 @@ export async function fetchJson(url, { retries = 3 } = {}) {
     }
   }
   throw lastError;
+}
+
+export async function fetchJson(url, options) {
+  return JSON.parse((await fetchBuffer(url, options)).toString('utf8'));
 }
 
 /** Collapse runs of whitespace (including poetry line breaks) to single spaces. */
