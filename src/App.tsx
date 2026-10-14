@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
 import { Search, BookOpen, Map as MapIcon, Library, Scale, AlertCircle } from 'lucide-react';
 import AtlasAndTimeline from './components/AtlasAndTimeline';
@@ -7,6 +7,7 @@ import ScriptureReader from './components/ScriptureReader';
 import TheologyExplorer from './components/TheologyExplorer';
 import ConfessionalArchive from './components/ConfessionalArchive';
 import { ResourceProvider, useResources } from './context/ResourceContext';
+import { PreviewBanner, VersionBadge, VersionPanel, useBuildInfo } from './components/VersionInfo';
 
 const navItems = [
   { id: 'search',   label: 'Global Search',       icon: <Search size={16} />,   path: '/search' },
@@ -67,6 +68,9 @@ function AppContent() {
   const { isLoading, error, ensureResourceLoaded } = useResources();
   const navigate = useNavigate();
   const location = useLocation();
+  const build = useBuildInfo();
+  const [aboutOpen, setAboutOpen] = useState(false);
+  const closeAbout = useCallback(() => setAboutOpen(false), []);
 
   // The WCF is small and several screens link into it. Bible text is loaded
   // per book by the screens that show it.
@@ -85,7 +89,10 @@ function AppContent() {
           </div>
           <div className="brand-title">ReformStudy</div>
         </div>
+        {build && <VersionBadge info={build} onOpen={() => setAboutOpen(true)} />}
       </header>
+      {build?.channel === 'preview' && <PreviewBanner info={build} onOpen={() => setAboutOpen(true)} />}
+      {build && aboutOpen && <VersionPanel info={build} onClose={closeAbout} />}
 
       <div className="sub-nav">
         {navItems.map(item => (

@@ -8,7 +8,7 @@
 - **Frontend**: React 18 with TypeScript 5
 - **Bundler**: Vite 5 (with React plugin)
 - **Icons**: lucide-react
-- **Hosting**: GitHub Pages (source: `main` branch, `/docs` folder)
+- **Hosting**: GitHub Pages (the `gh-pages` branch, written by the deploy workflow): live at `/`, preview at `/preview/`
 - **Type Checking**: TypeScript compiler (part of build)
 
 ## Repository Structure
@@ -20,10 +20,12 @@
 │   │   ├── ConfessionalArchive.tsx    # Confessions with proof-text cards
 │   │   ├── GlobalSearch.tsx           # Full-text search across Bible and confessions
 │   │   ├── ScriptureReader.tsx        # Bible reader; loads one book at a time
-│   │   └── TheologyExplorer.tsx       # Doctrines and heresies
+│   │   ├── TheologyExplorer.tsx       # Doctrines and heresies
+│   │   └── VersionInfo.tsx            # Version badge, preview banner, "About this version" panel
 │   ├── context/
 │   │   └── ResourceContext.tsx        # React context + useResources() hook for all resource state
 │   ├── utils/
+│   │   ├── paths.ts                   # siteUrl(): URLs relative to the deploy base ("/" or "/preview/")
 │   │   ├── resourceLoader.ts          # Type definitions, ResourceManager class, fetch helpers
 │   │   └── ResourceBrowserExample.tsx # Reference/example component (not used in production)
 │   ├── App.tsx                        # Root component; wraps app in ResourceProvider
@@ -46,6 +48,7 @@
 │   ├── validate-resources.js          # Canon, verse and commentary checks
 │   ├── ingest/{kjv,bsb,wcf,henry,strongs}.js  # Download + convert sources into res/
 │   ├── verify/                        # Compare sources with witnesses (verify.js), record decisions (review.js)
+│   ├── release/                       # build.json (version, content fingerprint), content diff vs the live tag
 │   ├── lib/canon.js                   # The 66 books: USFM and OSIS IDs, names, chapter counts
 │   ├── lib/refs.js                    # Scripture reference parsing (OSIS and compact "PSA.19.1-3")
 │   ├── tests/                         # node:test tests (npm test)
@@ -67,6 +70,7 @@
 ├── vite.config.ts
 ├── index.html
 ├── RESOURCES.md                       # Detailed resource system documentation
+├── RELEASING.md                       # Live vs preview channels; how to release
 └── README.md
 ```
 
@@ -105,6 +109,7 @@ npm run ingest:henry          # Matthew Henry → res/commentaries/henry/ (--boo
 npm run ingest:strongs        # Strong's Greek + Hebrew → res/strongs/
 npm run verify                # compare sources with independent witnesses; writes provenance/reports/
 npm run review -- kjv         # list, accept or correct items awaiting review
+npm run content:diff -- v0.1.0  # content changes since a release tag (what a release would change)
 npm run validate:resources    # also runs inside every build; errors fail the build
 npm test                      # converter and validation tests (node:test)
 ```
@@ -235,17 +240,16 @@ Use these variables for all new styling to stay consistent with the design syste
 - **Resource validation** (`scripts/validate-resources.js`) runs in every build. The KJV is the reference versification (exactly 31,102 verses); other translations are compared with it and differences are listed as warnings.
 
 ## Build & Deployment Pipeline
-- **Source Control**: `main` branch
-- **Automation**: GitHub Actions (`.github/workflows/deploy.yml`)
-- **Build Output**: `docs/` directory
-- **Hosting**: GitHub Pages (configured to serve `/docs` from `main`)
-- **Process**: Commits to `main` → GH Actions builds → outputs to `docs/` → auto-deployed
+- **Channels**: the live site (`/`) is built from the latest release tag (`v*`); the preview (`/preview/`) from `main`. Merging to `main` changes only the preview; pushing a tag releases. See `RELEASING.md`.
+- **Automation**: `.github/workflows/deploy.yml` builds both on every push to `main` or a `v*` tag and publishes them to the `gh-pages` branch. It deploys nothing until a `v*` tag exists.
+- **Build output**: `docs/` (git-ignored), including `build.json` (version, content fingerprint, verification status) and, for the preview, `changes.json` (content changes since the live tag)
 
 ## Important Configuration Details
-- **Vite Base Path**: Set to `/` (root domain)
+- **Vite Base Path**: `BASE_PATH` env, default `/`; the preview uses `/preview/`. Fetch site files through `siteUrl()` (`src/utils/paths.ts`), never with absolute `/` paths
+- **Build channel**: `RS_CHANNEL` (`live`, `preview`, default `dev`) and, for a preview, `RS_LIVE_REF` (the live tag to diff against)
 - **Build Output**: `docs/` (required for GitHub Pages)
 - **React Plugin**: `@vitejs/plugin-react` with TSX support
-- **Resource URL in dev**: `/docs/resources/` — in production: `/resources/`
+- **Resource URL in dev**: `/docs/resources/` — in production: `resources/` under the base path
 - **No Environment Files**: Standard Vite setup (can add `.env` if needed)
 
 ## Code Standards & Patterns

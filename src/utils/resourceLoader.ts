@@ -5,6 +5,8 @@
  * Resources are fetched on-demand and cached in memory.
  */
 
+import { siteUrl } from './paths';
+
 // ============================================================================
 // Type Definitions
 // ============================================================================
@@ -211,12 +213,11 @@ export class ResourceManager {
   private loadingPromises: Map<string, Promise<any>> = new Map();
 
   constructor(baseUrl: string = '') {
-    // In development, resources are served from /docs/resources/
-    // In production, they're served from /resources/
+    // In development, resources are served from /docs/resources/. In
+    // production they're under resources/ wherever the site is deployed
+    // (/resources/ live, /preview/resources/ for the preview).
     const isDev = import.meta.env.DEV;
-    // Prefer built resources by default, but allow a local content server
-    // to serve editable content under /content when running in dev.
-    this.resourceBaseUrl = isDev ? '/docs/resources' : '/resources';
+    this.resourceBaseUrl = isDev ? '/docs/resources' : siteUrl('resources');
     this.manifestUrl = `${this.resourceBaseUrl}/manifest.json`;
   }
 

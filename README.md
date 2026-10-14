@@ -43,10 +43,12 @@ See [RESOURCES.md](RESOURCES.md) for detailed information about the resource sys
 
 ## GitHub Pages deployment
 
-A GitHub Actions workflow is configured at `.github/workflows/deploy.yml`.
-It builds the app into `docs/` and commits the generated output back to the `main` branch.
+`.github/workflows/deploy.yml` builds two sites and publishes them to the `gh-pages` branch:
 
-For this user site repo, configure GitHub Pages to use the `main` branch and the `/docs` folder as the site source.
+- **Live:** https://reformstudy.github.io/, built from the latest release tag (`v*`).
+- **Preview:** https://reformstudy.github.io/preview/, built from `main`. It shows what has changed since the live release.
+
+Merging to `main` updates only the preview; tagging a release puts it live. See [RELEASING.md](RELEASING.md).
 
 ## Project Structure
 

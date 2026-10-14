@@ -461,3 +461,240 @@ button {
 .reference-card__link:hover {
   border-bottom-color: currentColor !important;
 }
+
+/* ── Version badge, preview banner and "About this version" panel ─────── */
+
+.version-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--border-soft);
+  background: var(--bg-subtle);
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.version-badge:hover,
+.version-badge:focus-visible {
+  border-color: var(--text-tertiary);
+  color: var(--text-primary);
+}
+
+.version-badge.preview {
+  background: var(--bg-time-light);
+  border-color: var(--accent-time);
+  color: var(--accent-time);
+}
+
+.preview-banner {
+  padding: 8px 32px;
+  background: var(--bg-time-light);
+  border-bottom: 1px solid var(--border-soft);
+  color: var(--text-warm);
+  font-size: 0.85rem;
+}
+
+.preview-banner a,
+.preview-banner-link {
+  color: var(--accent-time);
+  font-weight: 600;
+}
+
+.preview-banner-link {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.version-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(44, 39, 36, 0.35);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 48px 16px;
+  overflow-y: auto;
+}
+
+.version-panel {
+  width: min(760px, 100%);
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft), var(--shadow-card);
+  padding: 24px 28px;
+  color: var(--text-primary);
+}
+
+.version-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.version-panel h2 {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  margin: 0;
+  color: var(--accent-geo);
+}
+
+.version-panel h3 {
+  font-size: 0.95rem;
+  margin: 20px 0 8px;
+}
+
+.version-close {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: var(--radius-sm);
+}
+
+.version-close:hover,
+.version-close:focus-visible {
+  background: var(--bg-sidebar-hover);
+}
+
+.version-muted {
+  color: var(--text-tertiary);
+  font-weight: 400;
+}
+
+.version-facts {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 4px 16px;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.version-facts dt {
+  color: var(--text-secondary);
+}
+
+.version-facts dd {
+  margin: 0;
+}
+
+.version-sources {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.version-sources th,
+.version-sources td {
+  text-align: left;
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--border-soft);
+  vertical-align: top;
+}
+
+.version-sources thead th {
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.version-sources tbody th {
+  font-weight: 600;
+}
+
+.version-panel a {
+  color: var(--accent-geo);
+}
+
+.version-changes details {
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  margin-bottom: 8px;
+}
+
+.version-changes summary {
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.version-change-items {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
+  max-height: 360px;
+  overflow-y: auto;
+  font-size: 0.85rem;
+}
+
+.version-change-items li {
+  padding: 6px 0;
+  border-top: 1px solid var(--border-soft);
+}
+
+.version-unit {
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 2px;
+}
+
+.version-change-items del,
+.version-change-items ins {
+  display: block;
+  text-decoration: none;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: var(--font-serif);
+}
+
+.version-change-items del {
+  background: var(--bg-exe-light);
+  color: var(--text-secondary);
+}
+
+.version-change-items del::before {
+  content: '− ';
+}
+
+.version-change-items ins {
+  background: var(--bg-geo-light);
+  margin-top: 2px;
+}
+
+.version-change-items ins::before {
+  content: '+ ';
+}
+
+@media (max-width: 768px) {
+  .preview-banner {
+    padding: 8px 16px;
+  }
+
+  .version-badge span {
+    max-width: 40vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* On a phone the preview badge just says "Preview"; the panel has the rest. */
+  .version-badge-detail {
+    display: none;
+  }
+
+  .version-overlay {
+    padding: 16px 8px;
+  }
+
+  .version-panel {
+    padding: 16px;
+  }
+}
