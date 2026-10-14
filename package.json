@@ -16,6 +16,8 @@
     "ingest:wcf": "node scripts/ingest/wcf.js",
     "ingest:henry": "node scripts/ingest/henry.js",
     "ingest:strongs": "node scripts/ingest/strongs.js",
+    "verify": "node scripts/verify/verify.js",
+    "review": "node scripts/verify/review.js",
     "test": "node --test scripts/tests/*.test.js",
     "convert:resources": "node scripts/convert-text-to-json.js",
     "preview": "vite preview"

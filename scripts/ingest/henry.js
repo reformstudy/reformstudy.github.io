@@ -160,7 +160,7 @@ async function main() {
 
   // The checksum covers every file, so only a full run (all books) can be checked.
   if (requested.length === CANON.length) {
-    checkLock('henry', { source: `${SOURCE_REPO}@${SOURCE_COMMIT}/en/henry`, ...digestFiles(raw) });
+    checkLock('henry', digestFiles(raw));
   } else {
     console.warn('  Partial download: source checksums are only verified when every book is downloaded.');
   }

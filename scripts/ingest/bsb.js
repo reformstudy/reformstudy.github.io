@@ -36,7 +36,8 @@ export function cleanInline(text) {
     .replace(/\\fe\s.*?\\fe\*/g, ' ')               // endnotes
     .replace(/\\x\s.*?\\x\*/g, ' ')                 // cross-references
     .replace(/\\\+?ref\s+([^|\\]*?)(\|[^\\]*)?\\\+?ref\*/g, '$1')  // \ref shown|target\ref*
-    .replace(/\\\+?[a-z]+\d*\*?/g, ' ')             // \add, \wj, \nd and their closers
+    .replace(/\\\+?[a-z]+\d*\*/g, '')               // closers (\add*): nothing, so "forty-\add*two" stays one word
+    .replace(/\\\+?[a-z]+\d*/g, ' ')                // openers (\add, \wj, \nd)
   ).replace(/\s+([,.;:!?’”)])/g, '$1').replace(/([“‘(])\s+/g, '$1');
 }
 
@@ -129,8 +130,8 @@ export function convertBsb(files) {
   };
 }
 
-async function main() {
-  const args = parseArgs(process.argv.slice(2));
+/** Download (or read) the pinned release, check its checksum, and convert it. */
+export async function loadBsbSource(args = {}) {
   let zip;
   if (args.input) {
     zip = fs.readFileSync(args.input);
@@ -139,8 +140,13 @@ async function main() {
     if (!res.ok) throw new Error(`HTTP ${res.status} for ${SOURCE_URL}`);
     zip = Buffer.from(await res.arrayBuffer());
   }
-  checkLock('bsb', { source: SOURCE_URL, sha256: sha256(zip), files: 1 });
-  const bible = convertBsb(readZip(zip));
+  checkLock('bsb', { sha256: sha256(zip), files: 1 });
+  return convertBsb(readZip(zip));
+}
+
+async function main() {
+  const args = parseArgs(process.argv.slice(2));
+  const bible = await loadBsbSource(args);
   writeBibleFile(OUTPUT, bible);
   const total = bible.books.reduce((n, b) => n + b.verses.length, 0);
   console.log(`Wrote ${OUTPUT} (${bible.books.length} books, ${total} verses)`);

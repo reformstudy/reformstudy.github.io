@@ -5,8 +5,9 @@
  * domain), pinned to a commit so the output is reproducible. Of the KJV copies
  * compared (see res/SOURCES.md) it has the fewest readings of its own and keeps
  * full punctuation, but it has 49 wrong words and spellings and loses the
- * LORD/Lord distinction in about 110 verses. kjv-corrections.json fixes those,
- * each backed by independent copies that agree.
+ * LORD/Lord distinction in about 110 verses. The corrections in
+ * provenance/decisions/kjv.json fix those, each reviewed against independent
+ * copies (npm run verify).
  *
  * Usage:
  *   node scripts/ingest/kjv.js                    # download from GitHub
@@ -19,10 +20,10 @@ import { fileURLToPath } from 'url';
 import { CANON } from '../lib/canon.js';
 import { fetchBuffer, normalizeText, parseArgs, writeBibleFile } from '../lib/io.js';
 import { checkLock, digestFiles } from '../lib/lock.js';
+import { loadDecisions } from '../lib/decisions.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUTPUT = path.join(__dirname, '../../res/bibles/kjv/kjv.json');
-const CORRECTIONS = path.join(__dirname, 'kjv-corrections.json');
 
 export const SOURCE_REPO = 'https://github.com/aruljohn/Bible-kjv';
 export const SOURCE_COMMIT = 'a9aa4e55afbb3e095f57e4b14cd1f22c5ee8d7c9';
@@ -82,8 +83,8 @@ export function applyKjvCorrections(bible, corrections) {
   return bible;
 }
 
-async function main() {
-  const args = parseArgs(process.argv.slice(2));
+/** Download (or read) the pinned source, check its checksum, and convert it without corrections. */
+export async function loadKjvSource(args = {}) {
   const fileName = name => `${name.replace(/\s+/g, '')}.json`;
   const raw = new Map();
   const load = async name => {
@@ -96,10 +97,16 @@ async function main() {
 
   const bookNames = await load('Books.json');
   const bible = await convertKjv(bookNames, name => load(fileName(name)));
-  checkLock('kjv', { source: `${SOURCE_REPO}@${SOURCE_COMMIT}`, ...digestFiles(raw) });
-  const { corrections } = JSON.parse(fs.readFileSync(CORRECTIONS, 'utf8'));
+  checkLock('kjv', digestFiles(raw));
+  return bible;
+}
+
+async function main() {
+  const args = parseArgs(process.argv.slice(2));
+  const bible = await loadKjvSource(args);
+  const { corrections } = loadDecisions('kjv');
   applyKjvCorrections(bible, corrections);
-  bible.version.corrections = { count: corrections.length, file: 'scripts/ingest/kjv-corrections.json' };
+  bible.version.corrections = { count: corrections.length, file: 'provenance/decisions/kjv.json' };
   writeBibleFile(OUTPUT, bible);
   const total = bible.books.reduce((n, b) => n + b.verses.length, 0);
   console.log(`Wrote ${OUTPUT} (${bible.books.length} books, ${total} verses)`);

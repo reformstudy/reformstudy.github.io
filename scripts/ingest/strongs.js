@@ -71,15 +71,20 @@ export function convertDictionary(dict, lang) {
   };
 }
 
+/** Download (or read) one pinned dictionary, check its checksum, and convert it. `id` is 'greek' or 'hebrew'. */
+export async function loadStrongsSource(id, args = {}) {
+  const lang = LANGUAGES.find(l => l.id === id);
+  const raw = args['source-dir']
+    ? fs.readFileSync(path.join(args['source-dir'], lang.file))
+    : await fetchBuffer(`${RAW_BASE}/${lang.file}`);
+  checkLock(`strongs-${lang.id}`, { sha256: sha256(raw), files: 1 });
+  return convertDictionary(parseDictionaryJs(raw.toString('utf8')), lang);
+}
+
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   for (const lang of LANGUAGES) {
-    const raw = args['source-dir']
-      ? fs.readFileSync(path.join(args['source-dir'], lang.file))
-      : await fetchBuffer(`${RAW_BASE}/${lang.file}`);
-    checkLock(`strongs-${lang.id}`, { source: `${SOURCE_REPO}@${SOURCE_COMMIT}/${lang.file}`, sha256: sha256(raw), files: 1 });
-    const js = raw.toString('utf8');
-    const out = convertDictionary(parseDictionaryJs(js), lang);
+    const out = await loadStrongsSource(lang.id, args);
     const file = path.join(RES, lang.id, `${lang.id}.json`);
     writeJson(file, out);
     console.log(`Wrote ${file} (${out.entries.length} entries)`);

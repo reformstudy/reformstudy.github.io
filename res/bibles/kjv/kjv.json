@@ -1,5 +1,5 @@
 {
-  "version": {"id":"kjv","name":"King James Version","abbreviation":"KJV","language":"en","releaseDate":"1611","copyright":"Public Domain","description":"The Authorized Version of 1611 in its standard 1769 text, checked against the Pure Cambridge Edition and other independent copies.","source":{"name":"aruljohn/Bible-kjv","url":"https://github.com/aruljohn/Bible-kjv/tree/a9aa4e55afbb3e095f57e4b14cd1f22c5ee8d7c9"},"corrections":{"count":169,"file":"scripts/ingest/kjv-corrections.json"}},
+  "version": {"id":"kjv","name":"King James Version","abbreviation":"KJV","language":"en","releaseDate":"1611","copyright":"Public Domain","description":"The Authorized Version of 1611 in its standard 1769 text, checked against the Pure Cambridge Edition and other independent copies.","source":{"name":"aruljohn/Bible-kjv","url":"https://github.com/aruljohn/Bible-kjv/tree/a9aa4e55afbb3e095f57e4b14cd1f22c5ee8d7c9"},"corrections":{"count":169,"file":"provenance/decisions/kjv.json"}},
   "books": [
     {"id":"GEN","name":"Genesis","testament":"OT","chapters":50, "verses": [
       {"book":"GEN","chapter":1,"verse":1,"text":"In the beginning God created the heaven and the earth."},

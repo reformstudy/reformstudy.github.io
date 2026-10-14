@@ -268,5 +268,6 @@ test('digestFiles ignores order and records missing files', () => {
 
 test('checkLock rejects a changed or unknown source', () => {
   assert.throws(() => checkLock('wcf', { sha256: '0'.repeat(64) }, { update: false }), /has changed since it was verified/);
-  assert.throws(() => checkLock('no-such-source', { sha256: '0'.repeat(64) }, { update: false }), /No checksum recorded/);
+  assert.throws(() => checkLock('no-such-source', { sha256: '0'.repeat(64) }, { update: false }), /No sources\.no-such-source/);
+  assert.throws(() => checkLock('kjv-pce', { sha256: '0'.repeat(64) }, { kind: 'witnesses', update: false }), /Witness "kjv-pce" has changed/);
 });

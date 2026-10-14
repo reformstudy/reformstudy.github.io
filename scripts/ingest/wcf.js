@@ -11,9 +11,9 @@
  * translation. `proofTexts` is the same list flattened with KJV text filled
  * in, for screens that show the text directly. Run after scripts/ingest/kjv.js.
  *
- * Before converting, the corrections in wcf-corrections.json are applied:
- * places where the 1649 printing and an independent transcription agree with
- * each other against Creeds.json (see that file and res/SOURCES.md).
+ * Before converting, the reviewed corrections in provenance/decisions/wcf.json
+ * are applied: places where the 1649 printing and an independent transcription
+ * agree with each other against Creeds.json (npm run verify; res/SOURCES.md).
  *
  * Usage:
  *   node scripts/ingest/wcf.js                 # download from GitHub
@@ -26,11 +26,11 @@ import { fileURLToPath } from 'url';
 import { compactRef, displayRef, parseOsisRef, versesInRef } from '../lib/refs.js';
 import { fetchBuffer, parseArgs, writeJson } from '../lib/io.js';
 import { checkLock, sha256 } from '../lib/lock.js';
+import { loadDecisions } from '../lib/decisions.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUTPUT = path.join(__dirname, '../../res/confessions/wcf/wcf.json');
 const KJV = path.join(__dirname, '../../res/bibles/kjv/kjv.json');
-const CORRECTIONS = path.join(__dirname, 'wcf-corrections.json');
 export const SOURCE_COMMIT = '2ae21a4c5387ecc91f474c9d3d67c826d2a6b9d5';
 export const SOURCE_URL = `https://raw.githubusercontent.com/NonlinearFruit/Creeds.json/${SOURCE_COMMIT}/creeds/westminster_confession_of_faith.json`;
 
@@ -157,16 +157,21 @@ export function convertWcf(source, kjv) {
   };
 }
 
+/** Download (or read) the pinned Creeds.json file and check its checksum. */
+export async function loadWcfSource(args = {}) {
+  const raw = args.input ? fs.readFileSync(args.input) : await fetchBuffer(SOURCE_URL);
+  checkLock('wcf', { sha256: sha256(raw), files: 1 });
+  return JSON.parse(raw.toString('utf8'));
+}
+
 async function main() {
   const args = parseArgs(process.argv.slice(2));
-  const raw = args.input ? fs.readFileSync(args.input) : await fetchBuffer(SOURCE_URL);
-  checkLock('wcf', { source: SOURCE_URL, sha256: sha256(raw), files: 1 });
-  const source = JSON.parse(raw.toString('utf8'));
+  const source = await loadWcfSource(args);
   if (!fs.existsSync(KJV)) throw new Error('Run scripts/ingest/kjv.js first: the proof texts are filled in from the KJV.');
   const kjv = JSON.parse(fs.readFileSync(KJV, 'utf8'));
-  const corrections = JSON.parse(fs.readFileSync(CORRECTIONS, 'utf8'));
+  const { corrections } = loadDecisions('wcf', { text: [], proofs: [] });
   const wcf = convertWcf(applyWcfCorrections(source, corrections), kjv);
-  wcf.confession.corrections = { text: corrections.text.length, proofs: corrections.proofs.length, file: 'scripts/ingest/wcf-corrections.json' };
+  wcf.confession.corrections = { text: corrections.text.length, proofs: corrections.proofs.length, file: 'provenance/decisions/wcf.json' };
   writeJson(OUTPUT, wcf);
   const sections = wcf.sections.reduce((n, c) => n + c.sections.length, 0);
   const refs = wcf.sections.reduce((n, c) => n + c.sections.reduce((m, s) => m + s.proofTexts.length, 0), 0);

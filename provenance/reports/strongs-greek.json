@@ -1,0 +1,2976 @@
+{
+ "resource": "strongs-greek",
+ "title": "Strong's Greek Dictionary",
+ "checked": "2026-10-14",
+ "source": {
+  "pin": "https://github.com/openscriptures/strongs@0acd2f251c2d35ff8db2dece4e0593979d3ac223",
+  "sha256": "7624ee738ae47e80f1a352223e28a26d011c9cd4898822cee52f47a010c04efd",
+  "lineage": "openscriptures"
+ },
+ "witnesses": {
+  "step-tbesg": {
+   "title": "STEPBible TBESG (Tyndale House Greek lexicon of extended Strong's)",
+   "pin": "https://github.com/STEPBible/STEPBible-Data@bd09545c7a44b39ace20f16c0359915f2aa23a62",
+   "sha256": "a99b1432305e4dde7405452cfd28fb3409b00afd83b1e242a34c58f055051ce4",
+   "lineage": "stepbible",
+   "unitsCovered": 5523,
+   "placesDiffering": 196
+  }
+ },
+ "unitName": "entry",
+ "comparison": "The headword of each number, ignoring accents, vowel points and final letter forms; ours matches if STEPBible lists it among the words for that number.",
+ "stats": {
+  "units": 5523,
+  "agree": 5327,
+  "majority": 0,
+  "against": 0,
+  "split": 196,
+  "unattested": 0
+ },
+ "corrections": 0,
+ "awaitingSignOff": 0,
+ "accepted": 0,
+ "stale": [],
+ "pending": [
+  {
+   "id": "d204db017f",
+   "key": "d204db017f51f1c26a4f557d2c0915f2bdf966ec44330d6b261c9c4448940256",
+   "unit": "G131",
+   "class": "split",
+   "ours": "αἱμοῤῥέω",
+   "readings": {
+    "step-tbesg": "αἱμορροέω"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "1a70a90a77",
+   "key": "1a70a90a775f5652b9a3dfa749bcf55c87c3a6116b4cbe68b59068ad88460f24",
+   "unit": "G138",
+   "class": "split",
+   "ours": "αἱρέομαι",
+   "readings": {
+    "step-tbesg": "αἱρέω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "52fd2a074b",
+   "key": "52fd2a074b8a66fb1e03e7d057f3249ab9f0537226736e1e1b4497a5af50012d",
+   "unit": "G153",
+   "class": "split",
+   "ours": "αἰσχύνομαι",
+   "readings": {
+    "step-tbesg": "αἰσχύνω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "436f55c0c7",
+   "key": "436f55c0c7e32374ccae445d05745203e16020a4be7385badbb0228cc39a2994",
+   "unit": "G170",
+   "class": "split",
+   "ours": "ἀκαιρέομαι",
+   "readings": {
+    "step-tbesg": "ἀκαιρέω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "b498fac88d",
+   "key": "b498fac88d244d7f17cded16cd4c5235acf3129a7158f1e84f777da9eeb04a3c",
+   "unit": "G234",
+   "class": "split",
+   "ours": "ἀλίσγεμα",
+   "readings": {
+    "step-tbesg": "ἀλίσγημα"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "0aec26c3ce",
+   "key": "0aec26c3ce43966539e82e11848379cfcec341d189cf053755792a8135299185",
+   "unit": "G253",
+   "class": "split",
+   "ours": "ἀλυπότερος",
+   "readings": {
+    "step-tbesg": "ἄλυπος"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "41b8847f39",
+   "key": "41b8847f3928ab2de84646297231eca9f6c69bdccb6c3b298c05a347ad4f2379",
+   "unit": "G292",
+   "class": "split",
+   "ours": "ἀμύνομαι",
+   "readings": {
+    "step-tbesg": "ἀμύνω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "24e9a72fd4",
+   "key": "24e9a72fd455c3b10301928f136ead16b0b3200a11ad2f1016d4e7e25355c705",
+   "unit": "G306",
+   "class": "split",
+   "ours": "ἀναβάλλομαι",
+   "readings": {
+    "step-tbesg": "ἀναβάλλω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "9d7caeb7cd",
+   "key": "9d7caeb7cdc1810f0aa4abb65f3da1fb3ed4e1dcb38775e1a6e29695bf3051f6",
+   "unit": "G319",
+   "class": "split",
+   "ours": "ἀναγνωρίζομαι",
+   "readings": {
+    "step-tbesg": "ἀναγνωρίζω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "8e3064a263",
+   "key": "8e3064a26390dc10b907983a9d8c6606bcd60d1c089de8742fd57278cbea917e",
+   "unit": "G346",
+   "class": "split",
+   "ours": "ἀνακεφαλαίομαι",
+   "readings": {
+    "step-tbesg": "ἀνακεφαλαιόομαι"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "29da2d1aa3",
+   "key": "29da2d1aa3597e9a4be39a72674b2e9cc1dab3cb3c46301d44adef9d05cedab3",
+   "unit": "G365",
+   "class": "split",
+   "ours": "ἀνανεόω",
+   "readings": {
+    "step-tbesg": "ἀνανεόομαι"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "9edcbeb6dc",
+   "key": "9edcbeb6dc942194edbafc0f0731389b1deeedd1e09d28144d222ae9d7330539",
+   "unit": "G392",
+   "class": "split",
+   "ours": "ἀνατάσσομαι",
+   "readings": {
+    "step-tbesg": "ἀνατάσσω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "4ab3611982",
+   "key": "4ab36119829a2a573ead8234d482eaccf0ddc2f3f64cb336c54f28cd310ac608",
+   "unit": "G394",
+   "class": "split",
+   "ours": "ἀνατίθεμαι",
+   "readings": {
+    "step-tbesg": "ἀνατίθημι"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "7104fd2083",
+   "key": "7104fd20836cd86d5c01f04535c03dfc42aae8db0b8714a816e156c5a071a3f9",
+   "unit": "G407",
+   "class": "split",
+   "ours": "ἀνδρίζομαι",
+   "readings": {
+    "step-tbesg": "ἀνδρίζω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "c01e326399",
+   "key": "c01e32639955ed4a0b5df892c0f62fd83fc5b9ec04fff6c92266e704357db53f",
+   "unit": "G414",
+   "class": "split",
+   "ours": "ἀνεκτότερος",
+   "readings": {
+    "step-tbesg": "ἀνεκτός"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "458da2cf28",
+   "key": "458da2cf289169abaf98c275c6c38086f79968890a35b877cebdbf0ac1c4490b",
+   "unit": "G416",
+   "class": "split",
+   "ours": "ἀνεμίζω",
+   "readings": {
+    "step-tbesg": "ἀνεμίζομαι"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "2f67dcd368",
+   "key": "2f67dcd368abd75c2fe2ed3c8dbe4d62b514f5663dfb90a3f7d6233a0e7adb1f",
+   "unit": "G430",
+   "class": "split",
+   "ours": "ἀνέχομαι",
+   "readings": {
+    "step-tbesg": "ἀνέχω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "18d586135a",
+   "key": "18d586135a7a6dac1fbb91ed4b0169f480ab994c585eccd340b5c016b31f852a",
+   "unit": "G471",
+   "class": "split",
+   "ours": "ἀντέπω",
+   "readings": {
+    "step-tbesg": "ἀντεῖπον"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "f9faaa34c0",
+   "key": "f9faaa34c02d7b1595abff2fc5a7aed21ec8f5eb465cf35fcfe71db7168cf01b",
+   "unit": "G472",
+   "class": "split",
+   "ours": "ἀντέχομαι",
+   "readings": {
+    "step-tbesg": "ἀντέχω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "d360897232",
+   "key": "d3608972327323c8c0c94e40ba280bae609dfe255a8a6c8b905986be6e59f136",
+   "unit": "G475",
+   "class": "split",
+   "ours": "ἀντιδιατίθεμαι",
+   "readings": {
+    "step-tbesg": "ἀντιδιατίθημι"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "f73f0f39e5",
+   "key": "f73f0f39e5c4f718797f02a4c94e4945fbc90cdd418f1acbfa965bb9c347cdbd",
+   "unit": "G482",
+   "class": "split",
+   "ours": "ἀντιλαμβάνομαι",
+   "readings": {
+    "step-tbesg": "ἀντιλαμβάνω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "418efc9b0a",
+   "key": "418efc9b0afbe557ed40f7d2f069ce2b7a9c3e9cfd37d5913094f05c3a703585",
+   "unit": "G498",
+   "class": "split",
+   "ours": "ἀντιτάσσομαι",
+   "readings": {
+    "step-tbesg": "ἀντιτάσσω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "e7c4cf0669",
+   "key": "e7c4cf0669ecd00c04afa2003b8040a5c02889cbf24917f51a6c3efc5f0dbda0",
+   "unit": "G499",
+   "class": "split",
+   "ours": "ἀντίτυπον",
+   "readings": {
+    "step-tbesg": "ἀντίτυπος"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "36b6892794",
+   "key": "36b68927946a3fded85e3c0ecfb1b2a9246cee696460d11c0d9406befc676a29",
+   "unit": "G519",
+   "class": "split",
+   "ours": "ἀπάγχομαι",
+   "readings": {
+    "step-tbesg": "ἀπάγχω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "bebc35474b",
+   "key": "bebc35474b11c9158bbb1d960cbe74dff47950e4cf81f70273e56f68471368be",
+   "unit": "G542",
+   "class": "split",
+   "ours": "ἀπείδω",
+   "readings": {
+    "step-tbesg": "ἀπεῖδον"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "1aa8c02f94",
+   "key": "1aa8c02f94fcb6b63e590b88a58eef6a47c89a7e44130c9c87ad161bd85b0d06",
+   "unit": "G550",
+   "class": "split",
+   "ours": "ἀπειπόμην",
+   "readings": {
+    "step-tbesg": "ἀπεῖπον"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "e7e4e4d3ad",
+   "key": "e7e4e4d3adcd2b79c556096523674a9d7caf51bda8cd391661348e5ae5246e14",
+   "unit": "G611",
+   "class": "split",
+   "ours": "ἀποκρίνομαι",
+   "readings": {
+    "step-tbesg": "ἀποκρίνω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "667f122d49",
+   "key": "667f122d491fdb84b7425ae64f45adb75dcac5baba10aa8fc47b8e1614061dd9",
+   "unit": "G622",
+   "class": "split",
+   "ours": "ἀπόλλυμι",
+   "readings": {
+    "step-tbesg": "ἀπολλύω"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "cdfca87898",
+   "key": "cdfca87898f15aa0bc68512a713a439db394a08cfa907f77aaad7d589d7e41ed",
+   "unit": "G631",
+   "class": "split",
+   "ours": "ἀπομάσσομαι",
+   "readings": {
+    "step-tbesg": "ἀπομάσσω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "2da55f9e6e",
+   "key": "2da55f9e6ed07981f7d3aba51fd775ea5cb1b15a0831174831438e6370a10a80",
+   "unit": "G657",
+   "class": "split",
+   "ours": "ἀποτάσσομαι",
+   "readings": {
+    "step-tbesg": "ἀποτάσσω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "c2442a658a",
+   "key": "c2442a658a9eac611367a6d873ca3a318d8532be4c8fd22b6cc384162cae1187",
+   "unit": "G680",
+   "class": "split",
+   "ours": "ἅπτομαι",
+   "readings": {
+    "step-tbesg": "ἅπτω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "960ca4b015",
+   "key": "960ca4b015a9c352451b5201f0710b256570a527c85c5f69fc66aebb885c31bb",
+   "unit": "G683",
+   "class": "split",
+   "ours": "ἀπωθέομαι",
+   "readings": {
+    "step-tbesg": "ἀπωθέω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "c175329cfd",
+   "key": "c175329cfd573de126397f29a17eedbd7e9ba511e0452ba25d1adb625637d9bd",
+   "unit": "G722",
+   "class": "split",
+   "ours": "ἀροτριόω",
+   "readings": {
+    "step-tbesg": "ἀροτριάω"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "166cfbad2d",
+   "key": "166cfbad2d543a3eda61a413320b326ac803a5801d9c537827e82d2f8760f238",
+   "unit": "G905",
+   "class": "split",
+   "ours": "βαλάντιον",
+   "readings": {
+    "step-tbesg": "βαλλάντιον"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "f42db7a39a",
+   "key": "f42db7a39a54d810a876552126512d4e0fdcd9d2196d045e87f75eb62d4cb67c",
+   "unit": "G948",
+   "class": "split",
+   "ours": "βδελύσσω",
+   "readings": {
+    "step-tbesg": "βδελύσσομαι"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "981dc69d6a",
+   "key": "981dc69d6a840aa9d7bce83cb699ca2ecc44058ae74b85c630bc5451bface02e",
+   "unit": "G957",
+   "class": "split",
+   "ours": "βελτίον",
+   "readings": {
+    "step-tbesg": "βελτίων"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "70bbf94567",
+   "key": "70bbf9456749b783e3c4592927a3a9d39e6656c7b8acb590402b3a4dbad182f4",
+   "unit": "G964",
+   "class": "split",
+   "ours": "Βηθεσδά",
+   "readings": {
+    "step-tbesg": "Βηθζαθά"
+   },
+   "suggestion": {
+    "class": "different-word",
+    "action": null,
+    "note": "The words look unrelated: check this number in Strong's 1890 printing; it may be misnumbered."
+   }
+  },
+  {
+   "id": "7420e4e7d5",
+   "key": "7420e4e7d5b1f6bea636f4abecea042fd7a649031ce7d3558dda718c43f6b32a",
+   "unit": "G974",
+   "class": "split",
+   "ours": "βιβλιαρίδιον",
+   "readings": {
+    "step-tbesg": "βιβλαρίδιον"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "790f05cc42",
+   "key": "790f05cc42e895736edfd4ca47f61be1e2b994aaf990b691e7852cfb774b665d",
+   "unit": "G992",
+   "class": "split",
+   "ours": "βλητέος",
+   "readings": {
+    "step-tbesg": "βλητέον"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "2eb74f2847",
+   "key": "2eb74f2847d839d4150b2b0a107a698faef07b96f52e72e6ed9e55f1af8e355b",
+   "unit": "G1089",
+   "class": "split",
+   "ours": "γεύομαι",
+   "readings": {
+    "step-tbesg": "γεύω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "70aa898a0d",
+   "key": "70aa898a0dba7bf7f18965b62bccabb5b77610be84d8da843e531a9377ed200f",
+   "unit": "G1127",
+   "class": "split",
+   "ours": "γρηγορεύω",
+   "readings": {
+    "step-tbesg": "γρηγορέω"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "81e698c501",
+   "key": "81e698c50190b2c96e5ef5112129c0ece0913183cf1863f88101c2b7bfba6f64",
+   "unit": "G1174",
+   "class": "split",
+   "ours": "δεισιδαιμονέστερος",
+   "readings": {
+    "step-tbesg": "δεισιδαίμων"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "9c62234c6b",
+   "key": "9c62234c6b7e329616406923d49ab4886126aded4220e82539b436979cc420cd",
+   "unit": "G1199",
+   "class": "split",
+   "ours": "δεσμόν",
+   "readings": {
+    "step-tbesg": "δεσμός"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "caec12d279",
+   "key": "caec12d279d9434f73b78a0247d3cab53056da3766487fc4cd7a10c2c5caed65",
+   "unit": "G1226",
+   "class": "split",
+   "ours": "διαβεβαιόομαι",
+   "readings": {
+    "step-tbesg": "διαβεβαιόω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "784d638afa",
+   "key": "784d638afad98c561052f1e73f41d563a8cb94cfe26d421b190ca8a87d0ee3ec",
+   "unit": "G1251",
+   "class": "split",
+   "ours": "διακούομαι",
+   "readings": {
+    "step-tbesg": "διακούω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "2407a3cdb6",
+   "key": "2407a3cdb6b8b68140cc4074441ac0546812f8cb9804b4ce8c32d6827109bee3",
+   "unit": "G1256",
+   "class": "split",
+   "ours": "διαλέγομαι",
+   "readings": {
+    "step-tbesg": "διαλέγω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "3d0c0457de",
+   "key": "3d0c0457dec5081f059a38c9746aea2dbdcc32b6867190296a13a4118ce62083",
+   "unit": "G1279",
+   "class": "split",
+   "ours": "διαπορεύομαι",
+   "readings": {
+    "step-tbesg": "διαπορεύω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "0d7cbf5feb",
+   "key": "0d7cbf5feb3deb6ae01290074444ae7695e194bc4d73863c4bb743ccc5fcb670",
+   "unit": "G1284",
+   "class": "split",
+   "ours": "διαῤῥήσσω",
+   "readings": {
+    "step-tbesg": "διαρρήγνυμι"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "ccdd125dc3",
+   "key": "ccdd125dc33359cc034abfd38950c1782399f3c1226dc781f4d3e49d5073cd9a",
+   "unit": "G1291",
+   "class": "split",
+   "ours": "διαστέλλομαι",
+   "readings": {
+    "step-tbesg": "διαστέλλω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "371e8a6c24",
+   "key": "371e8a6c240166953e8c74f93576d990906673d6469cd9b125ec87ab98fc12d8",
+   "unit": "G1303",
+   "class": "split",
+   "ours": "διατίθεμαι",
+   "readings": {
+    "step-tbesg": "διατίθημι"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "52284952a9",
+   "key": "52284952a9f3096910ff9d7faad33858302153975c952b244d906bd61d980e59",
+   "unit": "G1315",
+   "class": "split",
+   "ours": "διαχειρίζομαι",
+   "readings": {
+    "step-tbesg": "διαχειρίζω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "05ba07506c",
+   "key": "05ba07506ca7ccf4b384d8aed010a26bd129a045ccac8328f7cd7b412056e568",
+   "unit": "G1316",
+   "class": "split",
+   "ours": "διαχωρίζομαι",
+   "readings": {
+    "step-tbesg": "διαχωρίζω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "7e5227fb4a",
+   "key": "7e5227fb4a60de98b7e38c80c93730d4c9556c4779555bb96cde7b2b38374a41",
+   "unit": "G1323",
+   "class": "split",
+   "ours": "δίδραχμον",
+   "readings": {
+    "step-tbesg": "δίδραχμος"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "58f83f2716",
+   "key": "58f83f2716174e2ee8813dcbc36a20419026f388a4e0ca8bb13d8b6f620df18b",
+   "unit": "G1335",
+   "class": "split",
+   "ours": "διήγεσις",
+   "readings": {
+    "step-tbesg": "διήγησις"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "f7a7aba0f5",
+   "key": "f7a7aba0f5fbe9c8a05b0b151de9c2348e8a278cd9cca0dd6a7de913f4b3843f",
+   "unit": "G1429",
+   "class": "split",
+   "ours": "δωδεκάφυλον",
+   "readings": {
+    "step-tbesg": "δωδεκάφυλος"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "c7626e3ad3",
+   "key": "c7626e3ad3d60b333346582dbe66a265153d064a29f7d27c263bac7aeaef3f85",
+   "unit": "G1433",
+   "class": "split",
+   "ours": "δωρέομαι",
+   "readings": {
+    "step-tbesg": "δωρέω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "72f3ee58e0",
+   "key": "72f3ee58e0b945cb545bca8c11f6e423dfd51ce5e81da0729438c0c9eac22e76",
+   "unit": "G1452",
+   "class": "split",
+   "ours": "ἐγγύτερον",
+   "readings": {
+    "step-tbesg": "ἐγγύτερος"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "0b26087542",
+   "key": "0b26087542d19d9d61599ac4d51e0262a44c80c600a12bfe50d3b4e6dd7a3448",
+   "unit": "G1494",
+   "class": "split",
+   "ours": "εἰδωλόθυτον",
+   "readings": {
+    "step-tbesg": "εἰδωλόθυτος"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "86251ce08a",
+   "key": "86251ce08accb0a13671c339e9833f379b63e40bd43b6e6e8a9d17a80a91c034",
+   "unit": "G1531",
+   "class": "split",
+   "ours": "εἰσπορεύομαι",
+   "readings": {
+    "step-tbesg": "εἰσπορεύω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "050365a927",
+   "key": "050365a927c1659b2b595a7c92ef1a51f96b5d5ee930fe2e40d080b7002330d5",
+   "unit": "G1543",
+   "class": "split",
+   "ours": "ἑκατοντάρχης",
+   "readings": {
+    "step-tbesg": "ἑκατόνταρχος"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "e26e99d3bb",
+   "key": "e26e99d3bbb332d0e1047513366748b1e8625c7d18cac42d9a2e594375b7b4f1",
+   "unit": "G1549",
+   "class": "split",
+   "ours": "ἔκγονον",
+   "readings": {
+    "step-tbesg": "ἔκγονος"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "7a19d8c8d6",
+   "key": "7a19d8c8d628b3b6506d514bf31d94b8febec9a510d69283201560182b0c7bd0",
+   "unit": "G1582",
+   "class": "split",
+   "ours": "ἐκκρέμαμαι",
+   "readings": {
+    "step-tbesg": "ἐκκρεμάννυμι"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "37928c3413",
+   "key": "37928c341352b34776655e455e76ef30ee12083ca349f20dee7ce8c393be8970",
+   "unit": "G1585",
+   "class": "split",
+   "ours": "ἐκλανθάνομαι",
+   "readings": {
+    "step-tbesg": "ἐκλανθάνω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "953581205a",
+   "key": "953581205a070e2f26016e2a6a92fd1a66a8888d33019985a401a1b4f61fa451",
+   "unit": "G1586",
+   "class": "split",
+   "ours": "ἐκλέγομαι",
+   "readings": {
+    "step-tbesg": "ἐκλέγω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "1f4a0b5963",
+   "key": "1f4a0b596342fc1fabe1c591345e827772fd3a7b7a911314a04d4d3e66f0f264",
+   "unit": "G1595",
+   "class": "split",
+   "ours": "ἑκούσιον",
+   "readings": {
+    "step-tbesg": "ἑκούσιος"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "78d842a0fb",
+   "key": "78d842a0fbb35bce1614c89efbd0ce8fac5df9541ff043a5c86a5b1dc3cd8d9f",
+   "unit": "G1600",
+   "class": "split",
+   "ours": "ἐκπετάννυμι",
+   "readings": {
+    "step-tbesg": "ἐκπετάζω"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "e70a38b3ad",
+   "key": "e70a38b3ad62a134b10c366d86a34b72785abc2c7d759190e62d416eee2a0c8d",
+   "unit": "G1607",
+   "class": "split",
+   "ours": "ἐκπορεύομαι",
+   "readings": {
+    "step-tbesg": "ἐκπορεύω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "3ce9fea370",
+   "key": "3ce9fea3709fdda12987dc7e3b26da9eecb0fef2ac4cfdbcfe44b881122ea9d5",
+   "unit": "G1670",
+   "class": "split",
+   "ours": "ἑλκύω",
+   "readings": {
+    "step-tbesg": "ἕλκω"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "031187798a",
+   "key": "031187798a6fbe475945a374ae7f414303a085e061a8180a02b095d2b21b3f31",
+   "unit": "G1672",
+   "class": "split",
+   "ours": "Ἕλλην",
+   "readings": {
+    "step-tbesg": "Ἕλλην=Ἕλλην"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "ff1e63096b",
+   "key": "ff1e63096be39b87348f8db0950c74392d9b1088c4e04ab766c67016d375e4d1",
+   "unit": "G1673",
+   "class": "split",
+   "ours": "Ἑλληνικός",
+   "readings": {
+    "step-tbesg": "Ἑλληνικός=Ἑλληνικός"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "ce2b832e7b",
+   "key": "ce2b832e7b968511390bad3890373ca689678b3bb81fac3995e26ba42805f58f",
+   "unit": "G1674",
+   "class": "split",
+   "ours": "Ἑλληνίς",
+   "readings": {
+    "step-tbesg": "Ἑλληνίς=Ἑλληνίς"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "a2e0216a1a",
+   "key": "a2e0216a1a68bf4c27232d45c52d5896dd1ecad0f1b31bc3b1659dfacf3e2e23",
+   "unit": "G1676",
+   "class": "split",
+   "ours": "Ἑλληνιστί",
+   "readings": {
+    "step-tbesg": "Ἑλληνιστί=Ἑλληνικός"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "c5c8d7c58e",
+   "key": "c5c8d7c58ea8179afcaf1e40f88be150d764b68ec98e42a1c096b4a8e295bc73",
+   "unit": "G1682",
+   "class": "split",
+   "ours": "ἐλοΐ",
+   "readings": {
+    "step-tbesg": "ἐλωΐ"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "a9ff04d975",
+   "key": "a9ff04d975888e43a8b700d637b39ecebbedabe9703d1b176810141ea8bd2671",
+   "unit": "G1705",
+   "class": "split",
+   "ours": "ἐμπίπλημι",
+   "readings": {
+    "step-tbesg": "ἐμπίμπλημι"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "a6e0fde142",
+   "key": "a6e0fde1425d501a56db6ea3b9892e212629a2cb8bd2abe3559b2646078b4997",
+   "unit": "G1735",
+   "class": "split",
+   "ours": "ἐνδέχεται",
+   "readings": {
+    "step-tbesg": "ἐνδέχομαι"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "445d0b3ee6",
+   "key": "445d0b3ee66e88bd53aa80c7f7966cf26d12fbc33b464955216802dd7265dd7f",
+   "unit": "G1740",
+   "class": "split",
+   "ours": "ἐνδοξάζω",
+   "readings": {
+    "step-tbesg": "ἐνδοξάζομαι"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "11c2202449",
+   "key": "11c220244982bb94f34ca071c10bfd8b6bf171fddb714574c86959aa51b92c35",
+   "unit": "G1757",
+   "class": "split",
+   "ours": "ἐνευλογέω",
+   "readings": {
+    "step-tbesg": "ἐνευλογέομαι"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "0ac4310890",
+   "key": "0ac43108906bd446128d5f0beb8345f6704ce864450c7486745dd1d8229656cd",
+   "unit": "G1768",
+   "class": "split",
+   "ours": "ἐννενηκονταεννέα",
+   "readings": {
+    "step-tbesg": "ἐνενήκοντα"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "d619376a39",
+   "key": "d619376a3918ff1d96caa19278029b898d1de14a282d8c3669ea15ee3e34c94c",
+   "unit": "G1773",
+   "class": "split",
+   "ours": "ἔννυχον",
+   "readings": {
+    "step-tbesg": "ἔννυχος"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "f649f078d7",
+   "key": "f649f078d755d82a6e4bc7f07f8e0c794cd458ba106c19ae37d3595298609927",
+   "unit": "G1781",
+   "class": "split",
+   "ours": "ἐντέλλομαι",
+   "readings": {
+    "step-tbesg": "ἐντέλλω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "f4a79486cc",
+   "key": "f4a79486cc893503e1db8eee1fca31223924a2e533679295cbaa09ebc4cff7a4",
+   "unit": "G1797",
+   "class": "split",
+   "ours": "ἐνυπνιάζομαι",
+   "readings": {
+    "step-tbesg": "ἐνυπνιάζω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "2f8d10909c",
+   "key": "2f8d10909cf2c011dc2717cdd42335da4bbb6e9e2ee7e0df672c81d2f7b6b615",
+   "unit": "G1809",
+   "class": "split",
+   "ours": "ἐξαιτέομαι",
+   "readings": {
+    "step-tbesg": "ἐξαιτέω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "a915d608ac",
+   "key": "a915d608acc5b5bc066b03e111a5d5021e0fa205fa0b4399244645547c86eb09",
+   "unit": "G1820",
+   "class": "split",
+   "ours": "ἐξαπορέομαι",
+   "readings": {
+    "step-tbesg": "ἐξαπορέω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "ee0a851d17",
+   "key": "ee0a851d17a6884869c7bdf794942030eb245ab6c18c9cc735cf2935b6e5752e",
+   "unit": "G1837",
+   "class": "split",
+   "ours": "ἐξηχέομαι",
+   "readings": {
+    "step-tbesg": "ἐξηχέω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "5e3d3b8f48",
+   "key": "5e3d3b8f48baec69994a1305d25661e4c98a5badb9b404eae937ce1243227dd4",
+   "unit": "G1843",
+   "class": "split",
+   "ours": "ἐξομολογέω",
+   "readings": {
+    "step-tbesg": "ἐξομολογέομαι"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "2d1d5a6dc7",
+   "key": "2d1d5a6dc7328bee4b7f4c3f3052b8b0ee46954a7e979e7618f2535194fb0b35",
+   "unit": "G1865",
+   "class": "split",
+   "ours": "ἐπαθροίζω",
+   "readings": {
+    "step-tbesg": "ἐπαθροίζομαι"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "e5ec5675d7",
+   "key": "e5ec5675d75b11ea1a7cb858461fd9b1e5f81f5cf1bba62879e8a1aa38dab1ca",
+   "unit": "G1879",
+   "class": "split",
+   "ours": "ἐπαναπαύομαι",
+   "readings": {
+    "step-tbesg": "ἐπαναπαύω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "65f22f195b",
+   "key": "65f22f195b30336f22fc8c9cd8497ae24d660739e0fa83231db7cfbb23850880",
+   "unit": "G1881",
+   "class": "split",
+   "ours": "ἐπανίσταμαι",
+   "readings": {
+    "step-tbesg": "ἐπανίστημι"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "1e8e1a2708",
+   "key": "1e8e1a270805614102e03ba9cb844ced7a92eca9be641342538be9c92f26aee1",
+   "unit": "G1888",
+   "class": "split",
+   "ours": "ἐπαυτοφώρῳ",
+   "readings": {
+    "step-tbesg": "ἐπαυτόφωρος / αὐτόφωρος"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "790ca52d7a",
+   "key": "790ca52d7a464645e1df21756a00f048c5b1231629623b1948989e29b2b9aaaf",
+   "unit": "G1902",
+   "class": "split",
+   "ours": "ἐπενδύομαι",
+   "readings": {
+    "step-tbesg": "ἐπενδύω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "5b30eebfb0",
+   "key": "5b30eebfb0049067d2395c772d743824e08159d4b6fb5febdfc000b32a3f43b3",
+   "unit": "G1941",
+   "class": "split",
+   "ours": "ἐπικαλέομαι",
+   "readings": {
+    "step-tbesg": "ἐπικαλέω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "c5dce35312",
+   "key": "c5dce353127ada8afa728389b675b05cb094caaafa51066d5b1f894a17771f88",
+   "unit": "G1942",
+   "class": "split",
+   "ours": "ἐπικάλυμα",
+   "readings": {
+    "step-tbesg": "ἐπικάλυμμα"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "0dee9f113b",
+   "key": "0dee9f113b83d023d68bd127f51e717caff79b88172271d31d97058323880b89",
+   "unit": "G1949",
+   "class": "split",
+   "ours": "ἐπιλαμβάνομαι",
+   "readings": {
+    "step-tbesg": "ἐπιλαμβάνω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "1ce033005d",
+   "key": "1ce033005d5f576dcad4f2adff4c4065ae0a77a12e9daa2d994691f1cf8c7595",
+   "unit": "G1950",
+   "class": "split",
+   "ours": "ἐπιλανθάνομαι",
+   "readings": {
+    "step-tbesg": "ἐπιλανθάνω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "7f364c85c4",
+   "key": "7f364c85c49c042bed481d9c5ea8e679ecaaf2d1d5ebc8910abb78c5561e3db3",
+   "unit": "G1951",
+   "class": "split",
+   "ours": "ἐπιλέγομαι",
+   "readings": {
+    "step-tbesg": "ἐπιλέγω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "ca7843e4a3",
+   "key": "ca7843e4a313573863f1334a801a0dc91127e86d9948fe52271affe6e4d0be7b",
+   "unit": "G1986",
+   "class": "split",
+   "ours": "ἐπισπάομαι",
+   "readings": {
+    "step-tbesg": "ἐπισπάω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "cdee094afc",
+   "key": "cdee094afcccd11f505d44f1686297a30cbc13c26457aeab394a788f20283746",
+   "unit": "G2017",
+   "class": "split",
+   "ours": "ἐπιφαύω",
+   "readings": {
+    "step-tbesg": "ἐπιφαύσκω / ἀφόμοιος / ἀφορολόγητος / ἀφρονεύομαι / ἄφυκτος / ἀχανής / ἀχρειότης / βαθύγλωσσος / βάϊς / βαρυηχής / βαρυωπέω"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "3c9719528d",
+   "key": "3c9719528dec51cae0fbe50ea51675f2a84518e00bcef39beb253b87f2d4a58b",
+   "unit": "G2036",
+   "class": "split",
+   "ours": "ἔπω",
+   "readings": {
+    "step-tbesg": "εἶπον / ἐνῆλιξ / ἔνηχος / ἔνθεσμος / ἐνθρύπτω / ἐνθυσιάζω / ἐννέμω / ἔννευμα / ἐννοσσοποιέομαι / ἐνσείω"
+   },
+   "suggestion": {
+    "class": "different-word",
+    "action": null,
+    "note": "The words look unrelated: check this number in Strong's 1890 printing; it may be misnumbered."
+   }
+  },
+  {
+   "id": "2b27e5eb46",
+   "key": "2b27e5eb46b96aa09937d50841d46ce5c5daec792d6e70cbae767846ea7690e0",
+   "unit": "G2046",
+   "class": "split",
+   "ours": "ἐρέω",
+   "readings": {
+    "step-tbesg": "ἐρῶ / ἐρισύβη / ἐρυθαίνω / ἐρύθρημα / ἔσθω / ἐσσήν / ἐσχατόγηρως / ἑτεροκωφέω / εὐαγής / εὐαπάντητος / εὐδράνεια"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "c87f77d856",
+   "key": "c87f77d8568e379b764c0890058f2838eed3670c6fe5cc099c67d74b3bfe7976",
+   "unit": "G2082",
+   "class": "split",
+   "ours": "ἐσώτερος",
+   "readings": {
+    "step-tbesg": "ἐσωτέρω / οἰκίον / οἰνοδόχος / οἰστρηλασία / Οἰτόσυρος / οἰωνόβρωτος / ὄλβος / ὀλεθρεία / ὀλεθροφόρος / ὀλιγοποιέω / ὁλοκαρπόομαι"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "f3451ab28e",
+   "key": "f3451ab28e6afe0f4c5e0fe4fcf44a073a6038df4fb5b21b949545dccd13f480",
+   "unit": "G2097",
+   "class": "split",
+   "ours": "εὐαγγελίζω",
+   "readings": {
+    "step-tbesg": "εὐαγγελίζομαι / πιμπλάω / πιστοποιέω / πλεοναστέον / πλεύμων / πληθύς / πληθύω / πλινθεῖον / πολεμοτροφέω / πολεμόω / πολιτευτής"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "9e3897a13f",
+   "key": "9e3897a13f6cb2a2cd80bb9bb7e81c77db8010e8178808fb214aea14101ae88d",
+   "unit": "G2238",
+   "class": "split",
+   "ours": "ἡδύοσμον",
+   "readings": {
+    "step-tbesg": "ἡδύοσμος"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "f6e039b9a4",
+   "key": "f6e039b9a4570da2bf29a7681116f32efed28a8150a95bf9303c4d0f2491af60",
+   "unit": "G2255",
+   "class": "split",
+   "ours": "ἥμισυ",
+   "readings": {
+    "step-tbesg": "ἥμισυς"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "ea7d6ab5d5",
+   "key": "ea7d6ab5d53fe7fea80ff1a1c6744e7ea412ff077973966299f903be170ec9c8",
+   "unit": "G2274",
+   "class": "split",
+   "ours": "ἡττάω",
+   "readings": {
+    "step-tbesg": "ἡσσάομαι"
+   },
+   "suggestion": {
+    "class": "different-word",
+    "action": null,
+    "note": "The words look unrelated: check this number in Strong's 1890 printing; it may be misnumbered."
+   }
+  },
+  {
+   "id": "e151e509c6",
+   "key": "e151e509c654c0be9b9a1faedc61326d3aaac8b92f34a4c6dd3f4e86368f4a6e",
+   "unit": "G2276",
+   "class": "split",
+   "ours": "ἥττον",
+   "readings": {
+    "step-tbesg": "ἥσσων"
+   },
+   "suggestion": {
+    "class": "different-word",
+    "action": null,
+    "note": "The words look unrelated: check this number in Strong's 1890 printing; it may be misnumbered."
+   }
+  },
+  {
+   "id": "5d4897a14a",
+   "key": "5d4897a14a15d58d0af9faec5a0cd6160f2dce17fd4a56a0ef4b215267e6237c",
+   "unit": "G2369",
+   "class": "split",
+   "ours": "θυμιαστήριον",
+   "readings": {
+    "step-tbesg": "θυμιατήριον"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "29043de624",
+   "key": "29043de6244d5ce59fbfb0607d84498a2b0085ae482884b435f127caa6a076fb",
+   "unit": "G2435",
+   "class": "split",
+   "ours": "ἱλαστήριον",
+   "readings": {
+    "step-tbesg": "ἱλαστήριος"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "811415e9cb",
+   "key": "811415e9cbf2f56308fb49d83de446091867afcfc9a76bda3ddfa8de3d1ae038",
+   "unit": "G2442",
+   "class": "split",
+   "ours": "ἱμείρομαι",
+   "readings": {
+    "step-tbesg": "ἱμείρω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "be2b5502e2",
+   "key": "be2b5502e2fcf94cd0043d0d987d74dd6bc6a262c02283594095d2c382c9e123",
+   "unit": "G2461",
+   "class": "split",
+   "ours": "ἱππικόν",
+   "readings": {
+    "step-tbesg": "ἱππικός"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "fd39e4b552",
+   "key": "fd39e4b552939a9e104e0680d0febe3a5ac45d7470849df2cfa6c2bb7564d8ae",
+   "unit": "G2571",
+   "class": "split",
+   "ours": "κάλυμα",
+   "readings": {
+    "step-tbesg": "κάλυμμα"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "2a62a743a1",
+   "key": "2a62a743a156e69c2a4327239b6695c9b4ee744c07a685d2b30dbbc3d66644e3",
+   "unit": "G2655",
+   "class": "split",
+   "ours": "καταναρκάω",
+   "readings": {
+    "step-tbesg": "καταναρκάομαι"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "76aed95458",
+   "key": "76aed95458df202a907a80848e44d126d700fe43fb791b43b89093490543101b",
+   "unit": "G2695",
+   "class": "split",
+   "ours": "κατασφάττω",
+   "readings": {
+    "step-tbesg": "κατασφάζω"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "04762b52be",
+   "key": "04762b52bec625ada91ba35acef9a166a8c37534e2f2659c3e4fc6a0323961e5",
+   "unit": "G2707",
+   "class": "split",
+   "ours": "καταφροντής",
+   "readings": {
+    "step-tbesg": "καταφρονητής"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "e65ba8059e",
+   "key": "e65ba8059ed00bd4f353a19854555d881400da962f63dbd50654fb74c8942e40",
+   "unit": "G2728",
+   "class": "split",
+   "ours": "κατιόω",
+   "readings": {
+    "step-tbesg": "κατιόομαι"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "ec249454dd",
+   "key": "ec249454dd559d25e5a04ace6ed6e75d85feed9f7cd0db85cc276a8907fe09b2",
+   "unit": "G2734",
+   "class": "split",
+   "ours": "κατοπτρίζομαι",
+   "readings": {
+    "step-tbesg": "κατοπτρίζω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "252858f03e",
+   "key": "252858f03e876b19d51fe664cb6b0ad6907898220736abf5457d555f3c1f0c41",
+   "unit": "G2748",
+   "class": "split",
+   "ours": "Κεδρών",
+   "readings": {
+    "step-tbesg": "κέδρος"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "401d0d0db6",
+   "key": "401d0d0db6dddc2e15eb7666000ee8e7ba3d5f025ffdb2fd5df52e9aa3587b4b",
+   "unit": "G2752",
+   "class": "split",
+   "ours": "κέλευμα",
+   "readings": {
+    "step-tbesg": "κέλευσμα"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "a17cc58526",
+   "key": "a17cc58526f3ae6dbf2dd18ef1490aa2bef7cd99aaec0762a3c321e28c7640cd",
+   "unit": "G2774",
+   "class": "split",
+   "ours": "κεφάλαιον",
+   "readings": {
+    "step-tbesg": "κεφάλαιος"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "6e8bf39874",
+   "key": "6e8bf39874f5832985c991af9ff1aaaac9dce64e1b2e74bc6dfd123e703f112d",
+   "unit": "G2831",
+   "class": "split",
+   "ours": "κλυδωνίζομαι",
+   "readings": {
+    "step-tbesg": "κλυδωνίζω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "9941aea884",
+   "key": "9941aea884ce75fa095334d55eb84b907775d365c72bb9e7bf555b9ce381bacc",
+   "unit": "G2858",
+   "class": "split",
+   "ours": "Κολοσσαεύς",
+   "readings": {
+    "step-tbesg": "Κολασσαεύς"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "05f9ce9f53",
+   "key": "05f9ce9f533caec752a1ec5f4d695334e5dcb690affa456b64601a35ab04cd25",
+   "unit": "G2908",
+   "class": "split",
+   "ours": "κρεῖσσον",
+   "readings": {
+    "step-tbesg": "κρείσσων"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "0c47a88546",
+   "key": "0c47a885466d290a3114b533e6c40436996261072bc3b6fc2abc8405de7cf5cd",
+   "unit": "G2910",
+   "class": "split",
+   "ours": "κρεμάννυμι",
+   "readings": {
+    "step-tbesg": "κρεμάω"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "0779724b9e",
+   "key": "0779724b9e587ce0b8bd4f991c6ef8682cb9f6d62bbbee6fe2b6ead0007661b5",
+   "unit": "G2947",
+   "class": "split",
+   "ours": "κυλιόω",
+   "readings": {
+    "step-tbesg": "κυλίω"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "fb1270c2c2",
+   "key": "fb1270c2c25ea3f7a2bed30294f6adc75b92bf67da6b8768dae7179bf6a6e004",
+   "unit": "G3016",
+   "class": "split",
+   "ours": "λεπτόν",
+   "readings": {
+    "step-tbesg": "λεπτός"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "7518d13b55",
+   "key": "7518d13b55c451593b79d2e1e5d53634637aa2f513662e1e8ed6f9fb9d427654",
+   "unit": "G3028",
+   "class": "split",
+   "ours": "λῆμψις",
+   "readings": {
+    "step-tbesg": "λῆψις"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "e1de3bb7d4",
+   "key": "e1de3bb7d4d061d9131fafae3f345042c159343ae2cf8e1ebe77212c2d204359",
+   "unit": "G3062",
+   "class": "split",
+   "ours": "λοιποί",
+   "readings": {
+    "step-tbesg": "λοιπός"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "e6b256aacb",
+   "key": "e6b256aacb7171fdbe9de384396af2bf0f3c477af66d2edec0558cdfe5a3394c",
+   "unit": "G3175",
+   "class": "split",
+   "ours": "μεγιστᾶνες",
+   "readings": {
+    "step-tbesg": "μεγιστάν"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "7221f51d5e",
+   "key": "7221f51d5ea4471b63fc207dec48351e6e5b9bf02d2592b2c1a744e67023aa28",
+   "unit": "G3317",
+   "class": "split",
+   "ours": "μεσονύκτιον",
+   "readings": {
+    "step-tbesg": "μεσονύκτιος"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "08da4896ce",
+   "key": "08da4896cea0ae0cb5379a263c91a67f97edafb8a9fc459fb5720012f9866503",
+   "unit": "G3320",
+   "class": "split",
+   "ours": "μεσότοιχον",
+   "readings": {
+    "step-tbesg": "μεσότοιχος"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "557110533a",
+   "key": "557110533a90e1f9a8f2d3fb28a069347b2558f80353373ff5d5ae4158db130a",
+   "unit": "G3336",
+   "class": "split",
+   "ours": "μετάλημψις",
+   "readings": {
+    "step-tbesg": "μετάληψις"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "69867cf64b",
+   "key": "69867cf64b479f5f7216223469b4745cec8de7dc1133048bb6f08104b9464dad",
+   "unit": "G3475",
+   "class": "split",
+   "ours": "Μωσεύς",
+   "readings": {
+    "step-tbesg": "Μωϋσῆς / Μωσῆς"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "980c406d9f",
+   "key": "980c406d9f6aa145bdabf389c22380be932cff8b681444a7486c3c98d30c2ecf",
+   "unit": "G3539",
+   "class": "split",
+   "ours": "νοιέω",
+   "readings": {
+    "step-tbesg": "νοέω"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "eb2b803819",
+   "key": "eb2b8038198b745377461f617b8987edd10874704b83b02b5266b0cdb67a0ba8",
+   "unit": "G3557",
+   "class": "split",
+   "ours": "νοσφίζομαι",
+   "readings": {
+    "step-tbesg": "νοσφίζω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "5e396c0f0e",
+   "key": "5e396c0f0ecfc98d3a555d3e4ce00f21a493ce218bc3e092d049a12b6ac9133f",
+   "unit": "G3577",
+   "class": "split",
+   "ours": "νῶτος",
+   "readings": {
+    "step-tbesg": "νῶτον"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "ded94bbcea",
+   "key": "ded94bbceaeece5f7d5c45d44aeb7bbc0d08a7c7ff4d9c7e047b1fbf32673c00",
+   "unit": "G3660",
+   "class": "split",
+   "ours": "ὀμνύω",
+   "readings": {
+    "step-tbesg": "ὄμνυμι"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "b87b411b9b",
+   "key": "b87b411b9b202b322731536062ad20bda041265d4b62f06d40e5fab287225e44",
+   "unit": "G3713",
+   "class": "split",
+   "ours": "ὀρέγομαι",
+   "readings": {
+    "step-tbesg": "ὀρέγω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "a3ca99048b",
+   "key": "a3ca99048be5e77b4f5cce1dbdc5729021f35487dac1e367532cae5f816074b3",
+   "unit": "G3779",
+   "class": "split",
+   "ours": "οὕτω",
+   "readings": {
+    "step-tbesg": "οὕτως"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "f4eb447761",
+   "key": "f4eb4477617e41f24d2dcc38de6d048f44c321e41099b078eae281b7939b3b9d",
+   "unit": "G3798",
+   "class": "split",
+   "ours": "ὄψιος",
+   "readings": {
+    "step-tbesg": "ὀψία"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "a3780f65af",
+   "key": "a3780f65afcbe64caef218ab9b988ea216442845665ef1c4ca25eb16c48c28ce",
+   "unit": "G3881",
+   "class": "split",
+   "ours": "παραλέγομαι",
+   "readings": {
+    "step-tbesg": "παραλέγω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "1e19f8b711",
+   "key": "1e19f8b7110d2af791a85c12ec9f137199fe38e65b530d8921409193e826040b",
+   "unit": "G3901",
+   "class": "split",
+   "ours": "παραῤῥυέω",
+   "readings": {
+    "step-tbesg": "παραρρέω"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "854ad6ca73",
+   "key": "854ad6ca73e62a1cfb088118c08115b942ef9e499645f8219b53ea97876f4d49",
+   "unit": "G3932",
+   "class": "split",
+   "ours": "παρθενία",
+   "readings": {
+    "step-tbesg": "παρθένεια"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "bbdb88c022",
+   "key": "bbdb88c02236b9a057f3c93a0e0824d0da0a8b0fa944575856c86a26fd28c6b7",
+   "unit": "G4035",
+   "class": "split",
+   "ours": "περιλείπω",
+   "readings": {
+    "step-tbesg": "περιλείπομαι"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "8cba1a095a",
+   "key": "8cba1a095a098e9ce8f81fef38edd37c68e3c8e15d6ad6494f85eaf3d6c71175",
+   "unit": "G4046",
+   "class": "split",
+   "ours": "περιποιέομαι",
+   "readings": {
+    "step-tbesg": "περιποιέω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "ccb48185f9",
+   "key": "ccb48185f9f6904523e2fb10022a4415ce75649835ce8d9e1bc8d3f89a769fd2",
+   "unit": "G4067",
+   "class": "split",
+   "ours": "περίψωμα",
+   "readings": {
+    "step-tbesg": "περίψημα"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "405a6d3ba8",
+   "key": "405a6d3ba861b07ee608d21590e253b0d9f3387a5bfc5a8fe1791215d5101716",
+   "unit": "G4071",
+   "class": "split",
+   "ours": "πετεινόν",
+   "readings": {
+    "step-tbesg": "πετεινός"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "24d59f1e86",
+   "key": "24d59f1e8611c1cb6e31ca4be8278204d091378bee63ce6759be1396d94a7767",
+   "unit": "G4176",
+   "class": "split",
+   "ours": "πολιτεύομαι",
+   "readings": {
+    "step-tbesg": "πολιτεύω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "d5f381e0f6",
+   "key": "d5f381e0f6f1945512049ac777c84d3f33e887dfc7ebd50f640444b46cd806af",
+   "unit": "G4198",
+   "class": "split",
+   "ours": "πορεύομαι",
+   "readings": {
+    "step-tbesg": "πορεύω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "fdbcf2457e",
+   "key": "fdbcf2457e4351194b87ad58b2cd74b3d210c08edd7fdfd6c79d1e528238be55",
+   "unit": "G4210",
+   "class": "split",
+   "ours": "πορφυροῦς",
+   "readings": {
+    "step-tbesg": "πορφύρεος"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "0d2bfecfa2",
+   "key": "0d2bfecfa2606d08641cfd2600600391818ea5e6d3fc116129a1fb4dc5c05cff",
+   "unit": "G4220",
+   "class": "split",
+   "ours": "πότερον",
+   "readings": {
+    "step-tbesg": "πότερος"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "ce62d19bda",
+   "key": "ce62d19bda980f09e04fcc2296418ef8bca2ca768e9996ef970294b94b55cb02",
+   "unit": "G4255",
+   "class": "split",
+   "ours": "προαιρέομαι",
+   "readings": {
+    "step-tbesg": "προαιρέω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "ad3e25c57d",
+   "key": "ad3e25c57d7f884fbc0a0dec3342363dd6dd727263ac6c0b92102f6e03891821",
+   "unit": "G4275",
+   "class": "split",
+   "ours": "προείδω",
+   "readings": {
+    "step-tbesg": "προεῖδον"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "11aca010d6",
+   "key": "11aca010d6a9291860a32a11f47e01b21035799317aae3e193fdd71f641de16f",
+   "unit": "G4279",
+   "class": "split",
+   "ours": "προεπαγγέλλομαι",
+   "readings": {
+    "step-tbesg": "προεπαγγέλλω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "c018e32683",
+   "key": "c018e32683f9aeb3731d3e5529a392bccfd61462682e23bead563c87967a4500",
+   "unit": "G4284",
+   "class": "split",
+   "ours": "προέχομαι",
+   "readings": {
+    "step-tbesg": "προέχω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "6968f797bc",
+   "key": "6968f797bc5ea133126d9d0ca0c929ecd6c2bb965eac209e8ed8e7e2d149db18",
+   "unit": "G4287",
+   "class": "split",
+   "ours": "προθέσμιος",
+   "readings": {
+    "step-tbesg": "προθεσμία"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "c78be632df",
+   "key": "c78be632dfda64a58a8c7c129284395af007eb759317ac40eabca6dc6f0eae8d",
+   "unit": "G4292",
+   "class": "split",
+   "ours": "προκαλέομαι",
+   "readings": {
+    "step-tbesg": "προκαλέω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "2da646a477",
+   "key": "2da646a477d1e61ca52d7baa619757585b6e4831e8bda0a72a42d2b7df726400",
+   "unit": "G4300",
+   "class": "split",
+   "ours": "προκυρόω",
+   "readings": {
+    "step-tbesg": "προκυρόομαι"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "93f2a67ecd",
+   "key": "93f2a67ecd03b27191e88ffcaec1bb6331a50f50e36a2c12c104921b1f738c9d",
+   "unit": "G4313",
+   "class": "split",
+   "ours": "προπορεύομαι",
+   "readings": {
+    "step-tbesg": "προπορεύω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "3de1b867d0",
+   "key": "3de1b867d0f0fe6410480e9723fe4c1ed036cc826c4faeb0f2dd46609a9e1834",
+   "unit": "G4326",
+   "class": "split",
+   "ours": "προσδέομαι",
+   "readings": {
+    "step-tbesg": "προσδέω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "65aad9af86",
+   "key": "65aad9af86b6bf2ad70c063243222eec1c3a60c72ca2d5505ba9b044d17a503e",
+   "unit": "G4341",
+   "class": "split",
+   "ours": "προσκαλέομαι",
+   "readings": {
+    "step-tbesg": "προσκαλέω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "9ab43b0c21",
+   "key": "9ab43b0c21e7fb10d05f0480d7684f822e4578be7664babf3550f1fd81c29007",
+   "unit": "G4364",
+   "class": "split",
+   "ours": "προσποιέομαι",
+   "readings": {
+    "step-tbesg": "προσποιέω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "998e041e77",
+   "key": "998e041e771a08f5a48523787509a919680fbea15a60ae322f816cf1742af76c",
+   "unit": "G4388",
+   "class": "split",
+   "ours": "προτίθεμαι",
+   "readings": {
+    "step-tbesg": "προτίθημι"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "e6b2eb6a9e",
+   "key": "e6b2eb6a9e74edf9dbe94d63d4e7bdfd66ab7a2469115374cc0dcfc7b67a6468",
+   "unit": "G4389",
+   "class": "split",
+   "ours": "προτρέπομαι",
+   "readings": {
+    "step-tbesg": "προτρέπω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "f7d145b22a",
+   "key": "f7d145b22a038a36c21a4b97d3d2b477e8fe746542cb458cf296bc7bfb603960",
+   "unit": "G4400",
+   "class": "split",
+   "ours": "προχειρίζομαι",
+   "readings": {
+    "step-tbesg": "προχειρίζω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "4e5f97e50c",
+   "key": "4e5f97e50c5e18710f8bae3c65eed95fdc1cbd914c5cb056fddde9b6eb536b34",
+   "unit": "G4421",
+   "class": "split",
+   "ours": "πτηνόν",
+   "readings": {
+    "step-tbesg": "πτηνός"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "f14e58598b",
+   "key": "f14e58598b6365c4ba02a23d752d80b51118f7fc773a5ed40b0edb448ea69ba6",
+   "unit": "G4426",
+   "class": "split",
+   "ours": "πτύρω",
+   "readings": {
+    "step-tbesg": "πτύρομαι"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "c2a1f516eb",
+   "key": "c2a1f516eb76a524c1d68dbcad5a2aabc653f7c985d1c9014a1c1387d23de379",
+   "unit": "G4438",
+   "class": "split",
+   "ours": "πυκτέω",
+   "readings": {
+    "step-tbesg": "πυκτεύω"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "f0679b2096",
+   "key": "f0679b2096dd4f30a2ad777579b4c3ad7c9a063b50dc065cb8227cffb0f7bed2",
+   "unit": "G4483",
+   "class": "split",
+   "ours": "ῥέω",
+   "readings": {
+    "step-tbesg": "ἐρέω"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "00c593de4d",
+   "key": "00c593de4dea5b63749bea7c505b56c78eb068557c888a96e8828e727342aa61",
+   "unit": "G4556",
+   "class": "split",
+   "ours": "σάρδιος",
+   "readings": {
+    "step-tbesg": "σάρδιον"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "b3ffb1fcaf",
+   "key": "b3ffb1fcaf733e5834e11ded9eb41aaaddb54e070d88de85419237545bc93cdd",
+   "unit": "G4620",
+   "class": "split",
+   "ours": "σιτόμετρον",
+   "readings": {
+    "step-tbesg": "σιτομέτριον"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "50b601953b",
+   "key": "50b601953b006998a3d800f87884a0d85cb9e97308674fc5d511563988eb52a4",
+   "unit": "G4668",
+   "class": "split",
+   "ours": "Σμυρναῖος",
+   "readings": {
+    "step-tbesg": "Σμύρνα"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "e25eaec0a3",
+   "key": "e25eaec0a3df1a6e6ccdd8dba093f452cf5dd51d8123f3fbe2f5250d8d929797",
+   "unit": "G4697",
+   "class": "split",
+   "ours": "σπλαγχνίζομαι",
+   "readings": {
+    "step-tbesg": "σπλαγχνίζω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "c93d01de28",
+   "key": "c93d01de281801eadae09371b4caf4b81ba75cf8f705f5b1fd80dda3fc9173d6",
+   "unit": "G4712",
+   "class": "split",
+   "ours": "στάδιον",
+   "readings": {
+    "step-tbesg": "στάδιος"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "727a87e68f",
+   "key": "727a87e68f8d4894ca1a82cff50c2a4c06a5df856d00ae44576b41e81dc44e80",
+   "unit": "G4723",
+   "class": "split",
+   "ours": "στείρος",
+   "readings": {
+    "step-tbesg": "στεῖρα"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "a27264ba42",
+   "key": "a27264ba4219ef9c73ecb09e4957cf01c2af544bfdee4ea574f64a5cc838d504",
+   "unit": "G4754",
+   "class": "split",
+   "ours": "στρατεύομαι",
+   "readings": {
+    "step-tbesg": "στρατεύω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "1444cc5d4a",
+   "key": "1444cc5d4a6ac0ae46c6af17e4b023d24c13ac0851508b25b2ebfef581424271",
+   "unit": "G4767",
+   "class": "split",
+   "ours": "στυγνητός",
+   "readings": {
+    "step-tbesg": "στυγητός"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "5ca90aa05e",
+   "key": "5ca90aa05ea5944ebb9a0c4ff1366b5d2a3026d012a29b802852b7b94a47e7b7",
+   "unit": "G4778",
+   "class": "split",
+   "ours": "συγκακουχέω",
+   "readings": {
+    "step-tbesg": "συγκακουχέομαι"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "a9df61de98",
+   "key": "a9df61de98986976b6748f87fcad849ed1b80317026b42b1917911974b1c1a7e",
+   "unit": "G4784",
+   "class": "split",
+   "ours": "συγκατατίθεμαι",
+   "readings": {
+    "step-tbesg": "συγκατατίθημι"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "c4eb94b5b0",
+   "key": "c4eb94b5b036042077705d2f3116997bc8ac58686e7748b7ec18514c1eb45855",
+   "unit": "G4785",
+   "class": "split",
+   "ours": "συγκαταψηφίζω",
+   "readings": {
+    "step-tbesg": "συγκαταψηφίζομαι"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "67d352baf1",
+   "key": "67d352baf1d82c49fc14082a178175df7e8975f22778b001ca0441650ec01002",
+   "unit": "G4829",
+   "class": "split",
+   "ours": "συμμερίζομαι",
+   "readings": {
+    "step-tbesg": "συμμερίζω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "ca33ed3d00",
+   "key": "ca33ed3d00c843ad308911ebc3e34eec2d3af662f7ab07310f1772b4c1f23893",
+   "unit": "G4833",
+   "class": "split",
+   "ours": "συμμορφόω",
+   "readings": {
+    "step-tbesg": "συμμορφόομαι"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "33d15f943e",
+   "key": "33d15f943e58c6021f7217e63939d4e73aa59cc4ce2c1ad920ea5301232fd70d",
+   "unit": "G4910",
+   "class": "split",
+   "ours": "συνευωχέω",
+   "readings": {
+    "step-tbesg": "συνευωχέομαι"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "ae8ad7b7b5",
+   "key": "ae8ad7b7b55afa3fb930590eb6f2b225a10dec4c0c991cf8b178fd02e52dac50",
+   "unit": "G4934",
+   "class": "split",
+   "ours": "συντίθεμαι",
+   "readings": {
+    "step-tbesg": "συντίθημι"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "0754184793",
+   "key": "07541847930686835eb1228de401d46f27827ef3e415d361b1cd1bd6701dc55a",
+   "unit": "G4957",
+   "class": "split",
+   "ours": "συσταυρόω",
+   "readings": {
+    "step-tbesg": "συσταυρόομαι"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "9022d2f382",
+   "key": "9022d2f3825a5eacd00d19be03e86484720528e9b4128d5882b27a535d81fba2",
+   "unit": "G5072",
+   "class": "split",
+   "ours": "τετράμηνον",
+   "readings": {
+    "step-tbesg": "τετράμηνος"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "6c73ee953c",
+   "key": "6c73ee953c6ad2dcefc34606762f7fb15f25d4c296fe2e3b67cf08e16404b491",
+   "unit": "G5150",
+   "class": "split",
+   "ours": "τρίμηνον",
+   "readings": {
+    "step-tbesg": "τρίμηνος"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "94a6af5b0c",
+   "key": "94a6af5b0c0d30821b24ab21130ab24e0b7663419c2b9faab90646dd70ad38f1",
+   "unit": "G5152",
+   "class": "split",
+   "ours": "τρίστεγον",
+   "readings": {
+    "step-tbesg": "τρίστεγος"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "0f8aaf32d9",
+   "key": "0f8aaf32d9bd2cc78f08708a0370b428da4f4484ab40fd62540610a1eeb958f3",
+   "unit": "G5229",
+   "class": "split",
+   "ours": "ὑπεραίρομαι",
+   "readings": {
+    "step-tbesg": "ὑπεραίρω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "b586063918",
+   "key": "b586063918e12a093420f87199af6c2765dfa7d0bc8b25b5dc62e39111f72275",
+   "unit": "G5271",
+   "class": "split",
+   "ours": "ὑποκρίνομαι",
+   "readings": {
+    "step-tbesg": "ὑποκρίνω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "45b15ebc89",
+   "key": "45b15ebc89c14e584f914d160bb5c106a73f55e58542b43ec93d6d2592cab29b",
+   "unit": "G5315",
+   "class": "split",
+   "ours": "φάγω",
+   "readings": {
+    "step-tbesg": "φαγεῖν"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "212d608450",
+   "key": "212d608450f8810ad13f006a1d08c0adb694b56ff821714f46481dfdc8b7b912",
+   "unit": "G5381",
+   "class": "split",
+   "ours": "φιλονεξία",
+   "readings": {
+    "step-tbesg": "φιλοξενία"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "4742937a04",
+   "key": "4742937a041df8aef56631ae871fdbfa8d764024606c4a2c45cfb50ffd3cf7fc",
+   "unit": "G5433",
+   "class": "split",
+   "ours": "φρυάσσω",
+   "readings": {
+    "step-tbesg": "φρυάσσομαι"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "1496eb7377",
+   "key": "1496eb7377da563ef695d72cb5af06c249be7ad6339a660a8c52b2a6490f7772",
+   "unit": "G5441",
+   "class": "split",
+   "ours": "φύλαξ",
+   "readings": {
+    "step-tbesg": "φυλακτήριος"
+   },
+   "suggestion": {
+    "class": "different-word",
+    "action": null,
+    "note": "The words look unrelated: check this number in Strong's 1890 printing; it may be misnumbered."
+   }
+  },
+  {
+   "id": "2ecd76bd3d",
+   "key": "2ecd76bd3dd6de0d8070fa457e093fa0530e005870e46f4ebe525d5158bf74c0",
+   "unit": "G5474",
+   "class": "split",
+   "ours": "χαλκολίβανον",
+   "readings": {
+    "step-tbesg": "χαλκολίβανος"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "11a529641e",
+   "key": "11a529641e2aff265ef6fe1f2a4dab461df222db1a4f8dfa0ece08cb3e731f6c",
+   "unit": "G5483",
+   "class": "split",
+   "ours": "χαρίζομαι",
+   "readings": {
+    "step-tbesg": "χαρίζω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  },
+  {
+   "id": "c31b0236ba",
+   "key": "c31b0236badb4085b5e15f9848cbf84d0c65c8e78877dd6c537a6911d58444b8",
+   "unit": "G5498",
+   "class": "split",
+   "ours": "χειρόγραφον",
+   "readings": {
+    "step-tbesg": "χειρόγραφος"
+   },
+   "suggestion": {
+    "class": "related-form",
+    "action": null,
+    "note": "Probably another form of the same word (plural, comparative, construct, Aramaic form); check the number names this word."
+   }
+  },
+  {
+   "id": "37de592cc2",
+   "key": "37de592cc221c9d87d77b474ced5319664a8740b671ae580ed731f061abff164",
+   "unit": "G5530",
+   "class": "split",
+   "ours": "χράομαι",
+   "readings": {
+    "step-tbesg": "χράω"
+   },
+   "suggestion": {
+    "class": "voice",
+    "action": "accept",
+    "note": "Same verb, cited in the middle voice in one and the active in the other."
+   }
+  }
+ ]
+}

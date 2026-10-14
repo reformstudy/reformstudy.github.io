@@ -1,0 +1,908 @@
+{
+ "resource": "wcf",
+ "title": "Westminster Confession of Faith (1647)",
+ "checked": "2026-10-14",
+ "source": {
+  "pin": "https://github.com/NonlinearFruit/Creeds.json@2ae21a4c5387ecc91f474c9d3d67c826d2a6b9d5",
+  "sha256": "90f793e3444f9a6a834c29fc7b6ba21250b33e92979525b5d5158bed16c24f06",
+  "lineage": "creeds-json"
+ },
+ "witnesses": {
+  "wcf-1649": {
+   "title": "The confession of faith ... (London: Robert Bostock, 1649), EEBO-TCP A80320",
+   "pin": "https://github.com/textcreationpartnership/A80320@808d4d49bc1cb8e87f572e38810391c692a92953",
+   "sha256": "35dab9ba8cd2bc7112ae3165e7f2c4cfa1d76bcf28d0918f4e3a074554caeb17",
+   "lineage": "1649-bostock",
+   "unitsCovered": 1736,
+   "placesDiffering": 729
+  },
+  "wcf-waller": {
+   "title": "andrewhwaller/westminster-json",
+   "pin": "https://github.com/andrewhwaller/westminster-json@1162114be8404df22cfa61e6334286a19bb30a82",
+   "sha256": "f6ddcd8a0ff59c27276f4826fdea2633eea69f69af2ee912cef0e3e204d61904",
+   "lineage": "waller",
+   "unitsCovered": 1736,
+   "placesDiffering": 93
+  }
+ },
+ "unitName": "section or proof chapter",
+ "comparison": "Text: words with old spelling folded (case, ſ/s, j/i, v/u, doubled letters and a final e ignored). Proofs: the verses each section cites, per Bible chapter.",
+ "stats": {
+  "units": 1736,
+  "agree": 1160,
+  "majority": 732,
+  "against": 31,
+  "split": 14,
+  "unattested": 0
+ },
+ "corrections": 32,
+ "awaitingSignOff": 32,
+ "accepted": 0,
+ "stale": [],
+ "pending": [
+  {
+   "id": "633e191c48",
+   "key": "633e191c486be9ad2241dff11a737993a30973bb66ae2d067f4762950e830d5d",
+   "unit": "1.1",
+   "class": "against",
+   "ours": "inexcusable",
+   "context": [
+    "as to leave men",
+    "yet are they not"
+   ],
+   "readings": {
+    "wcf-1649": "unexcusable",
+    "wcf-waller": "unexcusable"
+   },
+   "suggestion": {
+    "class": "modern-spelling",
+    "action": "accept",
+    "note": "Only the spelling is modernised (honour/honor, for ever/forever); kept as an editorial choice."
+   }
+  },
+  {
+   "id": "c173ac3481",
+   "key": "c173ac34815b1950418fe7c17d46b02e2c5895b969671d1e5f2a6b76792bb055",
+   "unit": "1.2",
+   "class": "split",
+   "ours": "Of the Old Testament Genesis Exodus Leviticus Numbers Deuteronomy Joshua Judges Ruth Samuel Samuel Kings Kings Chronicles Chronicles Ezra Nehemiah Esther Job Psalms Proverbs Ecclesiastes The Song of Songs Isaiah Jeremiah Lamentations Ezekiel Daniel Hosea Joel Amos Obadiah Jonah Micah Nahum Habakkuk Zephaniah Haggai Zechariah Malachi Of the New Testament The Gospels according to Matthew Mark Luke John The Acts of the Apostles Paul's Epistles to the Romans Corinthians Corinthians Galatians Ephesians Philippians Colossians Thessalonians Thessalonians Timothy Timothy Titus Philemon The Epistle to the Hebrews The Epistle of James The First and Second Epistles of Peter The First Second and Third Epistles of John The Epistle of Jude The Revelation All which are given by inspiration of God to be the rule of faith and life",
+   "context": [
+    "Testament which are these",
+    ""
+   ],
+   "readings": {
+    "wcf-1649": "",
+    "wcf-waller": "Of the Old Testament Genesis Exodus Leviticus Numbers Deuteronomy Joshua Judges Ruth I Samuel II Samuel I Kings II Kings I Chronicles II Chronicles Ezra Nehemiah Esther Job Psalms Proverbs Ecclesiastes The Song of Songs Isaiah Jeremiah Lamentations Ezekiel Daniel Hosea Joel Amos Obadiah Jonah Micah Nahum Habakkuk Zephaniah Haggai Zechariah Malachi Of the New Testament The Gospels according to Matthew Mark Luke John The Acts of the Apostles Paul's Epistles To the Romans Corinthians I Corinthians II Galatians Ephesians Philippians Colossians Thessalonians I Thessalonians II To Timothy I To Timothy II To Titus To Philemon The Epistle to the Hebrews The Epistle of James The first and second Epistles of Peter The first second and third Epistles of John The Epistle of Jude The Revelation of John All which are given by inspiration of God to be the rule of faith and life"
+   },
+   "suggestion": {
+    "class": "text",
+    "action": null,
+    "note": "Compare with the 1649 printing (EEBO-TCP A80320)."
+   }
+  },
+  {
+   "id": "b80e7fff38",
+   "key": "b80e7fff38c9489366d5b9fe0078fc9daa5b57bbdcc6cfda01a44e16544e7da6",
+   "unit": "3.4",
+   "class": "against",
+   "ours": "can not",
+   "context": [
+    "and definite that it",
+    "be either increased or"
+   ],
+   "readings": {
+    "wcf-1649": "cannot",
+    "wcf-waller": "cannot"
+   },
+   "suggestion": {
+    "class": "modern-spelling",
+    "action": "accept",
+    "note": "Only the spelling is modernised (honour/honor, for ever/forever); kept as an editorial choice."
+   }
+  },
+  {
+   "id": "e16ce8e819",
+   "key": "e16ce8e819fc012ef9fad22e11415edcf41504bfd70c13b53b64b2fd053fbc58",
+   "unit": "3.7",
+   "class": "against",
+   "ours": "dishonor",
+   "context": [
+    "to ordain them to",
+    "and wrath for their"
+   ],
+   "readings": {
+    "wcf-1649": "dishonour",
+    "wcf-waller": "dishonour"
+   },
+   "suggestion": {
+    "class": "modern-spelling",
+    "action": "accept",
+    "note": "Only the spelling is modernised (honour/honor, for ever/forever); kept as an editorial choice."
+   }
+  },
+  {
+   "id": "f4d3154cb4",
+   "key": "f4d3154cb48f810d5dbcddf3eb1a4615e9f20137dac5ea87b86b405058c974c4",
+   "unit": "5.2",
+   "class": "against",
+   "ours": "foreknowledge",
+   "context": [
+    "in relation to the",
+    "and decree of God"
+   ],
+   "readings": {
+    "wcf-1649": "fore knowledge",
+    "wcf-waller": "fore knowledge"
+   },
+   "suggestion": {
+    "class": "modern-spelling",
+    "action": "accept",
+    "note": "Only the spelling is modernised (honour/honor, for ever/forever); kept as an editorial choice."
+   }
+  },
+  {
+   "id": "24d191fdc3",
+   "key": "24d191fdc342ebfd155a52a85a2b914074197cd37f651042b0ccadf5ecd02847",
+   "unit": "6.1",
+   "class": "against",
+   "ours": "subtlety",
+   "context": [
+    "being seduced by the",
+    "and temptation of Satan"
+   ],
+   "readings": {
+    "wcf-1649": "subtilty",
+    "wcf-waller": "subtilty"
+   },
+   "suggestion": {
+    "class": "text",
+    "action": null,
+    "note": "Compare with the 1649 printing (EEBO-TCP A80320)."
+   }
+  },
+  {
+   "id": "4c2daedd41",
+   "key": "4c2daedd41905e4a9b0ea817ddfbd6462dab41c7a90236ed112050d4cebb18d2",
+   "unit": "8.6",
+   "class": "against",
+   "ours": "today",
+   "context": [
+    "world being yesterday and",
+    "the same and forever"
+   ],
+   "readings": {
+    "wcf-1649": "to day",
+    "wcf-waller": "to day"
+   },
+   "suggestion": {
+    "class": "modern-spelling",
+    "action": "accept",
+    "note": "Only the spelling is modernised (honour/honor, for ever/forever); kept as an editorial choice."
+   }
+  },
+  {
+   "id": "bc51d3f060",
+   "key": "bc51d3f06031d9433f9b12493c12ff6258a2289395b5e4a818bf6d35876fa4bb",
+   "unit": "10.3",
+   "class": "against",
+   "ours": "incapable",
+   "context": [
+    "elect persons who are",
+    "of being outwardly called"
+   ],
+   "readings": {
+    "wcf-1649": "uncapable",
+    "wcf-waller": "uncapable"
+   },
+   "suggestion": {
+    "class": "modern-spelling",
+    "action": "accept",
+    "note": "Only the spelling is modernised (honour/honor, for ever/forever); kept as an editorial choice."
+   }
+  },
+  {
+   "id": "d6ea9f8106",
+   "key": "d6ea9f810642b1a90203946f427f0e91716fbb3821ee13b29841fbeebfb862b2",
+   "unit": "15.2",
+   "class": "split",
+   "ours": "endeavoring",
+   "context": [
+    "unto God purposing and",
+    "to walk with him"
+   ],
+   "readings": {
+    "wcf-1649": "endeavour ng",
+    "wcf-waller": "endeavouring"
+   },
+   "suggestion": {
+    "class": "modern-spelling",
+    "action": "accept",
+    "note": "Only the spelling is modernised (honour/honor, for ever/forever); kept as an editorial choice."
+   }
+  },
+  {
+   "id": "0436d015a2",
+   "key": "0436d015a27eba2cf1dbd56e92d7ea18655538c1b8cbc2e1040c14e616100a82",
+   "unit": "15.5",
+   "class": "against",
+   "ours": "endeavor",
+   "context": [
+    "every man's duty to",
+    "to repent of his"
+   ],
+   "readings": {
+    "wcf-1649": "endeavour",
+    "wcf-waller": "endeavour"
+   },
+   "suggestion": {
+    "class": "modern-spelling",
+    "action": "accept",
+    "note": "Only the spelling is modernised (honour/honor, for ever/forever); kept as an editorial choice."
+   }
+  },
+  {
+   "id": "dc1f839083",
+   "key": "dc1f8390837e5cbf29ec4c635d87dc309b3d25ce66941e4bf1d83af42824bdfb",
+   "unit": "16.1",
+   "class": "against",
+   "ours": "pretense",
+   "context": [
+    "zeal or upon any",
+    "of good intention"
+   ],
+   "readings": {
+    "wcf-1649": "pretence",
+    "wcf-waller": "pretence"
+   },
+   "suggestion": {
+    "class": "modern-spelling",
+    "action": "accept",
+    "note": "Only the spelling is modernised (honour/honor, for ever/forever); kept as an editorial choice."
+   }
+  },
+  {
+   "id": "717253dc7b",
+   "key": "717253dc7b7aa13e2fe6a20a1c8b5f96133d388e299711812c01301348b443bc",
+   "unit": "16.6",
+   "class": "against",
+   "ours": "unreprovable",
+   "context": [
+    "life wholly unblamable and",
+    "in God's sight but"
+   ],
+   "readings": {
+    "wcf-1649": "unreproveable",
+    "wcf-waller": "unreproveable"
+   },
+   "suggestion": {
+    "class": "text",
+    "action": null,
+    "note": "Compare with the 1649 printing (EEBO-TCP A80320)."
+   }
+  },
+  {
+   "id": "d14f9cdf83",
+   "key": "d14f9cdf83f8a92348f58e9d9e9dfbffd4b3058bac1465509ce86ebcacab3f09",
+   "unit": "18.1",
+   "class": "against",
+   "ours": "endeavoring",
+   "context": [
+    "love him in sincerity",
+    "to walk in all"
+   ],
+   "readings": {
+    "wcf-1649": "endeavouring",
+    "wcf-waller": "endeavouring"
+   },
+   "suggestion": {
+    "class": "modern-spelling",
+    "action": "accept",
+    "note": "Only the spelling is modernised (honour/honor, for ever/forever); kept as an editorial choice."
+   }
+  },
+  {
+   "id": "443bd62a5c",
+   "key": "443bd62a5ca86fd2e90de17a61e4d3d6d8908896d0c52a77900996d4a4bee2ae",
+   "unit": "18.4",
+   "class": "against",
+   "ours": "meantime",
+   "context": [
+    "the which in the",
+    "they are supported from"
+   ],
+   "readings": {
+    "wcf-1649": "mean time",
+    "wcf-waller": "mean time"
+   },
+   "suggestion": {
+    "class": "modern-spelling",
+    "action": "accept",
+    "note": "Only the spelling is modernised (honour/honor, for ever/forever); kept as an editorial choice."
+   }
+  },
+  {
+   "id": "eb05c80c44",
+   "key": "eb05c80c44062bf90c13972510a8b4231e94fefa3674151567c0414ea7f0bf5d",
+   "unit": "19.2",
+   "class": "split",
+   "ours": "first four commandments",
+   "context": [
+    "in two tables the",
+    "containing our duty towards"
+   ],
+   "readings": {
+    "wcf-1649": "foure first Commandements",
+    "wcf-waller": "four first commandments"
+   },
+   "suggestion": {
+    "class": "text",
+    "action": null,
+    "note": "Compare with the 1649 printing (EEBO-TCP A80320)."
+   }
+  },
+  {
+   "id": "b958052d00",
+   "key": "b958052d0024e0afcdab5bf7efb5fa5485df5b79ebe8d2dc27d3f1a8c9102578",
+   "unit": "19.5",
+   "class": "against",
+   "ours": "forever",
+   "context": [
+    "The moral law doth",
+    "bind all as well"
+   ],
+   "readings": {
+    "wcf-1649": "for ever",
+    "wcf-waller": "for ever"
+   },
+   "suggestion": {
+    "class": "modern-spelling",
+    "action": "accept",
+    "note": "Only the spelling is modernised (honour/honor, for ever/forever); kept as an editorial choice."
+   }
+  },
+  {
+   "id": "0fc1e08e53",
+   "key": "0fc1e08e531fea0121c3e5da35d9e1768816b53745f306b9454ecc590fa04a0b",
+   "unit": "20.1",
+   "class": "split",
+   "ours": "the condemning wrath",
+   "context": [
+    "the guilt of sin",
+    "of God the curse"
+   ],
+   "readings": {
+    "wcf-1649": "the condemning W ath",
+    "wcf-waller": "and condemning wrath"
+   },
+   "suggestion": {
+    "class": "text",
+    "action": null,
+    "note": "Compare with the 1649 printing (EEBO-TCP A80320)."
+   }
+  },
+  {
+   "id": "67fa167c23",
+   "key": "67fa167c23e97066fda84ca4b9872b8e2688cdfa16e8a3bc01e60e306e723cab",
+   "unit": "20.2",
+   "class": "against",
+   "ours": "anything",
+   "context": [
+    "men which are in",
+    "contrary to his Word"
+   ],
+   "readings": {
+    "wcf-1649": "any thing",
+    "wcf-waller": "any thing"
+   },
+   "suggestion": {
+    "class": "modern-spelling",
+    "action": "accept",
+    "note": "Only the spelling is modernised (honour/honor, for ever/forever); kept as an editorial choice."
+   }
+  },
+  {
+   "id": "f12ecace07",
+   "key": "f12ecace0777ac3c17f79298ffd1964c527173fd82fcd5fe15a895a2574a6381",
+   "unit": "20.3",
+   "class": "against",
+   "ours": "pretense",
+   "context": [
+    "They who upon",
+    "of Christian liberty do"
+   ],
+   "readings": {
+    "wcf-1649": "pretence",
+    "wcf-waller": "pretence"
+   },
+   "suggestion": {
+    "class": "modern-spelling",
+    "action": "accept",
+    "note": "Only the spelling is modernised (honour/honor, for ever/forever); kept as an editorial choice."
+   }
+  },
+  {
+   "id": "8f396b2fc1",
+   "key": "8f396b2fc16b4e129bac1eeae89dab0e5abb2617f4128e19b57d2a99525b94a5",
+   "unit": "20.4",
+   "class": "against",
+   "ours": "pretense",
+   "context": [
+    "another they who upon",
+    "of Christian liberty shall"
+   ],
+   "readings": {
+    "wcf-1649": "pretence",
+    "wcf-waller": "pretence"
+   },
+   "suggestion": {
+    "class": "modern-spelling",
+    "action": "accept",
+    "note": "Only the spelling is modernised (honour/honor, for ever/forever); kept as an editorial choice."
+   }
+  },
+  {
+   "id": "99574234bc",
+   "key": "99574234bc757e2f61126e17bae41c70b4a8792a82f5b6567dddcc6cfd140963",
+   "unit": "21.5",
+   "class": "against",
+   "ours": "besides",
+   "context": [
+    "religious worship of God",
+    "religious oaths vows solemn"
+   ],
+   "readings": {
+    "wcf-1649": "Beside",
+    "wcf-waller": "beside"
+   },
+   "suggestion": {
+    "class": "text",
+    "action": null,
+    "note": "Compare with the 1649 printing (EEBO-TCP A80320)."
+   }
+  },
+  {
+   "id": "039eee5928",
+   "key": "039eee592880ffefad4dda7893f6eae2b955de477c233669143ebe1b56952cb3",
+   "unit": "22.3",
+   "class": "against",
+   "ours": "it is",
+   "context": [
+    "resolved to perform Yet",
+    "a sin to refuse"
+   ],
+   "readings": {
+    "wcf-1649": "is",
+    "wcf-waller": "is"
+   },
+   "suggestion": {
+    "class": "text",
+    "action": null,
+    "note": "Compare with the 1649 printing (EEBO-TCP A80320)."
+   }
+  },
+  {
+   "id": "a4da341bd6",
+   "key": "a4da341bd6cab3c0b013933e29155d0a56bfd0df3087f545956046b642f39187",
+   "unit": "23.1",
+   "class": "split",
+   "ours": "defense and encouragement",
+   "context": [
+    "the sword for the",
+    "of them that are"
+   ],
+   "readings": {
+    "wcf-1649": "defence and incouragement",
+    "wcf-waller": "defence and encouragement"
+   },
+   "suggestion": {
+    "class": "modern-spelling",
+    "action": "accept",
+    "note": "Only the spelling is modernised (honour/honor, for ever/forever); kept as an editorial choice."
+   }
+  },
+  {
+   "id": "cb9f239383",
+   "key": "cb9f23938307d8ab6f85de35245bec36e0601785fc8dd9d369239902b3872ce7",
+   "unit": "23.3",
+   "class": "split",
+   "ours": "duly settled administered",
+   "context": [
+    "the ordinances of God",
+    "and observed For the"
+   ],
+   "readings": {
+    "wcf-1649": "duely setled administred",
+    "wcf-waller": "duly settled administrated"
+   },
+   "suggestion": {
+    "class": "text",
+    "action": null,
+    "note": "Compare with the 1649 printing (EEBO-TCP A80320)."
+   }
+  },
+  {
+   "id": "98de5a2a6a",
+   "key": "98de5a2a6a9f23031c431d2934a83f45e8f8516a073d096ff31863fa312259e8",
+   "unit": "23.4",
+   "class": "against",
+   "ours": "honor",
+   "context": [
+    "pray for magistrates to",
+    "their persons to pay"
+   ],
+   "readings": {
+    "wcf-1649": "honour",
+    "wcf-waller": "honour"
+   },
+   "suggestion": {
+    "class": "modern-spelling",
+    "action": "accept",
+    "note": "Only the spelling is modernised (honour/honor, for ever/forever); kept as an editorial choice."
+   }
+  },
+  {
+   "id": "98c8f3bbda",
+   "key": "98c8f3bbdaebe1206c219c67e9ffe33b158f9860f86d64989f172ee07eb9ce26",
+   "unit": "23.4",
+   "class": "against",
+   "ours": "pretense",
+   "context": [
+    "or upon any other",
+    "whatsoever"
+   ],
+   "readings": {
+    "wcf-1649": "pretence",
+    "wcf-waller": "pretence"
+   },
+   "suggestion": {
+    "class": "modern-spelling",
+    "action": "accept",
+    "note": "Only the spelling is modernised (honour/honor, for ever/forever); kept as an editorial choice."
+   }
+  },
+  {
+   "id": "592dd86563",
+   "key": "592dd86563cfe822897f963aa64afdddd6675faf6666184935f540447237a1ef",
+   "unit": "24.3",
+   "class": "against",
+   "ours": "it is",
+   "context": [
+    "give their consent Yet",
+    "the duty of Christians"
+   ],
+   "readings": {
+    "wcf-1649": "is",
+    "wcf-waller": "is"
+   },
+   "suggestion": {
+    "class": "text",
+    "action": null,
+    "note": "Compare with the 1649 printing (EEBO-TCP A80320)."
+   }
+  },
+  {
+   "id": "e8299c3772",
+   "key": "e8299c3772b6b1475392df85f829dc44205481601238c3be29187624728c7e2a",
+   "unit": "27.2",
+   "class": "against",
+   "ours": "the",
+   "context": [
+    "that the names and",
+    "effects of the one"
+   ],
+   "readings": {
+    "wcf-1649": "",
+    "wcf-waller": ""
+   },
+   "suggestion": {
+    "class": "text",
+    "action": null,
+    "note": "Compare with the 1649 printing (EEBO-TCP A80320)."
+   }
+  },
+  {
+   "id": "0a6e662f54",
+   "key": "0a6e662f549f4288e83afb2acce37c9a06170d5e654a86923e9790b9a055c41f",
+   "unit": "28.7",
+   "class": "split",
+   "ours": "administered to",
+   "context": [
+    "but once to be",
+    "any person"
+   ],
+   "readings": {
+    "wcf-1649": "administred unto",
+    "wcf-waller": "administered unto"
+   },
+   "suggestion": {
+    "class": "text",
+    "action": null,
+    "note": "Compare with the 1649 printing (EEBO-TCP A80320)."
+   }
+  },
+  {
+   "id": "b25f4b9611",
+   "key": "b25f4b961111ca03b53f695a1e709bfada25f961c7b695e4e487c21615035462",
+   "unit": "29.8",
+   "class": "against",
+   "ours": "can not",
+   "context": [
+    "the Lord's table and",
+    "without great sin against"
+   ],
+   "readings": {
+    "wcf-1649": "cannot",
+    "wcf-waller": "cannot"
+   },
+   "suggestion": {
+    "class": "modern-spelling",
+    "action": "accept",
+    "note": "Only the spelling is modernised (honour/honor, for ever/forever); kept as an editorial choice."
+   }
+  },
+  {
+   "id": "f6bb5b83e9",
+   "key": "f6bb5b83e94e765c498df03fc0480a3be680fec8c7a891c3045a9e6098869270",
+   "unit": "30.3",
+   "class": "against",
+   "ours": "offenses",
+   "context": [
+    "others from the like",
+    "for purging out of"
+   ],
+   "readings": {
+    "wcf-1649": "offences",
+    "wcf-waller": "offences"
+   },
+   "suggestion": {
+    "class": "modern-spelling",
+    "action": "accept",
+    "note": "Only the spelling is modernised (honour/honor, for ever/forever); kept as an editorial choice."
+   }
+  },
+  {
+   "id": "5b85ce2a90",
+   "key": "5b85ce2a90944c6fc55bef68f4cab316eeea19d8cf0b549af0b38d446b277b5d",
+   "unit": "30.3",
+   "class": "against",
+   "ours": "honor",
+   "context": [
+    "lump for vindicating the",
+    "of Christ and the"
+   ],
+   "readings": {
+    "wcf-1649": "honour",
+    "wcf-waller": "honour"
+   },
+   "suggestion": {
+    "class": "modern-spelling",
+    "action": "accept",
+    "note": "Only the spelling is modernised (honour/honor, for ever/forever); kept as an editorial choice."
+   }
+  },
+  {
+   "id": "617f803315",
+   "key": "617f803315c8dcc6b05f5fc6d8987e4d39f6fdfd7677a38783199729311617fa",
+   "unit": "32.1",
+   "class": "against",
+   "ours": "Besides",
+   "context": [
+    "of the great day",
+    "these two places for"
+   ],
+   "readings": {
+    "wcf-1649": "Beside",
+    "wcf-waller": "Beside"
+   },
+   "suggestion": {
+    "class": "text",
+    "action": null,
+    "note": "Compare with the 1649 printing (EEBO-TCP A80320)."
+   }
+  },
+  {
+   "id": "b82cc669a1",
+   "key": "b82cc669a1d8db6d88dcb546c1110db4d8c5d6b6cac5c38548e004c8cb9f68b7",
+   "unit": "32.2",
+   "class": "against",
+   "ours": "forever",
+   "context": [
+    "again to their souls",
+    ""
+   ],
+   "readings": {
+    "wcf-1649": "for ever",
+    "wcf-waller": "for ever"
+   },
+   "suggestion": {
+    "class": "modern-spelling",
+    "action": "accept",
+    "note": "Only the spelling is modernised (honour/honor, for ever/forever); kept as an editorial choice."
+   }
+  },
+  {
+   "id": "7b2586c237",
+   "key": "7b2586c2376ba4285d81562837113ad10e4e56ee84d25a48ec6d4c8fa190c7a5",
+   "unit": "32.3",
+   "class": "against",
+   "ours": "dishonor",
+   "context": [
+    "Christ be raised to",
+    "the bodies of the"
+   ],
+   "readings": {
+    "wcf-1649": "dishonour",
+    "wcf-waller": "dishonour"
+   },
+   "suggestion": {
+    "class": "modern-spelling",
+    "action": "accept",
+    "note": "Only the spelling is modernised (honour/honor, for ever/forever); kept as an editorial choice."
+   }
+  },
+  {
+   "id": "8145a1b450",
+   "key": "8145a1b450127f4bd625c6f99882e4651b0411d8fd52556df8b00964ca0ce0ec",
+   "unit": "32.3",
+   "class": "against",
+   "ours": "honor",
+   "context": [
+    "by his Spirit unto",
+    "and be made conformable"
+   ],
+   "readings": {
+    "wcf-1649": "honour",
+    "wcf-waller": "honour"
+   },
+   "suggestion": {
+    "class": "modern-spelling",
+    "action": "accept",
+    "note": "Only the spelling is modernised (honour/honor, for ever/forever); kept as an editorial choice."
+   }
+  },
+  {
+   "id": "3cc0a25e38",
+   "key": "3cc0a25e38e5eeeb932e3555352e1ef589980f6d74306fcca69b895027a85e84",
+   "unit": "1.6 1CO 2",
+   "class": "split",
+   "ours": "9-12",
+   "readings": {
+    "wcf-1649": "9-10, 12",
+    "wcf-waller": ""
+   },
+   "suggestion": {
+    "class": "proofs",
+    "action": null,
+    "note": "The 1649 reading comes from parsing margin notes and can be wrong; check the printing."
+   }
+  },
+  {
+   "id": "228db0e03e",
+   "key": "228db0e03e809e8071a4d7d5d86f71e864a153988c48ca9192a663a355f8a67e",
+   "unit": "5.3 JOB 34",
+   "class": "split",
+   "ours": "10",
+   "readings": {
+    "wcf-1649": "",
+    "wcf-waller": "20"
+   },
+   "suggestion": {
+    "class": "proofs",
+    "action": null,
+    "note": "The 1649 reading comes from parsing margin notes and can be wrong; check the printing."
+   }
+  },
+  {
+   "id": "ac175c6904",
+   "key": "ac175c6904d826f5b4b712932c8ec764b1a56e1005f19b378a63c5af93c3b84a",
+   "unit": "5.5 PSA 77",
+   "class": "split",
+   "ours": "1-10, 12",
+   "readings": {
+    "wcf-1649": "1, 10, 12",
+    "wcf-waller": "1-12"
+   },
+   "suggestion": {
+    "class": "proofs",
+    "action": null,
+    "note": "The 1649 reading comes from parsing margin notes and can be wrong; check the printing."
+   }
+  },
+  {
+   "id": "6b6ea0ee02",
+   "key": "6b6ea0ee025e0906d1291625d033eeaddd8dd8be5e40869a02bafa3c7a272d5b",
+   "unit": "6.3 1CO 15",
+   "class": "split",
+   "ours": "21-22, 45, 49",
+   "readings": {
+    "wcf-1649": "21-22, 45",
+    "wcf-waller": "21-22, 49"
+   },
+   "suggestion": {
+    "class": "proofs",
+    "action": null,
+    "note": "The 1649 reading comes from parsing margin notes and can be wrong; check the printing."
+   }
+  },
+  {
+   "id": "46fcb0b1a1",
+   "key": "46fcb0b1a17be0a69b3fb0c2d9b283b7b9b70de8898f7d71dde52634537d85c1",
+   "unit": "17.3 PSA 51",
+   "class": "split",
+   "ours": "8, 10, 12, 14",
+   "readings": {
+    "wcf-1649": "1, 7-10, 12, 14, 64",
+    "wcf-waller": "8, 10, 12"
+   },
+   "suggestion": {
+    "class": "proofs",
+    "action": null,
+    "note": "The 1649 reading comes from parsing margin notes and can be wrong; check the printing."
+   }
+  },
+  {
+   "id": "5f19288b7a",
+   "key": "5f19288b7a1dffd1867587e60b3a4b58978a252009f5a6e2977c1f9a9022aafd",
+   "unit": "26.1 1JN 1",
+   "class": "against",
+   "ours": "3",
+   "readings": {
+    "wcf-1649": "",
+    "wcf-waller": ""
+   },
+   "suggestion": {
+    "class": "proofs",
+    "action": null,
+    "note": "The 1649 reading comes from parsing margin notes and can be wrong; check the printing."
+   }
+  },
+  {
+   "id": "d42b2a27b7",
+   "key": "d42b2a27b768187868591573dad89e8cb781765c510061b6faa9c3344eec2561",
+   "unit": "27.3 MAT 28",
+   "class": "split",
+   "ours": "",
+   "readings": {
+    "wcf-1649": "0, 19",
+    "wcf-waller": "19-20"
+   },
+   "suggestion": {
+    "class": "proofs",
+    "action": null,
+    "note": "The 1649 reading comes from parsing margin notes and can be wrong; check the printing."
+   }
+  },
+  {
+   "id": "3a3583acc0",
+   "key": "3a3583acc00a9029ec78b1da390cbfc1a9584dd5d1784fec74ab7fd7e60c0da3",
+   "unit": "27.4 1CO 4",
+   "class": "split",
+   "ours": "1",
+   "readings": {
+    "wcf-1649": "4-5",
+    "wcf-waller": ""
+   },
+   "suggestion": {
+    "class": "proofs",
+    "action": null,
+    "note": "The 1649 reading comes from parsing margin notes and can be wrong; check the printing."
+   }
+  },
+  {
+   "id": "6b1093ad9e",
+   "key": "6b1093ad9ebc4fe436e729513a5cfac730a33d77e1a0e5c9939177058dbd759a",
+   "unit": "33.2 2TH 1",
+   "class": "against",
+   "ours": "7-9",
+   "readings": {
+    "wcf-1649": "7-10",
+    "wcf-waller": "7-10"
+   },
+   "suggestion": {
+    "class": "proofs",
+    "action": null,
+    "note": "The 1649 reading comes from parsing margin notes and can be wrong; check the printing."
+   }
+  }
+ ]
+}

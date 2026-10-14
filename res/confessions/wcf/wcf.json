@@ -14,7 +14,7 @@
   "corrections": {
    "text": 15,
    "proofs": 17,
-   "file": "scripts/ingest/wcf-corrections.json"
+   "file": "provenance/decisions/wcf.json"
   }
  },
  "sections": [
