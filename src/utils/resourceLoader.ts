@@ -78,7 +78,12 @@ export interface ConfessionSection {
 export interface ConfessionSubsection {
   number: string;
   content: string;
-  proofTexts?: Array<{ reference: string; text: string }>;
+  /** The text with footnote markers, e.g. "…inexcusable;[1] yet…". */
+  contentWithProofs?: string;
+  /** Each footnote's references, in compact form ("PSA.19.1-3"). */
+  proofs?: Array<{ id: number; refs: string[] }>;
+  /** The same references flattened, with KJV text, for direct display. */
+  proofTexts?: Array<{ reference: string; text: string; ref?: string; footnote?: number }>;
 }
 
 export interface Commentary {
@@ -102,14 +107,16 @@ export interface CommentaryEntry {
 }
 
 export interface StrongsEntry {
-  number: string;
-  transliteration: string;
-  pronunciation: string;
-  partOfSpeech: string;
-  definition: string;
-  kjvDefinition: string;
-  usageCount: number;
-  references: StrongsReference[];
+  number: string;              // "G26", "H430"
+  lemma?: string;              // the Greek or Hebrew word
+  transliteration?: string;
+  pronunciation?: string;
+  partOfSpeech?: string;
+  definition?: string;
+  kjvDefinition?: string;      // how the KJV renders it
+  derivation?: string;
+  usageCount?: number;
+  references?: StrongsReference[];
 }
 
 export interface StrongsReference {
@@ -126,6 +133,8 @@ export interface StrongsConcordance {
     language: string;
     totalEntries: number;
     version: string;
+    source?: { name: string; url: string };
+    license?: string;
   };
   entries: StrongsEntry[];
 }

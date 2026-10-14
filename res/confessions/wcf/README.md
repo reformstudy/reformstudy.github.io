@@ -1,14 +1,16 @@
-# Westminster Confession Resource
+# Westminster Confession of Faith (1647)
 
-This folder contains the raw source and the parser for the WCF sample resource.
-
-Files:
-- `wcf.txt` — raw confession text
-- `process.js` — parser that generates `wcf.json`
-- `wcf.json` — generated JSON resource
-
-To regenerate the JSON from the raw text:
+`wcf.json` is generated. Don't edit it by hand; change the ingest script and rerun it (after the KJV):
 
 ```bash
-node res/confessions/wcf/process.js
+npm run ingest:wcf
 ```
+
+- **Source:** [NonlinearFruit/Creeds.json](https://github.com/NonlinearFruit/Creeds.json), pinned to a commit in `scripts/ingest/wcf.js`. Public domain text; the repository is under the Unlicense.
+- **Text:** the original 1647 text: 33 chapters, 172 sections, 1,850 proof references.
+- **Per section:**
+  - `content`: the text.
+  - `contentWithProofs`: the text with the Assembly's footnote markers (`[1]`, `[2]`…).
+  - `proofs`: each footnote's references in compact form (`PSA.19.1-3`), so screens can show them in any translation.
+  - `proofTexts`: the same references flattened, with the KJV text filled in.
+- **Validation:** every proof reference must exist in the KJV, and every footnote marker must have a proof group.

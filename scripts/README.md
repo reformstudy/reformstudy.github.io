@@ -2,6 +2,20 @@
 
 This directory contains build scripts for processing and bundling resource files.
 
+## Content pipeline
+
+`npm run ingest` downloads and converts every source into `res/`, then validates it:
+
+| Script | Writes |
+|--------|--------|
+| `ingest/kjv.js` | `res/bibles/kjv/kjv.json` |
+| `ingest/bsb.js` | `res/bibles/bsb/bsb.json` |
+| `ingest/wcf.js` | `res/confessions/wcf/wcf.json` (run after the KJV; proof texts are filled in from it) |
+| `ingest/henry.js` | `res/commentaries/henry/` |
+| `ingest/strongs.js` | `res/strongs/{greek,hebrew}/` |
+
+`validate-resources.js` checks it all (also run by every build), and `npm test` runs the converter tests in `tests/`. Shared code is in `lib/`: the canon (`canon.js`), reference parsing (`refs.js`), a ZIP reader (`zip.js`) and file helpers (`io.js`). Sources and licenses are listed in [RESOURCES.md](../RESOURCES.md#sources).
+
 ## Scripts
 
 ### `build-resources.js`

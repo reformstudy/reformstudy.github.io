@@ -6,12 +6,22 @@ The ReformStudy platform uses a modular resource system for managing biblical an
 
 Bible and commentary text is downloaded and converted by scripts, never typed in:
 
-1. **Ingest** (`scripts/ingest/`): `kjv.js`, `bsb.js` and `gill.js` download a source, convert it to the formats below, and write it under `res/`. Each has a pure convert function with a fixture test in `scripts/tests/`.
+1. **Ingest** (`npm run ingest`, scripts in `scripts/ingest/`): each script downloads one source, converts it to the formats below, and writes it under `res/`. Each has a pure convert function with a fixture test in `scripts/tests/`.
 2. **Commit**: the converted files are committed, so builds never depend on another site being up. Bible files are written one verse per line, so a corrected verse is a one-line diff.
 3. **Validate** (`scripts/validate-resources.js`, also run by every build): all 66 books in canon order, chapter counts, verse order and text. The KJV must have exactly 31,102 verses with no gaps. Other translations are compared with it, and differences are printed as warnings.
 4. **Build** (`scripts/build-resources.js`): writes each Bible as one whole file (for search), plus an index and one file per book (for the reader). Chaptered commentaries are copied one file per chapter. `manifest.json` lists everything and names `defaultBible`.
 
-The BSB and Gill come from bible.helloao.org, which some sandboxes can't reach. The **Fetch sources** GitHub Action downloads them. It runs on pull requests that change `scripts/ingest/**` and commits the data to that branch, and can be run by hand from the Actions tab.
+### Sources
+
+Every source is pinned, so rerunning the pipeline gives the same files until the pin is changed.
+
+| Resource | Script | Source (pinned) | License |
+|----------|--------|-----------------|---------|
+| KJV | `kjv.js` | [aruljohn/Bible-kjv](https://github.com/aruljohn/Bible-kjv) at a commit | Public domain text; repo MIT |
+| BSB | `bsb.js` | [BSB-publishing/bsb2usfm](https://github.com/BSB-publishing/bsb2usfm) release `BSB_usfm.zip` | Public domain (CC0) |
+| WCF (1647) | `wcf.js` | [NonlinearFruit/Creeds.json](https://github.com/NonlinearFruit/Creeds.json) at a commit | Public domain text; repo Unlicense |
+| Matthew Henry | `henry.js` | [samueldotj/bible-commentaries](https://github.com/samueldotj/bible-commentaries) `en/henry` at a commit, from CrossWire `MHC` | Public domain |
+| Strong's | `strongs.js` | [openscriptures/strongs](https://github.com/openscriptures/strongs) at a commit | CC-BY-SA, credit required |
 
 ## Architecture
 
@@ -264,7 +274,7 @@ resourceManager.clearCache();
 
 ### Adding a Commentary
 
-1. For a whole-Bible commentary, use the chaptered layout in [res/commentaries/README.md](res/commentaries/README.md) (see `scripts/ingest/gill.js`)
+1. For a whole-Bible commentary, use the chaptered layout in [res/commentaries/README.md](res/commentaries/README.md) (see `scripts/ingest/henry.js`)
 2. Run `npm run build` to validate and publish it
 
 ### Adding Strong's Data
