@@ -1,0 +1,93 @@
+{
+ "channel": "preview",
+ "app": {
+  "version": "0.1.0",
+  "release": null,
+  "describe": "v0.1.0-9-gee5c365",
+  "commit": "ee5c365",
+  "builtAt": "2026-10-15T02:40:26.025Z"
+ },
+ "content": {
+  "fingerprint": "b13ba394b43b",
+  "sources": [
+   {
+    "id": "kjv",
+    "title": "King James Version",
+    "source": "https://github.com/aruljohn/Bible-kjv/tree/a9aa4e55afbb3e095f57e4b14cd1f22c5ee8d7c9",
+    "license": "Text public domain; repository MIT",
+    "witnesses": 4,
+    "verified": true,
+    "checked": "2026-10-14",
+    "corrections": 169,
+    "accepted": 0,
+    "awaitingReview": 78,
+    "awaitingSignOff": 169
+   },
+   {
+    "id": "bsb",
+    "title": "Berean Standard Bible",
+    "source": "https://github.com/BSB-publishing/bsb2usfm/releases/download/v5.16/BSB_usfm.zip",
+    "license": "Public domain (dedicated 2023)",
+    "witnesses": 1,
+    "verified": true,
+    "checked": "2026-10-14",
+    "corrections": 0,
+    "accepted": 0,
+    "awaitingReview": 2,
+    "awaitingSignOff": 0
+   },
+   {
+    "id": "wcf",
+    "title": "Westminster Confession of Faith (1647)",
+    "source": "https://github.com/NonlinearFruit/Creeds.json/tree/2ae21a4c5387ecc91f474c9d3d67c826d2a6b9d5",
+    "license": "Text public domain; repository Unlicense",
+    "witnesses": 2,
+    "verified": true,
+    "checked": "2026-10-14",
+    "corrections": 32,
+    "accepted": 0,
+    "awaitingReview": 45,
+    "awaitingSignOff": 32
+   },
+   {
+    "id": "henry",
+    "title": "Matthew Henry's Commentary on the Whole Bible",
+    "source": "https://github.com/samueldotj/bible-commentaries/tree/23f2279a8a56f212aca0de7ef3fbe47cf7334a45",
+    "license": "Text public domain; the repository has no LICENSE file",
+    "witnesses": 0,
+    "verified": false
+   },
+   {
+    "id": "strongs-greek",
+    "title": "Strong's Greek Dictionary",
+    "source": "https://github.com/openscriptures/strongs/tree/0acd2f251c2d35ff8db2dece4e0593979d3ac223",
+    "license": "1890 text public domain; Open Scriptures edition CC-BY-SA (credit required, share alike)",
+    "witnesses": 1,
+    "verified": true,
+    "checked": "2026-10-14",
+    "corrections": 0,
+    "accepted": 0,
+    "awaitingReview": 196,
+    "awaitingSignOff": 0
+   },
+   {
+    "id": "strongs-hebrew",
+    "title": "Strong's Hebrew Dictionary",
+    "source": "https://github.com/openscriptures/strongs/tree/0acd2f251c2d35ff8db2dece4e0593979d3ac223",
+    "license": "1890 text public domain; Open Scriptures edition CC-BY-SA (credit required, share alike)",
+    "witnesses": 1,
+    "verified": true,
+    "checked": "2026-10-14",
+    "corrections": 0,
+    "accepted": 0,
+    "awaitingReview": 505,
+    "awaitingSignOff": 0
+   }
+  ]
+ },
+ "live": {
+  "ref": "v0.1.0",
+  "commit": "252a67b",
+  "url": "/"
+ }
+}
