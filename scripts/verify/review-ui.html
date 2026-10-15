@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Source Review · ReformStudy</title>
+<style>
+  :root {
+    --bg-page: #FDFBF7; --bg-surface: #FFFFFF; --bg-subtle: #FAFAFA; --bg-sidebar: #F5F3EC; --bg-hover: #EAE6DB;
+    --text-primary: #2C2724; --text-secondary: #6E665D; --text-tertiary: #A39C95;
+    --accent-geo: #4A6960; --bg-geo-light: #E8EFEB; --accent-exe: #B07A45; --bg-exe-light: #FDF6EE;
+    --accent-time: #8C4A76; --bg-time-light: #F3E8EF; --danger: #A4442E; --bg-danger: #FBEDE8;
+    --border-soft: #E8E5DF; --radius: 10px;
+    --font-serif: 'Lora', Georgia, serif; --font-sans: 'Nunito', system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-page); color: var(--text-primary); }
+  button, input, textarea, select { font: inherit; }
+  header { display: flex; align-items: center; gap: 16px; padding: 12px 20px; background: var(--bg-surface); border-bottom: 1px solid var(--border-soft); position: sticky; top: 0; z-index: 5; }
+  header h1 { font-family: var(--font-serif); font-size: 1.15rem; color: var(--accent-geo); margin: 0; }
+  header .spacer { flex: 1; }
+  header label { font-size: .85rem; color: var(--text-secondary); display: flex; gap: 6px; align-items: center; }
+  header input { padding: 5px 8px; border: 1px solid var(--border-soft); border-radius: 6px; width: 180px; }
+  .layout { display: grid; grid-template-columns: 250px 340px 1fr; height: calc(100vh - 57px); }
+  nav, .list, main { overflow-y: auto; }
+  nav { background: var(--bg-sidebar); border-right: 1px solid var(--border-soft); padding: 12px; }
+  nav h2, .list h2 { font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--text-tertiary); margin: 12px 6px 6px; }
+  .res { display: block; width: 100%; text-align: left; border: 0; background: none; padding: 8px 10px; border-radius: 8px; cursor: pointer; color: var(--text-secondary); }
+  .res:hover { background: var(--bg-hover); }
+  .res[aria-current="true"] { background: var(--bg-surface); color: var(--text-primary); box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+  .res strong { display: block; font-size: .9rem; }
+  .res small { font-size: .75rem; }
+  .count { display: inline-block; min-width: 22px; padding: 0 6px; border-radius: 10px; background: var(--bg-exe-light); color: var(--accent-exe); font-weight: 700; font-size: .75rem; text-align: center; }
+  .count.zero { background: var(--bg-geo-light); color: var(--accent-geo); }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 6px; }
+  .chip { border: 1px solid var(--border-soft); background: var(--bg-surface); border-radius: 14px; padding: 3px 10px; font-size: .78rem; cursor: pointer; color: var(--text-secondary); }
+  .chip[aria-pressed="true"] { background: var(--accent-geo); color: white; border-color: var(--accent-geo); }
+  .list { border-right: 1px solid var(--border-soft); background: var(--bg-surface); }
+  .list .tools { padding: 10px 12px; border-bottom: 1px solid var(--border-soft); position: sticky; top: 0; background: var(--bg-surface); }
+  .list .tools input { width: 100%; padding: 6px 10px; border: 1px solid var(--border-soft); border-radius: 8px; }
+  .item { display: block; width: 100%; text-align: left; border: 0; border-bottom: 1px solid var(--border-soft); background: none; padding: 9px 14px; cursor: pointer; }
+  .item:hover { background: var(--bg-subtle); }
+  .item[aria-current="true"] { background: var(--bg-geo-light); }
+  .item .unit { font-weight: 700; font-size: .85rem; }
+  .item .snip { font-family: var(--font-serif); font-size: .85rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .item.done { opacity: .5; }
+  .tag { font-size: .7rem; padding: 1px 7px; border-radius: 10px; background: var(--bg-sidebar); color: var(--text-secondary); margin-left: 6px; font-weight: 600; }
+  .tag.against { background: var(--bg-danger); color: var(--danger); }
+  .tag.split { background: var(--bg-exe-light); color: var(--accent-exe); }
+  .tag.recorded { background: var(--bg-time-light); color: var(--accent-time); }
+  main { padding: 22px 28px 60px; }
+  main h2 { font-family: var(--font-serif); margin: 0 0 4px; font-size: 1.4rem; }
+  .muted { color: var(--text-tertiary); }
+  .card { background: var(--bg-surface); border: 1px solid var(--border-soft); border-radius: var(--radius); padding: 16px 18px; margin: 14px 0; }
+  .reading { font-family: var(--font-serif); font-size: 1.1rem; line-height: 1.7; }
+  .reading mark { background: var(--bg-exe-light); color: var(--text-primary); padding: 1px 3px; border-radius: 4px; box-shadow: inset 0 -2px 0 var(--accent-exe); }
+  table { border-collapse: collapse; width: 100%; }
+  th, td { text-align: left; padding: 8px; border-bottom: 1px solid var(--border-soft); vertical-align: top; font-size: .9rem; }
+  th { color: var(--text-secondary); font-weight: 600; }
+  td.r { font-family: var(--font-serif); font-size: 1rem; }
+  td.same { color: var(--accent-geo); }
+  td.diff { color: var(--accent-exe); }
+  .hint { background: var(--bg-geo-light); border-radius: 8px; padding: 10px 14px; font-size: .9rem; }
+  .tabs { display: flex; gap: 6px; margin-bottom: 10px; }
+  .tabs button { border: 1px solid var(--border-soft); background: var(--bg-subtle); padding: 6px 14px; border-radius: 8px; cursor: pointer; }
+  .tabs button[aria-selected="true"] { background: var(--accent-geo); border-color: var(--accent-geo); color: white; }
+  .field { display: flex; flex-direction: column; gap: 4px; margin: 8px 0; font-size: .85rem; color: var(--text-secondary); }
+  .field input, .field textarea { padding: 7px 10px; border: 1px solid var(--border-soft); border-radius: 8px; color: var(--text-primary); }
+  .field textarea { min-height: 54px; resize: vertical; }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .btn { border: 0; border-radius: 8px; padding: 8px 16px; cursor: pointer; font-weight: 700; background: var(--accent-geo); color: white; }
+  .btn.secondary { background: var(--bg-sidebar); color: var(--text-primary); }
+  .btn.warn { background: var(--accent-exe); }
+  .btn.small { padding: 4px 10px; font-weight: 600; font-size: .8rem; }
+  .btn:disabled { opacity: .5; cursor: default; }
+  .tabs button[aria-selected="true"] kbd { background: transparent; color: inherit; border-color: rgba(255,255,255,.5); }
+  kbd { font-size: .72rem; border: 1px solid var(--border-soft); border-bottom-width: 2px; border-radius: 4px; padding: 0 4px; background: var(--bg-subtle); }
+  .toast { position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%); background: var(--text-primary); color: white; padding: 10px 16px; border-radius: 10px; font-size: .9rem; display: flex; gap: 12px; align-items: center; max-width: 90vw; }
+  .toast button { background: none; border: 1px solid rgba(255,255,255,.4); color: white; border-radius: 6px; padding: 2px 10px; cursor: pointer; }
+  .toast.error { background: var(--danger); }
+  pre.log { background: var(--bg-subtle); border: 1px solid var(--border-soft); border-radius: 8px; padding: 10px; max-height: 260px; overflow: auto; font-size: .78rem; white-space: pre-wrap; }
+  .signoff li { margin: 6px 0; font-size: .88rem; }
+  .signoff del { color: var(--danger); text-decoration: line-through; }
+  .signoff ins { color: var(--accent-geo); text-decoration: none; font-weight: 700; }
+  .empty { text-align: center; padding: 60px 20px; color: var(--text-tertiary); }
+  @media (max-width: 1000px) { .layout { grid-template-columns: 200px 1fr; } main { grid-column: 1 / -1; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Source review</h1>
+  <span class="muted" id="where"></span>
+  <span class="spacer"></span>
+  <label>Reviewer <input id="who" autocomplete="name" placeholder="Your name"></label>
+</header>
+<div class="layout">
+  <nav aria-label="Resources">
+    <h2>Resources</h2>
+    <div id="resources"></div>
+    <h2>Filter by class</h2>
+    <div class="chips" id="classes"></div>
+    <h2>Other</h2>
+    <button class="res" id="signoffNav"><strong>Sign off earlier decisions</strong><small id="signoffCount"></small></button>
+    <div class="row" style="padding: 10px 6px; gap: 6px">
+      <button class="btn small secondary" id="verifyBtn" title="Re-run npm run verify for this resource">Re-verify</button>
+      <button class="btn small secondary" id="ingestBtn" title="Apply recorded corrections to res/ (npm run ingest)">Apply to res/</button>
+    </div>
+    <p class="muted" style="font-size: .75rem; padding: 0 6px">Keys: <kbd>j</kbd>/<kbd>k</kbd> next/previous · <kbd>a</kbd> accept · <kbd>c</kbd> correct · <kbd>/</kbd> search</p>
+  </nav>
+  <section class="list" aria-label="Items">
+    <div class="tools"><input id="search" type="search" placeholder="Search units and readings" aria-label="Search"></div>
+    <div id="items"></div>
+  </section>
+  <main id="detail" tabindex="-1"><div class="empty">Choose a resource.</div></main>
+</div>
+<div id="toast" class="toast" hidden role="status" aria-live="polite"></div>
+
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const state = { resources: [], resource: null, report: null, corrections: [], cls: null, q: '', selected: null, view: 'items', tab: 'accept' };
+
+async function api(method, path, body) {
+  const res = await fetch(path, { method, headers: { 'Content-Type': 'application/json', 'X-Review': '1' }, body: body ? JSON.stringify(body) : undefined });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error || res.statusText);
+  return data;
+}
+
+let toastTimer;
+function toast(msg, { error = false, undo } = {}) {
+  const t = $('#toast');
+  t.className = 'toast' + (error ? ' error' : '');
+  t.innerHTML = `<span>${esc(msg)}</span>`;
+  if (undo) {
+    const b = document.createElement('button');
+    b.textContent = 'Undo';
+    b.onclick = async () => { t.hidden = true; await undo(); };
+    t.appendChild(b);
+  }
+  t.hidden = false;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { t.hidden = true; }, undo ? 8000 : 5000);
+}
+
+const who = () => $('#who').value.trim();
+
+async function loadState() {
+  const s = await api('GET', '/api/state');
+  state.resources = s.resources;
+  if (!who()) $('#who').value = localStorage.getItem('reviewer') || s.reviewer || '';
+  renderResources();
+}
+
+function renderResources() {
+  $('#resources').innerHTML = state.resources.map(r => `
+    <button class="res" data-id="${r.id}" aria-current="${r.id === state.resource && state.view === 'items'}">
+      <strong>${esc(r.title)} ${r.verified ? `<span class="count ${r.pending ? '' : 'zero'}">${r.pending}</span>` : ''}</strong>
+      <small>${r.verified ? `${r.recorded ? `${r.recorded} correction${r.recorded === 1 ? '' : 's'} to verify · ` : ''}${r.accepted} accepted · ${r.corrections} corrections` : 'Not verified: no witness available'}</small>
+    </button>`).join('');
+  for (const b of document.querySelectorAll('.res[data-id]')) b.onclick = () => selectResource(b.dataset.id);
+  const r = state.resources.find(x => x.id === state.resource);
+  $('#signoffCount').textContent = r ? `${r.awaitingSignOff} in ${r.title}` : '';
+  $('#where').textContent = r ? `${r.title} · checked ${r.checked}` : '';
+}
+
+async function selectResource(id) {
+  const r = state.resources.find(x => x.id === id);
+  if (!r?.verified) { toast('This resource has no witness to compare against yet.'); return; }
+  state.resource = id; state.view = 'items'; state.cls = null; state.selected = null;
+  await loadReport();
+}
+
+async function loadReport() {
+  const data = await api('GET', `/api/report?resource=${state.resource}`);
+  state.report = data.report;
+  state.corrections = data.corrections;
+  renderResources();
+  renderClasses();
+  renderItems();
+  if (state.view === 'signoff') renderSignoff();
+  else if (!state.selected || !visible().some(i => i.key === state.selected)) select(visible().find(i => !i.recorded)?.key ?? null);
+  else renderDetail();
+}
+
+const clsOf = i => i.suggestion?.class ?? 'unclassified';
+
+function renderClasses() {
+  const counts = new Map();
+  for (const i of state.report.pending) counts.set(clsOf(i), (counts.get(clsOf(i)) ?? 0) + 1);
+  $('#classes').innerHTML = [['', 'All', state.report.pending.length], ...[...counts].map(([c, n]) => [c, c, n])]
+    .map(([c, label, n]) => `<button class="chip" data-c="${esc(c)}" aria-pressed="${(state.cls ?? '') === c}">${esc(label)} ${n}</button>`).join('');
+  for (const b of document.querySelectorAll('.chip')) b.onclick = () => { state.cls = b.dataset.c || null; state.view = 'items'; renderClasses(); renderItems(); select(visible()[0]?.key ?? null); };
+}
+
+function visible() {
+  const q = state.q.toLowerCase();
+  return state.report.pending.filter(i => (!state.cls || clsOf(i) === state.cls)
+    && (!q || [i.unit, i.ours, ...Object.values(i.readings)].join(' ').toLowerCase().includes(q)));
+}
+
+function renderItems() {
+  const items = visible();
+  $('#items').innerHTML = items.length ? items.map(i => `
+    <button class="item${i.recorded ? ' done' : ''}" data-key="${i.key}" aria-current="${i.key === state.selected}">
+      <div class="unit">${esc(i.unit)}<span class="tag ${i.recorded ? 'recorded' : i.class}">${i.recorded ? 'correction recorded' : i.class}</span></div>
+      <div class="snip">${esc(i.ours || '(nothing)')} → ${esc(Object.values(i.readings).find(r => r !== undefined && r !== i.ours) ?? '')}</div>
+    </button>`).join('') : '<div class="empty">Nothing awaiting review here.</div>';
+  for (const b of document.querySelectorAll('.item')) b.onclick = () => select(b.dataset.key);
+}
+
+function select(key) {
+  const item = state.report.pending.find(i => i.key === key);
+  if (key !== state.selected) state.tab = item?.suggestion?.action === 'correct' ? 'correct' : 'accept';
+  state.selected = key; state.view = 'items';
+  for (const b of document.querySelectorAll('.item')) b.setAttribute('aria-current', String(b.dataset.key === key));
+  document.querySelector(`.item[data-key="${key}"]`)?.scrollIntoView({ block: 'nearest' });
+  renderResources();
+  renderDetail();
+}
+
+function readerLink(unit) {
+  const m = unit.match(/^([1-3A-Z]{3}) (\d+):\d+$/);
+  return m && ['kjv', 'bsb'].includes(state.resource) ? `https://reformstudy.github.io/preview/#/reader/${m[1]}/${m[2]}` : null;
+}
+
+function renderDetail() {
+  const item = state.report.pending.find(i => i.key === state.selected);
+  const d = $('#detail');
+  if (!item) { d.innerHTML = '<div class="empty">Nothing selected. Everything in this view may be reviewed.</div>'; return; }
+  const w = state.report.witnesses;
+  const sug = item.suggestion ?? {};
+  const isText = Array.isArray(item.context);
+  const isProof = state.resource === 'wcf' && !isText;
+  const link = readerLink(item.unit);
+  const rows = Object.keys(w).map(id => [id, item.readings[id]]).map(([id, r]) => `
+    <tr><th scope="row">${esc(w[id]?.title ?? id)}<br><span class="muted">${esc(w[id]?.lineage ?? '')}</span></th>
+      <td class="r ${r === undefined ? '' : r === item.ours ? 'same' : 'diff'}">${r === undefined ? '<span class="muted">— (lacks this unit)</span>' : esc(r) || '<span class="muted">(nothing)</span>'}</td>
+      <td>${r !== undefined && r !== item.ours && !isProof ? `<button class="btn small secondary" data-use="${esc(r)}">Use this reading</button>` : ''}</td></tr>`).join('');
+  const reading = isText
+    ? `${item.context[0] ? '…' + esc(item.context[0]) + ' ' : ''}<mark>${esc(item.ours) || '<i>(nothing)</i>'}</mark>${item.context[1] ? ' ' + esc(item.context[1]) + '…' : ''}`
+    : `<mark>${esc(item.ours) || '<i>(none)</i>'}</mark>`;
+  const recorded = item.recorded ? `<div class="hint" style="background: var(--bg-time-light)">A correction is recorded for ${esc(item.unit)}. Re-verify to check that it fixes this, then Apply to res/. <button class="btn small secondary" id="undoCorr">Undo correction</button></div>` : '';
+  d.innerHTML = `
+    <h2>${esc(item.unit)} <span class="tag ${item.class}">${item.class}</span> <span class="tag">${esc(clsOf(item))}</span></h2>
+    <div class="muted">${item.class === 'against' ? 'Independent witnesses agree against our source.' : 'The witnesses are split, or a single witness differs.'} ${link ? `· <a href="${link}" target="_blank" rel="noreferrer">Open in the preview reader</a>` : ''}</div>
+    ${recorded}
+    <div class="card"><div class="muted" style="font-size:.8rem">Our source${isProof ? ': verses cited in this chapter' : ''}</div><div class="reading">${reading}</div></div>
+    <div class="card"><table><thead><tr><th>Witness</th><th>Reads</th><th></th></tr></thead><tbody>${rows}</tbody></table></div>
+    ${sug.note ? `<div class="hint">${esc(sug.note)}${sug.action ? ` Suggested: <strong>${esc(sug.action)}</strong>.` : ''}</div>` : ''}
+    <div class="card">
+      <div class="tabs" role="tablist">
+        <button role="tab" aria-selected="${state.tab === 'accept'}" data-tab="accept">Accept ours <kbd>a</kbd></button>
+        <button role="tab" aria-selected="${state.tab === 'correct'}" data-tab="correct">Correct the source <kbd>c</kbd></button>
+      </div>
+      <div id="tabBody"></div>
+    </div>
+    <div class="card">
+      <div class="row"><strong>Whole class</strong><span class="muted">${esc(clsOf(item))}: ${state.report.pending.filter(i => clsOf(i) === clsOf(item) && !i.recorded).length} items</span></div>
+      <div class="field"><label for="bulkReason">Reason (applies to every item in the class; check a few first)</label><input id="bulkReason" value="${esc(sug.action === 'accept' ? sug.note ?? '' : '')}"></div>
+      <button class="btn warn" id="bulkAccept">Accept all in “${esc(clsOf(item))}”</button>
+    </div>`;
+  for (const b of d.querySelectorAll('[data-tab]')) b.onclick = () => { state.tab = b.dataset.tab; renderDetail(); };
+  renderTab(item, isProof);
+  for (const b of d.querySelectorAll('[data-use]')) b.onclick = () => { state.tab = 'correct'; renderDetail(); $('#to').value = b.dataset.use; $('#to').focus(); };
+  $('#bulkAccept').onclick = () => acceptClass(clsOf(item));
+  if (item.recorded) $('#undoCorr').onclick = () => undoCorrection(item.unit);
+}
+
+function renderTab(item, isProof) {
+  const sug = item.suggestion ?? {};
+  const body = $('#tabBody');
+  if (state.tab === 'accept') {
+    body.innerHTML = `
+      <div class="field"><label for="reason">Why our reading stands</label><textarea id="reason">${esc(sug.action === 'accept' ? sug.note ?? '' : '')}</textarea></div>
+      <button class="btn" id="acceptBtn">Accept</button>`;
+    $('#acceptBtn').onclick = () => accept(item);
+  } else if (isProof) {
+    const section = item.unit.split(' ')[0];
+    body.innerHTML = `
+      <p class="muted" style="font-size:.85rem">References are OSIS, as in Creeds.json (e.g. <code>Matt.27.46</code>, <code>Ps.19.1-Ps.19.3</code>). The list is checked when you re-verify.</p>
+      <div class="row"><div class="field"><label for="psec">Section</label><input id="psec" value="${esc(section)}" size="6"></div>
+      <div class="field"><label for="pfoot">Footnote</label><input id="pfoot" type="number" min="1" size="4"></div></div>
+      <div class="field"><label for="prep">Replace (comma-separated)</label><input id="prep"></div>
+      <div class="field"><label for="pwith">With (comma-separated; empty to remove)</label><input id="pwith"></div>
+      <div class="field"><label for="reason">Reason</label><textarea id="reason"></textarea></div>
+      <button class="btn" id="correctBtn">Record proof correction</button>`;
+    $('#correctBtn').onclick = () => correct(item, true);
+  } else {
+    body.innerHTML = `
+      <div class="field"><label for="from">Replace this text in ${esc(item.unit)} (must appear exactly once)</label><input id="from" value="${esc(item.ours)}"></div>
+      <div class="field"><label for="to">With</label><input id="to" value="${esc(agreed(item) ?? '')}"></div>
+      <div class="field"><label for="reason">Reason</label><textarea id="reason">${sug.action === 'correct' ? esc(sug.note ?? '') : ''}</textarea></div>
+      <button class="btn" id="correctBtn">Record correction</button>`;
+    $('#correctBtn').onclick = () => correct(item, false);
+  }
+}
+
+/** The witnesses' reading when every witness that has the unit agrees on it. */
+function agreed(item) {
+  const present = Object.values(item.readings).filter(r => r !== undefined);
+  return present.length && present.every(r => r === present[0]) ? present[0] : null;
+}
+
+function next() {
+  const items = visible();
+  const i = items.findIndex(x => x.key === state.selected);
+  const after = items.slice(i + 1).find(x => !x.recorded) ?? items.find(x => !x.recorded && x.key !== state.selected);
+  return after?.key ?? null;
+}
+
+async function accept(item) {
+  try {
+    const reason = $('#reason').value.trim();
+    const nextKey = next();
+    await api('POST', '/api/accept', { resource: state.resource, ids: [item.key], reason, by: who() });
+    await refresh(nextKey);
+    toast(`Accepted ${item.unit}`, { undo: async () => { await api('POST', '/api/undo', { resource: state.resource, kind: 'accepted', key: item.key, item }); await refresh(item.key); } });
+  } catch (e) { toast(e.message, { error: true }); }
+}
+
+async function correct(item, isProof) {
+  try {
+    const body = { resource: state.resource, id: item.key, reason: $('#reason').value.trim(), by: who() };
+    if (isProof) {
+      const list = s => s.split(',').map(x => x.trim()).filter(Boolean);
+      body.proof = { section: $('#psec').value.trim(), footnote: Number($('#pfoot').value), replace: list($('#prep').value), with: list($('#pwith').value) };
+    } else {
+      body.from = $('#from').value; body.to = $('#to').value;
+      if (!body.to && !confirm('Replace with nothing (delete the text)?')) return;
+    }
+    const nextKey = next();
+    await api('POST', '/api/correct', body);
+    await refresh(nextKey);
+    toast(`Correction recorded for ${item.unit}. Re-verify to check it.`, { undo: () => undoCorrection(item.unit) });
+  } catch (e) { toast(e.message, { error: true }); }
+}
+
+async function undoCorrection(unit) {
+  try {
+    await api('POST', '/api/undo', { resource: state.resource, kind: 'correction', unit });
+    await refresh(state.selected);
+    toast(`Removed the correction for ${unit}`);
+  } catch (e) { toast(e.message, { error: true }); }
+}
+
+async function acceptClass(cls) {
+  const reason = $('#bulkReason').value.trim();
+  const n = state.report.pending.filter(i => clsOf(i) === cls && !i.recorded).length;
+  if (!reason) { toast('Give a reason for the whole class.', { error: true }); return; }
+  if (!confirm(`Accept all ${n} items in “${cls}” with this reason?\n\n${reason}`)) return;
+  try {
+    const r = await api('POST', '/api/accept', { resource: state.resource, class: cls, reason, by: who() });
+    state.cls = null;
+    await refresh(null);
+    toast(`Accepted ${r.accepted} items in “${cls}”`);
+  } catch (e) { toast(e.message, { error: true }); }
+}
+
+async function refresh(selectKey) {
+  state.selected = selectKey;
+  await loadState();
+  await loadReport();
+  if (selectKey) select(selectKey);
+}
+
+function renderSignoff() {
+  state.view = 'signoff';
+  renderResources();
+  const mine = state.corrections.filter(c => c.reviewer === 'Claude' && !c.confirmedBy);
+  const d = $('#detail');
+  d.innerHTML = `
+    <h2>Sign off earlier decisions</h2>
+    <p class="muted">${mine.length} corrections in ${esc(state.resources.find(r => r.id === state.resource)?.title)} were recorded by Claude and await a person's sign-off. Undo any you disagree with first.</p>
+    <div class="card"><ol class="signoff">${mine.map(c => `<li><strong>${esc(c.unit)}</strong> ${c.from !== undefined ? `<del>${esc(c.from)}</del> → <ins>${esc(c.to)}</ins>` : `[${c.footnote}] <del>${esc(c.replace.join(', '))}</del> → <ins>${esc(c.with.join(', ') || '(removed)')}</ins>`} <span class="muted">· ${esc(c.reason)}</span> <button class="btn small secondary" data-undo="${state.corrections.indexOf(c)}">Undo</button></li>`).join('') || '<li class="muted">Nothing awaiting sign-off.</li>'}</ol></div>
+    ${mine.length ? `<button class="btn" id="confirmAll">Sign off all ${mine.length} as ${esc(who() || '…')}</button>` : ''}`;
+  for (const b of d.querySelectorAll('[data-undo]')) b.onclick = async () => {
+    const c = state.corrections[Number(b.dataset.undo)];
+    if (!confirm(`Remove this correction to ${c.unit}? It will come back for review on the next verify.`)) return;
+    const match = c.from !== undefined ? { from: c.from, to: c.to } : { footnote: c.footnote };
+    try { await api('POST', '/api/undo', { resource: state.resource, kind: 'correction', unit: c.unit, ...match }); await loadReport(); renderSignoff(); } catch (e) { toast(e.message, { error: true }); }
+  };
+  if (mine.length) $('#confirmAll').onclick = async () => {
+    try { const r = await api('POST', '/api/confirm', { resource: state.resource, by: who() }); await loadState(); await loadReport(); renderSignoff(); toast(`Signed off ${r.confirmed} decisions`); } catch (e) { toast(e.message, { error: true }); }
+  };
+}
+
+async function runJob(path, label) {
+  if (!state.resource) return;
+  const d = $('#detail');
+  d.innerHTML = `<h2>${label}…</h2><p class="muted">This downloads the pinned files and can take up to a minute.</p>`;
+  const r = await api('POST', path, { resource: state.resource }).catch(e => ({ ok: false, output: e.message }));
+  await loadState();
+  await loadReport().catch(() => {});
+  state.view = 'job';
+  d.innerHTML = `<h2>${label} ${r.ok ? 'finished' : 'failed'}</h2><pre class="log">${esc(r.output)}</pre>
+    ${r.ok && path.endsWith('verify') ? '<p>Corrections that worked are gone from the list; any still listed need another look. Then use <strong>Apply to res/</strong>.</p>' : ''}
+    ${r.ok && path.endsWith('ingest') ? '<p>res/ is updated. Commit <code>provenance/</code> and <code>res/</code>, then open a pull request; the preview site will show the changes.</p>' : ''}`;
+}
+
+$('#who').onchange = () => { localStorage.setItem('reviewer', who()); };
+$('#search').oninput = e => { state.q = e.target.value; renderItems(); };
+$('#signoffNav').onclick = () => { if (state.resource) renderSignoff(); else toast('Choose a resource first.'); };
+$('#verifyBtn').onclick = () => runJob('/api/verify', 'Re-verify');
+$('#ingestBtn').onclick = () => runJob('/api/ingest', 'Apply to res/');
+
+document.addEventListener('keydown', e => {
+  if (e.target.matches('input, textarea') || e.metaKey || e.ctrlKey || !state.report || state.view !== 'items') return;
+  const items = visible();
+  const i = items.findIndex(x => x.key === state.selected);
+  if (e.key === 'j' || e.key === 'ArrowDown') { e.preventDefault(); if (items[i + 1]) select(items[i + 1].key); }
+  else if (e.key === 'k' || e.key === 'ArrowUp') { e.preventDefault(); if (i > 0) select(items[i - 1].key); }
+  else if (e.key === 'a') { e.preventDefault(); state.tab = 'accept'; renderDetail(); $('#reason')?.focus(); }
+  else if (e.key === 'c') { e.preventDefault(); state.tab = 'correct'; renderDetail(); ($('#to') ?? $('#pfoot'))?.focus(); }
+  else if (e.key === '/') { e.preventDefault(); $('#search').focus(); }
+});
+
+loadState().then(() => {
+  const first = state.resources.find(r => r.verified && r.pending);
+  if (first) selectResource(first.id);
+}).catch(e => toast(e.message, { error: true }));
+</script>
+</body>
+</html>

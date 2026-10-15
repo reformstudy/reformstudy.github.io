@@ -18,6 +18,7 @@
     "ingest:strongs": "node scripts/ingest/strongs.js",
     "verify": "node scripts/verify/verify.js",
     "review": "node scripts/verify/review.js",
+    "review:ui": "node scripts/verify/review-server.js",
     "content:diff": "node scripts/release/content-diff.js",
     "test": "node --test scripts/tests/*.test.js",
     "convert:resources": "node scripts/convert-text-to-json.js",

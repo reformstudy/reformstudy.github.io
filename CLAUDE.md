@@ -108,6 +108,7 @@ npm run ingest:wcf            # WCF 1647 + proofs → res/confessions/wcf/wcf.js
 npm run ingest:henry          # Matthew Henry → res/commentaries/henry/ (--books ROM,JHN for some books)
 npm run ingest:strongs        # Strong's Greek + Hebrew → res/strongs/
 npm run verify                # compare sources with independent witnesses; writes provenance/reports/
+npm run review:ui             # local reviewer UI at http://127.0.0.1:4777 (same decisions files as npm run review)
 npm run review -- kjv         # list, accept or correct items awaiting review
 npm run content:diff -- v0.1.0  # content changes since a release tag (what a release would change)
 npm run validate:resources    # also runs inside every build; errors fail the build

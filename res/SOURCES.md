@@ -37,7 +37,15 @@ No single copy of these texts can be trusted on its own. `npm run verify` checks
 
    A decision therefore stops matching as soon as the source or a witness changes there, and the item comes back for review instead of being waved through. Anything unmatched is listed as awaiting review.
 
-Reviewing uses `npm run review`:
+The easiest way to review is the local reviewer UI. `npm run review:ui` opens http://127.0.0.1:4777, where you can work through each resource's items, with these tools:
+- every witness's reading side by side;
+- buttons to accept our reading, to correct the source (pre-filled when the witnesses agree), or to accept a whole suggested class;
+- a page to sign off, or undo, earlier decisions;
+- buttons to re-verify and to apply corrections to `res/`.
+
+It runs only on your machine and writes the same decisions files as the command line. Commit them as usual.
+
+The same is available from the command line with `npm run review`:
 
 ```bash
 npm run review -- kjv                                   # what awaits review, grouped by suggested class

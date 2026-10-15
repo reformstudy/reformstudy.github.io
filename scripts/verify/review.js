@@ -63,6 +63,39 @@ export function addCorrection(resource, decisions, item, { from = item.ours, to,
   }
 }
 
+/** Add a WCF proof-reference correction: in footnote `footnote` of `section`, replace OSIS references with others. */
+export function addProofCorrection(decisions, { section, footnote, replace, with: replacement, reason, reviewer, date = today() }) {
+  if (!section || !Number.isInteger(footnote) || !replace?.length) throw new Error('Give the section, the footnote number and the references to replace.');
+  if (!reason) throw new Error('Give a reason for the correction.');
+  decisions.corrections.proofs.push({ section, footnote, replace, with: replacement ?? [], reviewer, date, reason });
+}
+
+/**
+ * Remove an accepted decision (by key), or a correction for a unit: the one
+ * matching `from`/`to` (or `footnote`) when given, else the last one recorded.
+ * Returns true if one was removed.
+ */
+export function undoDecision(resource, decisions, { kind, key, unit, from, to, footnote }) {
+  if (kind === 'accepted') {
+    const i = decisions.accepted.findIndex(a => a.key === key);
+    if (i < 0) return false;
+    decisions.accepted.splice(i, 1);
+    return true;
+  }
+  const lists = Array.isArray(decisions.corrections) ? [decisions.corrections] : Object.values(decisions.corrections);
+  for (const list of lists) {
+    for (let i = list.length - 1; i >= 0; i--) {
+      const c = list[i];
+      if ((c.ref ?? c.section) !== unit) continue;
+      if (from !== undefined && (c.from !== from || c.to !== to)) continue;
+      if (footnote !== undefined && c.footnote !== footnote) continue;
+      list.splice(i, 1);
+      return true;
+    }
+  }
+  return false;
+}
+
 /** Mark decisions recorded by `reviewer` as confirmed by `by`. Returns the number confirmed. */
 export function confirmDecisions(decisions, { reviewer, by, date = today() }) {
   const all = [...(Array.isArray(decisions.corrections) ? decisions.corrections : Object.values(decisions.corrections).flat()), ...decisions.accepted];
@@ -73,7 +106,7 @@ export function confirmDecisions(decisions, { reviewer, by, date = today() }) {
   return n;
 }
 
-function whoAmI(args) {
+export function whoAmI(args = {}) {
   if (args.by) return String(args.by);
   try {
     const name = execSync('git config user.name', { encoding: 'utf8' }).trim();
@@ -83,13 +116,13 @@ function whoAmI(args) {
   throw new Error('Say who is reviewing with --by "Name".');
 }
 
-function loadReport(resource) {
+export function loadReport(resource) {
   const file = path.join(REPORTS_DIR, `${resource}.json`);
   if (!fs.existsSync(file)) throw new Error(`No report for ${resource}: run npm run verify -- ${resource} first.`);
   return JSON.parse(fs.readFileSync(file, 'utf8'));
 }
 
-function findItems(report, ids) {
+export function findItems(report, ids) {
   return ids.map(id => {
     const item = report.pending.find(i => i.id === id || i.key === id);
     if (!item) throw new Error(`No pending item ${id} in the ${report.resource} report.`);
@@ -103,6 +136,17 @@ function describe(item) {
   for (const [w, r] of Object.entries(item.readings)) lines.push(`  ${w}: ${r === undefined ? '—' : r}`);
   if (item.suggestion?.note) lines.push(`  hint: ${item.suggestion.note}${item.suggestion.action ? ` (suggested: ${item.suggestion.action})` : ''}`);
   return lines.join('\n');
+}
+
+/** Accept items, save the decisions, and take the items off the report's pending list. Returns the number added. */
+export function recordAccept(resource, report, decisions, items, options) {
+  const n = acceptItems(decisions, items, options);
+  saveDecisions(resource, decisions);
+  const keys = new Set(items.map(i => i.key));
+  report.pending = report.pending.filter(i => !keys.has(i.key));
+  report.accepted += n;
+  writeReport(report);
+  return n;
 }
 
 async function main() {
@@ -136,12 +180,7 @@ async function main() {
   if (command === 'accept') {
     const items = args.class ? report.pending.filter(i => i.suggestion?.class === args.class) : findItems(report, rest);
     if (!items.length) throw new Error('Nothing to accept: give item ids or --class.');
-    const n = acceptItems(decisions, items, { reason: args.reason, reviewer: whoAmI(args) });
-    saveDecisions(resource, decisions);
-    const keys = new Set(items.map(i => i.key));
-    report.pending = report.pending.filter(i => !keys.has(i.key));
-    report.accepted += n;
-    writeReport(report);
+    const n = recordAccept(resource, report, decisions, items, { reason: args.reason, reviewer: whoAmI(args) });
     console.log(`Accepted ${n} item(s) in provenance/decisions/${resource}.json; ${report.pending.length} awaiting review.`);
     return;
   }

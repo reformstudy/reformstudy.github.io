@@ -28,6 +28,8 @@ Each script checks its download against the SHA-256 in `provenance/registry.json
 | `verify/consensus.js` | Aligns each witness with the source, finds the places that differ, classifies them by independent lineage, and keys them by content |
 | `verify/adapters/*.js` | Per resource: how to split it into units, normalize the text, read each witness, and suggest a class for each item |
 | `verify/report.js` | The Markdown reports |
+| `verify/review.js` | `npm run review`: list items and record decisions from the command line |
+| `verify/review-server.js`, `verify/review-ui.html` | `npm run review:ui`: the same in a local web page (127.0.0.1 only; writes only from its own page) |
 
 To add a witness, add it to the registry (with its lineage), record its checksum with `UPDATE_SOURCE_LOCK=1 npm run verify`, and read it in the resource's adapter. See [res/SOURCES.md](../res/SOURCES.md).
 

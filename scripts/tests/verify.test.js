@@ -5,7 +5,8 @@ import { kjvTokens, parseThiago } from '../verify/adapters/kjv.js';
 import { bsbTokens, parseThiagoBsb } from '../verify/adapters/bsb.js';
 import { compressVerses, parseModernCitation, parseOldNotes, spellingKey, wcfTokens } from '../verify/adapters/wcf.js';
 import { lemmaKey, parseStep } from '../verify/adapters/strongs.js';
-import { acceptItems, addCorrection, confirmDecisions } from '../verify/review.js';
+import { acceptItems, addCorrection, addProofCorrection, confirmDecisions, undoDecision } from '../verify/review.js';
+import { createServer } from '../verify/review-server.js';
 import { renderReport } from '../verify/report.js';
 
 const words = s => s.split(' ');
@@ -142,4 +143,38 @@ test('reports list pending items with the classes needing judgement first', () =
   });
   assert.ok(md.indexOf('### hard') < md.indexOf('### easy'));
   assert.match(md, /\| `2` \| u2 \| \*\*c\*\* \| a: “d” \| against \|/);
+});
+
+test('review: proof corrections and undo match the exact decision', () => {
+  const kjv = { corrections: [
+    { ref: 'ISA 3:15', from: 'Lord God', to: 'Lord GOD' },
+    { ref: 'ISA 3:15', from: 'saith the Lord', to: 'saith the LORD' },
+  ], accepted: [{ key: 'k1' }] };
+  assert.equal(undoDecision('kjv', kjv, { kind: 'correction', unit: 'ISA 3:15', from: 'Lord God', to: 'Lord GOD' }), true);
+  assert.deepEqual(kjv.corrections.map(c => c.from), ['saith the Lord']);
+  assert.equal(undoDecision('kjv', kjv, { kind: 'accepted', key: 'k1' }), true);
+  assert.equal(undoDecision('kjv', kjv, { kind: 'accepted', key: 'k1' }), false);
+
+  const wcf = { corrections: { text: [], proofs: [] }, accepted: [] };
+  assert.throws(() => addProofCorrection(wcf, { section: '8.4', footnote: 4, replace: [], reason: 'r', reviewer: 'R' }), /references to replace/);
+  addProofCorrection(wcf, { section: '8.4', footnote: 4, replace: ['Matt.26-Matt.27'], with: ['Matt.26.37-Matt.26.38', 'Matt.27.46'], reason: 'r', reviewer: 'R', date: 'd' });
+  assert.deepEqual(wcf.corrections.proofs[0], { section: '8.4', footnote: 4, replace: ['Matt.26-Matt.27'], with: ['Matt.26.37-Matt.26.38', 'Matt.27.46'], reviewer: 'R', date: 'd', reason: 'r' });
+  assert.equal(undoDecision('wcf', wcf, { kind: 'correction', unit: '8.4', footnote: 4 }), true);
+});
+
+test('reviewer UI server: serves the page and state, refuses cross-site writes', async () => {
+  const server = createServer({ port: 0 });
+  await new Promise(r => server.listen(0, '127.0.0.1', r));
+  const base = `http://127.0.0.1:${server.address().port}`;
+  try {
+    assert.match(await (await fetch(base)).text(), /Source review/);
+    const state = await (await fetch(`${base}/api/state`)).json();
+    assert.ok(state.resources.some(r => r.id === 'kjv' && r.verified));
+    const post = headers => fetch(`${base}/api/accept`, { method: 'POST', headers: { 'Content-Type': 'application/json', ...headers }, body: '{"resource":"kjv"}' });
+    assert.equal((await post({})).status, 403, 'no X-Review header');
+    assert.equal((await post({ 'X-Review': '1', Origin: 'https://example.com' })).status, 403, 'another origin');
+    assert.equal((await fetch(`${base}/api/report?resource=../x`)).status, 400);
+  } finally {
+    server.close();
+  }
 });
