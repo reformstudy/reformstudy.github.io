@@ -592,6 +592,7 @@ export default function ScriptureReader() {
     if (!entry) return null;
     return {
       number: entry.number,
+      lemma: entry.lemma,
       transliteration: entry.transliteration,
       pronunciation: entry.pronunciation,
       partOfSpeech: entry.partOfSpeech,
@@ -639,13 +640,13 @@ export default function ScriptureReader() {
 
     const { verse, cleanWord } = wordSelection;
     const verseEntries = concordance.entries.filter(e =>
-      e.references.some(r =>
+      (e.references ?? []).some(r =>
         r.book === verse.book && r.chapter === verse.chapter && r.verse === verse.verse
       )
     );
 
     const wordMatches = verseEntries.filter(e =>
-      e.kjvDefinition.toLowerCase().split(/[\s,;:()\-]+/).includes(cleanWord)
+      (e.kjvDefinition ?? '').toLowerCase().split(/[\s,;:()\-]+/).includes(cleanWord)
     );
 
     return (wordMatches.length > 0 ? wordMatches : verseEntries).slice(0, 5);
@@ -950,12 +951,13 @@ export default function ScriptureReader() {
 
 interface StrongsMatch {
   number: string;
-  transliteration: string;
-  pronunciation: string;
-  partOfSpeech: string;
-  definition: string;
-  kjvDefinition: string;
-  usageCount: number;
+  lemma?: string;
+  transliteration?: string;
+  pronunciation?: string;
+  partOfSpeech?: string;
+  definition?: string;
+  kjvDefinition?: string;
+  usageCount?: number;
 }
 
 interface WordStudyPanelProps {
@@ -1044,6 +1046,11 @@ function StrongsEntryDisplay({ entry, prefix }: { entry: StrongsMatch; prefix: s
         <span style={{ fontWeight: 800, color: 'var(--accent-exe)', fontSize: '0.8rem', fontFamily: 'var(--font-sans)' }}>
           {displayNum}
         </span>
+        {entry.lemma && (
+          <span lang={prefix === 'G' ? 'grc' : 'hbo'} style={{ fontFamily: 'var(--font-serif)', fontSize: '1.05rem', color: 'var(--text-primary)' }}>
+            {entry.lemma}
+          </span>
+        )}
         <span style={{ fontFamily: 'var(--font-serif)', fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-primary)' }}>
           {entry.transliteration}
         </span>
@@ -1051,19 +1058,23 @@ function StrongsEntryDisplay({ entry, prefix }: { entry: StrongsMatch; prefix: s
           {entry.pronunciation}
         </span>
       </div>
-      <div style={{
-        display: 'inline-block', fontSize: '0.7rem', fontWeight: 700,
-        color: 'var(--text-tertiary)', backgroundColor: 'var(--bg-sidebar)',
-        padding: '1px 7px', borderRadius: 10, marginBottom: 6,
-      }}>
-        {entry.partOfSpeech}
-      </div>
+      {entry.partOfSpeech && (
+        <div style={{
+          display: 'inline-block', fontSize: '0.7rem', fontWeight: 700,
+          color: 'var(--text-tertiary)', backgroundColor: 'var(--bg-sidebar)',
+          padding: '1px 7px', borderRadius: 10, marginBottom: 6,
+        }}>
+          {entry.partOfSpeech}
+        </div>
+      )}
       <div style={{ fontSize: '0.9rem', color: 'var(--text-primary)', marginBottom: 6, lineHeight: 1.5 }}>
         {entry.definition}
       </div>
-      <div style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)' }}>
-        KJV renders as: <em style={{ color: 'var(--text-secondary)' }}>{entry.kjvDefinition}</em>
-      </div>
+      {entry.kjvDefinition && (
+        <div style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)' }}>
+          KJV renders as: <em style={{ color: 'var(--text-secondary)' }}>{entry.kjvDefinition}</em>
+        </div>
+      )}
     </>
   );
 }

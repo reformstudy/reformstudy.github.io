@@ -2,9 +2,12 @@
  * Download the King James Version and write res/bibles/kjv/kjv.json.
  *
  * Source: github.com/aruljohn/Bible-kjv (MIT; the KJV text itself is public
- * domain), pinned to a commit so the output is reproducible. That source keeps
- * the standard 1769 punctuation and prints LORD in capitals, and has no
- * markup to strip.
+ * domain), pinned to a commit so the output is reproducible. Of the KJV copies
+ * compared (see res/SOURCES.md) it has the fewest readings of its own and keeps
+ * full punctuation, but it has 49 wrong words and spellings and loses the
+ * LORD/Lord distinction in about 110 verses. The corrections in
+ * provenance/decisions/kjv.json fix those, each reviewed against independent
+ * copies (npm run verify).
  *
  * Usage:
  *   node scripts/ingest/kjv.js                    # download from GitHub
@@ -15,7 +18,9 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { CANON } from '../lib/canon.js';
-import { fetchJson, normalizeText, parseArgs, writeBibleFile } from '../lib/io.js';
+import { fetchBuffer, normalizeText, parseArgs, writeBibleFile } from '../lib/io.js';
+import { checkLock, digestFiles } from '../lib/lock.js';
+import { loadDecisions } from '../lib/decisions.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUTPUT = path.join(__dirname, '../../res/bibles/kjv/kjv.json');
@@ -54,22 +59,54 @@ export async function convertKjv(bookNames, loadBook) {
       language: 'en',
       releaseDate: '1611',
       copyright: 'Public Domain',
-      description: 'The Authorized Version of 1611, in the standard 1769 Oxford text. The translation John Gill quotes throughout his commentary.',
+      description: 'The Authorized Version of 1611 in its standard 1769 text, checked against the Pure Cambridge Edition and other independent copies.',
       source: { name: 'aruljohn/Bible-kjv', url: `${SOURCE_REPO}/tree/${SOURCE_COMMIT}` },
     },
     books,
   };
 }
 
-async function main() {
-  const args = parseArgs(process.argv.slice(2));
+/**
+ * Apply verse corrections in order. Each `from` must occur exactly once in
+ * its verse, so a changed source fails instead of being corrected wrongly.
+ */
+export function applyKjvCorrections(bible, corrections) {
+  const verses = new Map();
+  for (const book of bible.books) for (const v of book.verses) verses.set(`${book.id} ${v.chapter}:${v.verse}`, v);
+  for (const c of corrections) {
+    const v = verses.get(c.ref);
+    if (!v) throw new Error(`KJV correction: no verse ${c.ref}`);
+    const count = v.text.split(c.from).length - 1;
+    if (count !== 1) throw new Error(`KJV ${c.ref}: "${c.from}" appears ${count} times, expected once`);
+    v.text = v.text.replace(c.from, c.to);
+  }
+  return bible;
+}
+
+/** Download (or read) the pinned source, check its checksum, and convert it without corrections. */
+export async function loadKjvSource(args = {}) {
   const fileName = name => `${name.replace(/\s+/g, '')}.json`;
-  const load = args['source-dir']
-    ? async name => JSON.parse(fs.readFileSync(path.join(args['source-dir'], name), 'utf8'))
-    : async name => fetchJson(`${RAW_BASE}/${encodeURIComponent(name)}`);
+  const raw = new Map();
+  const load = async name => {
+    const data = args['source-dir']
+      ? fs.readFileSync(path.join(args['source-dir'], name))
+      : await fetchBuffer(`${RAW_BASE}/${encodeURIComponent(name)}`);
+    raw.set(name, data);
+    return JSON.parse(data.toString('utf8'));
+  };
 
   const bookNames = await load('Books.json');
   const bible = await convertKjv(bookNames, name => load(fileName(name)));
+  checkLock('kjv', digestFiles(raw));
+  return bible;
+}
+
+async function main() {
+  const args = parseArgs(process.argv.slice(2));
+  const bible = await loadKjvSource(args);
+  const { corrections } = loadDecisions('kjv');
+  applyKjvCorrections(bible, corrections);
+  bible.version.corrections = { count: corrections.length, file: 'provenance/decisions/kjv.json' };
   writeBibleFile(OUTPUT, bible);
   const total = bible.books.reduce((n, b) => n + b.verses.length, 0);
   console.log(`Wrote ${OUTPUT} (${bible.books.length} books, ${total} verses)`);

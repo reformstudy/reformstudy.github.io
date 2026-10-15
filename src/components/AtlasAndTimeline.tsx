@@ -6,6 +6,7 @@ import {
 import { useParams, useNavigate } from 'react-router-dom';
 import { ReferenceCard } from './ReferenceCard';
 import { parseScriptureRef } from '../utils/parseScriptureRef';
+import { siteUrl } from '../utils/paths';
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
@@ -356,7 +357,7 @@ export default function AtlasAndTimeline() {
       ? 'http://localhost:4001/file/atlas/eraEvents.json'
       : import.meta.env.DEV
         ? '/docs/content/atlas/eraEvents.json'
-        : '/content/atlas/eraEvents.json';
+        : siteUrl('content/atlas/eraEvents.json');
     (async () => {
       try {
         const res = await fetch(url);

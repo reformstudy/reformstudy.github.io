@@ -16,6 +16,7 @@ import {
   loadStrongsGreek,
   loadStrongsHebrew
 } from '../utils/resourceLoader';
+import { siteUrl } from '../utils/paths';
 
 interface ResourceContextType {
   // Data
@@ -128,7 +129,7 @@ export function ResourceProvider({ children }: { children: ReactNode }) {
 
     // Fallback to built content under /content
     try {
-      const res = await fetch(`/content/${path}`);
+      const res = await fetch(siteUrl(`content/${path}`));
       if (!res.ok) throw new Error('Failed to load content');
       const json = await res.json();
       setContent(prev => ({ ...prev, [resourceId]: json }));

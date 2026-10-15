@@ -1,0 +1,1528 @@
+{
+ "resource": "kjv",
+ "about": "Reviewed differences between aruljohn/Bible-kjv and its witnesses (provenance/registry.json). 'corrections' are applied at ingest; each 'from' must occur exactly once in its verse. 'accepted' are differences checked and found benign; our reading stands. Both are maintained with npm run review; see res/SOURCES.md.",
+ "corrections": [
+  {
+   "ref": "GEN 10:15",
+   "from": "his first born,",
+   "to": "his firstborn,",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "GEN 11:3",
+   "from": "thoroughly",
+   "to": "throughly",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "GEN 19:22",
+   "from": "do anything",
+   "to": "do any thing",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "GEN 19:37",
+   "from": "the first born bare",
+   "to": "the firstborn bare",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "GEN 21:16",
+   "from": "a bow shot",
+   "to": "a bowshot",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "GEN 27:19",
+   "from": "thy first born;",
+   "to": "thy firstborn;",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "GEN 30:37",
+   "from": "chestnut",
+   "to": "chesnut",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "EXO 11:5",
+   "from": "from the first born of",
+   "to": "from the firstborn of",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "EXO 34:23",
+   "from": "menchildren",
+   "to": "men children",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "LEV 19:15",
+   "from": "nor honor",
+   "to": "nor honour",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "NUM 14:25",
+   "from": "Tomorrow turn",
+   "to": "To morrow turn",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "NUM 18:7",
+   "from": "for everything of",
+   "to": "for every thing of",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "NUM 20:19",
+   "from": "doing anything else",
+   "to": "doing any thing else",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "DEU 14:21",
+   "from": "eat of anything",
+   "to": "eat of any thing",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "JOS 4:5",
+   "from": "take you up",
+   "to": "take ye up",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "JOS 4:10",
+   "from": "until everything was",
+   "to": "until every thing was",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "JOS 10:1",
+   "from": "Adonizedec",
+   "to": "Adoni-zedek",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "JOS 10:3",
+   "from": "Adonizedec",
+   "to": "Adoni-zedek",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "1SA 17:48",
+   "from": "David hastened",
+   "to": "David hasted",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "2SA 13:2",
+   "from": "do anything to",
+   "to": "do any thing to",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "1KI 1:51",
+   "from": "me today",
+   "to": "me to day",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "1KI 6:15",
+   "from": "the ceiling",
+   "to": "the cieling",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "2KI 8:16",
+   "from": "Je hoshaphat",
+   "to": "Jehoshaphat",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "1CH 2:4",
+   "from": "bore him",
+   "to": "bare him",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "1CH 5:11",
+   "from": "Salcah",
+   "to": "Salchah",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "1CH 24:11",
+   "from": "Jeshuah",
+   "to": "Jeshua",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "2CH 33:19",
+   "from": "all his sins",
+   "to": "all his sin",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "JOB 5:14",
+   "from": "the day time",
+   "to": "the daytime",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "JOB 33:32",
+   "from": "hast anything",
+   "to": "hast any thing",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "PSA 22:2",
+   "from": "the day time",
+   "to": "the daytime",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "PSA 42:8",
+   "from": "the day time",
+   "to": "the daytime",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "PSA 50:17",
+   "from": "and casteth",
+   "to": "and castest",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "PSA 86:15",
+   "from": "long suffering",
+   "to": "longsuffering",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "ECC 8:17",
+   "from": "yea farther",
+   "to": "yea further",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "ISA 4:6",
+   "from": "the day time",
+   "to": "the daytime",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "ISA 58:10",
+   "from": "the noon day",
+   "to": "the noonday",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "ISA 59:10",
+   "from": "at noon day",
+   "to": "at noonday",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "ISA 59:17",
+   "from": "as a cloak",
+   "to": "as a cloke",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "JER 34:16",
+   "from": "whom he had set",
+   "to": "whom ye had set",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "EZK 25:5",
+   "from": "a couching place",
+   "to": "a couchingplace",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "EZK 31:8",
+   "from": "chestnut",
+   "to": "chesnut",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "ZEP 1:3",
+   "from": "stumbling blocks",
+   "to": "stumblingblocks",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "MAT 5:40",
+   "from": "thy cloak",
+   "to": "thy cloke",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "MRK 12:7",
+   "from": "be our’s",
+   "to": "be ours",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "LUK 6:29",
+   "from": "thy cloak",
+   "to": "thy cloke",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "JHN 15:22",
+   "from": "no cloak",
+   "to": "no cloke",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "1JN 2:23",
+   "from": "the Father: he that",
+   "to": "the Father: but he that",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "REV 7:6",
+   "from": "Nephthalim",
+   "to": "Nepthalim",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "REV 21:20",
+   "from": "chrysolyte",
+   "to": "chrysolite",
+   "kind": "word",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "All four witnesses agree against the source."
+  },
+  {
+   "ref": "GEN 6:5",
+   "from": "God",
+   "to": "GOD",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "GEN 15:2",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "GEN 15:2",
+   "from": "God,",
+   "to": "GOD,",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "GEN 15:8",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "GEN 15:8",
+   "from": "God,",
+   "to": "GOD,",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "GEN 18:3",
+   "from": "LORD,",
+   "to": "Lord,",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "GEN 18:27",
+   "from": "LORD,",
+   "to": "Lord,",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "GEN 18:30",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "GEN 18:31",
+   "from": "LORD:",
+   "to": "Lord:",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "GEN 18:32",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "GEN 19:18",
+   "from": "LORD:",
+   "to": "Lord:",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "GEN 20:4",
+   "from": "LORD,",
+   "to": "Lord,",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "EXO 4:10",
+   "from": "my LORD, I",
+   "to": "my Lord, I",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "EXO 4:13",
+   "from": "LORD,",
+   "to": "Lord,",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "EXO 5:22",
+   "from": "said, LORD, wherefore",
+   "to": "said, Lord, wherefore",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "EXO 15:17",
+   "from": "Sanctuary, O LORD, which thy",
+   "to": "Sanctuary, O Lord, which thy",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "EXO 23:17",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "EXO 23:17",
+   "from": "God.",
+   "to": "GOD.",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "EXO 33:9",
+   "from": "Lord",
+   "to": "LORD",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "EXO 34:9",
+   "from": "O LORD, let",
+   "to": "O Lord, let",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "EXO 34:9",
+   "from": "LORD,",
+   "to": "Lord,",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "EXO 34:23",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "EXO 34:23",
+   "from": "God,",
+   "to": "GOD,",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "LEV 24:11",
+   "from": "Lord,",
+   "to": "LORD,",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "LEV 24:16",
+   "from": "Lord,",
+   "to": "LORD,",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "NUM 14:17",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "NUM 31:28",
+   "from": "Lord",
+   "to": "LORD",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "JOS 3:11",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "JOS 3:13",
+   "from": "the LORD of",
+   "to": "the Lord of",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "JOS 7:7",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "JOS 7:7",
+   "from": "God,",
+   "to": "GOD,",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "JOS 7:8",
+   "from": "LORD,",
+   "to": "Lord,",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "JDG 6:22",
+   "from": "O LORD God!",
+   "to": "O Lord God!",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "JDG 6:22",
+   "from": "God!",
+   "to": "GOD!",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "JDG 16:28",
+   "from": "Lord God, remember",
+   "to": "Lord GOD, remember",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "1KI 2:26",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "1KI 2:26",
+   "from": "God",
+   "to": "GOD",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "1KI 3:10",
+   "from": "LORD,",
+   "to": "Lord,",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "1KI 8:53",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "1KI 8:53",
+   "from": "God.",
+   "to": "GOD.",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "1KI 22:6",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "2KI 7:6",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "2KI 19:23",
+   "from": "LORD,",
+   "to": "Lord,",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "NEH 1:11",
+   "from": "LORD,",
+   "to": "Lord,",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "NEH 3:5",
+   "from": "LORD.",
+   "to": "Lord.",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "NEH 4:14",
+   "from": "LORD,",
+   "to": "Lord,",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "NEH 8:10",
+   "from": "LORD:",
+   "to": "Lord:",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "JOB 28:28",
+   "from": "LORD,",
+   "to": "Lord,",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "PSA 2:4",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "PSA 3:1",
+   "from": "Lord,",
+   "to": "LORD,",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "PSA 15:1",
+   "from": "Lord,",
+   "to": "LORD,",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "PSA 37:13",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "PSA 70:1",
+   "from": "GOD,",
+   "to": "God,",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "PSA 78:65",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "PSA 79:1",
+   "from": "GOD,",
+   "to": "God,",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "PSA 85:1",
+   "from": "Lord,",
+   "to": "LORD,",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "PSA 94:1",
+   "from": "Lord",
+   "to": "LORD",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "PSA 131:1",
+   "from": "Lord,",
+   "to": "LORD,",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "PSA 132:1",
+   "from": "Lord,",
+   "to": "LORD,",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "PSA 141:1",
+   "from": "Lord,",
+   "to": "LORD,",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "ISA 1:24",
+   "from": "LORD,",
+   "to": "Lord,",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "ISA 6:1",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "ISA 9:17",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "ISA 21:6",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "ISA 21:16",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "ISA 25:1",
+   "from": "Lord,",
+   "to": "LORD,",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "ISA 38:16",
+   "from": "LORD,",
+   "to": "Lord,",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "LAM 1:14",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "LAM 1:15",
+   "from": "The LORD hath",
+   "to": "The Lord hath",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "LAM 1:15",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "LAM 2:1",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "LAM 2:2",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "LAM 2:5",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "LAM 2:7",
+   "from": "The LORD hath",
+   "to": "The Lord hath",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "LAM 2:18",
+   "from": "LORD,",
+   "to": "Lord,",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "LAM 2:19",
+   "from": "LORD:",
+   "to": "Lord:",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "LAM 3:31",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "LAM 3:36",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "LAM 3:58",
+   "from": "LORD,",
+   "to": "Lord,",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "EZK 16:23",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "EZK 16:30",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "EZK 18:25",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "EZK 18:29",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "DAN 4:8",
+   "from": "God,",
+   "to": "god,",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "DAN 9:7",
+   "from": "LORD,",
+   "to": "Lord,",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "DAN 9:16",
+   "from": "LORD,",
+   "to": "Lord,",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "HOS 12:14",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "AMO 5:16",
+   "from": "the LORD, saith",
+   "to": "the Lord, saith",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "AMO 7:7",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "AMO 7:8",
+   "from": "LORD,",
+   "to": "Lord,",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "MIC 1:2",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "ZEC 6:5",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "ZEC 9:4",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "MAL 3:1",
+   "from": "LORD,",
+   "to": "Lord,",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "MAT 1:20",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "LUK 2:23",
+   "from": "LORD,",
+   "to": "Lord,",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "LUK 10:1",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "JHN 4:1",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "JHN 20:2",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "JHN 20:13",
+   "from": "LORD,",
+   "to": "Lord,",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "JHN 20:18",
+   "from": "LORD,",
+   "to": "Lord,",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "JHN 20:20",
+   "from": "LORD.",
+   "to": "Lord.",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "JHN 20:25",
+   "from": "LORD.",
+   "to": "Lord.",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "JHN 20:28",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "ACT 2:34",
+   "from": "The Lord said",
+   "to": "The LORD said",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "ACT 2:39",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "ACT 7:31",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "ACT 8:24",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "ACT 11:20",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "ACT 12:11",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "ACT 15:11",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "ACT 15:36",
+   "from": "LORD,",
+   "to": "Lord,",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "ACT 19:13",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "ACT 20:19",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "ACT 22:10",
+   "from": "LORD?",
+   "to": "Lord?",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "1CO 14:21",
+   "from": "LORD.",
+   "to": "Lord.",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "1CO 15:31",
+   "from": "LORD,",
+   "to": "Lord,",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "2CO 3:18",
+   "from": "LORD.",
+   "to": "Lord.",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "REV 4:8",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  },
+  {
+   "ref": "REV 11:17",
+   "from": "LORD",
+   "to": "Lord",
+   "kind": "divine-name",
+   "reviewer": "Claude",
+   "date": "2026-10-14",
+   "reason": "eBible and thiagobodruk keep the KJV divine-name distinction (LORD = YHWH, Lord = Adonai, GOD/God) that the source loses."
+  }
+ ],
+ "accepted": []
+}

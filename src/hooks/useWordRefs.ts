@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import { siteUrl } from '../utils/paths';
 
 export interface WordRef {
   book: string;
@@ -41,7 +42,7 @@ export function useWordRefs() {
       }
       // Static fallback: in dev, served from /content/; in prod, from /content/ (copied by build)
       try {
-        const res = await fetch('/content/word-refs.json');
+        const res = await fetch(siteUrl('content/word-refs.json'));
         if (res.ok) {
           const data = await res.json();
           setRefs(data.refs ?? []);

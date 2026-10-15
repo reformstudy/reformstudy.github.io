@@ -43,10 +43,27 @@ See [RESOURCES.md](RESOURCES.md) for detailed information about the resource sys
 
 ## GitHub Pages deployment
 
-A GitHub Actions workflow is configured at `.github/workflows/deploy.yml`.
-It builds the app into `docs/` and commits the generated output back to the `main` branch.
+`.github/workflows/deploy.yml` builds two sites and publishes them to the `gh-pages` branch:
 
-For this user site repo, configure GitHub Pages to use the `main` branch and the `/docs` folder as the site source.
+- **Live:** https://reformstudy.github.io/, built from the latest release tag (`v*`).
+- **Preview:** https://reformstudy.github.io/preview/, built from `main`. It shows what has changed since the live release.
+
+Merging to `main` updates only the preview; tagging a release puts it live. See [RELEASING.md](RELEASING.md).
+
+### Releases
+
+| Tag | Date | What |
+|---|---|---|
+| `v0.1.0` | October 2026 | The site before the v1 content pipeline (commit `252a67b`) |
+| `v1.0.0` | **October 31, 2026 (Reformation Day)**, planned | v1: full BSB and KJV, Matthew Henry, the WCF with proof texts, Strong's |
+
+To cut v1 once the preview looks right and `npm run verify -- --check` passes:
+
+```bash
+git fetch origin
+git tag -a v1.0.0 -m "ReformStudy v1, Reformation Day 2026" origin/main
+git push origin v1.0.0
+```
 
 ## Project Structure
 
