@@ -50,6 +50,21 @@ See [RESOURCES.md](RESOURCES.md) for detailed information about the resource sys
 
 Merging to `main` updates only the preview; tagging a release puts it live. See [RELEASING.md](RELEASING.md).
 
+### Releases
+
+| Tag | Date | What |
+|---|---|---|
+| `v0.1.0` | October 2026 | The site before the v1 content pipeline (commit `252a67b`) |
+| `v1.0.0` | **October 31, 2026 (Reformation Day)**, planned | v1: full BSB and KJV, Matthew Henry, the WCF with proof texts, Strong's |
+
+To cut v1 once the preview looks right and `npm run verify -- --check` passes:
+
+```bash
+git fetch origin
+git tag -a v1.0.0 -m "ReformStudy v1, Reformation Day 2026" origin/main
+git push origin v1.0.0
+```
+
 ## Project Structure
 
 ```
