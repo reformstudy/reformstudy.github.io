@@ -1,25 +1,33 @@
 name: Build and Deploy
 
+# Two sites from one repository (see RELEASING.md):
+#   live     https://reformstudy.github.io/          the latest release tag (v*)
+#   preview  https://reformstudy.github.io/preview/  main, with the changes since the live release
+# Pushing to main updates only the preview. Pushing a release tag puts that commit live.
+
 on:
   push:
     branches:
       - main
-    paths-ignore:
-      - 'docs/**'
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      pages: write
 
     steps:
-      - name: Checkout repository
+      - name: Checkout main with tags and history
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          persist-credentials: true
+          ref: main
           fetch-depth: 0
 
       - name: Setup Node.js
@@ -28,17 +36,38 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
-      - name: Install dependencies
-        run: npm install
+      - name: Find the live release
+        id: live
+        run: |
+          tag=$(git tag --list 'v*' --sort=-v:refname | head -n 1)
+          if [ -z "$tag" ]; then
+            echo "::error::No release tag yet. Tag the commit that should be live (git tag v0.1.0 <commit> && git push origin v0.1.0); nothing was deployed."
+            exit 1
+          fi
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          echo "Live release: $tag ($(git rev-parse --short "$tag^{commit}"))"
 
-      - name: Build site into docs/
-        run: npm run build
+      - name: Build the live site from ${{ steps.live.outputs.tag }}
+        run: |
+          git worktree add "$RUNNER_TEMP/live" "${{ steps.live.outputs.tag }}"
+          cd "$RUNNER_TEMP/live"
+          npm ci
+          RS_CHANNEL=live npm run build
+          mkdir -p "$RUNNER_TEMP/site"
+          cp -r docs/. "$RUNNER_TEMP/site/"
 
-      - name: Prevent Jekyll processing
-        run: echo "" > docs/.nojekyll
+      - name: Build the preview from main
+        run: |
+          npm ci
+          RS_CHANNEL=preview BASE_PATH=/preview/ RS_LIVE_REF="${{ steps.live.outputs.tag }}" npm run build
+          mkdir -p "$RUNNER_TEMP/site/preview"
+          cp -r docs/. "$RUNNER_TEMP/site/preview/"
+          echo "" > "$RUNNER_TEMP/site/.nojekyll"
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs
+          publish_dir: ${{ runner.temp }}/site
+          # Each deploy replaces the branch instead of adding ~150 MB of history.
+          force_orphan: true
