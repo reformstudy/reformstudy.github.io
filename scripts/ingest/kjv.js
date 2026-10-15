@@ -21,6 +21,7 @@ import { CANON } from '../lib/canon.js';
 import { fetchBuffer, normalizeText, parseArgs, writeBibleFile } from '../lib/io.js';
 import { checkLock, digestFiles } from '../lib/lock.js';
 import { loadDecisions } from '../lib/decisions.js';
+import { applyVerseCorrections } from '../lib/corrections.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUTPUT = path.join(__dirname, '../../res/bibles/kjv/kjv.json');
@@ -66,22 +67,8 @@ export async function convertKjv(bookNames, loadBook) {
   };
 }
 
-/**
- * Apply verse corrections in order. Each `from` must occur exactly once in
- * its verse, so a changed source fails instead of being corrected wrongly.
- */
-export function applyKjvCorrections(bible, corrections) {
-  const verses = new Map();
-  for (const book of bible.books) for (const v of book.verses) verses.set(`${book.id} ${v.chapter}:${v.verse}`, v);
-  for (const c of corrections) {
-    const v = verses.get(c.ref);
-    if (!v) throw new Error(`KJV correction: no verse ${c.ref}`);
-    const count = v.text.split(c.from).length - 1;
-    if (count !== 1) throw new Error(`KJV ${c.ref}: "${c.from}" appears ${count} times, expected once`);
-    v.text = v.text.replace(c.from, c.to);
-  }
-  return bible;
-}
+/** Apply verse corrections in order; each `from` must occur exactly once in its verse. */
+export const applyKjvCorrections = (bible, corrections) => applyVerseCorrections(bible, corrections, 'KJV');
 
 /** Download (or read) the pinned source, check its checksum, and convert it without corrections. */
 export async function loadKjvSource(args = {}) {

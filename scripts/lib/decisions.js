@@ -8,6 +8,8 @@
  *   accepted     differences a person checked and found benign; our reading
  *                stands. Matched by content key (see scripts/verify/consensus.js),
  *                so they stop matching when the source or a witness changes.
+ *   ignored      differences a person chose not to decide: off the review list,
+ *                text unchanged, not endorsed. Matched the same way.
  */
 
 import fs from 'fs';
@@ -21,14 +23,14 @@ export const decisionsFile = resource => path.join(DECISIONS_DIR, `${resource}.j
 
 export function loadDecisions(resource, emptyCorrections = []) {
   const file = decisionsFile(resource);
-  if (!fs.existsSync(file)) return { resource, corrections: emptyCorrections, accepted: [] };
+  if (!fs.existsSync(file)) return { resource, corrections: emptyCorrections, accepted: [], ignored: [] };
   const d = JSON.parse(fs.readFileSync(file, 'utf8'));
-  return { ...d, corrections: d.corrections ?? emptyCorrections, accepted: d.accepted ?? [] };
+  return { ...d, corrections: d.corrections ?? emptyCorrections, accepted: d.accepted ?? [], ignored: d.ignored ?? [] };
 }
 
 export function saveDecisions(resource, decisions) {
   fs.mkdirSync(DECISIONS_DIR, { recursive: true });
-  const { resource: _r, about, corrections, accepted, ...rest } = decisions;
-  const ordered = { resource, about, ...rest, corrections, accepted };
+  const { resource: _r, about, corrections, accepted, ignored = [], ...rest } = decisions;
+  const ordered = { resource, about, ...rest, corrections, accepted, ...(ignored.length ? { ignored } : {}) };
   fs.writeFileSync(decisionsFile(resource), JSON.stringify(ordered, null, 1) + '\n');
 }

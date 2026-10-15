@@ -62,6 +62,7 @@ export function applyWcfCorrections(source, corrections) {
   for (const c of corrections.proofs ?? []) {
     const proof = (find(c.section).Proofs ?? []).find(p => p.Id === c.footnote);
     if (!proof) throw new Error(`WCF ${c.section}: no footnote [${c.footnote}]`);
+    if (!c.replace.length) { proof.References.push(...c.with); continue; } // adding references
     const at = proof.References.indexOf(c.replace[0]);
     if (at < 0 || c.replace.some(r => !proof.References.includes(r))) {
       throw new Error(`WCF ${c.section} [${c.footnote}]: expected ${c.replace.join(', ')} in ${proof.References.join(', ')}`);

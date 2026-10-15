@@ -84,7 +84,7 @@ export default {
   async load({ corrections }) {
     const bible = applyKjvCorrections(await loadKjvSource(), corrections);
     const ours = new Map();
-    for (const b of bible.books) for (const v of b.verses) ours.set(ref(b.id, v.chapter, v.verse), kjvTokens(v.text));
+    for (const b of bible.books) for (const v of b.verses) ours.set(ref(b.id, v.chapter, v.verse), { ...kjvTokens(v.text), raw: v.text });
     const eb = parseEbible(await loadWitnessText('kjv-ebible'));
     const witnesses = {
       'kjv-pce': stripTitle(toUnits(parseScrollmapper(JSON.parse(await loadWitnessText('kjv-pce')))), eb.titles),

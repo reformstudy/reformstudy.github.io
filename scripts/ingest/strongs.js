@@ -17,6 +17,8 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { fetchBuffer, parseArgs, writeJson } from '../lib/io.js';
 import { checkLock, sha256 } from '../lib/lock.js';
+import { loadDecisions } from '../lib/decisions.js';
+import { applyStrongsCorrections } from '../lib/corrections.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const RES = path.join(__dirname, '../../res/strongs');
@@ -85,6 +87,9 @@ async function main() {
   const args = parseArgs(process.argv.slice(2));
   for (const lang of LANGUAGES) {
     const out = await loadStrongsSource(lang.id, args);
+    const { corrections } = loadDecisions(`strongs-${lang.id}`);
+    applyStrongsCorrections(out, corrections);
+    if (corrections.length) out.concordance.corrections = { count: corrections.length, file: `provenance/decisions/strongs-${lang.id}.json` };
     const file = path.join(RES, lang.id, `${lang.id}.json`);
     writeJson(file, out);
     console.log(`Wrote ${file} (${out.entries.length} entries)`);

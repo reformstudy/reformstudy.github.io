@@ -7,6 +7,7 @@
  */
 
 import { loadStrongsSource } from '../../ingest/strongs.js';
+import { applyStrongsCorrections } from '../../lib/corrections.js';
 import { align } from '../consensus.js';
 import { loadWitnessText } from '../witnesses.js';
 
@@ -39,15 +40,15 @@ function adapter(lang, witness) {
     resource: `strongs-${lang}`,
     unitName: 'entry',
     comparison: 'The headword of each number, ignoring accents, vowel points and final letter forms; ours matches if STEPBible lists it among the words for that number.',
-    async load() {
-      const dict = await loadStrongsSource(lang);
-      const ours = new Map(dict.entries.map(e => [e.number, { value: lemmaKey(e.lemma), show: e.lemma ?? '' }]));
+    async load({ corrections }) {
+      const dict = applyStrongsCorrections(await loadStrongsSource(lang), corrections);
+      const ours = new Map(dict.entries.map(e => [e.number, { value: lemmaKey(e.lemma), show: e.lemma ?? '', raw: e.lemma ?? '' }]));
       const step = parseStep(await loadWitnessText(witness));
       const w = new Map();
       for (const [n, lemmas] of step) {
         const keys = [...lemmas].map(lemmaKey);
         const mine = ours.get(n)?.value;
-        w.set(n, keys.includes(mine) ? { value: mine } : { value: [...new Set(keys)].sort().join(' / '), show: [...lemmas].join(' / ') });
+        w.set(n, keys.includes(mine) ? { value: mine } : { value: [...new Set(keys)].sort().join(' / '), show: [...lemmas].join(' / '), options: [...lemmas] });
       }
       // Numbers STEPBible lacks are only of interest if ours has them; numbers only STEPBible has
       // (its extensions beyond Strong's) are not part of this dictionary.

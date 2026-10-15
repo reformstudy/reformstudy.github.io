@@ -8,6 +8,7 @@
 
 import { CANON } from '../../lib/canon.js';
 import { loadBsbSource } from '../../ingest/bsb.js';
+import { applyVerseCorrections } from '../../lib/corrections.js';
 import { loadWitnessText } from '../witnesses.js';
 
 export function bsbTokens(text) {
@@ -42,15 +43,15 @@ export default {
   resource: 'bsb',
   unitName: 'verse',
   comparison: 'Words, with case kept; punctuation, quotation marks and dashes are not compared.',
-  async load() {
-    const bible = await loadBsbSource();
+  async load({ corrections }) {
+    const bible = applyVerseCorrections(await loadBsbSource(), corrections, 'BSB');
     const ours = new Map();
     const numbers = new Map();
     const subtitles = new Map();
     for (const b of bible.books) {
       for (const [c, t] of Object.entries(b.subtitles ?? {})) subtitles.set(ref(b.id, Number(c), 1), bsbTokens(t).norm);
       for (const v of b.verses) {
-        ours.set(ref(b.id, v.chapter, v.verse), bsbTokens(v.text));
+        ours.set(ref(b.id, v.chapter, v.verse), { ...bsbTokens(v.text), raw: v.text });
         const k = `${b.id} ${v.chapter}`;
         if (!numbers.has(k)) numbers.set(k, []);
         numbers.get(k).push(v.verse);

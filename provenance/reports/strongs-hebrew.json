@@ -1,7 +1,7 @@
 {
  "resource": "strongs-hebrew",
  "title": "Strong's Hebrew Dictionary",
- "checked": "2026-10-14",
+ "checked": "2026-10-15",
  "source": {
   "pin": "https://github.com/openscriptures/strongs@0acd2f251c2d35ff8db2dece4e0593979d3ac223",
   "sha256": "5ce6aeed551c709f49bcfa341cadf2f34bc7599b85d9de9e6ac2ecbf60fc3739",
@@ -30,6 +30,7 @@
  "corrections": 0,
  "awaitingSignOff": 0,
  "accepted": 0,
+ "ignored": 0,
  "stale": [],
  "pending": [
   {
@@ -40,6 +41,12 @@
    "ours": "אֲבַדֹּה",
    "readings": {
     "step-tbesh": "אֲבַדּוֹן"
+   },
+   "raw": "אֲבַדֹּה",
+   "options": {
+    "step-tbesh": [
+     "אֲבַדּוֹן"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -56,6 +63,12 @@
    "readings": {
     "step-tbesh": "אָבִי"
    },
+   "raw": "אָבֶה",
+   "options": {
+    "step-tbesh": [
+     "אָבִי"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -70,6 +83,12 @@
    "ours": "אֲבַטִּיחַ",
    "readings": {
     "step-tbesh": "אֲבַטִּחִים"
+   },
+   "raw": "אֲבַטִּיחַ",
+   "options": {
+    "step-tbesh": [
+     "אֲבַטִּחִים"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -86,6 +105,12 @@
    "readings": {
     "step-tbesh": "אֲבִיחַ֫יִל"
    },
+   "raw": "אֲבִיהַיִל",
+   "options": {
+    "step-tbesh": [
+     "אֲבִיחַ֫יִל"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -100,6 +125,12 @@
    "ours": "אַבְנֵר",
    "readings": {
     "step-tbesh": "אֲבִינֵר"
+   },
+   "raw": "אַבְנֵר",
+   "options": {
+    "step-tbesh": [
+     "אֲבִינֵר"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -116,6 +147,12 @@
    "readings": {
     "step-tbesh": "אֲבַעְבֻּעֹת"
    },
+   "raw": "אֲבַעְבֻּעָה",
+   "options": {
+    "step-tbesh": [
+     "אֲבַעְבֻּעֹת"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -130,6 +167,12 @@
    "ours": "אַגְמוֹן",
    "readings": {
     "step-tbesh": "אַגְמֹן"
+   },
+   "raw": "אַגְמוֹן",
+   "options": {
+    "step-tbesh": [
+     "אַגְמֹן"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -146,6 +189,12 @@
    "readings": {
     "step-tbesh": "אֱדוֹם"
    },
+   "raw": "אֱדֹם",
+   "options": {
+    "step-tbesh": [
+     "אֱדוֹם"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -160,6 +209,12 @@
    "ours": "אַדְמֹנִי",
    "readings": {
     "step-tbesh": "אַדְמוֹנִי"
+   },
+   "raw": "אַדְמֹנִי",
+   "options": {
+    "step-tbesh": [
+     "אַדְמוֹנִי"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -176,6 +231,12 @@
    "readings": {
     "step-tbesh": "אֲדֹנִיָּ֫הוּ"
    },
+   "raw": "אֲדֹנִיָּה",
+   "options": {
+    "step-tbesh": [
+     "אֲדֹנִיָּ֫הוּ"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -190,6 +251,12 @@
    "ours": "אֲהָלִים",
    "readings": {
     "step-tbesh": "אָהָל"
+   },
+   "raw": "אֲהָלִים",
+   "options": {
+    "step-tbesh": [
+     "אָהָל"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -206,6 +273,12 @@
    "readings": {
     "step-tbesh": "אַהֲרֹן"
    },
+   "raw": "אַהֲרוֹן",
+   "options": {
+    "step-tbesh": [
+     "אַהֲרֹן"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -220,6 +293,12 @@
    "ours": "אוֹדוֹת",
    "readings": {
     "step-tbesh": "אוֹדָה"
+   },
+   "raw": "אוֹדוֹת",
+   "options": {
+    "step-tbesh": [
+     "אוֹדָה"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -236,6 +315,12 @@
    "readings": {
     "step-tbesh": "אֹן"
    },
+   "raw": "אוֹן",
+   "options": {
+    "step-tbesh": [
+     "אֹן"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -250,6 +335,12 @@
    "ours": "אֲזָד",
    "readings": {
     "step-tbesh": "אַזְדָּא"
+   },
+   "raw": "אֲזָד",
+   "options": {
+    "step-tbesh": [
+     "אַזְדָּא"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -266,6 +357,12 @@
    "readings": {
     "step-tbesh": "אֲזַנְיָ֫הוּ"
    },
+   "raw": "אֲזַנְיָה",
+   "options": {
+    "step-tbesh": [
+     "אֲזַנְיָ֫הוּ"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -280,6 +377,12 @@
    "ours": "אֲזִקִּים",
    "readings": {
     "step-tbesh": "אֲזֵק"
+   },
+   "raw": "אֲזִקִּים",
+   "options": {
+    "step-tbesh": [
+     "אֲזֵק"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -296,6 +399,12 @@
    "readings": {
     "step-tbesh": "אַחֲוָיָה"
    },
+   "raw": "אַחֲוָה",
+   "options": {
+    "step-tbesh": [
+     "אַחֲוָיָה"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -310,6 +419,12 @@
    "ours": "אֲחַזְיָה",
    "readings": {
     "step-tbesh": "אֲחַזְיָ֫הוּ"
+   },
+   "raw": "אֲחַזְיָה",
+   "options": {
+    "step-tbesh": [
+     "אֲחַזְיָ֫הוּ"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -326,6 +441,12 @@
    "readings": {
     "step-tbesh": "אֲחִיָּ֫הוּ"
    },
+   "raw": "אֲחִיָּה",
+   "options": {
+    "step-tbesh": [
+     "אֲחִיָּ֫הוּ"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -340,6 +461,12 @@
    "ours": "אֲחַשְׁדַּרְפַּן",
    "readings": {
     "step-tbesh": "אֲחַשְׁדַּרְפְּנִין"
+   },
+   "raw": "אֲחַשְׁדַּרְפַּן",
+   "options": {
+    "step-tbesh": [
+     "אֲחַשְׁדַּרְפְּנִין"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -356,6 +483,12 @@
    "readings": {
     "step-tbesh": "אֵלוֹן"
    },
+   "raw": "אֵילוֹן",
+   "options": {
+    "step-tbesh": [
+     "אֵלוֹן"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -370,6 +503,12 @@
    "ours": "אִישׁ",
    "readings": {
     "step-tbesh": "אשׁשׁ"
+   },
+   "raw": "אִישׁ",
+   "options": {
+    "step-tbesh": [
+     "אשׁשׁ"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -386,6 +525,12 @@
    "readings": {
     "step-tbesh": "אֱלֹהַּ"
    },
+   "raw": "אֱלוֹהַּ",
+   "options": {
+    "step-tbesh": [
+     "אֱלֹהַּ"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -400,6 +545,12 @@
    "ours": "אֵלוֹנִי",
    "readings": {
     "step-tbesh": "אֵלֹנִי"
+   },
+   "raw": "אֵלוֹנִי",
+   "options": {
+    "step-tbesh": [
+     "אֵלֹנִי"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -416,6 +567,12 @@
    "readings": {
     "step-tbesh": "הָאֶ֫לֶף"
    },
+   "raw": "אֶלֶף",
+   "options": {
+    "step-tbesh": [
+     "הָאֶ֫לֶף"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -430,6 +587,12 @@
    "ours": "אֵמוּן",
    "readings": {
     "step-tbesh": "אֵמֻן"
+   },
+   "raw": "אֵמוּן",
+   "options": {
+    "step-tbesh": [
+     "אֵמֻן"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -446,6 +609,12 @@
    "readings": {
     "step-tbesh": "אֲמַצְיָ֫הוּ"
    },
+   "raw": "אֲמַצְיָה",
+   "options": {
+    "step-tbesh": [
+     "אֲמַצְיָ֫הוּ"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -460,6 +629,12 @@
    "ours": "אֲמַרְיָה",
    "readings": {
     "step-tbesh": "אֲמַרְיָ֫הוּ"
+   },
+   "raw": "אֲמַרְיָה",
+   "options": {
+    "step-tbesh": [
+     "אֲמַרְיָ֫הוּ"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -476,6 +651,12 @@
    "readings": {
     "step-tbesh": "אֵימְתָן"
    },
+   "raw": "אֵמְתָּנִי",
+   "options": {
+    "step-tbesh": [
+     "אֵימְתָן"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -490,6 +671,12 @@
    "ours": "אֲפָרְסַי",
    "readings": {
     "step-tbesh": "אֲפָֽרְסָיֵא"
+   },
+   "raw": "אֲפָרְסַי",
+   "options": {
+    "step-tbesh": [
+     "אֲפָֽרְסָיֵא"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -506,6 +693,13 @@
    "readings": {
     "step-tbesh": "אֲפָֽרְסְכָיֵא / אֲפָֽרְסַתְּכָיֵא"
    },
+   "raw": "אֲפַרְסְכַי",
+   "options": {
+    "step-tbesh": [
+     "אֲפָֽרְסְכָיֵא",
+     "אֲפָֽרְסַתְּכָיֵא"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -520,6 +714,12 @@
    "ours": "אֶפְרָת",
    "readings": {
     "step-tbesh": "אֶפְרָ֫תָה"
+   },
+   "raw": "אֶפְרָת",
+   "options": {
+    "step-tbesh": [
+     "אֶפְרָ֫תָה"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -536,6 +736,12 @@
    "readings": {
     "step-tbesh": "אֻרְיָה"
    },
+   "raw": "אֻרְוָה",
+   "options": {
+    "step-tbesh": [
+     "אֻרְיָה"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -550,6 +756,12 @@
    "ours": "אָרַז",
    "readings": {
     "step-tbesh": "אָרוּז"
+   },
+   "raw": "אָרַז",
+   "options": {
+    "step-tbesh": [
+     "אָרוּז"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -566,6 +778,12 @@
    "readings": {
     "step-tbesh": "אֲרִיךְ"
    },
+   "raw": "אֲרַךְ",
+   "options": {
+    "step-tbesh": [
+     "אֲרִיךְ"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -580,6 +798,12 @@
    "ours": "אַרְכְּוַי",
    "readings": {
     "step-tbesh": "אַרְכְּוָיֵא"
+   },
+   "raw": "אַרְכְּוַי",
+   "options": {
+    "step-tbesh": [
+     "אַרְכְּוָיֵא"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -596,6 +820,12 @@
    "readings": {
     "step-tbesh": "אַרְעִי"
    },
+   "raw": "אַרְעִית",
+   "options": {
+    "step-tbesh": [
+     "אַרְעִי"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -610,6 +840,12 @@
    "ours": "אֵשׁ",
    "readings": {
     "step-tbesh": "אֶשָּׁא"
+   },
+   "raw": "אֵשׁ",
+   "options": {
+    "step-tbesh": [
+     "אֶשָּׁא"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -626,6 +862,12 @@
    "readings": {
     "step-tbesh": "אַשְׁדּוֹת"
    },
+   "raw": "אַשְׁדּוֹת הַפִּסְגָּה",
+   "options": {
+    "step-tbesh": [
+     "אַשְׁדּוֹת"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -640,6 +882,12 @@
    "ours": "אֲשׁוּיָה",
    "readings": {
     "step-tbesh": "אָשְׁיָה"
+   },
+   "raw": "אֲשׁוּיָה",
+   "options": {
+    "step-tbesh": [
+     "אָשְׁיָה"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -656,6 +904,12 @@
    "readings": {
     "step-tbesh": "אַשְׁמַנִּים"
    },
+   "raw": "אַשְׁמָן",
+   "options": {
+    "step-tbesh": [
+     "אַשְׁמַנִּים"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -670,6 +924,12 @@
    "ours": "אַשְׁמֻרָה",
    "readings": {
     "step-tbesh": "אַשְׁמוּרָה"
+   },
+   "raw": "אַשְׁמֻרָה",
+   "options": {
+    "step-tbesh": [
+     "אַשְׁמוּרָה"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -686,6 +946,12 @@
    "readings": {
     "step-tbesh": "אֲשֻׁרִים"
    },
+   "raw": "אֲשֻׁר",
+   "options": {
+    "step-tbesh": [
+     "אֲשֻׁרִים"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -700,6 +966,12 @@
    "ours": "אַשְׂרִאֵלִי",
    "readings": {
     "step-tbesh": "אַשְׂרִיאֵלִי"
+   },
+   "raw": "אַשְׂרִאֵלִי",
+   "options": {
+    "step-tbesh": [
+     "אַשְׂרִיאֵלִי"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -716,6 +988,12 @@
    "readings": {
     "step-tbesh": "אֶשְׁתָּאוֹל"
    },
+   "raw": "אֶשְׁתָּאֹל",
+   "options": {
+    "step-tbesh": [
+     "אֶשְׁתָּאוֹל"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -730,6 +1008,12 @@
    "ours": "אֶשְׁתְּמֹעַ",
    "readings": {
     "step-tbesh": "אֶשְׁתְּמוֹעַ"
+   },
+   "raw": "אֶשְׁתְּמֹעַ",
+   "options": {
+    "step-tbesh": [
+     "אֶשְׁתְּמוֹעַ"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -746,6 +1030,12 @@
    "readings": {
     "step-tbesh": "בִּאישׁ"
    },
+   "raw": "בִּאוּשׁ",
+   "options": {
+    "step-tbesh": [
+     "בִּאישׁ"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -760,6 +1050,12 @@
    "ours": "בְּאֵר אֵלִים",
    "readings": {
     "step-tbesh": "בְּאֵר אֵילִים"
+   },
+   "raw": "בְּאֵר אֵלִים",
+   "options": {
+    "step-tbesh": [
+     "בְּאֵר אֵילִים"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -776,6 +1072,12 @@
    "readings": {
     "step-tbesh": "בִּית"
    },
+   "raw": "בּוּת",
+   "options": {
+    "step-tbesh": [
+     "בִּית"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -790,6 +1092,12 @@
    "ours": "בַּחִין",
    "readings": {
     "step-tbesh": "בַחוּן"
+   },
+   "raw": "בַּחִין",
+   "options": {
+    "step-tbesh": [
+     "בַחוּן"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -806,6 +1114,12 @@
    "readings": {
     "step-tbesh": "בְּחוּרִים"
    },
+   "raw": "בְּחֻרוֹת",
+   "options": {
+    "step-tbesh": [
+     "בְּחוּרִים"
+    ]
+   },
    "suggestion": {
     "class": "different-word",
     "action": null,
@@ -820,6 +1134,12 @@
    "ours": "בָּטָא",
    "readings": {
     "step-tbesh": "בָּטָה"
+   },
+   "raw": "בָּטָא",
+   "options": {
+    "step-tbesh": [
+     "בָּטָה"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -836,6 +1156,12 @@
    "readings": {
     "step-tbesh": "בָּטְנִים"
    },
+   "raw": "בֹּטֶן",
+   "options": {
+    "step-tbesh": [
+     "בָּטְנִים"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -850,6 +1176,12 @@
    "ours": "בִּירָא",
    "readings": {
     "step-tbesh": "בִּירְתָא"
+   },
+   "raw": "בִּירָא",
+   "options": {
+    "step-tbesh": [
+     "בִּירְתָא"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -866,6 +1198,12 @@
    "readings": {
     "step-tbesh": "בֵּית מְעוֹן"
    },
+   "raw": "בֵּית בַּעַל מְעוֹן",
+   "options": {
+    "step-tbesh": [
+     "בֵּית מְעוֹן"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -880,6 +1218,12 @@
    "ours": "בֵּית הַמַּרְכָּבוֹת",
    "readings": {
     "step-tbesh": "בֵּית מַרְכָּבוֹת"
+   },
+   "raw": "בֵּית הַמַּרְכָּבוֹת",
+   "options": {
+    "step-tbesh": [
+     "בֵּית מַרְכָּבוֹת"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -896,6 +1240,12 @@
    "readings": {
     "step-tbesh": "בֵּית חוֹרֹן"
    },
+   "raw": "בֵּית חוֹרוֹן",
+   "options": {
+    "step-tbesh": [
+     "בֵּית חוֹרֹן"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -910,6 +1260,12 @@
    "ours": "בִּכּוּר",
    "readings": {
     "step-tbesh": "בִּכּוּרִים"
+   },
+   "raw": "בִּכּוּר",
+   "options": {
+    "step-tbesh": [
+     "בִּכּוּרִים"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -926,6 +1282,12 @@
    "readings": {
     "step-tbesh": "בְּכֹרָה"
    },
+   "raw": "בְּכוֹרָה",
+   "options": {
+    "step-tbesh": [
+     "בְּכֹרָה"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -940,6 +1302,12 @@
    "ours": "בִּכּוּרָה",
    "readings": {
     "step-tbesh": "בַּכֻּרוֹת"
+   },
+   "raw": "בִּכּוּרָה",
+   "options": {
+    "step-tbesh": [
+     "בַּכֻּרוֹת"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -956,6 +1324,12 @@
    "readings": {
     "step-tbesh": "בִּכּוּרָה"
    },
+   "raw": "בַּכֻּרָה",
+   "options": {
+    "step-tbesh": [
+     "בִּכּוּרָה"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -970,6 +1344,12 @@
    "ours": "בְּנָא",
    "readings": {
     "step-tbesh": "בְּנָה"
+   },
+   "raw": "בְּנָא",
+   "options": {
+    "step-tbesh": [
+     "בְּנָה"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -986,6 +1366,12 @@
    "readings": {
     "step-tbesh": "בְּנָיָ֫הוּ"
    },
+   "raw": "בְּנָיָה",
+   "options": {
+    "step-tbesh": [
+     "בְּנָיָ֫הוּ"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -1000,6 +1386,12 @@
    "ours": "בֻּקִּיָּה",
    "readings": {
     "step-tbesh": "בֻּקִּיָּ֫הוּ"
+   },
+   "raw": "בֻּקִּיָּה",
+   "options": {
+    "step-tbesh": [
+     "בֻּקִּיָּ֫הוּ"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -1016,6 +1408,12 @@
    "readings": {
     "step-tbesh": "בַּרְבֻּרִים"
    },
+   "raw": "בַּרְבֻּר",
+   "options": {
+    "step-tbesh": [
+     "בַּרְבֻּרִים"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -1030,6 +1428,12 @@
    "ours": "בְּרוֹם",
    "readings": {
     "step-tbesh": "בְּרֹמִים"
+   },
+   "raw": "בְּרוֹם",
+   "options": {
+    "step-tbesh": [
+     "בְּרֹמִים"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -1046,6 +1450,12 @@
    "readings": {
     "step-tbesh": "בִּרְיָה"
    },
+   "raw": "בְּרִי",
+   "options": {
+    "step-tbesh": [
+     "בִּרְיָה"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -1060,6 +1470,12 @@
    "ours": "בֵּרִי",
    "readings": {
     "step-tbesh": "בֵּרִים"
+   },
+   "raw": "בֵּרִי",
+   "options": {
+    "step-tbesh": [
+     "בֵּרִים"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -1076,6 +1492,12 @@
    "readings": {
     "step-tbesh": "בַּרְקָנִים"
    },
+   "raw": "בַּרְקָן",
+   "options": {
+    "step-tbesh": [
+     "בַּרְקָנִים"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -1090,6 +1512,12 @@
    "ours": "בְּשׂוֹרָה",
    "readings": {
     "step-tbesh": "בְּשֹׂרָה"
+   },
+   "raw": "בְּשׂוֹרָה",
+   "options": {
+    "step-tbesh": [
+     "בְּשֹׂרָה"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -1106,6 +1534,12 @@
    "readings": {
     "step-tbesh": "גְּבִינָה"
    },
+   "raw": "גְּבִנָה",
+   "options": {
+    "step-tbesh": [
+     "גְּבִינָה"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -1120,6 +1554,12 @@
    "ours": "גְּדָבָר",
    "readings": {
     "step-tbesh": "גְּדָֽבְרַיָּא"
+   },
+   "raw": "גְּדָבָר",
+   "options": {
+    "step-tbesh": [
+     "גְּדָֽבְרַיָּא"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -1136,6 +1576,12 @@
    "readings": {
     "step-tbesh": "גִּדּוּפִים"
    },
+   "raw": "גִּדּוּף",
+   "options": {
+    "step-tbesh": [
+     "גִּדּוּפִים"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -1150,6 +1596,12 @@
    "ours": "גְּדִל",
    "readings": {
     "step-tbesh": "גְּדִלִים"
+   },
+   "raw": "גְּדִל",
+   "options": {
+    "step-tbesh": [
+     "גְּדִלִים"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -1166,6 +1618,12 @@
    "readings": {
     "step-tbesh": "גְּדוֹר"
    },
+   "raw": "גְדֹר",
+   "options": {
+    "step-tbesh": [
+     "גְּדוֹר"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -1180,6 +1638,12 @@
    "ours": "גֶּחֶל",
    "readings": {
     "step-tbesh": "גַּחֶ֫לֶת"
+   },
+   "raw": "גֶּחֶל",
+   "options": {
+    "step-tbesh": [
+     "גַּחֶ֫לֶת"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -1196,6 +1660,12 @@
    "readings": {
     "step-tbesh": "גְּלָא"
    },
+   "raw": "גְּלָה",
+   "options": {
+    "step-tbesh": [
+     "גְּלָא"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -1210,6 +1680,12 @@
    "ours": "גָּלוּת",
    "readings": {
     "step-tbesh": "גָּלוּ"
+   },
+   "raw": "גָּלוּת",
+   "options": {
+    "step-tbesh": [
+     "גָּלוּ"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -1226,6 +1702,12 @@
    "readings": {
     "step-tbesh": "גֵּל"
    },
+   "raw": "גֵּלֶל",
+   "options": {
+    "step-tbesh": [
+     "גֵּל"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -1240,6 +1722,12 @@
    "ours": "גַּמָּד",
    "readings": {
     "step-tbesh": "גַּמָּדִים"
+   },
+   "raw": "גַּמָּד",
+   "options": {
+    "step-tbesh": [
+     "גַּמָּדִים"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -1256,6 +1744,12 @@
    "readings": {
     "step-tbesh": "גְּמַרְיָ֫הוּ"
    },
+   "raw": "גְּמַרְיָה",
+   "options": {
+    "step-tbesh": [
+     "גְּמַרְיָ֫הוּ"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -1270,6 +1764,12 @@
    "ours": "גֶּנֶז",
    "readings": {
     "step-tbesh": "גְּנָזִים"
+   },
+   "raw": "גֶּנֶז",
+   "options": {
+    "step-tbesh": [
+     "גְּנָזִים"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -1286,6 +1786,12 @@
    "readings": {
     "step-tbesh": "גְרוּשָׁה"
    },
+   "raw": "גְרֻשָׁה",
+   "options": {
+    "step-tbesh": [
+     "גְרוּשָׁה"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -1300,6 +1806,12 @@
    "ours": "דִּבְיוֹן",
    "readings": {
     "step-tbesh": "דִּבְיוֹנִים"
+   },
+   "raw": "דִּבְיוֹן",
+   "options": {
+    "step-tbesh": [
+     "דִּבְיוֹנִים"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -1316,6 +1828,12 @@
    "readings": {
     "step-tbesh": "דֹּבְרוֹת"
    },
+   "raw": "דֹּבְרָה",
+   "options": {
+    "step-tbesh": [
+     "דֹּבְרוֹת"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -1330,6 +1848,12 @@
    "ours": "דַּבָּרָה",
    "readings": {
     "step-tbesh": "דַּבֶּ֫רֶת"
+   },
+   "raw": "דַּבָּרָה",
+   "options": {
+    "step-tbesh": [
+     "דַּבֶּ֫רֶת"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -1346,6 +1870,12 @@
    "readings": {
     "step-tbesh": "דְּדָנִי"
    },
+   "raw": "דְּדָנִים",
+   "options": {
+    "step-tbesh": [
+     "דְּדָנִי"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -1360,6 +1890,12 @@
    "ours": "דֹּדָנִים",
    "readings": {
     "step-tbesh": "רוֹדָנִים"
+   },
+   "raw": "דֹּדָנִים",
+   "options": {
+    "step-tbesh": [
+     "רוֹדָנִים"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -1376,6 +1912,12 @@
    "readings": {
     "step-tbesh": "דֵּהָיֵא"
    },
+   "raw": "דַּהֲוָא",
+   "options": {
+    "step-tbesh": [
+     "דֵּהָיֵא"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -1390,6 +1932,12 @@
    "ours": "דַּהֲהַר",
    "readings": {
     "step-tbesh": "דַּהֲרָה"
+   },
+   "raw": "דַּהֲהַר",
+   "options": {
+    "step-tbesh": [
+     "דַּהֲרָה"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -1406,6 +1954,12 @@
    "readings": {
     "step-tbesh": "דֹּדָה"
    },
+   "raw": "דּוֹדָה",
+   "options": {
+    "step-tbesh": [
+     "דֹּדָה"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -1420,6 +1974,12 @@
    "ours": "דּוֹר",
    "readings": {
     "step-tbesh": "דֹּאר"
+   },
+   "raw": "דּוֹר",
+   "options": {
+    "step-tbesh": [
+     "דֹּאר"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -1436,6 +1996,13 @@
    "readings": {
     "step-tbesh": "דִּיבֹן / דִּימוֹן"
    },
+   "raw": "דִּיבוֹן",
+   "options": {
+    "step-tbesh": [
+     "דִּיבֹן",
+     "דִּימוֹן"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -1450,6 +2017,12 @@
    "ours": "דִּינַי",
    "readings": {
     "step-tbesh": "דִּינָיֵא"
+   },
+   "raw": "דִּינַי",
+   "options": {
+    "step-tbesh": [
+     "דִּינָיֵא"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -1466,6 +2039,12 @@
    "readings": {
     "step-tbesh": "דִּישֹׁן"
    },
+   "raw": "דִּישׁוֹן",
+   "options": {
+    "step-tbesh": [
+     "דִּישֹׁן"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -1480,6 +2059,12 @@
    "ours": "דְּלָיָה",
    "readings": {
     "step-tbesh": "דְּלָיָ֫הוּ"
+   },
+   "raw": "דְּלָיָה",
+   "options": {
+    "step-tbesh": [
+     "דְּלָיָ֫הוּ"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -1496,6 +2081,12 @@
    "readings": {
     "step-tbesh": "דָּלִיּוֹת"
    },
+   "raw": "דָּלִיָּה",
+   "options": {
+    "step-tbesh": [
+     "דָּלִיּוֹת"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -1510,6 +2101,12 @@
    "ours": "דִּמְיוֹן",
    "readings": {
     "step-tbesh": "דִּמְיֹן"
+   },
+   "raw": "דִּמְיוֹן",
+   "options": {
+    "step-tbesh": [
+     "דִּמְיֹן"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -1526,6 +2123,12 @@
    "readings": {
     "step-tbesh": "דְּנָה"
    },
+   "raw": "דֵּן",
+   "options": {
+    "step-tbesh": [
+     "דְּנָה"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -1540,6 +2143,12 @@
    "ours": "דָּן יַעַן",
    "readings": {
     "step-tbesh": "יַעַן"
+   },
+   "raw": "דָּן יַעַן",
+   "options": {
+    "step-tbesh": [
+     "יַעַן"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -1556,6 +2165,12 @@
    "readings": {
     "step-tbesh": "הָבְנִי"
    },
+   "raw": "הֹבֶן",
+   "options": {
+    "step-tbesh": [
+     "הָבְנִי"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -1570,6 +2185,12 @@
    "ours": "הוֹדְוָה",
    "readings": {
     "step-tbesh": "הוֹדְיָה"
+   },
+   "raw": "הוֹדְוָה",
+   "options": {
+    "step-tbesh": [
+     "הוֹדְיָה"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -1586,6 +2207,12 @@
    "readings": {
     "step-tbesh": "יְהוֹשָׁמָע"
    },
+   "raw": "הוֹשָׁמָע",
+   "options": {
+    "step-tbesh": [
+     "יְהוֹשָׁמָע"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -1600,6 +2227,12 @@
    "ours": "הֻיְּדָה",
    "readings": {
     "step-tbesh": "הֻיְּדוֹת"
+   },
+   "raw": "הֻיְּדָה",
+   "options": {
+    "step-tbesh": [
+     "הֻיְּדוֹת"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -1616,6 +2249,12 @@
    "readings": {
     "step-tbesh": "הֵ֫מָּה"
    },
+   "raw": "הֵם",
+   "options": {
+    "step-tbesh": [
+     "הֵ֫מָּה"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -1630,6 +2269,12 @@
    "ours": "הַמְנִיךְ",
    "readings": {
     "step-tbesh": "הַמְנִיכָא"
+   },
+   "raw": "הַמְנִיךְ",
+   "options": {
+    "step-tbesh": [
+     "הַמְנִיכָא"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -1646,6 +2291,12 @@
    "readings": {
     "step-tbesh": "הַס"
    },
+   "raw": "הָסָה",
+   "options": {
+    "step-tbesh": [
+     "הַס"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -1660,6 +2311,12 @@
    "ours": "הֲפֻגָה",
    "readings": {
     "step-tbesh": "הֲפוּגָה"
+   },
+   "raw": "הֲפֻגָה",
+   "options": {
+    "step-tbesh": [
+     "הֲפוּגָה"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -1676,6 +2333,12 @@
    "readings": {
     "step-tbesh": "הֵרָיוֹן"
    },
+   "raw": "הֵרוֹן",
+   "options": {
+    "step-tbesh": [
+     "הֵרָיוֹן"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -1690,6 +2353,12 @@
    "ours": "הָתֹל",
    "readings": {
     "step-tbesh": "הֲתֻלִֿים"
+   },
+   "raw": "הָתֹל",
+   "options": {
+    "step-tbesh": [
+     "הֲתֻלִֿים"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -1706,6 +2375,12 @@
    "readings": {
     "step-tbesh": "הוּת"
    },
+   "raw": "הָתַת",
+   "options": {
+    "step-tbesh": [
+     "הוּת"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -1720,6 +2395,12 @@
    "ours": "זְבַדְיָה",
    "readings": {
     "step-tbesh": "זְבַדְיָהוּ"
+   },
+   "raw": "זְבַדְיָה",
+   "options": {
+    "step-tbesh": [
+     "זְבַדְיָהוּ"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -1736,6 +2417,12 @@
    "readings": {
     "step-tbesh": "זְבֻל"
    },
+   "raw": "זְבוּל",
+   "options": {
+    "step-tbesh": [
+     "זְבֻל"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -1750,6 +2437,12 @@
    "ours": "זְבוּלוּן",
    "readings": {
     "step-tbesh": "זְבוּלֻן"
+   },
+   "raw": "זְבוּלוּן",
+   "options": {
+    "step-tbesh": [
+     "זְבוּלֻן"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -1766,6 +2459,12 @@
    "readings": {
     "step-tbesh": "זְבוּדָה"
    },
+   "raw": "זְבִידָה",
+   "options": {
+    "step-tbesh": [
+     "זְבוּדָה"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -1780,6 +2479,12 @@
    "ours": "זוּד",
    "readings": {
     "step-tbesh": "זִיד"
+   },
+   "raw": "זוּד",
+   "options": {
+    "step-tbesh": [
+     "זִיד"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -1796,6 +2501,12 @@
    "readings": {
     "step-tbesh": "זֵק"
    },
+   "raw": "זִיקָה",
+   "options": {
+    "step-tbesh": [
+     "זֵק"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -1810,6 +2521,12 @@
    "ours": "זַמְזֹם",
    "readings": {
     "step-tbesh": "זַמְזֻמִּים"
+   },
+   "raw": "זַמְזֹם",
+   "options": {
+    "step-tbesh": [
+     "זַמְזֻמִּים"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -1826,6 +2543,12 @@
    "readings": {
     "step-tbesh": "זְנוּנִים"
    },
+   "raw": "זָנוּן",
+   "options": {
+    "step-tbesh": [
+     "זְנוּנִים"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -1840,6 +2563,12 @@
    "ours": "זַעַק",
    "readings": {
     "step-tbesh": "זְעָקָה"
+   },
+   "raw": "זַעַק",
+   "options": {
+    "step-tbesh": [
+     "זְעָקָה"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -1856,6 +2585,12 @@
    "readings": {
     "step-tbesh": "זְקֻנִים"
    },
+   "raw": "זָקֻן",
+   "options": {
+    "step-tbesh": [
+     "זְקֻנִים"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -1870,6 +2605,12 @@
    "ours": "חֲבוּלָה",
    "readings": {
     "step-tbesh": "חֲבוּלָא"
+   },
+   "raw": "חֲבוּלָה",
+   "options": {
+    "step-tbesh": [
+     "חֲבוּלָא"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -1886,6 +2627,12 @@
    "readings": {
     "step-tbesh": "חֲבִתִּים"
    },
+   "raw": "חָבֵת",
+   "options": {
+    "step-tbesh": [
+     "חֲבִתִּים"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -1900,6 +2647,12 @@
    "ours": "חֲגָו",
    "readings": {
     "step-tbesh": "חֲגָוִים"
+   },
+   "raw": "חֲגָו",
+   "options": {
+    "step-tbesh": [
+     "חֲגָוִים"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -1916,6 +2669,12 @@
    "readings": {
     "step-tbesh": "חֲוָה"
    },
+   "raw": "חֲוָא",
+   "options": {
+    "step-tbesh": [
+     "חֲוָה"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -1930,6 +2689,12 @@
    "ours": "חוּר",
    "readings": {
     "step-tbesh": "חֻר"
+   },
+   "raw": "חוּר",
+   "options": {
+    "step-tbesh": [
+     "חֻר"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -1946,6 +2711,12 @@
    "readings": {
     "step-tbesh": "חוֹרָ֑י"
    },
+   "raw": "חוֹר",
+   "options": {
+    "step-tbesh": [
+     "חוֹרָ֑י"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -1960,6 +2731,12 @@
    "ours": "חוֹר",
    "readings": {
     "step-tbesh": "חֹר"
+   },
+   "raw": "חוֹר",
+   "options": {
+    "step-tbesh": [
+     "חֹר"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -1976,6 +2753,12 @@
    "readings": {
     "step-tbesh": "חֻשָׁם"
    },
+   "raw": "חוּשָׁם",
+   "options": {
+    "step-tbesh": [
+     "חֻשָׁם"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -1990,6 +2773,12 @@
    "ours": "חוֹתָם",
    "readings": {
     "step-tbesh": "חֹתָם"
+   },
+   "raw": "חוֹתָם",
+   "options": {
+    "step-tbesh": [
+     "חֹתָם"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -2006,6 +2795,12 @@
    "readings": {
     "step-tbesh": "חֲזָה"
    },
+   "raw": "חֲזָא",
+   "options": {
+    "step-tbesh": [
+     "חֲזָה"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -2020,6 +2815,12 @@
    "ours": "חֲזָאֵל",
    "readings": {
     "step-tbesh": "חֲזָהאֵל"
+   },
+   "raw": "חֲזָאֵל",
+   "options": {
+    "step-tbesh": [
+     "חֲזָהאֵל"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -2036,6 +2837,12 @@
    "readings": {
     "step-tbesh": "חִזְקִיָּהוּ"
    },
+   "raw": "חִזְקִיָּה",
+   "options": {
+    "step-tbesh": [
+     "חִזְקִיָּהוּ"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -2050,6 +2857,12 @@
    "ours": "חֲטֻבָה",
    "readings": {
     "step-tbesh": "חֲטֻבוֹת"
+   },
+   "raw": "חֲטֻבָה",
+   "options": {
+    "step-tbesh": [
+     "חֲטֻבוֹת"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -2066,6 +2879,12 @@
    "readings": {
     "step-tbesh": "חֵל"
    },
+   "raw": "חֵיל",
+   "options": {
+    "step-tbesh": [
+     "חֵל"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -2080,6 +2899,12 @@
    "ours": "חַכְלִיל",
    "readings": {
     "step-tbesh": "חַכְלִילִי"
+   },
+   "raw": "חַכְלִיל",
+   "options": {
+    "step-tbesh": [
+     "חַכְלִילִי"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -2096,6 +2921,12 @@
    "readings": {
     "step-tbesh": "חֵֽלְכָה"
    },
+   "raw": "חֵלְכָא",
+   "options": {
+    "step-tbesh": [
+     "חֵֽלְכָה"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -2110,6 +2941,12 @@
    "ours": "חִלְקִיָּה",
    "readings": {
     "step-tbesh": "חִלְקִיָּהוּ"
+   },
+   "raw": "חִלְקִיָּה",
+   "options": {
+    "step-tbesh": [
+     "חִלְקִיָּהוּ"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -2126,6 +2963,12 @@
    "readings": {
     "step-tbesh": "חֲלַקְלַקּוֹת"
    },
+   "raw": "חֲלַקְלַקָּה",
+   "options": {
+    "step-tbesh": [
+     "חֲלַקְלַקּוֹת"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -2140,6 +2983,12 @@
    "ours": "חֲמֹרָה",
    "readings": {
     "step-tbesh": "חֲמוֹר"
+   },
+   "raw": "חֲמֹרָה",
+   "options": {
+    "step-tbesh": [
+     "חֲמוֹר"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -2156,6 +3005,12 @@
    "readings": {
     "step-tbesh": "חֲמֻשִׁים"
    },
+   "raw": "חָמֻשׁ",
+   "options": {
+    "step-tbesh": [
+     "חֲמֻשִׁים"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -2170,6 +3025,12 @@
    "ours": "חִנְטָא",
    "readings": {
     "step-tbesh": "חִנְטָה"
+   },
+   "raw": "חִנְטָא",
+   "options": {
+    "step-tbesh": [
+     "חִנְטָה"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -2186,6 +3047,12 @@
    "readings": {
     "step-tbesh": "חֲנֻכָּה"
    },
+   "raw": "חֲנֻכָּא",
+   "options": {
+    "step-tbesh": [
+     "חֲנֻכָּה"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -2200,6 +3067,12 @@
    "ours": "חַסִּיר",
    "readings": {
     "step-tbesh": "חַסִּר"
+   },
+   "raw": "חַסִּיר",
+   "options": {
+    "step-tbesh": [
+     "חַסִּר"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -2216,6 +3089,12 @@
    "readings": {
     "step-tbesh": "חׇפְשִׁית"
    },
+   "raw": "חׇפְשׁוּת",
+   "options": {
+    "step-tbesh": [
+     "חׇפְשִׁית"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -2230,6 +3109,12 @@
    "ours": "חֲצִי הַמְּנֻחוֹת",
    "readings": {
     "step-tbesh": "חֲצִי"
+   },
+   "raw": "חֲצִי הַמְּנֻחוֹת",
+   "options": {
+    "step-tbesh": [
+     "חֲצִי"
+    ]
    },
    "suggestion": {
     "class": "different-word",
@@ -2246,6 +3131,12 @@
    "readings": {
     "step-tbesh": "חֲצִי הַמְּנַחְתִּי מְנַשֶּׁה"
    },
+   "raw": "חֲצִי הַמְּנַחְתִּי",
+   "options": {
+    "step-tbesh": [
+     "חֲצִי הַמְּנַחְתִּי מְנַשֶּׁה"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -2260,6 +3151,12 @@
    "ours": "חַצְצוֹן תָּמָר",
    "readings": {
     "step-tbesh": "חַצֲצֹן תָּמָר"
+   },
+   "raw": "חַצְצוֹן תָּמָר",
+   "options": {
+    "step-tbesh": [
+     "חַצֲצֹן תָּמָר"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -2276,6 +3173,12 @@
    "readings": {
     "step-tbesh": "חֲצַר עֵינָן"
    },
+   "raw": "חֲצַר עֵינוֹן",
+   "options": {
+    "step-tbesh": [
+     "חֲצַר עֵינָן"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -2290,6 +3193,12 @@
    "ours": "חֲצַר עֵינָן",
    "readings": {
     "step-tbesh": "חֲצַר עֵינוֹן"
+   },
+   "raw": "חֲצַר עֵינָן",
+   "options": {
+    "step-tbesh": [
+     "חֲצַר עֵינוֹן"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -2306,6 +3215,12 @@
    "readings": {
     "step-tbesh": "חַרְחֲיָה"
    },
+   "raw": "חַרְהֲיָה",
+   "options": {
+    "step-tbesh": [
+     "חַרְחֲיָה"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -2320,6 +3235,12 @@
    "ours": "חֲרוּפִי",
    "readings": {
     "step-tbesh": "חֲרִיפִי"
+   },
+   "raw": "חֲרוּפִי",
+   "options": {
+    "step-tbesh": [
+     "חֲרִיפִי"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -2336,6 +3257,12 @@
    "readings": {
     "step-tbesh": "חֲרַכִּים"
    },
+   "raw": "חֶרֶךְ",
+   "options": {
+    "step-tbesh": [
+     "חֲרַכִּים"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -2350,6 +3277,12 @@
    "ours": "חַרְצַן",
    "readings": {
     "step-tbesh": "חַרְצַנִּים"
+   },
+   "raw": "חַרְצַן",
+   "options": {
+    "step-tbesh": [
+     "חַרְצַנִּים"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -2366,6 +3299,12 @@
    "readings": {
     "step-tbesh": "חֲשַׁבְיָ֫הוּ"
    },
+   "raw": "חֲשַׁבְיָה",
+   "options": {
+    "step-tbesh": [
+     "חֲשַׁבְיָ֫הוּ"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -2380,6 +3319,12 @@
    "ours": "חַשְׁחוּת",
    "readings": {
     "step-tbesh": "חַשְׁחוּ"
+   },
+   "raw": "חַשְׁחוּת",
+   "options": {
+    "step-tbesh": [
+     "חַשְׁחוּ"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -2396,6 +3341,12 @@
    "readings": {
     "step-tbesh": "חָשׁוּק"
    },
+   "raw": "חָשֻׁק",
+   "options": {
+    "step-tbesh": [
+     "חָשׁוּק"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -2410,6 +3361,12 @@
    "ours": "טוּא",
    "readings": {
     "step-tbesh": "טֵאטֵא"
+   },
+   "raw": "טוּא",
+   "options": {
+    "step-tbesh": [
+     "טֵאטֵא"
+    ]
    },
    "suggestion": {
     "class": "different-word",
@@ -2426,6 +3383,12 @@
    "readings": {
     "step-tbesh": "טוֹב אֲדֹנִיָּה"
    },
+   "raw": "טוֹב אֲדֹנִיָּהוּ",
+   "options": {
+    "step-tbesh": [
+     "טוֹב אֲדֹנִיָּה"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -2440,6 +3403,12 @@
    "ours": "טוֹבִיָּה",
    "readings": {
     "step-tbesh": "טוֹבִיָּ֫הוּ"
+   },
+   "raw": "טוֹבִיָּה",
+   "options": {
+    "step-tbesh": [
+     "טוֹבִיָּ֫הוּ"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -2456,6 +3425,12 @@
    "readings": {
     "step-tbesh": "טוֹטָפוֹת"
    },
+   "raw": "טוֹפָפָה",
+   "options": {
+    "step-tbesh": [
+     "טוֹטָפוֹת"
+    ]
+   },
    "suggestion": {
     "class": "different-word",
     "action": null,
@@ -2470,6 +3445,12 @@
    "ours": "טֻחָה",
    "readings": {
     "step-tbesh": "טֻחוֹת"
+   },
+   "raw": "טֻחָה",
+   "options": {
+    "step-tbesh": [
+     "טֻחוֹת"
+    ]
    },
    "suggestion": {
     "class": "different-word",
@@ -2486,6 +3467,12 @@
    "readings": {
     "step-tbesh": "טִפֻּחִים"
    },
+   "raw": "טִפֻּח",
+   "options": {
+    "step-tbesh": [
+     "טִפֻּחִים"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -2500,6 +3487,12 @@
    "ours": "טַרְפְּלַי",
    "readings": {
     "step-tbesh": "טַרְפְּלָיֵא"
+   },
+   "raw": "טַרְפְּלַי",
+   "options": {
+    "step-tbesh": [
+     "טַרְפְּלָיֵא"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -2516,6 +3509,12 @@
    "readings": {
     "step-tbesh": "יַאֲזַנְיָ֫הוּ"
    },
+   "raw": "יַאֲזַנְיָה",
+   "options": {
+    "step-tbesh": [
+     "יַאֲזַנְיָ֫הוּ"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -2530,6 +3529,12 @@
    "ours": "יֹאשִׁיָּה",
    "readings": {
     "step-tbesh": "יֹאשִׁיָּ֫הוּ"
+   },
+   "raw": "יֹאשִׁיָּה",
+   "options": {
+    "step-tbesh": [
+     "יֹאשִׁיָּ֫הוּ"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -2546,6 +3551,12 @@
    "readings": {
     "step-tbesh": "אִיתוֹן"
    },
+   "raw": "יְאִתוֹן",
+   "options": {
+    "step-tbesh": [
+     "אִיתוֹן"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -2560,6 +3571,13 @@
    "ours": "יְגַר שַׂהֲדוּתָא",
    "readings": {
     "step-tbesh": "יְגַר / שָֽׂהֲדוּ"
+   },
+   "raw": "יְגַר שַׂהֲדוּתָא",
+   "options": {
+    "step-tbesh": [
+     "יְגַר",
+     "שָֽׂהֲדוּ"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -2576,6 +3594,12 @@
    "readings": {
     "step-tbesh": "יְהוּדַי"
    },
+   "raw": "יְהוּדָאִי",
+   "options": {
+    "step-tbesh": [
+     "יְהוּדַי"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -2590,6 +3614,12 @@
    "ours": "יְהֹוָה יִרְאֶה",
    "readings": {
     "step-tbesh": "יִרְאֶה"
+   },
+   "raw": "יְהֹוָה יִרְאֶה",
+   "options": {
+    "step-tbesh": [
+     "יִרְאֶה"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -2606,6 +3636,12 @@
    "readings": {
     "step-tbesh": "יְהוֹעַדָּן"
    },
+   "raw": "יְהוֹעַדִּין",
+   "options": {
+    "step-tbesh": [
+     "יְהוֹעַדָּן"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -2620,6 +3656,12 @@
    "ours": "יַהַץ",
    "readings": {
     "step-tbesh": "יַ֫הַץה"
+   },
+   "raw": "יַהַץ",
+   "options": {
+    "step-tbesh": [
+     "יַ֫הַץה"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -2636,6 +3678,12 @@
    "readings": {
     "step-tbesh": "יְזִיאֵל"
    },
+   "raw": "יְזַוְאֵל",
+   "options": {
+    "step-tbesh": [
+     "יְזִיאֵל"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -2650,6 +3698,12 @@
    "ours": "יְחֻבָּה",
    "readings": {
     "step-tbesh": "חֻבָּה"
+   },
+   "raw": "יְחֻבָּה",
+   "options": {
+    "step-tbesh": [
+     "חֻבָּה"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -2666,6 +3720,12 @@
    "readings": {
     "step-tbesh": "יְכָלְיָהוּ"
    },
+   "raw": "יְכׇלְיָה",
+   "options": {
+    "step-tbesh": [
+     "יְכָלְיָהוּ"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -2680,6 +3740,12 @@
    "ours": "יְכׇנְיָה",
    "readings": {
     "step-tbesh": "יְכוֹנְיָה"
+   },
+   "raw": "יְכׇנְיָה",
+   "options": {
+    "step-tbesh": [
+     "יְכוֹנְיָה"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -2696,6 +3762,12 @@
    "readings": {
     "step-tbesh": "יֵמִם"
    },
+   "raw": "יֵם",
+   "options": {
+    "step-tbesh": [
+     "יֵמִם"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -2710,6 +3782,12 @@
    "ours": "יִמְלָא",
    "readings": {
     "step-tbesh": "יִמְלָה"
+   },
+   "raw": "יִמְלָא",
+   "options": {
+    "step-tbesh": [
+     "יִמְלָה"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -2726,6 +3804,12 @@
    "readings": {
     "step-tbesh": "יָנוּם"
    },
+   "raw": "יָנִים",
+   "options": {
+    "step-tbesh": [
+     "יָנוּם"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -2740,6 +3824,12 @@
    "ours": "יֶעְדִּי",
    "readings": {
     "step-tbesh": "יֶעְדּוֹ"
+   },
+   "raw": "יֶעְדִּי",
+   "options": {
+    "step-tbesh": [
+     "יֶעְדּוֹ"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -2756,6 +3846,12 @@
    "readings": {
     "step-tbesh": "יָעִיר"
    },
+   "raw": "יָעוּר",
+   "options": {
+    "step-tbesh": [
+     "יָעִיר"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -2770,6 +3866,12 @@
    "ours": "יַעֲזֵיר",
    "readings": {
     "step-tbesh": "יַעְזֵר"
+   },
+   "raw": "יַעֲזֵיר",
+   "options": {
+    "step-tbesh": [
+     "יַעְזֵר"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -2786,6 +3888,12 @@
    "readings": {
     "step-tbesh": "וְיַעֲשׂוֹ"
    },
+   "raw": "יַעֲשׂוּ",
+   "options": {
+    "step-tbesh": [
+     "וְיַעֲשׂוֹ"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -2800,6 +3908,12 @@
    "ours": "יְצָא",
    "readings": {
     "step-tbesh": "שֵׁיצִי"
+   },
+   "raw": "יְצָא",
+   "options": {
+    "step-tbesh": [
+     "שֵׁיצִי"
+    ]
    },
    "suggestion": {
     "class": "different-word",
@@ -2816,6 +3930,12 @@
    "readings": {
     "step-tbesh": "יְצֻרִים"
    },
+   "raw": "יָצֻר",
+   "options": {
+    "step-tbesh": [
+     "יְצֻרִים"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -2830,6 +3950,12 @@
    "ours": "יְרִיָּה",
    "readings": {
     "step-tbesh": "יְרִיָּהוּ"
+   },
+   "raw": "יְרִיָּה",
+   "options": {
+    "step-tbesh": [
+     "יְרִיָּהוּ"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -2846,6 +3972,12 @@
    "readings": {
     "step-tbesh": "יִרְמְיָ֫הוּ"
    },
+   "raw": "יִרְמְיָה",
+   "options": {
+    "step-tbesh": [
+     "יִרְמְיָ֫הוּ"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -2860,6 +3992,12 @@
    "ours": "יִשִּׁיָּה",
    "readings": {
     "step-tbesh": "יִשִּׁיָּהוּ"
+   },
+   "raw": "יִשִּׁיָּה",
+   "options": {
+    "step-tbesh": [
+     "יִשִּׁיָּהוּ"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -2876,6 +4014,12 @@
    "readings": {
     "step-tbesh": "יִשְׁמַעְיָ֫הוּ"
    },
+   "raw": "יִשְׁמַעְיָה",
+   "options": {
+    "step-tbesh": [
+     "יִשְׁמַעְיָ֫הוּ"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -2890,6 +4034,12 @@
    "ours": "כַּו",
    "readings": {
     "step-tbesh": "כַּוָּה"
+   },
+   "raw": "כַּו",
+   "options": {
+    "step-tbesh": [
+     "כַּוָּה"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -2906,6 +4056,12 @@
    "readings": {
     "step-tbesh": "בּוֹר עָשָׁן"
    },
+   "raw": "כּוֹר עָשָׁן",
+   "options": {
+    "step-tbesh": [
+     "בּוֹר עָשָׁן"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -2920,6 +4076,12 @@
    "ours": "כּוּת",
    "readings": {
     "step-tbesh": "כּוּתָה"
+   },
+   "raw": "כּוּת",
+   "options": {
+    "step-tbesh": [
+     "כּוּתָה"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -2936,6 +4098,12 @@
    "readings": {
     "step-tbesh": "כִּידֹן"
    },
+   "raw": "כִּידוֹן",
+   "options": {
+    "step-tbesh": [
+     "כִּידֹן"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -2950,6 +4118,12 @@
    "ours": "כִּיּוֹר",
    "readings": {
     "step-tbesh": "כִּיֹּר"
+   },
+   "raw": "כִּיּוֹר",
+   "options": {
+    "step-tbesh": [
+     "כִּיֹּר"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -2966,6 +4140,12 @@
    "readings": {
     "step-tbesh": "כֵּילַפּוֹת"
    },
+   "raw": "כֵּילַף",
+   "options": {
+    "step-tbesh": [
+     "כֵּילַפּוֹת"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -2980,6 +4160,12 @@
    "ours": "כָּלִבּוֹ",
    "readings": {
     "step-tbesh": "כָּלִבִּי"
+   },
+   "raw": "כָּלִבּוֹ",
+   "options": {
+    "step-tbesh": [
+     "כָּלִבִּי"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -2996,6 +4182,12 @@
    "readings": {
     "step-tbesh": "כְּלוּהוּ"
    },
+   "raw": "כְּלוּהַי",
+   "options": {
+    "step-tbesh": [
+     "כְּלוּהוּ"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -3010,6 +4202,12 @@
    "ours": "כְּנַנְיָה",
    "readings": {
     "step-tbesh": "כְּנַנְיָ֫הוּ"
+   },
+   "raw": "כְּנַנְיָה",
+   "options": {
+    "step-tbesh": [
+     "כְּנַנְיָ֫הוּ"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -3026,6 +4224,12 @@
    "readings": {
     "step-tbesh": "כִּנֶּ֫רֶת"
    },
+   "raw": "כִּנְּרוֹת",
+   "options": {
+    "step-tbesh": [
+     "כִּנֶּ֫רֶת"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -3040,6 +4244,12 @@
    "ours": "כַּסְדַּי",
    "readings": {
     "step-tbesh": "כַּשְׂדָּ֑י"
+   },
+   "raw": "כַּסְדַּי",
+   "options": {
+    "step-tbesh": [
+     "כַּשְׂדָּ֑י"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -3056,6 +4266,12 @@
    "readings": {
     "step-tbesh": "כִּפֻּרִים"
    },
+   "raw": "כִּפֻּר",
+   "options": {
+    "step-tbesh": [
+     "כִּפֻּרִים"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -3070,6 +4286,12 @@
    "ours": "כְּפַר הָעַמּוֹנִי",
    "readings": {
     "step-tbesh": "הָעַמּוֹנִי"
+   },
+   "raw": "כְּפַר הָעַמּוֹנִי",
+   "options": {
+    "step-tbesh": [
+     "הָעַמּוֹנִי"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -3086,6 +4308,12 @@
    "readings": {
     "step-tbesh": "כַּפְתּוֹר"
    },
+   "raw": "כַּפְתֹּר",
+   "options": {
+    "step-tbesh": [
+     "כַּפְתּוֹר"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -3100,6 +4328,12 @@
    "ours": "כַּפְתֹּר",
    "readings": {
     "step-tbesh": "כַּפְתּוֹר"
+   },
+   "raw": "כַּפְתֹּר",
+   "options": {
+    "step-tbesh": [
+     "כַּפְתּוֹר"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -3116,6 +4350,12 @@
    "readings": {
     "step-tbesh": "כַּשְׂדִּים"
    },
+   "raw": "כַּשְׂדִּי",
+   "options": {
+    "step-tbesh": [
+     "כַּשְׂדִּים"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -3130,6 +4370,12 @@
    "ours": "לְבוֹנָה",
    "readings": {
     "step-tbesh": "לְבֹנָה"
+   },
+   "raw": "לְבוֹנָה",
+   "options": {
+    "step-tbesh": [
+     "לְבֹנָה"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -3146,6 +4392,12 @@
    "readings": {
     "step-tbesh": "לְבִבָה"
    },
+   "raw": "לָבִיבָה",
+   "options": {
+    "step-tbesh": [
+     "לְבִבָה"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -3160,6 +4412,12 @@
    "ours": "לוּא",
    "readings": {
     "step-tbesh": "לוּ"
+   },
+   "raw": "לוּא",
+   "options": {
+    "step-tbesh": [
+     "לוּ"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -3176,6 +4434,12 @@
    "readings": {
     "step-tbesh": "לוּב"
    },
+   "raw": "לוּבִי",
+   "options": {
+    "step-tbesh": [
+     "לוּב"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -3190,6 +4454,12 @@
    "ours": "לוֹחֵשׁ",
    "readings": {
     "step-tbesh": "הַלּוֹחֵשׁ"
+   },
+   "raw": "לוֹחֵשׁ",
+   "options": {
+    "step-tbesh": [
+     "הַלּוֹחֵשׁ"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -3206,6 +4476,12 @@
    "readings": {
     "step-tbesh": "לֵוִי"
    },
+   "raw": "לֵוִיִּי",
+   "options": {
+    "step-tbesh": [
+     "לֵוִי"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -3220,6 +4496,12 @@
    "ours": "לוּץ",
    "readings": {
     "step-tbesh": "לִיץ"
+   },
+   "raw": "לוּץ",
+   "options": {
+    "step-tbesh": [
+     "לִיץ"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -3236,6 +4518,12 @@
    "readings": {
     "step-tbesh": "לַ֫יְלָה"
    },
+   "raw": "לַיִל",
+   "options": {
+    "step-tbesh": [
+     "לַ֫יְלָה"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -3250,6 +4538,12 @@
    "ours": "לֵילְיָא",
    "readings": {
     "step-tbesh": "לֵילָא"
+   },
+   "raw": "לֵילְיָא",
+   "options": {
+    "step-tbesh": [
+     "לֵילָא"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -3266,6 +4560,12 @@
    "readings": {
     "step-tbesh": "לוּלַי"
    },
+   "raw": "לֻלָאָה",
+   "options": {
+    "step-tbesh": [
+     "לוּלַי"
+    ]
+   },
    "suggestion": {
     "class": "different-word",
     "action": null,
@@ -3280,6 +4580,12 @@
    "ours": "לִמּוּד",
    "readings": {
     "step-tbesh": "לִמֻּד"
+   },
+   "raw": "לִמּוּד",
+   "options": {
+    "step-tbesh": [
+     "לִמֻּד"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -3296,6 +4602,12 @@
    "readings": {
     "step-tbesh": "מֹאזֵנְיָא"
    },
+   "raw": "מֹאזֵן",
+   "options": {
+    "step-tbesh": [
+     "מֹאזֵנְיָא"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -3310,6 +4622,12 @@
    "ours": "מָבֻשׁ",
    "readings": {
     "step-tbesh": "מָבוֹשׁ"
+   },
+   "raw": "מָבֻשׁ",
+   "options": {
+    "step-tbesh": [
+     "מָבוֹשׁ"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -3326,6 +4644,12 @@
    "readings": {
     "step-tbesh": "מְבַשְּׁלוֹת"
    },
+   "raw": "מְבַשְּׁלָה",
+   "options": {
+    "step-tbesh": [
+     "מְבַשְּׁלוֹת"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -3340,6 +4664,12 @@
    "ours": "מִגְבָּלָה",
    "readings": {
     "step-tbesh": "מִגְבָּלֹת"
+   },
+   "raw": "מִגְבָּלָה",
+   "options": {
+    "step-tbesh": [
+     "מִגְבָּלֹת"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -3356,6 +4686,12 @@
    "readings": {
     "step-tbesh": "מִגְבָּעוֹת"
    },
+   "raw": "מִגְבָּעָה",
+   "options": {
+    "step-tbesh": [
+     "מִגְבָּעוֹת"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -3370,6 +4706,12 @@
    "ours": "מְגִדּוֹן",
    "readings": {
     "step-tbesh": "מְגִדּוֹ"
+   },
+   "raw": "מְגִדּוֹן",
+   "options": {
+    "step-tbesh": [
+     "מְגִדּוֹ"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -3386,6 +4728,12 @@
    "readings": {
     "step-tbesh": "מִנְדָּה"
    },
+   "raw": "מִדָּה",
+   "options": {
+    "step-tbesh": [
+     "מִנְדָּה"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -3400,6 +4748,12 @@
    "ours": "מָדַי",
    "readings": {
     "step-tbesh": "מָדָאָה"
+   },
+   "raw": "מָדַי",
+   "options": {
+    "step-tbesh": [
+     "מָדָאָה"
+    ]
    },
    "suggestion": {
     "class": "different-word",
@@ -3416,6 +4770,12 @@
    "readings": {
     "step-tbesh": "מָדָאָה"
    },
+   "raw": "מָדַי",
+   "options": {
+    "step-tbesh": [
+     "מָדָאָה"
+    ]
+   },
    "suggestion": {
     "class": "different-word",
     "action": null,
@@ -3430,6 +4790,12 @@
    "ours": "מְדָתָא",
    "readings": {
     "step-tbesh": "הַמְּדָתָא"
+   },
+   "raw": "מְדָתָא",
+   "options": {
+    "step-tbesh": [
+     "הַמְּדָתָא"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -3446,6 +4812,12 @@
    "readings": {
     "step-tbesh": "מַהֲלֻמֿוֹת"
    },
+   "raw": "מַהֲלֻמָּה",
+   "options": {
+    "step-tbesh": [
+     "מַהֲלֻמֿוֹת"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -3460,6 +4832,12 @@
    "ours": "מַהֲתַלָּה",
    "readings": {
     "step-tbesh": "מַֽהֲתַלּוֹת"
+   },
+   "raw": "מַהֲתַלָּה",
+   "options": {
+    "step-tbesh": [
+     "מַֽהֲתַלּוֹת"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -3476,6 +4854,12 @@
    "readings": {
     "step-tbesh": "מֹדַ֫עַת"
    },
+   "raw": "מוֹדַעַת",
+   "options": {
+    "step-tbesh": [
+     "מֹדַ֫עַת"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -3490,6 +4874,12 @@
    "ours": "מוֹפַעַת",
    "readings": {
     "step-tbesh": "מֵיפַ֫עַת"
+   },
+   "raw": "מוֹפַעַת",
+   "options": {
+    "step-tbesh": [
+     "מֵיפַ֫עַת"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -3506,6 +4896,12 @@
    "readings": {
     "step-tbesh": "מֵץ"
    },
+   "raw": "מוּץ",
+   "options": {
+    "step-tbesh": [
+     "מֵץ"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -3520,6 +4916,12 @@
    "ours": "מוּצָקָה",
    "readings": {
     "step-tbesh": "מוּצֶ֫קֶת"
+   },
+   "raw": "מוּצָקָה",
+   "options": {
+    "step-tbesh": [
+     "מוּצֶ֫קֶת"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -3536,6 +4938,12 @@
    "readings": {
     "step-tbesh": "מֹרִיָּה"
    },
+   "raw": "מוֹרִיָּה",
+   "options": {
+    "step-tbesh": [
+     "מֹרִיָּה"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -3550,6 +4958,12 @@
    "ours": "מוֹשְׁכָה",
    "readings": {
     "step-tbesh": "מֹשֶׁכֶת"
+   },
+   "raw": "מוֹשְׁכָה",
+   "options": {
+    "step-tbesh": [
+     "מֹשֶׁכֶת"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -3566,6 +4980,12 @@
    "readings": {
     "step-tbesh": "לַבֵּן"
    },
+   "raw": "מוּת",
+   "options": {
+    "step-tbesh": [
+     "לַבֵּן"
+    ]
+   },
    "suggestion": {
     "class": "different-word",
     "action": null,
@@ -3580,6 +5000,12 @@
    "ours": "מַזָּלָה",
    "readings": {
     "step-tbesh": "מַזָּלוֹת"
+   },
+   "raw": "מַזָּלָה",
+   "options": {
+    "step-tbesh": [
+     "מַזָּלוֹת"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -3596,6 +5022,12 @@
    "readings": {
     "step-tbesh": "מְזַמֶּרֶת"
    },
+   "raw": "מְזַמְּרָה",
+   "options": {
+    "step-tbesh": [
+     "מְזַמֶּרֶת"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -3610,6 +5042,12 @@
    "ours": "מַזָּרָה",
    "readings": {
     "step-tbesh": "מַזָּרוֹת"
+   },
+   "raw": "מַזָּרָה",
+   "options": {
+    "step-tbesh": [
+     "מַזָּרוֹת"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -3626,6 +5064,12 @@
    "readings": {
     "step-tbesh": "מַחֲזִיאֹת"
    },
+   "raw": "מַחֲזִיאוֹת",
+   "options": {
+    "step-tbesh": [
+     "מַחֲזִיאֹת"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -3640,6 +5084,12 @@
    "ours": "מְחֹלָה",
    "readings": {
     "step-tbesh": "מְחוֹלָה"
+   },
+   "raw": "מְחֹלָה",
+   "options": {
+    "step-tbesh": [
+     "מְחוֹלָה"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -3656,6 +5106,12 @@
    "readings": {
     "step-tbesh": "מַחֲלוּי"
    },
+   "raw": "מַחְלֻי",
+   "options": {
+    "step-tbesh": [
+     "מַחֲלוּי"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -3670,6 +5126,12 @@
    "ours": "מַחֲמָאָה",
    "readings": {
     "step-tbesh": "מַחֲמָאֹת"
+   },
+   "raw": "מַחֲמָאָה",
+   "options": {
+    "step-tbesh": [
+     "מַחֲמָאֹת"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -3686,6 +5148,12 @@
    "readings": {
     "step-tbesh": "מַטָּרָה"
    },
+   "raw": "מַטָּרָא",
+   "options": {
+    "step-tbesh": [
+     "מַטָּרָה"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -3700,6 +5168,12 @@
    "ours": "מַיִם",
    "readings": {
     "step-tbesh": "מַי"
+   },
+   "raw": "מַיִם",
+   "options": {
+    "step-tbesh": [
+     "מַי"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -3716,6 +5190,12 @@
    "readings": {
     "step-tbesh": "מוּסָךְ"
    },
+   "raw": "מֵיסָךְ",
+   "options": {
+    "step-tbesh": [
+     "מוּסָךְ"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -3730,6 +5210,12 @@
    "ours": "מַכְאֹב",
    "readings": {
     "step-tbesh": "מַכְאוֹב"
+   },
+   "raw": "מַכְאֹב",
+   "options": {
+    "step-tbesh": [
+     "מַכְאוֹב"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -3746,6 +5232,12 @@
    "readings": {
     "step-tbesh": "מַכְבֵּנָה"
    },
+   "raw": "מַכְבֵּנָא",
+   "options": {
+    "step-tbesh": [
+     "מַכְבֵּנָה"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -3760,6 +5252,12 @@
    "ours": "מְכוּרָה",
    "readings": {
     "step-tbesh": "מְכֹרָה"
+   },
+   "raw": "מְכוּרָה",
+   "options": {
+    "step-tbesh": [
+     "מְכֹרָה"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -3776,6 +5274,12 @@
    "readings": {
     "step-tbesh": "מִכְלָה"
    },
+   "raw": "מִכְלָאָה",
+   "options": {
+    "step-tbesh": [
+     "מִכְלָה"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -3790,6 +5294,12 @@
    "ours": "מַלְכָּא",
    "readings": {
     "step-tbesh": "מַלְכָּה"
+   },
+   "raw": "מַלְכָּא",
+   "options": {
+    "step-tbesh": [
+     "מַלְכָּה"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -3806,6 +5316,12 @@
    "readings": {
     "step-tbesh": "מַלְכִּיָּהוּ"
    },
+   "raw": "מַלְכִּיָּה",
+   "options": {
+    "step-tbesh": [
+     "מַלְכִּיָּהוּ"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -3820,6 +5336,12 @@
    "ours": "מֹלֶכֶת",
    "readings": {
     "step-tbesh": "הַמֹּלֶכֶת"
+   },
+   "raw": "מֹלֶכֶת",
+   "options": {
+    "step-tbesh": [
+     "הַמֹּלֶכֶת"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -3836,6 +5358,12 @@
    "readings": {
     "step-tbesh": "מֶלְקָחַ֫יִם"
    },
+   "raw": "מֶלְקָח",
+   "options": {
+    "step-tbesh": [
+     "מֶלְקָחַ֫יִם"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -3850,6 +5378,12 @@
    "ours": "מַמְּגֻרָה",
    "readings": {
     "step-tbesh": "מַמְּגֻרוֹת"
+   },
+   "raw": "מַמְּגֻרָה",
+   "options": {
+    "step-tbesh": [
+     "מַמְּגֻרוֹת"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -3866,6 +5400,12 @@
    "readings": {
     "step-tbesh": "מַמְרוֹר"
    },
+   "raw": "מַמְרֹר",
+   "options": {
+    "step-tbesh": [
+     "מַמְרוֹר"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -3880,6 +5420,12 @@
    "ours": "מַמְתַּק",
    "readings": {
     "step-tbesh": "מַמְתַֿקִּים"
+   },
+   "raw": "מַמְתַּק",
+   "options": {
+    "step-tbesh": [
+     "מַמְתַֿקִּים"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -3896,6 +5442,12 @@
    "readings": {
     "step-tbesh": "מְנָה"
    },
+   "raw": "מְנָא",
+   "options": {
+    "step-tbesh": [
+     "מְנָה"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -3910,6 +5462,12 @@
    "ours": "מַנְעַם",
    "readings": {
     "step-tbesh": "מַנְעַמִּים"
+   },
+   "raw": "מַנְעַם",
+   "options": {
+    "step-tbesh": [
+     "מַנְעַמִּים"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -3926,6 +5484,12 @@
    "readings": {
     "step-tbesh": "מְנַקִּיָּה"
    },
+   "raw": "מְנַקִּית",
+   "options": {
+    "step-tbesh": [
+     "מְנַקִּיָּה"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -3940,6 +5504,12 @@
    "ours": "מִסָּה",
    "readings": {
     "step-tbesh": "מִסַּת"
+   },
+   "raw": "מִסָּה",
+   "options": {
+    "step-tbesh": [
+     "מִסַּת"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -3956,6 +5526,12 @@
    "readings": {
     "step-tbesh": "מִסְכְּנוֹת"
    },
+   "raw": "מִסְכְּנָה",
+   "options": {
+    "step-tbesh": [
+     "מִסְכְּנוֹת"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -3970,6 +5546,12 @@
    "ours": "מַעֲדַנָּה",
    "readings": {
     "step-tbesh": "מַעֲדַנּוֹת"
+   },
+   "raw": "מַעֲדַנָּה",
+   "options": {
+    "step-tbesh": [
+     "מַעֲדַנּוֹת"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -3986,6 +5568,12 @@
    "readings": {
     "step-tbesh": "מְעָא"
    },
+   "raw": "מְעָה",
+   "options": {
+    "step-tbesh": [
+     "מְעָא"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -4000,6 +5588,12 @@
    "ours": "מְעוֹנָה",
    "readings": {
     "step-tbesh": "מְעֹנָה"
+   },
+   "raw": "מְעוֹנָה",
+   "options": {
+    "step-tbesh": [
+     "מְעֹנָה"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -4016,6 +5610,12 @@
    "readings": {
     "step-tbesh": "מְעוּנִים"
    },
+   "raw": "מְעוּנִי",
+   "options": {
+    "step-tbesh": [
+     "מְעוּנִים"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -4030,6 +5630,12 @@
    "ours": "מַעַזְיָה",
    "readings": {
     "step-tbesh": "מַעַזְיָהוּ"
+   },
+   "raw": "מַעַזְיָה",
+   "options": {
+    "step-tbesh": [
+     "מַעַזְיָהוּ"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -4046,6 +5652,12 @@
    "readings": {
     "step-tbesh": "עַקְרַבִּים"
    },
+   "raw": "מַעֲלֵה עַקְרַבִּים",
+   "options": {
+    "step-tbesh": [
+     "עַקְרַבִּים"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -4060,6 +5672,12 @@
    "ours": "מַעֲמָק",
    "readings": {
     "step-tbesh": "מַעֲמַקִּים"
+   },
+   "raw": "מַעֲמָק",
+   "options": {
+    "step-tbesh": [
+     "מַעֲמַקִּים"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -4076,6 +5694,12 @@
    "readings": {
     "step-tbesh": "מַעֲשֵׂיָהוּ"
    },
+   "raw": "מַעֲשֵׂיָה",
+   "options": {
+    "step-tbesh": [
+     "מַעֲשֵׂיָהוּ"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -4090,6 +5714,12 @@
    "ours": "מֹץ",
    "readings": {
     "step-tbesh": "מוֹץ"
+   },
+   "raw": "מֹץ",
+   "options": {
+    "step-tbesh": [
+     "מוֹץ"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -4106,6 +5736,12 @@
    "readings": {
     "step-tbesh": "מְצוּדָה"
    },
+   "raw": "מָצוּד",
+   "options": {
+    "step-tbesh": [
+     "מְצוּדָה"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -4120,6 +5756,12 @@
    "ours": "מְצֵלֶת",
    "readings": {
     "step-tbesh": "מְצִלְתַּיִם"
+   },
+   "raw": "מְצֵלֶת",
+   "options": {
+    "step-tbesh": [
+     "מְצִלְתַּיִם"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -4136,6 +5778,12 @@
    "readings": {
     "step-tbesh": "מַצְפּוֹן"
    },
+   "raw": "מִצְפֻּן",
+   "options": {
+    "step-tbesh": [
+     "מַצְפּוֹן"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -4150,6 +5798,12 @@
    "ours": "מַקְצוֹעַ",
    "readings": {
     "step-tbesh": "מִקְצֹעַ"
+   },
+   "raw": "מַקְצוֹעַ",
+   "options": {
+    "step-tbesh": [
+     "מִקְצֹעַ"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -4166,6 +5820,12 @@
    "readings": {
     "step-tbesh": "מְרֹדַךְ בַּלְאֲדָן"
    },
+   "raw": "מְרֹאדַךְ בַּלְאָדָן",
+   "options": {
+    "step-tbesh": [
+     "מְרֹדַךְ בַּלְאֲדָן"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -4180,6 +5840,12 @@
    "ours": "מַרְאָשָׁה",
    "readings": {
     "step-tbesh": "מְרַאֲשָׁוֹת"
+   },
+   "raw": "מַרְאָשָׁה",
+   "options": {
+    "step-tbesh": [
+     "מְרַאֲשָׁוֹת"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -4196,6 +5862,12 @@
    "readings": {
     "step-tbesh": "מָרֵשָׁה"
    },
+   "raw": "מַרְאֵשָׁה",
+   "options": {
+    "step-tbesh": [
+     "מָרֵשָׁה"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -4210,6 +5882,12 @@
    "ours": "מְרַאֲשָׁה",
    "readings": {
     "step-tbesh": "מְרַאֲשָׁוֹת"
+   },
+   "raw": "מְרַאֲשָׁה",
+   "options": {
+    "step-tbesh": [
+     "מְרַאֲשָׁוֹת"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -4226,6 +5904,12 @@
    "readings": {
     "step-tbesh": "מַרְגְּלוֹת"
    },
+   "raw": "מַרְגְלָה",
+   "options": {
+    "step-tbesh": [
+     "מַרְגְּלוֹת"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -4240,6 +5924,12 @@
    "ours": "מְרֻצָה",
    "readings": {
     "step-tbesh": "מְרוּצָה"
+   },
+   "raw": "מְרֻצָה",
+   "options": {
+    "step-tbesh": [
+     "מְרוּצָה"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -4256,6 +5946,12 @@
    "readings": {
     "step-tbesh": "מִשְׁבְּצוֹת"
    },
+   "raw": "מִשְׁבְּצָה",
+   "options": {
+    "step-tbesh": [
+     "מִשְׁבְּצוֹת"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -4270,6 +5966,13 @@
    "ours": "מְשׂוּכָה",
    "readings": {
     "step-tbesh": "מְשֻכָֿה / מְשֻׂכָּה"
+   },
+   "raw": "מְשׂוּכָה",
+   "options": {
+    "step-tbesh": [
+     "מְשֻכָֿה",
+     "מְשֻׂכָּה"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -4286,6 +5989,12 @@
    "readings": {
     "step-tbesh": "מְשֶׁלֶמְיָהוּ"
    },
+   "raw": "מְשֶׁלֶמְיָה",
+   "options": {
+    "step-tbesh": [
+     "מְשֶׁלֶמְיָהוּ"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -4300,6 +6009,12 @@
    "ours": "מִשְׁפָּת",
    "readings": {
     "step-tbesh": "מִשְׁפְּתַ֫יִם"
+   },
+   "raw": "מִשְׁפָּת",
+   "options": {
+    "step-tbesh": [
+     "מִשְׁפְּתַ֫יִם"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -4316,6 +6031,12 @@
    "readings": {
     "step-tbesh": "מְתַלְּעוֹת"
    },
+   "raw": "מְתַלְּעָה",
+   "options": {
+    "step-tbesh": [
+     "מְתַלְּעוֹת"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -4330,6 +6051,12 @@
    "ours": "מֹתֶן",
    "readings": {
     "step-tbesh": "מׇתְנַ֫יִם"
+   },
+   "raw": "מֹתֶן",
+   "options": {
+    "step-tbesh": [
+     "מׇתְנַ֫יִם"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -4346,6 +6073,12 @@
    "readings": {
     "step-tbesh": "מַתַּנְיָ֫הוּ"
    },
+   "raw": "מַתַּנְיָה",
+   "options": {
+    "step-tbesh": [
+     "מַתַּנְיָ֫הוּ"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -4360,6 +6093,12 @@
    "ours": "מַתִּתְיָה",
    "readings": {
     "step-tbesh": "מַתִּתְיָ֫הוּ"
+   },
+   "raw": "מַתִּתְיָה",
+   "options": {
+    "step-tbesh": [
+     "מַתִּתְיָ֫הוּ"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -4376,6 +6115,12 @@
    "readings": {
     "step-tbesh": "נָוָה"
    },
+   "raw": "נָאָה",
+   "options": {
+    "step-tbesh": [
+     "נָוָה"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -4390,6 +6135,13 @@
    "ours": "נְבוּכַדְנֶאצַּר",
    "readings": {
     "step-tbesh": "נְבוּכַדְרֶאצַּר / נְבוּכַדְנֶצַּר"
+   },
+   "raw": "נְבוּכַדְנֶאצַּר",
+   "options": {
+    "step-tbesh": [
+     "נְבוּכַדְרֶאצַּר",
+     "נְבוּכַדְנֶצַּר"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -4406,6 +6158,12 @@
    "readings": {
     "step-tbesh": "נֶבְרַשְׁתָּא"
    },
+   "raw": "נֶבְרְשָׁא",
+   "options": {
+    "step-tbesh": [
+     "נֶבְרַשְׁתָּא"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -4420,6 +6178,12 @@
    "ours": "נָדֻד",
    "readings": {
     "step-tbesh": "נְדוּד"
+   },
+   "raw": "נָדֻד",
+   "options": {
+    "step-tbesh": [
+     "נְדוּד"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -4436,6 +6200,13 @@
    "readings": {
     "step-tbesh": "נָצָה / נָצַץ"
    },
+   "raw": "נוּץ",
+   "options": {
+    "step-tbesh": [
+     "נָצָה",
+     "נָצַץ"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -4450,6 +6221,12 @@
    "ours": "נִיחוֹחַ",
    "readings": {
     "step-tbesh": "נִיחֹחַ"
+   },
+   "raw": "נִיחוֹחַ",
+   "options": {
+    "step-tbesh": [
+     "נִיחֹחַ"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -4466,6 +6243,12 @@
    "readings": {
     "step-tbesh": "נִמְרֹד"
    },
+   "raw": "נִמְרוֹד",
+   "options": {
+    "step-tbesh": [
+     "נִמְרֹד"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -4480,6 +6263,12 @@
    "ours": "נָסַק",
    "readings": {
     "step-tbesh": "סָלֵק"
+   },
+   "raw": "נָסַק",
+   "options": {
+    "step-tbesh": [
+     "סָלֵק"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -4496,6 +6285,13 @@
    "readings": {
     "step-tbesh": "נְעוּרִים / נְעוּרוֹת"
    },
+   "raw": "נָעוּר",
+   "options": {
+    "step-tbesh": [
+     "נְעוּרִים",
+     "נְעוּרוֹת"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -4510,6 +6306,13 @@
    "ours": "נְפוּשְׁסִים",
    "readings": {
     "step-tbesh": "נְפִישְׁסִים / נפיסים"
+   },
+   "raw": "נְפוּשְׁסִים",
+   "options": {
+    "step-tbesh": [
+     "נְפִישְׁסִים",
+     "נפיסים"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -4526,6 +6329,12 @@
    "readings": {
     "step-tbesh": "נְפִלִים"
    },
+   "raw": "נְפִיל",
+   "options": {
+    "step-tbesh": [
+     "נְפִלִים"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -4540,6 +6349,12 @@
    "ours": "נַפְתּוּל",
    "readings": {
     "step-tbesh": "נַפְתּוּלִים"
+   },
+   "raw": "נַפְתּוּל",
+   "options": {
+    "step-tbesh": [
+     "נַפְתּוּלִים"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -4556,6 +6371,12 @@
    "readings": {
     "step-tbesh": "הַנֶּ֫קֶב"
    },
+   "raw": "נֶקֶב",
+   "options": {
+    "step-tbesh": [
+     "הַנֶּ֫קֶב"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -4570,6 +6391,12 @@
    "ours": "נִקֻּד",
    "readings": {
     "step-tbesh": "נִקּוּד"
+   },
+   "raw": "נִקֻּד",
+   "options": {
+    "step-tbesh": [
+     "נִקּוּד"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -4586,6 +6413,12 @@
    "readings": {
     "step-tbesh": "נֵרִיָהוּ"
    },
+   "raw": "נֵרִיָּה",
+   "options": {
+    "step-tbesh": [
+     "נֵרִיָהוּ"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -4600,6 +6433,12 @@
    "ours": "נָשַׂק",
    "readings": {
     "step-tbesh": "שָׂלַק"
+   },
+   "raw": "נָשַׂק",
+   "options": {
+    "step-tbesh": [
+     "שָׂלַק"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -4616,6 +6455,12 @@
    "readings": {
     "step-tbesh": "נְתִינִים"
    },
+   "raw": "נָתִין",
+   "options": {
+    "step-tbesh": [
+     "נְתִינִים"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -4630,6 +6475,12 @@
    "ours": "נְתַנְיָה",
    "readings": {
     "step-tbesh": "נְתַנְיָ֫הוּ"
+   },
+   "raw": "נְתַנְיָה",
+   "options": {
+    "step-tbesh": [
+     "נְתַנְיָ֫הוּ"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -4646,6 +6497,12 @@
    "readings": {
     "step-tbesh": "סֵאסֵא"
    },
+   "raw": "סַאסְּאָה",
+   "options": {
+    "step-tbesh": [
+     "סֵאסֵא"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -4660,6 +6517,12 @@
    "ours": "סְבָאִי",
    "readings": {
     "step-tbesh": "סְבָאִים"
+   },
+   "raw": "סְבָאִי",
+   "options": {
+    "step-tbesh": [
+     "סְבָאִים"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -4676,6 +6539,12 @@
    "readings": {
     "step-tbesh": "שַׂבְּכָא"
    },
+   "raw": "סַבְּכָא",
+   "options": {
+    "step-tbesh": [
+     "שַׂבְּכָא"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -4690,6 +6559,12 @@
    "ours": "סַבְתָּא",
    "readings": {
     "step-tbesh": "סַבְתָּה"
+   },
+   "raw": "סַבְתָּא",
+   "options": {
+    "step-tbesh": [
+     "סַבְתָּה"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -4706,6 +6581,12 @@
    "readings": {
     "step-tbesh": "סַגְרִיר"
    },
+   "raw": "סַגְרִיד",
+   "options": {
+    "step-tbesh": [
+     "סַגְרִיר"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -4720,6 +6601,12 @@
    "ours": "סֻכִּי",
    "readings": {
     "step-tbesh": "סֻכִּיִּים"
+   },
+   "raw": "סֻכִּי",
+   "options": {
+    "step-tbesh": [
+     "סֻכִּיִּים"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -4736,6 +6623,12 @@
    "readings": {
     "step-tbesh": "סַנְוֵרִים"
    },
+   "raw": "סַנְוֵר",
+   "options": {
+    "step-tbesh": [
+     "סַנְוֵרִים"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -4750,6 +6643,12 @@
    "ours": "סַנְסִן",
    "readings": {
     "step-tbesh": "סַנְסִנִּים"
+   },
+   "raw": "סַנְסִן",
+   "options": {
+    "step-tbesh": [
+     "סַנְסִנִּים"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -4766,6 +6665,13 @@
    "readings": {
     "step-tbesh": "סְעִפָּה / שְׂעִפִּים"
    },
+   "raw": "סָעִף",
+   "options": {
+    "step-tbesh": [
+     "סְעִפָּה",
+     "שְׂעִפִּים"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -4780,6 +6686,13 @@
    "ours": "סֵפֶק",
    "readings": {
     "step-tbesh": "שֶׂ֫פֶק / שֵׂ֫פֶק"
+   },
+   "raw": "סֵפֶק",
+   "options": {
+    "step-tbesh": [
+     "שֶׂ֫פֶק",
+     "שֵׂ֫פֶק"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -4796,6 +6709,12 @@
    "readings": {
     "step-tbesh": "סְתָיו"
    },
+   "raw": "סְתָו",
+   "options": {
+    "step-tbesh": [
+     "סְתָיו"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -4810,6 +6729,12 @@
    "ours": "עֹבַדְיָה",
    "readings": {
     "step-tbesh": "עֹבַדְיָ֫הוּ"
+   },
+   "raw": "עֹבַדְיָה",
+   "options": {
+    "step-tbesh": [
+     "עֹבַדְיָ֫הוּ"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -4826,6 +6751,12 @@
    "readings": {
     "step-tbesh": "עֲבֵד נְגוֹ"
    },
+   "raw": "עֲבֵד נְגוֹא",
+   "options": {
+    "step-tbesh": [
+     "עֲבֵד נְגוֹ"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -4840,6 +6771,12 @@
    "ours": "עָבֹת",
    "readings": {
     "step-tbesh": "עָבוֹת"
+   },
+   "raw": "עָבֹת",
+   "options": {
+    "step-tbesh": [
+     "עָבוֹת"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -4856,6 +6793,12 @@
    "readings": {
     "step-tbesh": "עִדָּה"
    },
+   "raw": "עֵד",
+   "options": {
+    "step-tbesh": [
+     "עִדָּה"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -4870,6 +6813,12 @@
    "ours": "עֲדָא",
    "readings": {
     "step-tbesh": "עֲדָה"
+   },
+   "raw": "עֲדָא",
+   "options": {
+    "step-tbesh": [
+     "עֲדָה"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -4886,6 +6835,12 @@
    "readings": {
     "step-tbesh": "עֲדָיָ֫הוּ"
    },
+   "raw": "עֲדָיָה",
+   "options": {
+    "step-tbesh": [
+     "עֲדָיָ֫הוּ"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -4900,6 +6855,12 @@
    "ours": "עָדָשׁ",
    "readings": {
     "step-tbesh": "עֲדָשָׁה"
+   },
+   "raw": "עָדָשׁ",
+   "options": {
+    "step-tbesh": [
+     "עֲדָשָׁה"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -4916,6 +6877,12 @@
    "readings": {
     "step-tbesh": "עֹדֵד"
    },
+   "raw": "עוֹדֵד",
+   "options": {
+    "step-tbesh": [
+     "עֹדֵד"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -4930,6 +6897,12 @@
    "ours": "עִוְיָא",
    "readings": {
     "step-tbesh": "עֲוָיָה"
+   },
+   "raw": "עִוְיָא",
+   "options": {
+    "step-tbesh": [
+     "עֲוָיָה"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -4946,6 +6919,12 @@
    "readings": {
     "step-tbesh": "עִין"
    },
+   "raw": "עָוַן",
+   "options": {
+    "step-tbesh": [
+     "עִין"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -4960,6 +6939,12 @@
    "ours": "עוֹנָה",
    "readings": {
     "step-tbesh": "עֹנָה"
+   },
+   "raw": "עוֹנָה",
+   "options": {
+    "step-tbesh": [
+     "עֹנָה"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -4976,6 +6961,12 @@
    "readings": {
     "step-tbesh": "עִוְעִים"
    },
+   "raw": "עַוְעֶה",
+   "options": {
+    "step-tbesh": [
+     "עִוְעִים"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -4990,6 +6981,12 @@
    "ours": "עוֹפֶרֶת",
    "readings": {
     "step-tbesh": "עֹפֶרֶת"
+   },
+   "raw": "עוֹפֶרֶת",
+   "options": {
+    "step-tbesh": [
+     "עֹפֶרֶת"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -5006,6 +7003,12 @@
    "readings": {
     "step-tbesh": "עֻזִּיָּהוּ"
    },
+   "raw": "עֻזִּיָּה",
+   "options": {
+    "step-tbesh": [
+     "עֻזִּיָּהוּ"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -5020,6 +7023,12 @@
    "ours": "עִזְקָא",
    "readings": {
     "step-tbesh": "עִזְקָה"
+   },
+   "raw": "עִזְקָא",
+   "options": {
+    "step-tbesh": [
+     "עִזְקָה"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -5036,6 +7045,12 @@
    "readings": {
     "step-tbesh": "עֵין־דֹּר"
    },
+   "raw": "עֵין־דֹּאר",
+   "options": {
+    "step-tbesh": [
+     "עֵין־דֹּר"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -5050,6 +7065,12 @@
    "ours": "עֵינַיִם",
    "readings": {
     "step-tbesh": "עֵינָם"
+   },
+   "raw": "עֵינַיִם",
+   "options": {
+    "step-tbesh": [
+     "עֵינָם"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -5066,6 +7087,12 @@
    "readings": {
     "step-tbesh": "עֲלָת"
    },
+   "raw": "עֲלָה",
+   "options": {
+    "step-tbesh": [
+     "עֲלָת"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -5080,6 +7107,12 @@
    "ours": "עָלוּם",
    "readings": {
     "step-tbesh": "עָלוּמִים"
+   },
+   "raw": "עָלוּם",
+   "options": {
+    "step-tbesh": [
+     "עָלוּמִים"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -5096,6 +7129,12 @@
    "readings": {
     "step-tbesh": "עֲלִי"
    },
+   "raw": "עַלִּית",
+   "options": {
+    "step-tbesh": [
+     "עֲלִי"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -5110,6 +7149,12 @@
    "ours": "עֹלֵלָה",
    "readings": {
     "step-tbesh": "עֹלֵלוֹת"
+   },
+   "raw": "עֹלֵלָה",
+   "options": {
+    "step-tbesh": [
+     "עֹלֵלוֹת"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -5126,6 +7171,12 @@
    "readings": {
     "step-tbesh": "עֵלְמָיֵא"
    },
+   "raw": "עַלְמִי",
+   "options": {
+    "step-tbesh": [
+     "עֵלְמָיֵא"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -5140,6 +7191,12 @@
    "ours": "עִמָּד",
    "readings": {
     "step-tbesh": "עִמָּדִי"
+   },
+   "raw": "עִמָּד",
+   "options": {
+    "step-tbesh": [
+     "עִמָּדִי"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -5156,6 +7213,12 @@
    "readings": {
     "step-tbesh": "עֲנָי"
    },
+   "raw": "עֲנָה",
+   "options": {
+    "step-tbesh": [
+     "עֲנָי"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -5170,6 +7233,12 @@
    "ours": "עֳפֶא",
    "readings": {
     "step-tbesh": "עֳפָיִם"
+   },
+   "raw": "עֳפֶא",
+   "options": {
+    "step-tbesh": [
+     "עֳפָיִם"
+    ]
    },
    "suggestion": {
     "class": "different-word",
@@ -5186,6 +7255,12 @@
    "readings": {
     "step-tbesh": "עֲרָבָה"
    },
+   "raw": "עָרָב",
+   "options": {
+    "step-tbesh": [
+     "עֲרָבָה"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -5200,6 +7275,12 @@
    "ours": "עֲרוֹעֵר",
    "readings": {
     "step-tbesh": "עֲרֹעֵר"
+   },
+   "raw": "עֲרוֹעֵר",
+   "options": {
+    "step-tbesh": [
+     "עֲרֹעֵר"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -5216,6 +7297,12 @@
    "readings": {
     "step-tbesh": "עֲרֵמָה"
    },
+   "raw": "עָרֵם",
+   "options": {
+    "step-tbesh": [
+     "עֲרֵמָה"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -5230,6 +7317,12 @@
    "ours": "עָשׁוּק",
    "readings": {
     "step-tbesh": "עָשׁוּקִים"
+   },
+   "raw": "עָשׁוּק",
+   "options": {
+    "step-tbesh": [
+     "עָשׁוּקִים"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -5246,6 +7339,12 @@
    "readings": {
     "step-tbesh": "עַשְׁתָּרוֹת"
    },
+   "raw": "עַשְׁתְּרָה",
+   "options": {
+    "step-tbesh": [
+     "עַשְׁתָּרוֹת"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -5260,6 +7359,12 @@
    "ours": "עֲתַלְיָה",
    "readings": {
     "step-tbesh": "עֲתַלְיָ֫הוּ"
+   },
+   "raw": "עֲתַלְיָה",
+   "options": {
+    "step-tbesh": [
+     "עֲתַלְיָ֫הוּ"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -5276,6 +7381,12 @@
    "readings": {
     "step-tbesh": "פַּגָּה"
    },
+   "raw": "פַּג",
+   "options": {
+    "step-tbesh": [
+     "פַּגָּה"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -5290,6 +7401,12 @@
    "ours": "פָּדוּי",
    "readings": {
     "step-tbesh": "פְּדוּיִם"
+   },
+   "raw": "פָּדוּי",
+   "options": {
+    "step-tbesh": [
+     "פְּדוּיִם"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -5306,6 +7423,12 @@
    "readings": {
     "step-tbesh": "פְּדָיָהוּ"
    },
+   "raw": "פְּדָיָה",
+   "options": {
+    "step-tbesh": [
+     "פְּדָיָהוּ"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -5320,6 +7443,12 @@
    "ours": "פּוּגָה",
    "readings": {
     "step-tbesh": "פּוּגַת"
+   },
+   "raw": "פּוּגָה",
+   "options": {
+    "step-tbesh": [
+     "פּוּגַת"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -5336,6 +7465,12 @@
    "readings": {
     "step-tbesh": "פְּטַשׁ"
    },
+   "raw": "פַּטִּישׁ",
+   "options": {
+    "step-tbesh": [
+     "פְּטַשׁ"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -5350,6 +7485,12 @@
    "ours": "פִּילֶגֶשׁ",
    "readings": {
     "step-tbesh": "פִּלֶ֫גֶשׁ"
+   },
+   "raw": "פִּילֶגֶשׁ",
+   "options": {
+    "step-tbesh": [
+     "פִּלֶ֫גֶשׁ"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -5366,6 +7507,12 @@
    "readings": {
     "step-tbesh": "פֹּכֶ֫רֶת הַצְבָיִם"
    },
+   "raw": "פֹּכֶרֶת צְבָיִים",
+   "options": {
+    "step-tbesh": [
+     "פֹּכֶ֫רֶת הַצְבָיִם"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -5380,6 +7527,12 @@
    "ours": "פְּלַטְיָה",
    "readings": {
     "step-tbesh": "פְּלַטְיָ֫הוּ"
+   },
+   "raw": "פְּלַטְיָה",
+   "options": {
+    "step-tbesh": [
+     "פְּלַטְיָ֫הוּ"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -5396,6 +7549,12 @@
    "readings": {
     "step-tbesh": "פָּנֶה"
    },
+   "raw": "פָּנִים",
+   "options": {
+    "step-tbesh": [
+     "פָּנֶה"
+    ]
+   },
    "suggestion": {
     "class": "different-word",
     "action": null,
@@ -5410,6 +7569,12 @@
    "ours": "פָּנִין",
    "readings": {
     "step-tbesh": "פְּנִינִים"
+   },
+   "raw": "פָּנִין",
+   "options": {
+    "step-tbesh": [
+     "פְּנִינִים"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -5426,6 +7591,12 @@
    "readings": {
     "step-tbesh": "פֶּקָעִים"
    },
+   "raw": "פֶּקַע",
+   "options": {
+    "step-tbesh": [
+     "פֶּקָעִים"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -5440,6 +7611,12 @@
    "ours": "פַּקֻּעָה",
    "readings": {
     "step-tbesh": "פַּקֻּעֹת"
+   },
+   "raw": "פַּקֻּעָה",
+   "options": {
+    "step-tbesh": [
+     "פַּקֻּעֹת"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -5456,6 +7633,12 @@
    "readings": {
     "step-tbesh": "פַּרְוָר"
    },
+   "raw": "פַּרְבָּר",
+   "options": {
+    "step-tbesh": [
+     "פַּרְוָר"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -5470,6 +7653,12 @@
    "ours": "פַּרְעָה",
    "readings": {
     "step-tbesh": "פֶּ֫רַע"
+   },
+   "raw": "פַּרְעָה",
+   "options": {
+    "step-tbesh": [
+     "פֶּ֫רַע"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -5486,6 +7675,12 @@
    "readings": {
     "step-tbesh": "חָפְרַע"
    },
+   "raw": "פַּרְעֹה חׇפְרַע",
+   "options": {
+    "step-tbesh": [
+     "חָפְרַע"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -5500,6 +7695,12 @@
    "ours": "פַּרְשְׁדֹן",
    "readings": {
     "step-tbesh": "פַּרְשְׁדֹ֑נָה"
+   },
+   "raw": "פַּרְשְׁדֹן",
+   "options": {
+    "step-tbesh": [
+     "פַּרְשְׁדֹ֑נָה"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -5516,6 +7717,12 @@
    "readings": {
     "step-tbesh": "פַּרְתְּמִים"
    },
+   "raw": "פַּרְתַּם",
+   "options": {
+    "step-tbesh": [
+     "פַּרְתְּמִים"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -5530,6 +7737,12 @@
    "ours": "פִּשְׁתֶּה",
    "readings": {
     "step-tbesh": "פֵּ֫שֶׁת"
+   },
+   "raw": "פִּשְׁתֶּה",
+   "options": {
+    "step-tbesh": [
+     "פֵּ֫שֶׁת"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -5546,6 +7759,12 @@
    "readings": {
     "step-tbesh": "פִּתְאֹם"
    },
+   "raw": "פִּתְאוֹם",
+   "options": {
+    "step-tbesh": [
+     "פִּתְאֹם"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -5560,6 +7779,12 @@
    "ours": "פְּתִחָה",
    "readings": {
     "step-tbesh": "פְּתִיחָה"
+   },
+   "raw": "פְּתִחָה",
+   "options": {
+    "step-tbesh": [
+     "פְּתִיחָה"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -5576,6 +7801,12 @@
    "readings": {
     "step-tbesh": "פַּתְרֻסִים"
    },
+   "raw": "פַּתְרֻסִי",
+   "options": {
+    "step-tbesh": [
+     "פַּתְרֻסִים"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -5590,6 +7821,12 @@
    "ours": "צֶאֶל",
    "readings": {
     "step-tbesh": "צֶאֱלִים"
+   },
+   "raw": "צֶאֶל",
+   "options": {
+    "step-tbesh": [
+     "צֶאֱלִים"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -5606,6 +7843,12 @@
    "readings": {
     "step-tbesh": "צְבֹיִים"
    },
+   "raw": "צְבֹאִים",
+   "options": {
+    "step-tbesh": [
+     "צְבֹיִים"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -5620,6 +7863,12 @@
    "ours": "צִבֻּר",
    "readings": {
     "step-tbesh": "צִבּוּר"
+   },
+   "raw": "צִבֻּר",
+   "options": {
+    "step-tbesh": [
+     "צִבּוּר"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -5636,6 +7885,12 @@
    "readings": {
     "step-tbesh": "צְבָתִים"
    },
+   "raw": "צֶבֶת",
+   "options": {
+    "step-tbesh": [
+     "צְבָתִים"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -5650,6 +7905,12 @@
    "ours": "צִדְקִיָּה",
    "readings": {
     "step-tbesh": "צִדְקִיָּ֫הוּ"
+   },
+   "raw": "צִדְקִיָּה",
+   "options": {
+    "step-tbesh": [
+     "צִדְקִיָּ֫הוּ"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -5666,6 +7927,12 @@
    "readings": {
     "step-tbesh": "צֹאָה"
    },
+   "raw": "צוֹאָה",
+   "options": {
+    "step-tbesh": [
+     "צֹאָה"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -5680,6 +7947,12 @@
    "ours": "צִיִּי",
    "readings": {
     "step-tbesh": "צִי"
+   },
+   "raw": "צִיִּי",
+   "options": {
+    "step-tbesh": [
+     "צִי"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -5696,6 +7969,12 @@
    "readings": {
     "step-tbesh": "צְלִיל"
    },
+   "raw": "צְלוּל",
+   "options": {
+    "step-tbesh": [
+     "צְלִיל"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -5710,6 +7989,12 @@
    "ours": "צְלֶלְפּוֹנִי",
    "readings": {
     "step-tbesh": "הַצְּלֶלְפּוֹנִי"
+   },
+   "raw": "צְלֶלְפּוֹנִי",
+   "options": {
+    "step-tbesh": [
+     "הַצְּלֶלְפּוֹנִי"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -5726,6 +8011,12 @@
    "readings": {
     "step-tbesh": "צֹנֶה"
    },
+   "raw": "צֹנֵא",
+   "options": {
+    "step-tbesh": [
+     "צֹנֶה"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -5740,6 +8031,12 @@
    "ours": "צַנְתָּרָה",
    "readings": {
     "step-tbesh": "צַנְתְּרוֹת"
+   },
+   "raw": "צַנְתָּרָה",
+   "options": {
+    "step-tbesh": [
+     "צַנְתְּרוֹת"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -5756,6 +8053,12 @@
    "readings": {
     "step-tbesh": "צַעֲצֻעִים"
    },
+   "raw": "צַעְצֻעַ",
+   "options": {
+    "step-tbesh": [
+     "צַעֲצֻעִים"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -5770,6 +8073,12 @@
    "ours": "צְפוּעַ",
    "readings": {
     "step-tbesh": "צָפִיעַ"
+   },
+   "raw": "צְפוּעַ",
+   "options": {
+    "step-tbesh": [
+     "צָפִיעַ"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -5786,6 +8095,12 @@
    "readings": {
     "step-tbesh": "צְפַנְיָהוּ"
    },
+   "raw": "צְפַנְיָה",
+   "options": {
+    "step-tbesh": [
+     "צְפַנְיָהוּ"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -5800,6 +8115,12 @@
    "ours": "צְפִעָה",
    "readings": {
     "step-tbesh": "צְפִיעָה"
+   },
+   "raw": "צְפִעָה",
+   "options": {
+    "step-tbesh": [
+     "צְפִיעָה"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -5816,6 +8137,12 @@
    "readings": {
     "step-tbesh": "צׇרְעָתִי"
    },
+   "raw": "צׇרְעִי",
+   "options": {
+    "step-tbesh": [
+     "צׇרְעָתִי"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -5830,6 +8157,12 @@
    "ours": "קְבוּרָה",
    "readings": {
     "step-tbesh": "קְבֻרָה"
+   },
+   "raw": "קְבוּרָה",
+   "options": {
+    "step-tbesh": [
+     "קְבֻרָה"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -5846,6 +8179,12 @@
    "readings": {
     "step-tbesh": "קַדְמֹנִי"
    },
+   "raw": "קַדְמוֹנִי",
+   "options": {
+    "step-tbesh": [
+     "קַדְמֹנִי"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -5860,6 +8199,12 @@
    "ours": "קוֹא",
    "readings": {
     "step-tbesh": "קִיא"
+   },
+   "raw": "קוֹא",
+   "options": {
+    "step-tbesh": [
+     "קִיא"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -5876,6 +8221,12 @@
    "readings": {
     "step-tbesh": "קִינֵן"
    },
+   "raw": "קוּן",
+   "options": {
+    "step-tbesh": [
+     "קִינֵן"
+    ]
+   },
    "suggestion": {
     "class": "different-word",
     "action": null,
@@ -5890,6 +8241,12 @@
    "ours": "קוּץ",
    "readings": {
     "step-tbesh": "קִיץ"
+   },
+   "raw": "קוּץ",
+   "options": {
+    "step-tbesh": [
+     "קִיץ"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -5906,6 +8263,12 @@
    "readings": {
     "step-tbesh": "קְוֻצּוֹת"
    },
+   "raw": "קְוֻצָּה",
+   "options": {
+    "step-tbesh": [
+     "קְוֻצּוֹת"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -5920,6 +8283,12 @@
    "ours": "קָטַט",
    "readings": {
     "step-tbesh": "קוֹט"
+   },
+   "raw": "קָטַט",
+   "options": {
+    "step-tbesh": [
+     "קוֹט"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -5936,6 +8305,12 @@
    "readings": {
     "step-tbesh": "קֵרֹס"
    },
+   "raw": "קֵירֹס",
+   "options": {
+    "step-tbesh": [
+     "קֵרֹס"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -5950,6 +8325,12 @@
    "ours": "קִיתָרֹס",
    "readings": {
     "step-tbesh": "קַתָרֹס"
+   },
+   "raw": "קִיתָרֹס",
+   "options": {
+    "step-tbesh": [
+     "קַתָרֹס"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -5966,6 +8347,12 @@
    "readings": {
     "step-tbesh": "קִפֹּד"
    },
+   "raw": "קִפּוֹד",
+   "options": {
+    "step-tbesh": [
+     "קִפֹּד"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -5980,6 +8367,12 @@
    "ours": "קָרוֹב",
    "readings": {
     "step-tbesh": "קָרֹב"
+   },
+   "raw": "קָרוֹב",
+   "options": {
+    "step-tbesh": [
+     "קָרֹב"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -5996,6 +8389,12 @@
    "readings": {
     "step-tbesh": "קִרְיָה"
    },
+   "raw": "קִרְיָא",
+   "options": {
+    "step-tbesh": [
+     "קִרְיָה"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -6010,6 +8409,12 @@
    "ours": "קִרְיַת סַנָּה",
    "readings": {
     "step-tbesh": "קִרְיַת־סֵ֫פֶר"
+   },
+   "raw": "קִרְיַת סַנָּה",
+   "options": {
+    "step-tbesh": [
+     "קִרְיַת־סֵ֫פֶר"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -6026,6 +8431,12 @@
    "readings": {
     "step-tbesh": "קִשֻּׁאָה"
    },
+   "raw": "קִשֻּׁא",
+   "options": {
+    "step-tbesh": [
+     "קִשֻּׁאָה"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -6040,6 +8451,12 @@
    "ours": "קָשָׂה",
    "readings": {
     "step-tbesh": "קַשְׂוָה"
+   },
+   "raw": "קָשָׂה",
+   "options": {
+    "step-tbesh": [
+     "קַשְׂוָה"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -6056,6 +8473,12 @@
    "readings": {
     "step-tbesh": "קְשֹׁט"
    },
+   "raw": "קְשׁוֹט",
+   "options": {
+    "step-tbesh": [
+     "קְשֹׁט"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -6070,6 +8493,12 @@
    "ours": "קִשֻּׁר",
    "readings": {
     "step-tbesh": "קִשֻּׁרִים"
+   },
+   "raw": "קִשֻּׁר",
+   "options": {
+    "step-tbesh": [
+     "קִשֻּׁרִים"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -6086,6 +8515,12 @@
    "readings": {
     "step-tbesh": "רַאיָּה"
    },
+   "raw": "רַאֲוָה",
+   "options": {
+    "step-tbesh": [
+     "רַאיָּה"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -6100,6 +8535,12 @@
    "ours": "רְאִית",
    "readings": {
     "step-tbesh": "רְאוּת"
+   },
+   "raw": "רְאִית",
+   "options": {
+    "step-tbesh": [
+     "רְאוּת"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -6116,6 +8557,12 @@
    "readings": {
     "step-tbesh": "רָאמוֹת"
    },
+   "raw": "רָאמָה",
+   "options": {
+    "step-tbesh": [
+     "רָאמוֹת"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -6130,6 +8577,12 @@
    "ours": "רָבִיב",
    "readings": {
     "step-tbesh": "רְבִיבִים"
+   },
+   "raw": "רָבִיב",
+   "options": {
+    "step-tbesh": [
+     "רְבִיבִים"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -6146,6 +8599,12 @@
    "readings": {
     "step-tbesh": "רָהְגָּה"
    },
+   "raw": "רוֹהֲגָה",
+   "options": {
+    "step-tbesh": [
+     "רָהְגָּה"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -6160,6 +8619,12 @@
    "ours": "רוּחַ",
    "readings": {
     "step-tbesh": "רִיחַ"
+   },
+   "raw": "רוּחַ",
+   "options": {
+    "step-tbesh": [
+     "רִיחַ"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -6176,6 +8641,12 @@
    "readings": {
     "step-tbesh": "רֹמַ֫מְתִּי עֶ֫זֶר"
    },
+   "raw": "רוֹמַמְתִּי עֶזֶר",
+   "options": {
+    "step-tbesh": [
+     "רֹמַ֫מְתִּי עֶ֫זֶר"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -6190,6 +8661,12 @@
    "ours": "רוּף",
    "readings": {
     "step-tbesh": "רָפַף"
+   },
+   "raw": "רוּף",
+   "options": {
+    "step-tbesh": [
+     "רָפַף"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -6206,6 +8683,12 @@
    "readings": {
     "step-tbesh": "רִיק"
    },
+   "raw": "רוּק",
+   "options": {
+    "step-tbesh": [
+     "רִיק"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -6220,6 +8703,12 @@
    "ours": "רוּר",
    "readings": {
     "step-tbesh": "רִיר"
+   },
+   "raw": "רוּר",
+   "options": {
+    "step-tbesh": [
+     "רִיר"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -6236,6 +8725,12 @@
    "readings": {
     "step-tbesh": "רְחוֹב"
    },
+   "raw": "רְחֹב",
+   "options": {
+    "step-tbesh": [
+     "רְחוֹב"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -6250,6 +8745,12 @@
    "ours": "רְחֹב",
    "readings": {
     "step-tbesh": "רְחוֹב"
+   },
+   "raw": "רְחֹב",
+   "options": {
+    "step-tbesh": [
+     "רְחוֹב"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -6266,6 +8767,12 @@
    "readings": {
     "step-tbesh": "רְחַבְיָהוּ"
    },
+   "raw": "רְחַבְיָה",
+   "options": {
+    "step-tbesh": [
+     "רְחַבְיָהוּ"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -6280,6 +8787,12 @@
    "ours": "רָחוֹק",
    "readings": {
     "step-tbesh": "רָחֹק"
+   },
+   "raw": "רָחוֹק",
+   "options": {
+    "step-tbesh": [
+     "רָחֹק"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -6296,6 +8809,12 @@
    "readings": {
     "step-tbesh": "רָהִיט"
    },
+   "raw": "רְחִיט",
+   "options": {
+    "step-tbesh": [
+     "רָהִיט"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -6310,6 +8829,12 @@
    "ours": "רְחֵם",
    "readings": {
     "step-tbesh": "רַחֲמִין"
+   },
+   "raw": "רְחֵם",
+   "options": {
+    "step-tbesh": [
+     "רַחֲמִין"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -6326,6 +8851,12 @@
    "readings": {
     "step-tbesh": "רְמָא"
    },
+   "raw": "רְמָה",
+   "options": {
+    "step-tbesh": [
+     "רְמָא"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -6340,6 +8871,12 @@
    "ours": "רֹמֵמֻת",
    "readings": {
     "step-tbesh": "רוֹמֵמוּת"
+   },
+   "raw": "רֹמֵמֻת",
+   "options": {
+    "step-tbesh": [
+     "רוֹמֵמוּת"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -6356,6 +8893,12 @@
    "readings": {
     "step-tbesh": "רָמֹת"
    },
+   "raw": "רָמֹת גִּלעָד",
+   "options": {
+    "step-tbesh": [
+     "רָמֹת"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -6370,6 +8913,12 @@
    "ours": "רֶנֶן",
    "readings": {
     "step-tbesh": "רְנָנִים"
+   },
+   "raw": "רֶנֶן",
+   "options": {
+    "step-tbesh": [
+     "רְנָנִים"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -6386,6 +8935,12 @@
    "readings": {
     "step-tbesh": "רְעוּ"
    },
+   "raw": "רְעוּת",
+   "options": {
+    "step-tbesh": [
+     "רְעוּ"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -6400,6 +8955,12 @@
    "ours": "רָפָא",
    "readings": {
     "step-tbesh": "רְפָאִים"
+   },
+   "raw": "רָפָא",
+   "options": {
+    "step-tbesh": [
+     "רְפָאִים"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -6416,6 +8977,13 @@
    "readings": {
     "step-tbesh": "רָפָה / רְפָאִים"
    },
+   "raw": "רָפָא",
+   "options": {
+    "step-tbesh": [
+     "רָפָה",
+     "רְפָאִים"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -6430,6 +8998,12 @@
    "ours": "רַקֻּחַ",
    "readings": {
     "step-tbesh": "רַקּוּחַ"
+   },
+   "raw": "רַקֻּחַ",
+   "options": {
+    "step-tbesh": [
+     "רַקּוּחַ"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -6446,6 +9020,12 @@
    "readings": {
     "step-tbesh": "רִקּוּעַ"
    },
+   "raw": "רִקֻּעַ",
+   "options": {
+    "step-tbesh": [
+     "רִקּוּעַ"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -6460,6 +9040,12 @@
    "ours": "שָׁאט",
    "readings": {
     "step-tbesh": "שׁוּט"
+   },
+   "raw": "שָׁאט",
+   "options": {
+    "step-tbesh": [
+     "שׁוּט"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -6476,6 +9062,12 @@
    "readings": {
     "step-tbesh": "שְׁבָבִים"
    },
+   "raw": "שָׁבָב",
+   "options": {
+    "step-tbesh": [
+     "שְׁבָבִים"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -6490,6 +9082,12 @@
    "ours": "שְׁבוּת",
    "readings": {
     "step-tbesh": "שְׁבִית"
+   },
+   "raw": "שְׁבוּת",
+   "options": {
+    "step-tbesh": [
+     "שְׁבִית"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -6506,6 +9104,12 @@
    "readings": {
     "step-tbesh": "שָֽׂכְיָה"
    },
+   "raw": "שׇׁבְיָה",
+   "options": {
+    "step-tbesh": [
+     "שָֽׂכְיָה"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -6520,6 +9124,12 @@
    "ours": "שָׁבִיל",
    "readings": {
     "step-tbesh": "שְׁבוּל"
+   },
+   "raw": "שָׁבִיל",
+   "options": {
+    "step-tbesh": [
+     "שְׁבוּל"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -6536,6 +9146,12 @@
    "readings": {
     "step-tbesh": "שִׁבֹּ֫לֶת"
    },
+   "raw": "שִׁבֹּל",
+   "options": {
+    "step-tbesh": [
+     "שִׁבֹּ֫לֶת"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -6550,6 +9166,12 @@
    "ours": "שְׁבַנְיָה",
    "readings": {
     "step-tbesh": "שְׁבַנְיָהוּ"
+   },
+   "raw": "שְׁבַנְיָה",
+   "options": {
+    "step-tbesh": [
+     "שְׁבַנְיָהוּ"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -6566,6 +9188,12 @@
    "readings": {
     "step-tbesh": "שָׁגֵה"
    },
+   "raw": "שָׁגֶא",
+   "options": {
+    "step-tbesh": [
+     "שָׁגֵה"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -6580,6 +9208,12 @@
    "ours": "שַׂהֲרֹן",
    "readings": {
     "step-tbesh": "שַׂהֲרוֹן"
+   },
+   "raw": "שַׂהֲרֹן",
+   "options": {
+    "step-tbesh": [
+     "שַׂהֲרוֹן"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -6596,6 +9230,12 @@
    "readings": {
     "step-tbesh": "שׂוּכָתִים"
    },
+   "raw": "שׂוּכָתִי",
+   "options": {
+    "step-tbesh": [
+     "שׂוּכָתִים"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -6610,6 +9250,12 @@
    "ours": "שׁוֹמֵר",
    "readings": {
     "step-tbesh": "שֹׁמֵר"
+   },
+   "raw": "שׁוֹמֵר",
+   "options": {
+    "step-tbesh": [
+     "שֹׁמֵר"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -6626,6 +9272,12 @@
    "readings": {
     "step-tbesh": "שֹׁעֵר"
    },
+   "raw": "שׁוֹעֵר",
+   "options": {
+    "step-tbesh": [
+     "שֹׁעֵר"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -6640,6 +9292,12 @@
    "ours": "שׁוֹפָר",
    "readings": {
     "step-tbesh": "שֹׁפָר"
+   },
+   "raw": "שׁוֹפָר",
+   "options": {
+    "step-tbesh": [
+     "שֹׁפָר"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -6656,6 +9314,12 @@
    "readings": {
     "step-tbesh": "שֹׂרֵק"
    },
+   "raw": "שׂוֹרֵק",
+   "options": {
+    "step-tbesh": [
+     "שֹׂרֵק"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -6670,6 +9334,12 @@
    "ours": "שׁוּשַׁנְכִי",
    "readings": {
     "step-tbesh": "שׁוּשַׁנְכָיֵא"
+   },
+   "raw": "שׁוּשַׁנְכִי",
+   "options": {
+    "step-tbesh": [
+     "שׁוּשַׁנְכָיֵא"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -6686,6 +9356,12 @@
    "readings": {
     "step-tbesh": "שֵׁיזִב"
    },
+   "raw": "שְׁזַב",
+   "options": {
+    "step-tbesh": [
+     "שֵׁיזִב"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -6700,6 +9376,12 @@
    "ours": "שְׂחוֹק",
    "readings": {
     "step-tbesh": "שְׂחֹק"
+   },
+   "raw": "שְׂחוֹק",
+   "options": {
+    "step-tbesh": [
+     "שְׂחֹק"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -6716,6 +9398,12 @@
    "readings": {
     "step-tbesh": "שָׁחוּט"
    },
+   "raw": "שָׁחַט",
+   "options": {
+    "step-tbesh": [
+     "שָׁחוּט"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -6730,6 +9418,12 @@
    "ours": "שָׁחִיס",
    "readings": {
     "step-tbesh": "סָחִישׁ"
+   },
+   "raw": "שָׁחִיס",
+   "options": {
+    "step-tbesh": [
+     "סָחִישׁ"
+    ]
    },
    "suggestion": {
     "class": "different-word",
@@ -6746,6 +9440,12 @@
    "readings": {
     "step-tbesh": "שַׁחֲצִ֫ימָה"
    },
+   "raw": "שַׁחֲצוֹם",
+   "options": {
+    "step-tbesh": [
+     "שַׁחֲצִ֫ימָה"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -6760,6 +9460,12 @@
    "ours": "שְׁחַרְחֹרֶת",
    "readings": {
     "step-tbesh": "שְׁחַרְחֹר"
+   },
+   "raw": "שְׁחַרְחֹרֶת",
+   "options": {
+    "step-tbesh": [
+     "שְׁחַרְחֹר"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -6776,6 +9482,12 @@
    "readings": {
     "step-tbesh": "שִׁלוֹ"
    },
+   "raw": "שִׁילֹה",
+   "options": {
+    "step-tbesh": [
+     "שִׁלוֹ"
+    ]
+   },
    "suggestion": {
     "class": "different-word",
     "action": null,
@@ -6790,6 +9502,12 @@
    "ours": "שִׁילוֹנִי",
    "readings": {
     "step-tbesh": "שִׁילֹנִי"
+   },
+   "raw": "שִׁילוֹנִי",
+   "options": {
+    "step-tbesh": [
+     "שִׁילֹנִי"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -6806,6 +9524,12 @@
    "readings": {
     "step-tbesh": "שִׁכֹּר"
    },
+   "raw": "שִׁכּוֹר",
+   "options": {
+    "step-tbesh": [
+     "שִׁכֹּר"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -6820,6 +9544,12 @@
    "ours": "שְׁכַנְיָה",
    "readings": {
     "step-tbesh": "שְׁכַנְיָהוּ"
+   },
+   "raw": "שְׁכַנְיָה",
+   "options": {
+    "step-tbesh": [
+     "שְׁכַנְיָהוּ"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -6836,6 +9566,12 @@
    "readings": {
     "step-tbesh": "שַׁלָבִּים"
    },
+   "raw": "שָׁלָב",
+   "options": {
+    "step-tbesh": [
+     "שַׁלָבִּים"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -6850,6 +9586,12 @@
    "ours": "שִׁלּוּחַ",
    "readings": {
     "step-tbesh": "שִׁלּוּחִים"
+   },
+   "raw": "שִׁלּוּחַ",
+   "options": {
+    "step-tbesh": [
+     "שִׁלּוּחִים"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -6866,6 +9608,12 @@
    "readings": {
     "step-tbesh": "שָׁלֹשׁ"
    },
+   "raw": "שָׁלוֹשׁ",
+   "options": {
+    "step-tbesh": [
+     "שָׁלֹשׁ"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -6880,6 +9628,12 @@
    "ours": "שְׁלוֹשִׁים",
    "readings": {
     "step-tbesh": "שְׁלֹשִׁים"
+   },
+   "raw": "שְׁלוֹשִׁים",
+   "options": {
+    "step-tbesh": [
+     "שְׁלֹשִׁים"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -6896,6 +9650,12 @@
    "readings": {
     "step-tbesh": "שְׁלּוּחָה"
    },
+   "raw": "שִׁלֻּחָה",
+   "options": {
+    "step-tbesh": [
+     "שְׁלּוּחָה"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -6910,6 +9670,12 @@
    "ours": "שֶׁלֶמְיָה",
    "readings": {
     "step-tbesh": "שֶׁלֶמְיָהוּ"
+   },
+   "raw": "שֶׁלֶמְיָה",
+   "options": {
+    "step-tbesh": [
+     "שֶׁלֶמְיָהוּ"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -6926,6 +9692,12 @@
    "readings": {
     "step-tbesh": "שִׁלְשֹׁם"
    },
+   "raw": "שִׁלְשׁוֹם",
+   "options": {
+    "step-tbesh": [
+     "שִׁלְשֹׁם"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -6940,6 +9712,12 @@
    "ours": "שְׂמֹאול",
    "readings": {
     "step-tbesh": "שְׂמֹאל"
+   },
+   "raw": "שְׂמֹאול",
+   "options": {
+    "step-tbesh": [
+     "שְׂמֹאל"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -6956,6 +9734,12 @@
    "readings": {
     "step-tbesh": "שְׁמַעְיָ֫הוּ"
    },
+   "raw": "שְׁמַעְיָה",
+   "options": {
+    "step-tbesh": [
+     "שְׁמַעְיָ֫הוּ"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -6970,6 +9754,12 @@
    "ours": "שִׁמְעָתִי",
    "readings": {
     "step-tbesh": "שִׁמְעָתִים"
+   },
+   "raw": "שִׁמְעָתִי",
+   "options": {
+    "step-tbesh": [
+     "שִׁמְעָתִים"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -6986,6 +9776,12 @@
    "readings": {
     "step-tbesh": "שְׁמַרְיָ֫הוּ"
    },
+   "raw": "שְׁמַרְיָה",
+   "options": {
+    "step-tbesh": [
+     "שְׁמַרְיָ֫הוּ"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -7000,6 +9796,12 @@
    "ours": "שָׂעִיר",
    "readings": {
     "step-tbesh": "שְׂעִירִים"
+   },
+   "raw": "שָׂעִיר",
+   "options": {
+    "step-tbesh": [
+     "שְׂעִירִים"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -7016,6 +9818,12 @@
    "readings": {
     "step-tbesh": "שַׁעֲשֻׁעִים"
    },
+   "raw": "שַׁעְשֻׁעַ",
+   "options": {
+    "step-tbesh": [
+     "שַׁעֲשֻׁעִים"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -7030,6 +9838,12 @@
    "ours": "שָׁפָה",
    "readings": {
     "step-tbesh": "שְׁפוֹת"
+   },
+   "raw": "שָׁפָה",
+   "options": {
+    "step-tbesh": [
+     "שְׁפוֹת"
+    ]
    },
    "suggestion": {
     "class": "different-word",
@@ -7046,6 +9860,12 @@
    "readings": {
     "step-tbesh": "שְׁפַטְיָהוּ"
    },
+   "raw": "שְׁפַטְיָה",
+   "options": {
+    "step-tbesh": [
+     "שְׁפַטְיָהוּ"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -7060,6 +9880,12 @@
    "ours": "שַׁפְרוּר",
    "readings": {
     "step-tbesh": "שַׁפְרִיר"
+   },
+   "raw": "שַׁפְרוּר",
+   "options": {
+    "step-tbesh": [
+     "שַׁפְרִיר"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -7076,6 +9902,13 @@
    "readings": {
     "step-tbesh": "שְׁפַתָּ֑יִם / שְׁפַתַּ֫יִם"
    },
+   "raw": "שָׁפָת",
+   "options": {
+    "step-tbesh": [
+     "שְׁפַתָּ֑יִם",
+     "שְׁפַתַּ֫יִם"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -7090,6 +9923,12 @@
    "ours": "שָׁקֻף",
    "readings": {
     "step-tbesh": "שָׁקוּף"
+   },
+   "raw": "שָׁקֻף",
+   "options": {
+    "step-tbesh": [
+     "שָׁקוּף"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -7106,6 +9945,12 @@
    "readings": {
     "step-tbesh": "שָׂרֹק"
    },
+   "raw": "שָׂרוּק",
+   "options": {
+    "step-tbesh": [
+     "שָׂרֹק"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -7120,6 +9965,12 @@
    "ours": "שְׁרוּקָה",
    "readings": {
     "step-tbesh": "שְׁרִיקָה"
+   },
+   "raw": "שְׁרוּקָה",
+   "options": {
+    "step-tbesh": [
+     "שְׁרִיקָה"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -7136,6 +9987,12 @@
    "readings": {
     "step-tbesh": "שִׂרְיֹן"
    },
+   "raw": "שִׁרְיוֹן",
+   "options": {
+    "step-tbesh": [
+     "שִׂרְיֹן"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -7150,6 +10007,12 @@
    "ours": "שְׂרָיָה",
    "readings": {
     "step-tbesh": "שְׂרָיָהוּ"
+   },
+   "raw": "שְׂרָיָה",
+   "options": {
+    "step-tbesh": [
+     "שְׂרָיָהוּ"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -7166,6 +10029,12 @@
    "readings": {
     "step-tbesh": "שָׂרִיק"
    },
+   "raw": "שְׂרִיקָה",
+   "options": {
+    "step-tbesh": [
+     "שָׂרִיק"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -7180,6 +10049,12 @@
    "ours": "שַׂרְעַף",
    "readings": {
     "step-tbesh": "שַׂרְעַפִּים"
+   },
+   "raw": "שַׂרְעַף",
+   "options": {
+    "step-tbesh": [
+     "שַׂרְעַפִּים"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -7196,6 +10071,12 @@
    "readings": {
     "step-tbesh": "שׁוֹרֵר"
    },
+   "raw": "שָׁרַר",
+   "options": {
+    "step-tbesh": [
+     "שׁוֹרֵר"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -7210,6 +10091,12 @@
    "ours": "שְׁרֹשׁוּ",
    "readings": {
     "step-tbesh": "שְׁרֹשִׁי"
+   },
+   "raw": "שְׁרֹשׁוּ",
+   "options": {
+    "step-tbesh": [
+     "שְׁרֹשִׁי"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -7226,6 +10113,12 @@
    "readings": {
     "step-tbesh": "שָׁת"
    },
+   "raw": "שָׁתָה",
+   "options": {
+    "step-tbesh": [
+     "שָׁת"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -7240,6 +10133,12 @@
    "ours": "שֵׁתָה",
    "readings": {
     "step-tbesh": "שֵׁת"
+   },
+   "raw": "שֵׁתָה",
+   "options": {
+    "step-tbesh": [
+     "שֵׁת"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -7256,6 +10155,12 @@
    "readings": {
     "step-tbesh": "שָׁתִיל"
    },
+   "raw": "שְׁתִל",
+   "options": {
+    "step-tbesh": [
+     "שָׁתִיל"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -7270,6 +10175,12 @@
    "ours": "תָּאוֹם",
    "readings": {
     "step-tbesh": "תּוֹאָם"
+   },
+   "raw": "תָּאוֹם",
+   "options": {
+    "step-tbesh": [
+     "תּוֹאָם"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -7286,6 +10197,12 @@
    "readings": {
     "step-tbesh": "תְּאֻנִים"
    },
+   "raw": "תְּאֻן",
+   "options": {
+    "step-tbesh": [
+     "תְּאֻנִים"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -7300,6 +10217,12 @@
    "ours": "תְּאֵן",
    "readings": {
     "step-tbesh": "תְּאֵנָה"
+   },
+   "raw": "תְּאֵן",
+   "options": {
+    "step-tbesh": [
+     "תְּאֵנָה"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -7316,6 +10239,12 @@
    "readings": {
     "step-tbesh": "תְּבוּנָה"
    },
+   "raw": "תָּבוּן",
+   "options": {
+    "step-tbesh": [
+     "תְּבוּנָה"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -7330,6 +10259,12 @@
    "ours": "תַּהֲלֻכָה",
    "readings": {
     "step-tbesh": "תַּהֲלוּכָה"
+   },
+   "raw": "תַּהֲלֻכָה",
+   "options": {
+    "step-tbesh": [
+     "תַּהֲלוּכָה"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -7346,6 +10281,12 @@
    "readings": {
     "step-tbesh": "תֹּגַרְמָה"
    },
+   "raw": "תּוֹגַרְמָה",
+   "options": {
+    "step-tbesh": [
+     "תֹּגַרְמָה"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -7360,6 +10301,12 @@
    "ours": "תּוֹלְדָה",
    "readings": {
     "step-tbesh": "תּוֹלֵדוֹת"
+   },
+   "raw": "תּוֹלְדָה",
+   "options": {
+    "step-tbesh": [
+     "תּוֹלֵדוֹת"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -7376,6 +10323,12 @@
    "readings": {
     "step-tbesh": "תִּילוֹן"
    },
+   "raw": "תּוּלוֹן",
+   "options": {
+    "step-tbesh": [
+     "תִּילוֹן"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -7390,6 +10343,12 @@
    "ours": "תּוֹר",
    "readings": {
     "step-tbesh": "תֹּר"
+   },
+   "raw": "תּוֹר",
+   "options": {
+    "step-tbesh": [
+     "תֹּר"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -7406,6 +10365,12 @@
    "readings": {
     "step-tbesh": "תַּחֲלֻאִים"
    },
+   "raw": "תַּחֲלוּא",
+   "options": {
+    "step-tbesh": [
+     "תַּחֲלֻאִים"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -7420,6 +10385,12 @@
    "ours": "תֻּכִּי",
    "readings": {
     "step-tbesh": "תֻּכִּיִּים"
+   },
+   "raw": "תֻּכִּי",
+   "options": {
+    "step-tbesh": [
+     "תֻּכִּיִּים"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -7436,6 +10407,12 @@
    "readings": {
     "step-tbesh": "תַּלְאֻבָה"
    },
+   "raw": "תַּלְאוּבָה",
+   "options": {
+    "step-tbesh": [
+     "תַּלְאֻבָה"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -7450,6 +10427,12 @@
    "ours": "תְּלוּנָה",
    "readings": {
     "step-tbesh": "תְּלֻנָּה"
+   },
+   "raw": "תְּלוּנָה",
+   "options": {
+    "step-tbesh": [
+     "תְּלֻנָּה"
+    ]
    },
    "suggestion": {
     "class": "vowel-letters",
@@ -7466,6 +10449,12 @@
    "readings": {
     "step-tbesh": "תָּלוּל"
    },
+   "raw": "תָּלַל",
+   "options": {
+    "step-tbesh": [
+     "תָּלוּל"
+    ]
+   },
    "suggestion": {
     "class": "vowel-letters",
     "action": "accept",
@@ -7480,6 +10469,12 @@
    "ours": "תַּלְפִּיָּה",
    "readings": {
     "step-tbesh": "תַּלְפִּיָּוֹת"
+   },
+   "raw": "תַּלְפִּיָּה",
+   "options": {
+    "step-tbesh": [
+     "תַּלְפִּיָּוֹת"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -7496,6 +10491,12 @@
    "readings": {
     "step-tbesh": "תַּלְתַּלִּים"
    },
+   "raw": "תַּלְתַּל",
+   "options": {
+    "step-tbesh": [
+     "תַּלְתַּלִּים"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -7510,6 +10511,12 @@
    "ours": "תָּם",
    "readings": {
     "step-tbesh": "תַּמָּה"
+   },
+   "raw": "תָּם",
+   "options": {
+    "step-tbesh": [
+     "תַּמָּה"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -7526,6 +10533,12 @@
    "readings": {
     "step-tbesh": "תִּמֹרָה"
    },
+   "raw": "תִּמֹּר",
+   "options": {
+    "step-tbesh": [
+     "תִּמֹרָה"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -7540,6 +10553,12 @@
    "ours": "תַּעֲלוּל",
    "readings": {
     "step-tbesh": "תַּעֲלוּלִים"
+   },
+   "raw": "תַּעֲלוּל",
+   "options": {
+    "step-tbesh": [
+     "תַּעֲלוּלִים"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -7556,6 +10575,12 @@
    "readings": {
     "step-tbesh": "תֵּעְתֻּעִים"
    },
+   "raw": "תַּעְתֻּעַ",
+   "options": {
+    "step-tbesh": [
+     "תֵּעְתֻּעִים"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -7570,6 +10595,12 @@
    "ours": "תֻּפִין",
    "readings": {
     "step-tbesh": "תֻּפִינִים"
+   },
+   "raw": "תֻּפִין",
+   "options": {
+    "step-tbesh": [
+     "תֻּפִינִים"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -7586,6 +10617,12 @@
    "readings": {
     "step-tbesh": "תִּפְתָּיֵא"
    },
+   "raw": "תִּפְתַּי",
+   "options": {
+    "step-tbesh": [
+     "תִּפְתָּיֵא"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -7600,6 +10637,12 @@
    "ours": "תִּרְעָתִי",
    "readings": {
     "step-tbesh": "תִּרְעָתִים"
+   },
+   "raw": "תִּרְעָתִי",
+   "options": {
+    "step-tbesh": [
+     "תִּרְעָתִים"
+    ]
    },
    "suggestion": {
     "class": "related-form",

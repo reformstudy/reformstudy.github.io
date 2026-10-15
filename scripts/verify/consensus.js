@@ -152,7 +152,7 @@ export function compare({ resource, ours, witnesses, lineageOf }) {
     const present = ids.filter(id => witnesses[id].has(unit));
     for (const id of present) coverage[id]++;
     if (!present.length) {
-      add(unit, 'unattested', '', u.value ?? join(u.norm), '', {}, { ours: u.show ?? u.value ?? join(u.show), readings: {} });
+      add(unit, 'unattested', '', u.value ?? join(u.norm), '', {}, { ours: u.show ?? u.value ?? join(u.show), readings: {}, raw: u.raw });
       continue;
     }
 
@@ -160,7 +160,8 @@ export function compare({ resource, ours, witnesses, lineageOf }) {
       const readings = Object.fromEntries(ids.map(id => [id, witnesses[id].get(unit)?.value]));
       const cls = classify(u.value, readings, lineageOf);
       const show = Object.fromEntries(ids.map(id => [id, witnesses[id].get(unit)?.show ?? witnesses[id].get(unit)?.value]));
-      add(unit, cls, '', u.value, '', readings, { ours: u.show ?? u.value, readings: show });
+      const options = Object.fromEntries(ids.filter(id => witnesses[id].get(unit)?.options).map(id => [id, witnesses[id].get(unit).options]));
+      add(unit, cls, '', u.value, '', readings, { ours: u.show ?? u.value, readings: show, raw: u.raw, ...(Object.keys(options).length ? { options } : {}) });
       continue;
     }
 
@@ -185,6 +186,7 @@ export function compare({ resource, ours, witnesses, lineageOf }) {
         ours: join(u.show.slice(s, e)),
         context: [join(u.show.slice(Math.max(0, s - 4), s)), join(u.show.slice(e, e + 4))],
         readings: show,
+        raw: u.raw,
       });
     }
   }

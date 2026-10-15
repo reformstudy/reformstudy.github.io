@@ -1,7 +1,7 @@
 {
  "resource": "strongs-greek",
  "title": "Strong's Greek Dictionary",
- "checked": "2026-10-14",
+ "checked": "2026-10-15",
  "source": {
   "pin": "https://github.com/openscriptures/strongs@0acd2f251c2d35ff8db2dece4e0593979d3ac223",
   "sha256": "7624ee738ae47e80f1a352223e28a26d011c9cd4898822cee52f47a010c04efd",
@@ -30,6 +30,7 @@
  "corrections": 0,
  "awaitingSignOff": 0,
  "accepted": 0,
+ "ignored": 0,
  "stale": [],
  "pending": [
   {
@@ -40,6 +41,12 @@
    "ours": "αἱμοῤῥέω",
    "readings": {
     "step-tbesg": "αἱμορροέω"
+   },
+   "raw": "αἱμοῤῥέω",
+   "options": {
+    "step-tbesg": [
+     "αἱμορροέω"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -56,6 +63,12 @@
    "readings": {
     "step-tbesg": "αἱρέω"
    },
+   "raw": "αἱρέομαι",
+   "options": {
+    "step-tbesg": [
+     "αἱρέω"
+    ]
+   },
    "suggestion": {
     "class": "voice",
     "action": "accept",
@@ -70,6 +83,12 @@
    "ours": "αἰσχύνομαι",
    "readings": {
     "step-tbesg": "αἰσχύνω"
+   },
+   "raw": "αἰσχύνομαι",
+   "options": {
+    "step-tbesg": [
+     "αἰσχύνω"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -86,6 +105,12 @@
    "readings": {
     "step-tbesg": "ἀκαιρέω"
    },
+   "raw": "ἀκαιρέομαι",
+   "options": {
+    "step-tbesg": [
+     "ἀκαιρέω"
+    ]
+   },
    "suggestion": {
     "class": "voice",
     "action": "accept",
@@ -100,6 +125,12 @@
    "ours": "ἀλίσγεμα",
    "readings": {
     "step-tbesg": "ἀλίσγημα"
+   },
+   "raw": "ἀλίσγεμα",
+   "options": {
+    "step-tbesg": [
+     "ἀλίσγημα"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -116,6 +147,12 @@
    "readings": {
     "step-tbesg": "ἄλυπος"
    },
+   "raw": "ἀλυπότερος",
+   "options": {
+    "step-tbesg": [
+     "ἄλυπος"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -130,6 +167,12 @@
    "ours": "ἀμύνομαι",
    "readings": {
     "step-tbesg": "ἀμύνω"
+   },
+   "raw": "ἀμύνομαι",
+   "options": {
+    "step-tbesg": [
+     "ἀμύνω"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -146,6 +189,12 @@
    "readings": {
     "step-tbesg": "ἀναβάλλω"
    },
+   "raw": "ἀναβάλλομαι",
+   "options": {
+    "step-tbesg": [
+     "ἀναβάλλω"
+    ]
+   },
    "suggestion": {
     "class": "voice",
     "action": "accept",
@@ -160,6 +209,12 @@
    "ours": "ἀναγνωρίζομαι",
    "readings": {
     "step-tbesg": "ἀναγνωρίζω"
+   },
+   "raw": "ἀναγνωρίζομαι",
+   "options": {
+    "step-tbesg": [
+     "ἀναγνωρίζω"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -176,6 +231,12 @@
    "readings": {
     "step-tbesg": "ἀνακεφαλαιόομαι"
    },
+   "raw": "ἀνακεφαλαίομαι",
+   "options": {
+    "step-tbesg": [
+     "ἀνακεφαλαιόομαι"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -190,6 +251,12 @@
    "ours": "ἀνανεόω",
    "readings": {
     "step-tbesg": "ἀνανεόομαι"
+   },
+   "raw": "ἀνανεόω",
+   "options": {
+    "step-tbesg": [
+     "ἀνανεόομαι"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -206,6 +273,12 @@
    "readings": {
     "step-tbesg": "ἀνατάσσω"
    },
+   "raw": "ἀνατάσσομαι",
+   "options": {
+    "step-tbesg": [
+     "ἀνατάσσω"
+    ]
+   },
    "suggestion": {
     "class": "voice",
     "action": "accept",
@@ -220,6 +293,12 @@
    "ours": "ἀνατίθεμαι",
    "readings": {
     "step-tbesg": "ἀνατίθημι"
+   },
+   "raw": "ἀνατίθεμαι",
+   "options": {
+    "step-tbesg": [
+     "ἀνατίθημι"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -236,6 +315,12 @@
    "readings": {
     "step-tbesg": "ἀνδρίζω"
    },
+   "raw": "ἀνδρίζομαι",
+   "options": {
+    "step-tbesg": [
+     "ἀνδρίζω"
+    ]
+   },
    "suggestion": {
     "class": "voice",
     "action": "accept",
@@ -250,6 +335,12 @@
    "ours": "ἀνεκτότερος",
    "readings": {
     "step-tbesg": "ἀνεκτός"
+   },
+   "raw": "ἀνεκτότερος",
+   "options": {
+    "step-tbesg": [
+     "ἀνεκτός"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -266,6 +357,12 @@
    "readings": {
     "step-tbesg": "ἀνεμίζομαι"
    },
+   "raw": "ἀνεμίζω",
+   "options": {
+    "step-tbesg": [
+     "ἀνεμίζομαι"
+    ]
+   },
    "suggestion": {
     "class": "voice",
     "action": "accept",
@@ -280,6 +377,12 @@
    "ours": "ἀνέχομαι",
    "readings": {
     "step-tbesg": "ἀνέχω"
+   },
+   "raw": "ἀνέχομαι",
+   "options": {
+    "step-tbesg": [
+     "ἀνέχω"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -296,6 +399,12 @@
    "readings": {
     "step-tbesg": "ἀντεῖπον"
    },
+   "raw": "ἀντέπω",
+   "options": {
+    "step-tbesg": [
+     "ἀντεῖπον"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -310,6 +419,12 @@
    "ours": "ἀντέχομαι",
    "readings": {
     "step-tbesg": "ἀντέχω"
+   },
+   "raw": "ἀντέχομαι",
+   "options": {
+    "step-tbesg": [
+     "ἀντέχω"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -326,6 +441,12 @@
    "readings": {
     "step-tbesg": "ἀντιδιατίθημι"
    },
+   "raw": "ἀντιδιατίθεμαι",
+   "options": {
+    "step-tbesg": [
+     "ἀντιδιατίθημι"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -340,6 +461,12 @@
    "ours": "ἀντιλαμβάνομαι",
    "readings": {
     "step-tbesg": "ἀντιλαμβάνω"
+   },
+   "raw": "ἀντιλαμβάνομαι",
+   "options": {
+    "step-tbesg": [
+     "ἀντιλαμβάνω"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -356,6 +483,12 @@
    "readings": {
     "step-tbesg": "ἀντιτάσσω"
    },
+   "raw": "ἀντιτάσσομαι",
+   "options": {
+    "step-tbesg": [
+     "ἀντιτάσσω"
+    ]
+   },
    "suggestion": {
     "class": "voice",
     "action": "accept",
@@ -370,6 +503,12 @@
    "ours": "ἀντίτυπον",
    "readings": {
     "step-tbesg": "ἀντίτυπος"
+   },
+   "raw": "ἀντίτυπον",
+   "options": {
+    "step-tbesg": [
+     "ἀντίτυπος"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -386,6 +525,12 @@
    "readings": {
     "step-tbesg": "ἀπάγχω"
    },
+   "raw": "ἀπάγχομαι",
+   "options": {
+    "step-tbesg": [
+     "ἀπάγχω"
+    ]
+   },
    "suggestion": {
     "class": "voice",
     "action": "accept",
@@ -400,6 +545,12 @@
    "ours": "ἀπείδω",
    "readings": {
     "step-tbesg": "ἀπεῖδον"
+   },
+   "raw": "ἀπείδω",
+   "options": {
+    "step-tbesg": [
+     "ἀπεῖδον"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -416,6 +567,12 @@
    "readings": {
     "step-tbesg": "ἀπεῖπον"
    },
+   "raw": "ἀπειπόμην",
+   "options": {
+    "step-tbesg": [
+     "ἀπεῖπον"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -430,6 +587,12 @@
    "ours": "ἀποκρίνομαι",
    "readings": {
     "step-tbesg": "ἀποκρίνω"
+   },
+   "raw": "ἀποκρίνομαι",
+   "options": {
+    "step-tbesg": [
+     "ἀποκρίνω"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -446,6 +609,12 @@
    "readings": {
     "step-tbesg": "ἀπολλύω"
    },
+   "raw": "ἀπόλλυμι",
+   "options": {
+    "step-tbesg": [
+     "ἀπολλύω"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -460,6 +629,12 @@
    "ours": "ἀπομάσσομαι",
    "readings": {
     "step-tbesg": "ἀπομάσσω"
+   },
+   "raw": "ἀπομάσσομαι",
+   "options": {
+    "step-tbesg": [
+     "ἀπομάσσω"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -476,6 +651,12 @@
    "readings": {
     "step-tbesg": "ἀποτάσσω"
    },
+   "raw": "ἀποτάσσομαι",
+   "options": {
+    "step-tbesg": [
+     "ἀποτάσσω"
+    ]
+   },
    "suggestion": {
     "class": "voice",
     "action": "accept",
@@ -490,6 +671,12 @@
    "ours": "ἅπτομαι",
    "readings": {
     "step-tbesg": "ἅπτω"
+   },
+   "raw": "ἅπτομαι",
+   "options": {
+    "step-tbesg": [
+     "ἅπτω"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -506,6 +693,12 @@
    "readings": {
     "step-tbesg": "ἀπωθέω"
    },
+   "raw": "ἀπωθέομαι",
+   "options": {
+    "step-tbesg": [
+     "ἀπωθέω"
+    ]
+   },
    "suggestion": {
     "class": "voice",
     "action": "accept",
@@ -520,6 +713,12 @@
    "ours": "ἀροτριόω",
    "readings": {
     "step-tbesg": "ἀροτριάω"
+   },
+   "raw": "ἀροτριόω",
+   "options": {
+    "step-tbesg": [
+     "ἀροτριάω"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -536,6 +735,12 @@
    "readings": {
     "step-tbesg": "βαλλάντιον"
    },
+   "raw": "βαλάντιον",
+   "options": {
+    "step-tbesg": [
+     "βαλλάντιον"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -550,6 +755,12 @@
    "ours": "βδελύσσω",
    "readings": {
     "step-tbesg": "βδελύσσομαι"
+   },
+   "raw": "βδελύσσω",
+   "options": {
+    "step-tbesg": [
+     "βδελύσσομαι"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -566,6 +777,12 @@
    "readings": {
     "step-tbesg": "βελτίων"
    },
+   "raw": "βελτίον",
+   "options": {
+    "step-tbesg": [
+     "βελτίων"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -580,6 +797,12 @@
    "ours": "Βηθεσδά",
    "readings": {
     "step-tbesg": "Βηθζαθά"
+   },
+   "raw": "Βηθεσδά",
+   "options": {
+    "step-tbesg": [
+     "Βηθζαθά"
+    ]
    },
    "suggestion": {
     "class": "different-word",
@@ -596,6 +819,12 @@
    "readings": {
     "step-tbesg": "βιβλαρίδιον"
    },
+   "raw": "βιβλιαρίδιον",
+   "options": {
+    "step-tbesg": [
+     "βιβλαρίδιον"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -610,6 +839,12 @@
    "ours": "βλητέος",
    "readings": {
     "step-tbesg": "βλητέον"
+   },
+   "raw": "βλητέος",
+   "options": {
+    "step-tbesg": [
+     "βλητέον"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -626,6 +861,12 @@
    "readings": {
     "step-tbesg": "γεύω"
    },
+   "raw": "γεύομαι",
+   "options": {
+    "step-tbesg": [
+     "γεύω"
+    ]
+   },
    "suggestion": {
     "class": "voice",
     "action": "accept",
@@ -640,6 +881,12 @@
    "ours": "γρηγορεύω",
    "readings": {
     "step-tbesg": "γρηγορέω"
+   },
+   "raw": "γρηγορεύω",
+   "options": {
+    "step-tbesg": [
+     "γρηγορέω"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -656,6 +903,12 @@
    "readings": {
     "step-tbesg": "δεισιδαίμων"
    },
+   "raw": "δεισιδαιμονέστερος",
+   "options": {
+    "step-tbesg": [
+     "δεισιδαίμων"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -670,6 +923,12 @@
    "ours": "δεσμόν",
    "readings": {
     "step-tbesg": "δεσμός"
+   },
+   "raw": "δεσμόν",
+   "options": {
+    "step-tbesg": [
+     "δεσμός"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -686,6 +945,12 @@
    "readings": {
     "step-tbesg": "διαβεβαιόω"
    },
+   "raw": "διαβεβαιόομαι",
+   "options": {
+    "step-tbesg": [
+     "διαβεβαιόω"
+    ]
+   },
    "suggestion": {
     "class": "voice",
     "action": "accept",
@@ -700,6 +965,12 @@
    "ours": "διακούομαι",
    "readings": {
     "step-tbesg": "διακούω"
+   },
+   "raw": "διακούομαι",
+   "options": {
+    "step-tbesg": [
+     "διακούω"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -716,6 +987,12 @@
    "readings": {
     "step-tbesg": "διαλέγω"
    },
+   "raw": "διαλέγομαι",
+   "options": {
+    "step-tbesg": [
+     "διαλέγω"
+    ]
+   },
    "suggestion": {
     "class": "voice",
     "action": "accept",
@@ -730,6 +1007,12 @@
    "ours": "διαπορεύομαι",
    "readings": {
     "step-tbesg": "διαπορεύω"
+   },
+   "raw": "διαπορεύομαι",
+   "options": {
+    "step-tbesg": [
+     "διαπορεύω"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -746,6 +1029,12 @@
    "readings": {
     "step-tbesg": "διαρρήγνυμι"
    },
+   "raw": "διαῤῥήσσω",
+   "options": {
+    "step-tbesg": [
+     "διαρρήγνυμι"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -760,6 +1049,12 @@
    "ours": "διαστέλλομαι",
    "readings": {
     "step-tbesg": "διαστέλλω"
+   },
+   "raw": "διαστέλλομαι",
+   "options": {
+    "step-tbesg": [
+     "διαστέλλω"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -776,6 +1071,12 @@
    "readings": {
     "step-tbesg": "διατίθημι"
    },
+   "raw": "διατίθεμαι",
+   "options": {
+    "step-tbesg": [
+     "διατίθημι"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -790,6 +1091,12 @@
    "ours": "διαχειρίζομαι",
    "readings": {
     "step-tbesg": "διαχειρίζω"
+   },
+   "raw": "διαχειρίζομαι",
+   "options": {
+    "step-tbesg": [
+     "διαχειρίζω"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -806,6 +1113,12 @@
    "readings": {
     "step-tbesg": "διαχωρίζω"
    },
+   "raw": "διαχωρίζομαι",
+   "options": {
+    "step-tbesg": [
+     "διαχωρίζω"
+    ]
+   },
    "suggestion": {
     "class": "voice",
     "action": "accept",
@@ -820,6 +1133,12 @@
    "ours": "δίδραχμον",
    "readings": {
     "step-tbesg": "δίδραχμος"
+   },
+   "raw": "δίδραχμον",
+   "options": {
+    "step-tbesg": [
+     "δίδραχμος"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -836,6 +1155,12 @@
    "readings": {
     "step-tbesg": "διήγησις"
    },
+   "raw": "διήγεσις",
+   "options": {
+    "step-tbesg": [
+     "διήγησις"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -850,6 +1175,12 @@
    "ours": "δωδεκάφυλον",
    "readings": {
     "step-tbesg": "δωδεκάφυλος"
+   },
+   "raw": "δωδεκάφυλον",
+   "options": {
+    "step-tbesg": [
+     "δωδεκάφυλος"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -866,6 +1197,12 @@
    "readings": {
     "step-tbesg": "δωρέω"
    },
+   "raw": "δωρέομαι",
+   "options": {
+    "step-tbesg": [
+     "δωρέω"
+    ]
+   },
    "suggestion": {
     "class": "voice",
     "action": "accept",
@@ -880,6 +1217,12 @@
    "ours": "ἐγγύτερον",
    "readings": {
     "step-tbesg": "ἐγγύτερος"
+   },
+   "raw": "ἐγγύτερον",
+   "options": {
+    "step-tbesg": [
+     "ἐγγύτερος"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -896,6 +1239,12 @@
    "readings": {
     "step-tbesg": "εἰδωλόθυτος"
    },
+   "raw": "εἰδωλόθυτον",
+   "options": {
+    "step-tbesg": [
+     "εἰδωλόθυτος"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -910,6 +1259,12 @@
    "ours": "εἰσπορεύομαι",
    "readings": {
     "step-tbesg": "εἰσπορεύω"
+   },
+   "raw": "εἰσπορεύομαι",
+   "options": {
+    "step-tbesg": [
+     "εἰσπορεύω"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -926,6 +1281,12 @@
    "readings": {
     "step-tbesg": "ἑκατόνταρχος"
    },
+   "raw": "ἑκατοντάρχης",
+   "options": {
+    "step-tbesg": [
+     "ἑκατόνταρχος"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -940,6 +1301,12 @@
    "ours": "ἔκγονον",
    "readings": {
     "step-tbesg": "ἔκγονος"
+   },
+   "raw": "ἔκγονον",
+   "options": {
+    "step-tbesg": [
+     "ἔκγονος"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -956,6 +1323,12 @@
    "readings": {
     "step-tbesg": "ἐκκρεμάννυμι"
    },
+   "raw": "ἐκκρέμαμαι",
+   "options": {
+    "step-tbesg": [
+     "ἐκκρεμάννυμι"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -970,6 +1343,12 @@
    "ours": "ἐκλανθάνομαι",
    "readings": {
     "step-tbesg": "ἐκλανθάνω"
+   },
+   "raw": "ἐκλανθάνομαι",
+   "options": {
+    "step-tbesg": [
+     "ἐκλανθάνω"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -986,6 +1365,12 @@
    "readings": {
     "step-tbesg": "ἐκλέγω"
    },
+   "raw": "ἐκλέγομαι",
+   "options": {
+    "step-tbesg": [
+     "ἐκλέγω"
+    ]
+   },
    "suggestion": {
     "class": "voice",
     "action": "accept",
@@ -1000,6 +1385,12 @@
    "ours": "ἑκούσιον",
    "readings": {
     "step-tbesg": "ἑκούσιος"
+   },
+   "raw": "ἑκούσιον",
+   "options": {
+    "step-tbesg": [
+     "ἑκούσιος"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -1016,6 +1407,12 @@
    "readings": {
     "step-tbesg": "ἐκπετάζω"
    },
+   "raw": "ἐκπετάννυμι",
+   "options": {
+    "step-tbesg": [
+     "ἐκπετάζω"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -1030,6 +1427,12 @@
    "ours": "ἐκπορεύομαι",
    "readings": {
     "step-tbesg": "ἐκπορεύω"
+   },
+   "raw": "ἐκπορεύομαι",
+   "options": {
+    "step-tbesg": [
+     "ἐκπορεύω"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -1046,6 +1449,12 @@
    "readings": {
     "step-tbesg": "ἕλκω"
    },
+   "raw": "ἑλκύω",
+   "options": {
+    "step-tbesg": [
+     "ἕλκω"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -1060,6 +1469,12 @@
    "ours": "Ἕλλην",
    "readings": {
     "step-tbesg": "Ἕλλην=Ἕλλην"
+   },
+   "raw": "Ἕλλην",
+   "options": {
+    "step-tbesg": [
+     "Ἕλλην=Ἕλλην"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -1076,6 +1491,12 @@
    "readings": {
     "step-tbesg": "Ἑλληνικός=Ἑλληνικός"
    },
+   "raw": "Ἑλληνικός",
+   "options": {
+    "step-tbesg": [
+     "Ἑλληνικός=Ἑλληνικός"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -1090,6 +1511,12 @@
    "ours": "Ἑλληνίς",
    "readings": {
     "step-tbesg": "Ἑλληνίς=Ἑλληνίς"
+   },
+   "raw": "Ἑλληνίς",
+   "options": {
+    "step-tbesg": [
+     "Ἑλληνίς=Ἑλληνίς"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -1106,6 +1533,12 @@
    "readings": {
     "step-tbesg": "Ἑλληνιστί=Ἑλληνικός"
    },
+   "raw": "Ἑλληνιστί",
+   "options": {
+    "step-tbesg": [
+     "Ἑλληνιστί=Ἑλληνικός"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -1120,6 +1553,12 @@
    "ours": "ἐλοΐ",
    "readings": {
     "step-tbesg": "ἐλωΐ"
+   },
+   "raw": "ἐλοΐ",
+   "options": {
+    "step-tbesg": [
+     "ἐλωΐ"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -1136,6 +1575,12 @@
    "readings": {
     "step-tbesg": "ἐμπίμπλημι"
    },
+   "raw": "ἐμπίπλημι",
+   "options": {
+    "step-tbesg": [
+     "ἐμπίμπλημι"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -1150,6 +1595,12 @@
    "ours": "ἐνδέχεται",
    "readings": {
     "step-tbesg": "ἐνδέχομαι"
+   },
+   "raw": "ἐνδέχεται",
+   "options": {
+    "step-tbesg": [
+     "ἐνδέχομαι"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -1166,6 +1617,12 @@
    "readings": {
     "step-tbesg": "ἐνδοξάζομαι"
    },
+   "raw": "ἐνδοξάζω",
+   "options": {
+    "step-tbesg": [
+     "ἐνδοξάζομαι"
+    ]
+   },
    "suggestion": {
     "class": "voice",
     "action": "accept",
@@ -1180,6 +1637,12 @@
    "ours": "ἐνευλογέω",
    "readings": {
     "step-tbesg": "ἐνευλογέομαι"
+   },
+   "raw": "ἐνευλογέω",
+   "options": {
+    "step-tbesg": [
+     "ἐνευλογέομαι"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -1196,6 +1659,12 @@
    "readings": {
     "step-tbesg": "ἐνενήκοντα"
    },
+   "raw": "ἐννενηκονταεννέα",
+   "options": {
+    "step-tbesg": [
+     "ἐνενήκοντα"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -1210,6 +1679,12 @@
    "ours": "ἔννυχον",
    "readings": {
     "step-tbesg": "ἔννυχος"
+   },
+   "raw": "ἔννυχον",
+   "options": {
+    "step-tbesg": [
+     "ἔννυχος"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -1226,6 +1701,12 @@
    "readings": {
     "step-tbesg": "ἐντέλλω"
    },
+   "raw": "ἐντέλλομαι",
+   "options": {
+    "step-tbesg": [
+     "ἐντέλλω"
+    ]
+   },
    "suggestion": {
     "class": "voice",
     "action": "accept",
@@ -1240,6 +1721,12 @@
    "ours": "ἐνυπνιάζομαι",
    "readings": {
     "step-tbesg": "ἐνυπνιάζω"
+   },
+   "raw": "ἐνυπνιάζομαι",
+   "options": {
+    "step-tbesg": [
+     "ἐνυπνιάζω"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -1256,6 +1743,12 @@
    "readings": {
     "step-tbesg": "ἐξαιτέω"
    },
+   "raw": "ἐξαιτέομαι",
+   "options": {
+    "step-tbesg": [
+     "ἐξαιτέω"
+    ]
+   },
    "suggestion": {
     "class": "voice",
     "action": "accept",
@@ -1270,6 +1763,12 @@
    "ours": "ἐξαπορέομαι",
    "readings": {
     "step-tbesg": "ἐξαπορέω"
+   },
+   "raw": "ἐξαπορέομαι",
+   "options": {
+    "step-tbesg": [
+     "ἐξαπορέω"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -1286,6 +1785,12 @@
    "readings": {
     "step-tbesg": "ἐξηχέω"
    },
+   "raw": "ἐξηχέομαι",
+   "options": {
+    "step-tbesg": [
+     "ἐξηχέω"
+    ]
+   },
    "suggestion": {
     "class": "voice",
     "action": "accept",
@@ -1300,6 +1805,12 @@
    "ours": "ἐξομολογέω",
    "readings": {
     "step-tbesg": "ἐξομολογέομαι"
+   },
+   "raw": "ἐξομολογέω",
+   "options": {
+    "step-tbesg": [
+     "ἐξομολογέομαι"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -1316,6 +1827,12 @@
    "readings": {
     "step-tbesg": "ἐπαθροίζομαι"
    },
+   "raw": "ἐπαθροίζω",
+   "options": {
+    "step-tbesg": [
+     "ἐπαθροίζομαι"
+    ]
+   },
    "suggestion": {
     "class": "voice",
     "action": "accept",
@@ -1330,6 +1847,12 @@
    "ours": "ἐπαναπαύομαι",
    "readings": {
     "step-tbesg": "ἐπαναπαύω"
+   },
+   "raw": "ἐπαναπαύομαι",
+   "options": {
+    "step-tbesg": [
+     "ἐπαναπαύω"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -1346,6 +1869,12 @@
    "readings": {
     "step-tbesg": "ἐπανίστημι"
    },
+   "raw": "ἐπανίσταμαι",
+   "options": {
+    "step-tbesg": [
+     "ἐπανίστημι"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -1360,6 +1889,13 @@
    "ours": "ἐπαυτοφώρῳ",
    "readings": {
     "step-tbesg": "ἐπαυτόφωρος / αὐτόφωρος"
+   },
+   "raw": "ἐπαυτοφώρῳ",
+   "options": {
+    "step-tbesg": [
+     "ἐπαυτόφωρος",
+     "αὐτόφωρος"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -1376,6 +1912,12 @@
    "readings": {
     "step-tbesg": "ἐπενδύω"
    },
+   "raw": "ἐπενδύομαι",
+   "options": {
+    "step-tbesg": [
+     "ἐπενδύω"
+    ]
+   },
    "suggestion": {
     "class": "voice",
     "action": "accept",
@@ -1390,6 +1932,12 @@
    "ours": "ἐπικαλέομαι",
    "readings": {
     "step-tbesg": "ἐπικαλέω"
+   },
+   "raw": "ἐπικαλέομαι",
+   "options": {
+    "step-tbesg": [
+     "ἐπικαλέω"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -1406,6 +1954,12 @@
    "readings": {
     "step-tbesg": "ἐπικάλυμμα"
    },
+   "raw": "ἐπικάλυμα",
+   "options": {
+    "step-tbesg": [
+     "ἐπικάλυμμα"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -1420,6 +1974,12 @@
    "ours": "ἐπιλαμβάνομαι",
    "readings": {
     "step-tbesg": "ἐπιλαμβάνω"
+   },
+   "raw": "ἐπιλαμβάνομαι",
+   "options": {
+    "step-tbesg": [
+     "ἐπιλαμβάνω"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -1436,6 +1996,12 @@
    "readings": {
     "step-tbesg": "ἐπιλανθάνω"
    },
+   "raw": "ἐπιλανθάνομαι",
+   "options": {
+    "step-tbesg": [
+     "ἐπιλανθάνω"
+    ]
+   },
    "suggestion": {
     "class": "voice",
     "action": "accept",
@@ -1450,6 +2016,12 @@
    "ours": "ἐπιλέγομαι",
    "readings": {
     "step-tbesg": "ἐπιλέγω"
+   },
+   "raw": "ἐπιλέγομαι",
+   "options": {
+    "step-tbesg": [
+     "ἐπιλέγω"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -1466,6 +2038,12 @@
    "readings": {
     "step-tbesg": "ἐπισπάω"
    },
+   "raw": "ἐπισπάομαι",
+   "options": {
+    "step-tbesg": [
+     "ἐπισπάω"
+    ]
+   },
    "suggestion": {
     "class": "voice",
     "action": "accept",
@@ -1480,6 +2058,22 @@
    "ours": "ἐπιφαύω",
    "readings": {
     "step-tbesg": "ἐπιφαύσκω / ἀφόμοιος / ἀφορολόγητος / ἀφρονεύομαι / ἄφυκτος / ἀχανής / ἀχρειότης / βαθύγλωσσος / βάϊς / βαρυηχής / βαρυωπέω"
+   },
+   "raw": "ἐπιφαύω",
+   "options": {
+    "step-tbesg": [
+     "ἐπιφαύσκω",
+     "ἀφόμοιος",
+     "ἀφορολόγητος",
+     "ἀφρονεύομαι",
+     "ἄφυκτος",
+     "ἀχανής",
+     "ἀχρειότης",
+     "βαθύγλωσσος",
+     "βάϊς",
+     "βαρυηχής",
+     "βαρυωπέω"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -1496,6 +2090,21 @@
    "readings": {
     "step-tbesg": "εἶπον / ἐνῆλιξ / ἔνηχος / ἔνθεσμος / ἐνθρύπτω / ἐνθυσιάζω / ἐννέμω / ἔννευμα / ἐννοσσοποιέομαι / ἐνσείω"
    },
+   "raw": "ἔπω",
+   "options": {
+    "step-tbesg": [
+     "εἶπον",
+     "ἐνῆλιξ",
+     "ἔνηχος",
+     "ἔνθεσμος",
+     "ἐνθρύπτω",
+     "ἐνθυσιάζω",
+     "ἐννέμω",
+     "ἔννευμα",
+     "ἐννοσσοποιέομαι",
+     "ἐνσείω"
+    ]
+   },
    "suggestion": {
     "class": "different-word",
     "action": null,
@@ -1510,6 +2119,22 @@
    "ours": "ἐρέω",
    "readings": {
     "step-tbesg": "ἐρῶ / ἐρισύβη / ἐρυθαίνω / ἐρύθρημα / ἔσθω / ἐσσήν / ἐσχατόγηρως / ἑτεροκωφέω / εὐαγής / εὐαπάντητος / εὐδράνεια"
+   },
+   "raw": "ἐρέω",
+   "options": {
+    "step-tbesg": [
+     "ἐρῶ",
+     "ἐρισύβη",
+     "ἐρυθαίνω",
+     "ἐρύθρημα",
+     "ἔσθω",
+     "ἐσσήν",
+     "ἐσχατόγηρως",
+     "ἑτεροκωφέω",
+     "εὐαγής",
+     "εὐαπάντητος",
+     "εὐδράνεια"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -1526,6 +2151,22 @@
    "readings": {
     "step-tbesg": "ἐσωτέρω / οἰκίον / οἰνοδόχος / οἰστρηλασία / Οἰτόσυρος / οἰωνόβρωτος / ὄλβος / ὀλεθρεία / ὀλεθροφόρος / ὀλιγοποιέω / ὁλοκαρπόομαι"
    },
+   "raw": "ἐσώτερος",
+   "options": {
+    "step-tbesg": [
+     "ἐσωτέρω",
+     "οἰκίον",
+     "οἰνοδόχος",
+     "οἰστρηλασία",
+     "Οἰτόσυρος",
+     "οἰωνόβρωτος",
+     "ὄλβος",
+     "ὀλεθρεία",
+     "ὀλεθροφόρος",
+     "ὀλιγοποιέω",
+     "ὁλοκαρπόομαι"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -1540,6 +2181,22 @@
    "ours": "εὐαγγελίζω",
    "readings": {
     "step-tbesg": "εὐαγγελίζομαι / πιμπλάω / πιστοποιέω / πλεοναστέον / πλεύμων / πληθύς / πληθύω / πλινθεῖον / πολεμοτροφέω / πολεμόω / πολιτευτής"
+   },
+   "raw": "εὐαγγελίζω",
+   "options": {
+    "step-tbesg": [
+     "εὐαγγελίζομαι",
+     "πιμπλάω",
+     "πιστοποιέω",
+     "πλεοναστέον",
+     "πλεύμων",
+     "πληθύς",
+     "πληθύω",
+     "πλινθεῖον",
+     "πολεμοτροφέω",
+     "πολεμόω",
+     "πολιτευτής"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -1556,6 +2213,12 @@
    "readings": {
     "step-tbesg": "ἡδύοσμος"
    },
+   "raw": "ἡδύοσμον",
+   "options": {
+    "step-tbesg": [
+     "ἡδύοσμος"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -1570,6 +2233,12 @@
    "ours": "ἥμισυ",
    "readings": {
     "step-tbesg": "ἥμισυς"
+   },
+   "raw": "ἥμισυ",
+   "options": {
+    "step-tbesg": [
+     "ἥμισυς"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -1586,6 +2255,12 @@
    "readings": {
     "step-tbesg": "ἡσσάομαι"
    },
+   "raw": "ἡττάω",
+   "options": {
+    "step-tbesg": [
+     "ἡσσάομαι"
+    ]
+   },
    "suggestion": {
     "class": "different-word",
     "action": null,
@@ -1600,6 +2275,12 @@
    "ours": "ἥττον",
    "readings": {
     "step-tbesg": "ἥσσων"
+   },
+   "raw": "ἥττον",
+   "options": {
+    "step-tbesg": [
+     "ἥσσων"
+    ]
    },
    "suggestion": {
     "class": "different-word",
@@ -1616,6 +2297,12 @@
    "readings": {
     "step-tbesg": "θυμιατήριον"
    },
+   "raw": "θυμιαστήριον",
+   "options": {
+    "step-tbesg": [
+     "θυμιατήριον"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -1630,6 +2317,12 @@
    "ours": "ἱλαστήριον",
    "readings": {
     "step-tbesg": "ἱλαστήριος"
+   },
+   "raw": "ἱλαστήριον",
+   "options": {
+    "step-tbesg": [
+     "ἱλαστήριος"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -1646,6 +2339,12 @@
    "readings": {
     "step-tbesg": "ἱμείρω"
    },
+   "raw": "ἱμείρομαι",
+   "options": {
+    "step-tbesg": [
+     "ἱμείρω"
+    ]
+   },
    "suggestion": {
     "class": "voice",
     "action": "accept",
@@ -1660,6 +2359,12 @@
    "ours": "ἱππικόν",
    "readings": {
     "step-tbesg": "ἱππικός"
+   },
+   "raw": "ἱππικόν",
+   "options": {
+    "step-tbesg": [
+     "ἱππικός"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -1676,6 +2381,12 @@
    "readings": {
     "step-tbesg": "κάλυμμα"
    },
+   "raw": "κάλυμα",
+   "options": {
+    "step-tbesg": [
+     "κάλυμμα"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -1690,6 +2401,12 @@
    "ours": "καταναρκάω",
    "readings": {
     "step-tbesg": "καταναρκάομαι"
+   },
+   "raw": "καταναρκάω",
+   "options": {
+    "step-tbesg": [
+     "καταναρκάομαι"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -1706,6 +2423,12 @@
    "readings": {
     "step-tbesg": "κατασφάζω"
    },
+   "raw": "κατασφάττω",
+   "options": {
+    "step-tbesg": [
+     "κατασφάζω"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -1720,6 +2443,12 @@
    "ours": "καταφροντής",
    "readings": {
     "step-tbesg": "καταφρονητής"
+   },
+   "raw": "καταφροντής",
+   "options": {
+    "step-tbesg": [
+     "καταφρονητής"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -1736,6 +2465,12 @@
    "readings": {
     "step-tbesg": "κατιόομαι"
    },
+   "raw": "κατιόω",
+   "options": {
+    "step-tbesg": [
+     "κατιόομαι"
+    ]
+   },
    "suggestion": {
     "class": "voice",
     "action": "accept",
@@ -1750,6 +2485,12 @@
    "ours": "κατοπτρίζομαι",
    "readings": {
     "step-tbesg": "κατοπτρίζω"
+   },
+   "raw": "κατοπτρίζομαι",
+   "options": {
+    "step-tbesg": [
+     "κατοπτρίζω"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -1766,6 +2507,12 @@
    "readings": {
     "step-tbesg": "κέδρος"
    },
+   "raw": "Κεδρών",
+   "options": {
+    "step-tbesg": [
+     "κέδρος"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -1780,6 +2527,12 @@
    "ours": "κέλευμα",
    "readings": {
     "step-tbesg": "κέλευσμα"
+   },
+   "raw": "κέλευμα",
+   "options": {
+    "step-tbesg": [
+     "κέλευσμα"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -1796,6 +2549,12 @@
    "readings": {
     "step-tbesg": "κεφάλαιος"
    },
+   "raw": "κεφάλαιον",
+   "options": {
+    "step-tbesg": [
+     "κεφάλαιος"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -1810,6 +2569,12 @@
    "ours": "κλυδωνίζομαι",
    "readings": {
     "step-tbesg": "κλυδωνίζω"
+   },
+   "raw": "κλυδωνίζομαι",
+   "options": {
+    "step-tbesg": [
+     "κλυδωνίζω"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -1826,6 +2591,12 @@
    "readings": {
     "step-tbesg": "Κολασσαεύς"
    },
+   "raw": "Κολοσσαεύς",
+   "options": {
+    "step-tbesg": [
+     "Κολασσαεύς"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -1840,6 +2611,12 @@
    "ours": "κρεῖσσον",
    "readings": {
     "step-tbesg": "κρείσσων"
+   },
+   "raw": "κρεῖσσον",
+   "options": {
+    "step-tbesg": [
+     "κρείσσων"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -1856,6 +2633,12 @@
    "readings": {
     "step-tbesg": "κρεμάω"
    },
+   "raw": "κρεμάννυμι",
+   "options": {
+    "step-tbesg": [
+     "κρεμάω"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -1870,6 +2653,12 @@
    "ours": "κυλιόω",
    "readings": {
     "step-tbesg": "κυλίω"
+   },
+   "raw": "κυλιόω",
+   "options": {
+    "step-tbesg": [
+     "κυλίω"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -1886,6 +2675,12 @@
    "readings": {
     "step-tbesg": "λεπτός"
    },
+   "raw": "λεπτόν",
+   "options": {
+    "step-tbesg": [
+     "λεπτός"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -1900,6 +2695,12 @@
    "ours": "λῆμψις",
    "readings": {
     "step-tbesg": "λῆψις"
+   },
+   "raw": "λῆμψις",
+   "options": {
+    "step-tbesg": [
+     "λῆψις"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -1916,6 +2717,12 @@
    "readings": {
     "step-tbesg": "λοιπός"
    },
+   "raw": "λοιποί",
+   "options": {
+    "step-tbesg": [
+     "λοιπός"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -1930,6 +2737,12 @@
    "ours": "μεγιστᾶνες",
    "readings": {
     "step-tbesg": "μεγιστάν"
+   },
+   "raw": "μεγιστᾶνες",
+   "options": {
+    "step-tbesg": [
+     "μεγιστάν"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -1946,6 +2759,12 @@
    "readings": {
     "step-tbesg": "μεσονύκτιος"
    },
+   "raw": "μεσονύκτιον",
+   "options": {
+    "step-tbesg": [
+     "μεσονύκτιος"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -1960,6 +2779,12 @@
    "ours": "μεσότοιχον",
    "readings": {
     "step-tbesg": "μεσότοιχος"
+   },
+   "raw": "μεσότοιχον",
+   "options": {
+    "step-tbesg": [
+     "μεσότοιχος"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -1976,6 +2801,12 @@
    "readings": {
     "step-tbesg": "μετάληψις"
    },
+   "raw": "μετάλημψις",
+   "options": {
+    "step-tbesg": [
+     "μετάληψις"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -1990,6 +2821,13 @@
    "ours": "Μωσεύς",
    "readings": {
     "step-tbesg": "Μωϋσῆς / Μωσῆς"
+   },
+   "raw": "Μωσεύς",
+   "options": {
+    "step-tbesg": [
+     "Μωϋσῆς",
+     "Μωσῆς"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -2006,6 +2844,12 @@
    "readings": {
     "step-tbesg": "νοέω"
    },
+   "raw": "νοιέω",
+   "options": {
+    "step-tbesg": [
+     "νοέω"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -2020,6 +2864,12 @@
    "ours": "νοσφίζομαι",
    "readings": {
     "step-tbesg": "νοσφίζω"
+   },
+   "raw": "νοσφίζομαι",
+   "options": {
+    "step-tbesg": [
+     "νοσφίζω"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -2036,6 +2886,12 @@
    "readings": {
     "step-tbesg": "νῶτον"
    },
+   "raw": "νῶτος",
+   "options": {
+    "step-tbesg": [
+     "νῶτον"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -2050,6 +2906,12 @@
    "ours": "ὀμνύω",
    "readings": {
     "step-tbesg": "ὄμνυμι"
+   },
+   "raw": "ὀμνύω",
+   "options": {
+    "step-tbesg": [
+     "ὄμνυμι"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -2066,6 +2928,12 @@
    "readings": {
     "step-tbesg": "ὀρέγω"
    },
+   "raw": "ὀρέγομαι",
+   "options": {
+    "step-tbesg": [
+     "ὀρέγω"
+    ]
+   },
    "suggestion": {
     "class": "voice",
     "action": "accept",
@@ -2080,6 +2948,12 @@
    "ours": "οὕτω",
    "readings": {
     "step-tbesg": "οὕτως"
+   },
+   "raw": "οὕτω",
+   "options": {
+    "step-tbesg": [
+     "οὕτως"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -2096,6 +2970,12 @@
    "readings": {
     "step-tbesg": "ὀψία"
    },
+   "raw": "ὄψιος",
+   "options": {
+    "step-tbesg": [
+     "ὀψία"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -2110,6 +2990,12 @@
    "ours": "παραλέγομαι",
    "readings": {
     "step-tbesg": "παραλέγω"
+   },
+   "raw": "παραλέγομαι",
+   "options": {
+    "step-tbesg": [
+     "παραλέγω"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -2126,6 +3012,12 @@
    "readings": {
     "step-tbesg": "παραρρέω"
    },
+   "raw": "παραῤῥυέω",
+   "options": {
+    "step-tbesg": [
+     "παραρρέω"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -2140,6 +3032,12 @@
    "ours": "παρθενία",
    "readings": {
     "step-tbesg": "παρθένεια"
+   },
+   "raw": "παρθενία",
+   "options": {
+    "step-tbesg": [
+     "παρθένεια"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -2156,6 +3054,12 @@
    "readings": {
     "step-tbesg": "περιλείπομαι"
    },
+   "raw": "περιλείπω",
+   "options": {
+    "step-tbesg": [
+     "περιλείπομαι"
+    ]
+   },
    "suggestion": {
     "class": "voice",
     "action": "accept",
@@ -2170,6 +3074,12 @@
    "ours": "περιποιέομαι",
    "readings": {
     "step-tbesg": "περιποιέω"
+   },
+   "raw": "περιποιέομαι",
+   "options": {
+    "step-tbesg": [
+     "περιποιέω"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -2186,6 +3096,12 @@
    "readings": {
     "step-tbesg": "περίψημα"
    },
+   "raw": "περίψωμα",
+   "options": {
+    "step-tbesg": [
+     "περίψημα"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -2200,6 +3116,12 @@
    "ours": "πετεινόν",
    "readings": {
     "step-tbesg": "πετεινός"
+   },
+   "raw": "πετεινόν",
+   "options": {
+    "step-tbesg": [
+     "πετεινός"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -2216,6 +3138,12 @@
    "readings": {
     "step-tbesg": "πολιτεύω"
    },
+   "raw": "πολιτεύομαι",
+   "options": {
+    "step-tbesg": [
+     "πολιτεύω"
+    ]
+   },
    "suggestion": {
     "class": "voice",
     "action": "accept",
@@ -2230,6 +3158,12 @@
    "ours": "πορεύομαι",
    "readings": {
     "step-tbesg": "πορεύω"
+   },
+   "raw": "πορεύομαι",
+   "options": {
+    "step-tbesg": [
+     "πορεύω"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -2246,6 +3180,12 @@
    "readings": {
     "step-tbesg": "πορφύρεος"
    },
+   "raw": "πορφυροῦς",
+   "options": {
+    "step-tbesg": [
+     "πορφύρεος"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -2260,6 +3200,12 @@
    "ours": "πότερον",
    "readings": {
     "step-tbesg": "πότερος"
+   },
+   "raw": "πότερον",
+   "options": {
+    "step-tbesg": [
+     "πότερος"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -2276,6 +3222,12 @@
    "readings": {
     "step-tbesg": "προαιρέω"
    },
+   "raw": "προαιρέομαι",
+   "options": {
+    "step-tbesg": [
+     "προαιρέω"
+    ]
+   },
    "suggestion": {
     "class": "voice",
     "action": "accept",
@@ -2290,6 +3242,12 @@
    "ours": "προείδω",
    "readings": {
     "step-tbesg": "προεῖδον"
+   },
+   "raw": "προείδω",
+   "options": {
+    "step-tbesg": [
+     "προεῖδον"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -2306,6 +3264,12 @@
    "readings": {
     "step-tbesg": "προεπαγγέλλω"
    },
+   "raw": "προεπαγγέλλομαι",
+   "options": {
+    "step-tbesg": [
+     "προεπαγγέλλω"
+    ]
+   },
    "suggestion": {
     "class": "voice",
     "action": "accept",
@@ -2320,6 +3284,12 @@
    "ours": "προέχομαι",
    "readings": {
     "step-tbesg": "προέχω"
+   },
+   "raw": "προέχομαι",
+   "options": {
+    "step-tbesg": [
+     "προέχω"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -2336,6 +3306,12 @@
    "readings": {
     "step-tbesg": "προθεσμία"
    },
+   "raw": "προθέσμιος",
+   "options": {
+    "step-tbesg": [
+     "προθεσμία"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -2350,6 +3326,12 @@
    "ours": "προκαλέομαι",
    "readings": {
     "step-tbesg": "προκαλέω"
+   },
+   "raw": "προκαλέομαι",
+   "options": {
+    "step-tbesg": [
+     "προκαλέω"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -2366,6 +3348,12 @@
    "readings": {
     "step-tbesg": "προκυρόομαι"
    },
+   "raw": "προκυρόω",
+   "options": {
+    "step-tbesg": [
+     "προκυρόομαι"
+    ]
+   },
    "suggestion": {
     "class": "voice",
     "action": "accept",
@@ -2380,6 +3368,12 @@
    "ours": "προπορεύομαι",
    "readings": {
     "step-tbesg": "προπορεύω"
+   },
+   "raw": "προπορεύομαι",
+   "options": {
+    "step-tbesg": [
+     "προπορεύω"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -2396,6 +3390,12 @@
    "readings": {
     "step-tbesg": "προσδέω"
    },
+   "raw": "προσδέομαι",
+   "options": {
+    "step-tbesg": [
+     "προσδέω"
+    ]
+   },
    "suggestion": {
     "class": "voice",
     "action": "accept",
@@ -2410,6 +3410,12 @@
    "ours": "προσκαλέομαι",
    "readings": {
     "step-tbesg": "προσκαλέω"
+   },
+   "raw": "προσκαλέομαι",
+   "options": {
+    "step-tbesg": [
+     "προσκαλέω"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -2426,6 +3432,12 @@
    "readings": {
     "step-tbesg": "προσποιέω"
    },
+   "raw": "προσποιέομαι",
+   "options": {
+    "step-tbesg": [
+     "προσποιέω"
+    ]
+   },
    "suggestion": {
     "class": "voice",
     "action": "accept",
@@ -2440,6 +3452,12 @@
    "ours": "προτίθεμαι",
    "readings": {
     "step-tbesg": "προτίθημι"
+   },
+   "raw": "προτίθεμαι",
+   "options": {
+    "step-tbesg": [
+     "προτίθημι"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -2456,6 +3474,12 @@
    "readings": {
     "step-tbesg": "προτρέπω"
    },
+   "raw": "προτρέπομαι",
+   "options": {
+    "step-tbesg": [
+     "προτρέπω"
+    ]
+   },
    "suggestion": {
     "class": "voice",
     "action": "accept",
@@ -2470,6 +3494,12 @@
    "ours": "προχειρίζομαι",
    "readings": {
     "step-tbesg": "προχειρίζω"
+   },
+   "raw": "προχειρίζομαι",
+   "options": {
+    "step-tbesg": [
+     "προχειρίζω"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -2486,6 +3516,12 @@
    "readings": {
     "step-tbesg": "πτηνός"
    },
+   "raw": "πτηνόν",
+   "options": {
+    "step-tbesg": [
+     "πτηνός"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -2500,6 +3536,12 @@
    "ours": "πτύρω",
    "readings": {
     "step-tbesg": "πτύρομαι"
+   },
+   "raw": "πτύρω",
+   "options": {
+    "step-tbesg": [
+     "πτύρομαι"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -2516,6 +3558,12 @@
    "readings": {
     "step-tbesg": "πυκτεύω"
    },
+   "raw": "πυκτέω",
+   "options": {
+    "step-tbesg": [
+     "πυκτεύω"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -2530,6 +3578,12 @@
    "ours": "ῥέω",
    "readings": {
     "step-tbesg": "ἐρέω"
+   },
+   "raw": "ῥέω",
+   "options": {
+    "step-tbesg": [
+     "ἐρέω"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -2546,6 +3600,12 @@
    "readings": {
     "step-tbesg": "σάρδιον"
    },
+   "raw": "σάρδιος",
+   "options": {
+    "step-tbesg": [
+     "σάρδιον"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -2560,6 +3620,12 @@
    "ours": "σιτόμετρον",
    "readings": {
     "step-tbesg": "σιτομέτριον"
+   },
+   "raw": "σιτόμετρον",
+   "options": {
+    "step-tbesg": [
+     "σιτομέτριον"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -2576,6 +3642,12 @@
    "readings": {
     "step-tbesg": "Σμύρνα"
    },
+   "raw": "Σμυρναῖος",
+   "options": {
+    "step-tbesg": [
+     "Σμύρνα"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -2590,6 +3662,12 @@
    "ours": "σπλαγχνίζομαι",
    "readings": {
     "step-tbesg": "σπλαγχνίζω"
+   },
+   "raw": "σπλαγχνίζομαι",
+   "options": {
+    "step-tbesg": [
+     "σπλαγχνίζω"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -2606,6 +3684,12 @@
    "readings": {
     "step-tbesg": "στάδιος"
    },
+   "raw": "στάδιον",
+   "options": {
+    "step-tbesg": [
+     "στάδιος"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -2620,6 +3704,12 @@
    "ours": "στείρος",
    "readings": {
     "step-tbesg": "στεῖρα"
+   },
+   "raw": "στείρος",
+   "options": {
+    "step-tbesg": [
+     "στεῖρα"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -2636,6 +3726,12 @@
    "readings": {
     "step-tbesg": "στρατεύω"
    },
+   "raw": "στρατεύομαι",
+   "options": {
+    "step-tbesg": [
+     "στρατεύω"
+    ]
+   },
    "suggestion": {
     "class": "voice",
     "action": "accept",
@@ -2650,6 +3746,12 @@
    "ours": "στυγνητός",
    "readings": {
     "step-tbesg": "στυγητός"
+   },
+   "raw": "στυγνητός",
+   "options": {
+    "step-tbesg": [
+     "στυγητός"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -2666,6 +3768,12 @@
    "readings": {
     "step-tbesg": "συγκακουχέομαι"
    },
+   "raw": "συγκακουχέω",
+   "options": {
+    "step-tbesg": [
+     "συγκακουχέομαι"
+    ]
+   },
    "suggestion": {
     "class": "voice",
     "action": "accept",
@@ -2680,6 +3788,12 @@
    "ours": "συγκατατίθεμαι",
    "readings": {
     "step-tbesg": "συγκατατίθημι"
+   },
+   "raw": "συγκατατίθεμαι",
+   "options": {
+    "step-tbesg": [
+     "συγκατατίθημι"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -2696,6 +3810,12 @@
    "readings": {
     "step-tbesg": "συγκαταψηφίζομαι"
    },
+   "raw": "συγκαταψηφίζω",
+   "options": {
+    "step-tbesg": [
+     "συγκαταψηφίζομαι"
+    ]
+   },
    "suggestion": {
     "class": "voice",
     "action": "accept",
@@ -2710,6 +3830,12 @@
    "ours": "συμμερίζομαι",
    "readings": {
     "step-tbesg": "συμμερίζω"
+   },
+   "raw": "συμμερίζομαι",
+   "options": {
+    "step-tbesg": [
+     "συμμερίζω"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -2726,6 +3852,12 @@
    "readings": {
     "step-tbesg": "συμμορφόομαι"
    },
+   "raw": "συμμορφόω",
+   "options": {
+    "step-tbesg": [
+     "συμμορφόομαι"
+    ]
+   },
    "suggestion": {
     "class": "voice",
     "action": "accept",
@@ -2740,6 +3872,12 @@
    "ours": "συνευωχέω",
    "readings": {
     "step-tbesg": "συνευωχέομαι"
+   },
+   "raw": "συνευωχέω",
+   "options": {
+    "step-tbesg": [
+     "συνευωχέομαι"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -2756,6 +3894,12 @@
    "readings": {
     "step-tbesg": "συντίθημι"
    },
+   "raw": "συντίθεμαι",
+   "options": {
+    "step-tbesg": [
+     "συντίθημι"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -2770,6 +3914,12 @@
    "ours": "συσταυρόω",
    "readings": {
     "step-tbesg": "συσταυρόομαι"
+   },
+   "raw": "συσταυρόω",
+   "options": {
+    "step-tbesg": [
+     "συσταυρόομαι"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -2786,6 +3936,12 @@
    "readings": {
     "step-tbesg": "τετράμηνος"
    },
+   "raw": "τετράμηνον",
+   "options": {
+    "step-tbesg": [
+     "τετράμηνος"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -2800,6 +3956,12 @@
    "ours": "τρίμηνον",
    "readings": {
     "step-tbesg": "τρίμηνος"
+   },
+   "raw": "τρίμηνον",
+   "options": {
+    "step-tbesg": [
+     "τρίμηνος"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -2816,6 +3978,12 @@
    "readings": {
     "step-tbesg": "τρίστεγος"
    },
+   "raw": "τρίστεγον",
+   "options": {
+    "step-tbesg": [
+     "τρίστεγος"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -2830,6 +3998,12 @@
    "ours": "ὑπεραίρομαι",
    "readings": {
     "step-tbesg": "ὑπεραίρω"
+   },
+   "raw": "ὑπεραίρομαι",
+   "options": {
+    "step-tbesg": [
+     "ὑπεραίρω"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -2846,6 +4020,12 @@
    "readings": {
     "step-tbesg": "ὑποκρίνω"
    },
+   "raw": "ὑποκρίνομαι",
+   "options": {
+    "step-tbesg": [
+     "ὑποκρίνω"
+    ]
+   },
    "suggestion": {
     "class": "voice",
     "action": "accept",
@@ -2860,6 +4040,12 @@
    "ours": "φάγω",
    "readings": {
     "step-tbesg": "φαγεῖν"
+   },
+   "raw": "φάγω",
+   "options": {
+    "step-tbesg": [
+     "φαγεῖν"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -2876,6 +4062,12 @@
    "readings": {
     "step-tbesg": "φιλοξενία"
    },
+   "raw": "φιλονεξία",
+   "options": {
+    "step-tbesg": [
+     "φιλοξενία"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -2890,6 +4082,12 @@
    "ours": "φρυάσσω",
    "readings": {
     "step-tbesg": "φρυάσσομαι"
+   },
+   "raw": "φρυάσσω",
+   "options": {
+    "step-tbesg": [
+     "φρυάσσομαι"
+    ]
    },
    "suggestion": {
     "class": "voice",
@@ -2906,6 +4104,12 @@
    "readings": {
     "step-tbesg": "φυλακτήριος"
    },
+   "raw": "φύλαξ",
+   "options": {
+    "step-tbesg": [
+     "φυλακτήριος"
+    ]
+   },
    "suggestion": {
     "class": "different-word",
     "action": null,
@@ -2920,6 +4124,12 @@
    "ours": "χαλκολίβανον",
    "readings": {
     "step-tbesg": "χαλκολίβανος"
+   },
+   "raw": "χαλκολίβανον",
+   "options": {
+    "step-tbesg": [
+     "χαλκολίβανος"
+    ]
    },
    "suggestion": {
     "class": "related-form",
@@ -2936,6 +4146,12 @@
    "readings": {
     "step-tbesg": "χαρίζω"
    },
+   "raw": "χαρίζομαι",
+   "options": {
+    "step-tbesg": [
+     "χαρίζω"
+    ]
+   },
    "suggestion": {
     "class": "voice",
     "action": "accept",
@@ -2951,6 +4167,12 @@
    "readings": {
     "step-tbesg": "χειρόγραφος"
    },
+   "raw": "χειρόγραφον",
+   "options": {
+    "step-tbesg": [
+     "χειρόγραφος"
+    ]
+   },
    "suggestion": {
     "class": "related-form",
     "action": null,
@@ -2965,6 +4187,12 @@
    "ours": "χράομαι",
    "readings": {
     "step-tbesg": "χράω"
+   },
+   "raw": "χράομαι",
+   "options": {
+    "step-tbesg": [
+     "χράω"
+    ]
    },
    "suggestion": {
     "class": "voice",

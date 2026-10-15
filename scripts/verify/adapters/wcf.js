@@ -229,6 +229,7 @@ export default {
     const W = { 'wcf-1649': new Map(), 'wcf-waller': new Map() };
     const proofSets = { ours: new Map(), 'wcf-1649': new Map(), 'wcf-waller': new Map() };
 
+    const footnotes = new Map();
     const wallerSections = new Map();
     for (const c of waller) for (const s of c.sections ?? [{ id: 1, text: c.text }]) wallerSections.set(`${c.id}.${s.id}`, s.text);
 
@@ -236,8 +237,9 @@ export default {
       const chapter = Number(ch.Chapter);
       for (const s of ch.Sections) {
         const num = `${chapter}.${Number(s.Section)}`;
-        const mine = wcfTokens(s.Content);
+        const mine = { ...wcfTokens(s.Content), raw: s.Content };
         ours.set(num, mine);
+        footnotes.set(num, (s.Proofs ?? []).map(p => ({ id: p.Id, refs: [...p.References] })));
 
         const verses = new Set();
         for (const p of s.Proofs ?? []) for (const osis of p.References) {
@@ -275,7 +277,8 @@ export default {
       const chapters = new Set(Object.values(groups).flatMap(g => [...g.keys()]));
       for (const bc of chapters) {
         const unit = `${num} ${bc}`;
-        ours.set(unit, { value: groups.ours.get(bc) ?? '' });
+        const [book, ch] = bc.split(' ');
+        ours.set(unit, { value: groups.ours.get(bc) ?? '', raw: { footnotes: footnotes.get(num), chapterVerses: count(book, Number(ch)) } });
         for (const id of Object.keys(W)) if (groups[id]) W[id].set(unit, { value: groups[id].get(bc) ?? '' });
       }
     }

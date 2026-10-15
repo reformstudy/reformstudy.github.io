@@ -1,21 +1,25 @@
 /**
- * Record decisions about verification items (npm run review).
+ * Record decisions about verification items (npm run review; npm run review:ui
+ * is the same in a web page).
+ *
+ * For each item there are three choices, and no others:
+ *   accept   keep the source's reading
+ *   correct  take a witness's reading: the edit is built from that reading,
+ *            never typed (see scripts/lib/corrections.js)
+ *   ignore   take the item off the list without deciding; the text is unchanged
  *
  *   npm run review -- kjv                                  list what awaits review
  *   npm run review -- kjv show <id>                        one item in full
- *   npm run review -- kjv accept <id> [<id>…] --reason "…" our reading stands
- *   npm run review -- kjv accept --class <class> --reason "…"
- *                                                          every pending item the report puts in that class
- *   npm run review -- kjv correct <id> --to "…" [--from "…"] --reason "…"
- *                                                          fix the source (KJV verses, WCF section text)
+ *   npm run review -- kjv accept <id> [<id>…] [--reason "…"]
+ *   npm run review -- kjv accept --class <class> --reason "…"   every pending item in that class
+ *   npm run review -- kjv correct <id> --witness <witness-id> [--footnote N] [--reason "…"]
+ *   npm run review -- kjv ignore <id> [<id>…] [--reason "…"]
  *   npm run review -- kjv confirm [--reviewer Claude]      sign off decisions someone else recorded
  *
  * Items come from provenance/reports/{resource}.json (run npm run verify first).
  * Decisions go to provenance/decisions/{resource}.json with your name (git
  * config user.name, or --by) and the date. After a correction, run
  * `npm run verify -- <resource>` to check it, and `npm run ingest` to apply it.
- * Corrections to WCF proof references are added to the decisions file by hand
- * ({ section, footnote, replace: [OSIS…], with: [OSIS…] }).
  */
 
 import { execSync } from 'child_process';
@@ -23,24 +27,30 @@ import fs from 'fs';
 import path from 'path';
 import { loadDecisions, saveDecisions } from '../lib/decisions.js';
 import { parseArgs } from '../lib/io.js';
+import { correctionFromReading } from '../lib/corrections.js';
 import { REPORTS_DIR, writeReport } from './verify.js';
 
 const today = () => new Date().toISOString().slice(0, 10);
 
-/** Add accepted entries for items, skipping any already accepted. Returns the number added. */
-export function acceptItems(decisions, items, { reason, reviewer, date = today() }) {
-  if (!reason) throw new Error('Give a --reason: it is the record of why this difference is benign.');
-  const known = new Set(decisions.accepted.map(a => a.key));
+const DEFAULT_REASON = { accepted: 'Kept the source reading.', ignored: 'Ignored.' };
+
+/**
+ * Record items as accepted (the source's reading stands) or ignored, skipping
+ * any already decided. Returns the number added.
+ */
+export function decideItems(decisions, items, { kind = 'accepted', reason, reviewer, date = today() }) {
+  decisions[kind] ??= [];
+  const known = new Set([...decisions.accepted, ...(decisions.ignored ?? [])].map(a => a.key));
   let added = 0;
   for (const item of items) {
     if (known.has(item.key)) continue;
-    decisions.accepted.push({
+    decisions[kind].push({
       key: item.key,
       unit: item.unit,
       ours: item.ours,
       readings: item.readings,
       ...(item.suggestion?.class ? { class: item.suggestion.class } : {}),
-      reason,
+      reason: reason || DEFAULT_REASON[kind],
       reviewer,
       date,
     });
@@ -50,43 +60,57 @@ export function acceptItems(decisions, items, { reason, reviewer, date = today()
   return added;
 }
 
-/** Add a text correction for an item. KJV units are verses; WCF text units are sections. */
-export function addCorrection(resource, decisions, item, { from = item.ours, to, reason, reviewer, date = today() }) {
-  if (to === undefined) throw new Error('Give the corrected text with --to.');
-  if (!reason) throw new Error('Give a --reason for the correction.');
-  if (resource === 'kjv') {
-    decisions.corrections.push({ ref: item.unit, from, to, kind: 'word', reviewer, date, reason });
-  } else if (resource === 'wcf' && item.context) {
-    decisions.corrections.text.push({ section: item.unit, from, to, reviewer, date, reason });
-  } else {
-    throw new Error(`Corrections for ${resource} ${item.unit} are made by editing provenance/decisions/${resource}.json.`);
-  }
-}
+export const acceptItems = (decisions, items, options) => decideItems(decisions, items, { ...options, kind: 'accepted' });
+export const ignoreItems = (decisions, items, options) => decideItems(decisions, items, { ...options, kind: 'ignored' });
 
-/** Add a WCF proof-reference correction: in footnote `footnote` of `section`, replace OSIS references with others. */
-export function addProofCorrection(decisions, { section, footnote, replace, with: replacement, reason, reviewer, date = today() }) {
-  if (!section || !Number.isInteger(footnote) || !replace?.length) throw new Error('Give the section, the footnote number and the references to replace.');
-  if (!reason) throw new Error('Give a reason for the correction.');
-  decisions.corrections.proofs.push({ section, footnote, replace, with: replacement ?? [], reviewer, date, reason });
+/** The readings a reviewer may choose for an item: each witness's reading (Strong's: each of its words). */
+export function readingChoices(item) {
+  const choices = new Map();
+  for (const [witness, reading] of Object.entries(item.readings)) {
+    if (reading === undefined || reading === item.ours) continue;
+    for (const r of item.options?.[witness] ?? [reading]) {
+      if (r === item.ours) continue;
+      if (!choices.has(r)) choices.set(r, []);
+      choices.get(r).push(witness);
+    }
+  }
+  return [...choices].map(([reading, witnesses]) => ({ reading, witnesses }));
 }
 
 /**
- * Remove an accepted decision (by key), or a correction for a unit: the one
- * matching `from`/`to` (or `footnote`) when given, else the last one recorded.
- * Returns true if one was removed.
+ * Correct the source to a witness's reading. `reading` must be one of
+ * readingChoices(item); the edit itself is built by correctionFromReading.
+ * Returns the correction entries added.
+ */
+export function addCorrection(resource, decisions, item, { reading, footnote, reason, reviewer, date = today() }) {
+  const choice = readingChoices(item).find(c => c.reading === reading);
+  if (!choice) throw new Error('Choose one of the witnesses\' readings.');
+  const { kind, entries } = correctionFromReading(resource, item, reading, { footnote });
+  const stamp = { witnesses: choice.witnesses, reviewer, date, reason: reason || `Took the reading of ${choice.witnesses.join(', ')}.` };
+  const list = kind === 'text' || kind === 'proofs' ? decisions.corrections[kind] : decisions.corrections;
+  const added = entries.map(e => ({ ...e, ...stamp }));
+  list.push(...added);
+  return added;
+}
+
+/**
+ * Remove an accepted or ignored decision (by key), or a correction for a unit:
+ * the one matching `from`/`to` (or `footnote`) when given, else the last one
+ * recorded. Returns true if one was removed.
  */
 export function undoDecision(resource, decisions, { kind, key, unit, from, to, footnote }) {
-  if (kind === 'accepted') {
-    const i = decisions.accepted.findIndex(a => a.key === key);
+  if (kind === 'accepted' || kind === 'ignored') {
+    const list = decisions[kind] ?? [];
+    const i = list.findIndex(a => a.key === key);
     if (i < 0) return false;
-    decisions.accepted.splice(i, 1);
+    list.splice(i, 1);
     return true;
   }
   const lists = Array.isArray(decisions.corrections) ? [decisions.corrections] : Object.values(decisions.corrections);
   for (const list of lists) {
     for (let i = list.length - 1; i >= 0; i--) {
       const c = list[i];
-      if ((c.ref ?? c.section) !== unit) continue;
+      if ((c.ref ?? c.section ?? c.entry) !== unit) continue;
       if (from !== undefined && (c.from !== from || c.to !== to)) continue;
       if (footnote !== undefined && c.footnote !== footnote) continue;
       list.splice(i, 1);
@@ -134,17 +158,19 @@ function describe(item) {
   const ctx = item.context ? `…${item.context[0]} [${item.ours}] ${item.context[1]}…` : item.ours;
   const lines = [`${item.id}  ${item.unit}  (${item.class}${item.suggestion?.class ? `, ${item.suggestion.class}` : ''})`, `  ours: ${ctx}`];
   for (const [w, r] of Object.entries(item.readings)) lines.push(`  ${w}: ${r === undefined ? '—' : r}`);
+  const choices = readingChoices(item);
+  if (choices.length) lines.push(`  correct with --witness: ${choices.map(c => c.witnesses[0]).join(', ')}`);
   if (item.suggestion?.note) lines.push(`  hint: ${item.suggestion.note}${item.suggestion.action ? ` (suggested: ${item.suggestion.action})` : ''}`);
   return lines.join('\n');
 }
 
-/** Accept items, save the decisions, and take the items off the report's pending list. Returns the number added. */
-export function recordAccept(resource, report, decisions, items, options) {
-  const n = acceptItems(decisions, items, options);
+/** Accept or ignore items, save the decisions, and take the items off the report's pending list. Returns the number added. */
+export function recordDecided(resource, report, decisions, items, options) {
+  const n = decideItems(decisions, items, options);
   saveDecisions(resource, decisions);
   const keys = new Set(items.map(i => i.key));
   report.pending = report.pending.filter(i => !keys.has(i.key));
-  report.accepted += n;
+  report[options.kind] = (report[options.kind] ?? 0) + n;
   writeReport(report);
   return n;
 }
@@ -158,7 +184,7 @@ async function main() {
     else if (argv[i + 1] !== undefined && !argv[i + 1].startsWith('--')) i++; // the option's value
   }
   const [resource, command = 'list', ...rest] = positional;
-  if (!resource) throw new Error('Usage: npm run review -- <resource> [list|show|accept|correct|confirm] …');
+  if (!resource) throw new Error('Usage: npm run review -- <resource> [list|show|accept|correct|ignore|confirm] …');
   const report = loadReport(resource);
   const decisions = loadDecisions(resource, resource === 'wcf' ? { text: [], proofs: [] } : []);
 
@@ -177,17 +203,24 @@ async function main() {
     for (const i of findItems(report, rest)) console.log(describe(i));
     return;
   }
-  if (command === 'accept') {
+  if (command === 'accept' || command === 'ignore') {
     const items = args.class ? report.pending.filter(i => i.suggestion?.class === args.class) : findItems(report, rest);
-    if (!items.length) throw new Error('Nothing to accept: give item ids or --class.');
-    const n = recordAccept(resource, report, decisions, items, { reason: args.reason, reviewer: whoAmI(args) });
-    console.log(`Accepted ${n} item(s) in provenance/decisions/${resource}.json; ${report.pending.length} awaiting review.`);
+    if (!items.length) throw new Error(`Nothing to ${command}: give item ids or --class.`);
+    if (args.class && !args.reason) throw new Error('Give a --reason when deciding a whole class.');
+    const kind = command === 'accept' ? 'accepted' : 'ignored';
+    const n = recordDecided(resource, report, decisions, items, { kind, reason: args.reason, reviewer: whoAmI(args) });
+    console.log(`${command === 'accept' ? 'Accepted' : 'Ignored'} ${n} item(s) in provenance/decisions/${resource}.json; ${report.pending.length} awaiting review.`);
     return;
   }
   if (command === 'correct') {
     const [item] = findItems(report, rest.slice(0, 1));
-    addCorrection(resource, decisions, item, { from: args.from, to: args.to, reason: args.reason, reviewer: whoAmI(args) });
+    if (!args.witness) throw new Error('Choose the witness whose reading to take: --witness <id> (see show).');
+    const reading = item.options?.[args.witness]?.[Number(args.option ?? 0)] ?? item.readings[args.witness];
+    const added = addCorrection(resource, decisions, item, { reading, footnote: args.footnote === undefined ? undefined : Number(args.footnote), reason: args.reason, reviewer: whoAmI(args) });
     saveDecisions(resource, decisions);
+    item.recorded = 'correction';
+    writeReport(report);
+    for (const c of added) console.log(c.from !== undefined ? `  "${c.from}" → "${c.to}"` : `  [${c.footnote}] ${c.replace.join(', ') || '(add)'} → ${c.with.join(', ') || '(remove)'}`);
     console.log(`Recorded the correction. Run npm run verify -- ${resource} to check it, then npm run ingest.`);
     return;
   }

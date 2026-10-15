@@ -34,12 +34,13 @@ export async function verifyResource(resource, { registry = loadRegistry() } = {
   const lineageOf = id => registry.witnesses[id].lineage;
   const result = compare({ resource, ours, witnesses, lineageOf });
 
-  const accepted = new Map(decisions.accepted.map(a => [a.key, a]));
+  const decided = new Map([...decisions.accepted, ...decisions.ignored].map(a => [a.key, a]));
   const seen = new Set(result.items.map(i => i.key));
   const pending = result.items
-    .filter(i => !accepted.has(i.key))
+    .filter(i => !decided.has(i.key))
     .map(i => ({ ...i, suggestion: adapter.suggest?.(i) ?? null }));
-  const stale = decisions.accepted.filter(a => !seen.has(a.key)).map(a => ({ key: a.key, unit: a.unit, ours: a.ours }));
+  const stale = [...decisions.accepted.map(a => ['accepted', a]), ...decisions.ignored.map(a => ['ignored', a])]
+    .filter(([, a]) => !seen.has(a.key)).map(([kind, a]) => ({ kind, key: a.key, unit: a.unit, ours: a.ours }));
 
   const pin = e => e.commit ? `${e.repo}@${e.commit}` : e.url;
   return {
@@ -57,7 +58,8 @@ export async function verifyResource(resource, { registry = loadRegistry() } = {
     corrections: countCorrections(decisions.corrections),
     // Decisions recorded by Claude that no person has signed off yet (npm run review -- <resource> confirm).
     awaitingSignOff: [...flatCorrections(decisions.corrections), ...decisions.accepted].filter(d => d.reviewer === 'Claude' && !d.confirmedBy).length,
-    accepted: decisions.accepted.length - stale.length,
+    accepted: decisions.accepted.length - stale.filter(s => s.kind === 'accepted').length,
+    ignored: decisions.ignored.length - stale.filter(s => s.kind === 'ignored').length,
     stale,
     pending,
   };
@@ -89,7 +91,7 @@ async function main() {
     writeReport(report, registry);
     const s = report.stats;
     open += report.pending.length + report.stale.length;
-    console.log(`${resource}: ${s.units} ${report.unitName === 'entry' ? 'entries' : `${report.unitName}s`}; ${s.majority} places where a witness differs and we have the majority; ${report.corrections} corrections, ${report.accepted} accepted; ${report.pending.length} awaiting review${report.stale.length ? `; ${report.stale.length} accepted decisions no longer match` : ''}`);
+    console.log(`${resource}: ${s.units} ${report.unitName === 'entry' ? 'entries' : `${report.unitName}s`}; ${s.majority} places where a witness differs and we have the majority; ${report.corrections} corrections, ${report.accepted} accepted, ${report.ignored} ignored; ${report.pending.length} awaiting review${report.stale.length ? `; ${report.stale.length} accepted decisions no longer match` : ''}`);
   }
   console.log(`Reports: ${path.relative(process.cwd(), REPORTS_DIR)}/`);
   if (check && open) {

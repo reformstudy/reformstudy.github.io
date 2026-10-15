@@ -13,8 +13,9 @@ Three places in [`provenance/`](../provenance/) keep the record:
 
   It also lists **attestations**: facts a person has to confirm because comparing texts can't establish them.
 - [`decisions/`](../provenance/decisions/): what a person decided about each difference.
-  - `corrections` are edits applied to the source at ingest. Each must match the source exactly once, or ingest fails.
+  - `corrections` are edits applied to the source at ingest, each taken from a named witness's reading. Each must match the source exactly once, or ingest fails.
   - `accepted` are differences checked and found benign; our reading stands.
+  - `ignored` are differences taken off the list without a decision; the text is unchanged.
 
   Every decision records who made it, when and why.
 - [`reports/`](../provenance/reports/README.md): the latest comparison for each resource, including everything still awaiting review.
@@ -37,21 +38,23 @@ No single copy of these texts can be trusted on its own. `npm run verify` checks
 
    A decision therefore stops matching as soon as the source or a witness changes there, and the item comes back for review instead of being waved through. Anything unmatched is listed as awaiting review.
 
-The easiest way to review is the local reviewer UI. `npm run review:ui` opens http://127.0.0.1:4777, where you can work through each resource's items, with these tools:
-- every witness's reading side by side;
-- buttons to accept our reading, to correct the source (pre-filled when the witnesses agree), or to accept a whole suggested class;
-- a page to sign off, or undo, earlier decisions;
-- buttons to re-verify and to apply corrections to `res/`.
+The easiest way to review is the local reviewer UI: `npm run review:ui` opens http://127.0.0.1:4777. It runs only on your machine and writes the same decisions files as the command line; commit them as usual. Each item offers three choices, and no others:
 
-It runs only on your machine and writes the same decisions files as the command line. Commit them as usual.
+- **Keep the source.** Records the item as accepted.
+- **Take a witness's reading.** Records a correction built from that reading. Nobody types replacement text. The reviewer finds the passage in the source and shows the exact before→after edit before you record it. For a WCF proof chapter, it adds or trims verses within their footnotes, and asks which footnote to use when more than one could hold them.
+- **Ignore.** Takes the item off the list without changing the text or endorsing it. Ignored items are listed separately and can be restored.
 
-The same is available from the command line with `npm run review`:
+Whole classes can be kept or ignored at once, after you check a sample. Earlier decisions can be signed off or undone, and **Re-verify** and **Apply to res/** run the next steps.
+
+The same choices are available from the command line:
 
 ```bash
 npm run review -- kjv                                   # what awaits review, grouped by suggested class
-npm run review -- kjv accept <id> --reason "…"          # our reading stands
+npm run review -- kjv show <id>                         # one item, with the witnesses you can correct to
+npm run review -- kjv accept <id> [--reason "…"]        # keep the source
+npm run review -- kjv correct <id> --witness kjv-ebible # take that witness's reading
+npm run review -- kjv ignore <id> [--reason "…"]        # off the list, text unchanged
 npm run review -- kjv accept --class oxford-cambridge --reason "…"   # a whole class, after checking a sample
-npm run review -- kjv correct <id> --to "…" --reason "…"           # fix the source
 npm run review -- kjv confirm                           # sign off decisions Claude recorded
 ```
 

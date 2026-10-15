@@ -1,7 +1,7 @@
 {
  "resource": "kjv",
  "title": "King James Version",
- "checked": "2026-10-14",
+ "checked": "2026-10-15",
  "source": {
   "pin": "https://github.com/aruljohn/Bible-kjv@a9aa4e55afbb3e095f57e4b14cd1f22c5ee8d7c9",
   "sha256": "80604178dbcbc3aa92a1f85fd3303f575924406d2e8d2845b0441ce8ce710153",
@@ -54,6 +54,7 @@
  "corrections": 169,
  "awaitingSignOff": 169,
  "accepted": 0,
+ "ignored": 0,
  "stale": [],
  "pending": [
   {
@@ -72,6 +73,7 @@
     "kjv-ebible": "Sabtechah",
     "kjv-thiago": "Sabtecha"
    },
+   "raw": "And the sons of Cush; Seba, and Havilah, and Sabtah, and Raamah, and Sabtechah: and the sons of Raamah; Sheba, and Dedan.",
    "suggestion": {
     "class": "oxford-cambridge",
     "action": "accept",
@@ -94,6 +96,7 @@
     "kjv-ebible": "Zarah",
     "kjv-thiago": "Zerah"
    },
+   "raw": "And the sons of Judah; Er, and Onan, and Shelah, and Pharez, and Zarah: but Er and Onan died in the land of Canaan. And the sons of Pharez were Hezron and Hamul.",
    "suggestion": {
     "class": "oxford-cambridge",
     "action": "accept",
@@ -116,6 +119,7 @@
     "kjv-ebible": "to day to the LORD",
     "kjv-thiago": "to day to the LORD"
    },
+   "raw": "For Moses had said, Consecrate yourselves today to the LORD, even every man upon his son, and upon his brother; that he may bestow upon you a blessing this day.",
    "suggestion": {
     "class": "divine-name",
     "action": null,
@@ -138,6 +142,7 @@
     "kjv-ebible": "LORD",
     "kjv-thiago": "Lord"
    },
+   "raw": "And he said unto Balak, Stand here by thy burnt offering, while I meet the LORD yonder.",
    "suggestion": {
     "class": "divine-name",
     "action": null,
@@ -160,6 +165,7 @@
     "kjv-ebible": "LORD",
     "kjv-thiago": "Lord"
    },
+   "raw": "And thou shalt keep the feast of weeks unto the LORD thy God with a tribute of a freewill offering of thine hand, which thou shalt give unto the LORD thy God, according as the LORD thy God hath blessed thee:",
    "suggestion": {
     "class": "divine-name",
     "action": null,
@@ -182,6 +188,7 @@
     "kjv-ebible": "most",
     "kjv-thiago": "most"
    },
+   "raw": "When the Most High divided to the nations their inheritance, when he separated the sons of Adam, he set the bounds of the people according to the number of the children of Israel.",
    "suggestion": {
     "class": "case",
     "action": "correct",
@@ -204,6 +211,7 @@
     "kjv-ebible": "Jahaza",
     "kjv-thiago": "Jahazah"
    },
+   "raw": "And Jahaza, and Kedemoth, and Mephaath,",
    "suggestion": {
     "class": "oxford-cambridge",
     "action": "accept",
@@ -226,6 +234,7 @@
     "kjv-ebible": "or",
     "kjv-thiago": "or"
    },
+   "raw": "And they had in their inheritance Beersheba, and Sheba, and Moladah,",
    "suggestion": {
     "class": null,
     "action": null,
@@ -248,6 +257,7 @@
     "kjv-ebible": "Haphraim and Shihon",
     "kjv-thiago": "Hapharaim and Shion"
    },
+   "raw": "And Haphraim, and Shihon, and Anaharath,",
    "suggestion": {
     "class": "oxford-cambridge",
     "action": "accept",
@@ -270,6 +280,7 @@
     "kjv-ebible": "wonderously",
     "kjv-thiago": "wondrously"
    },
+   "raw": "So Manoah took a kid with a meat offering, and offered it upon a rock unto the LORD: and the angel did wonderously; and Manoah and his wife looked on.",
    "suggestion": {
     "class": "oxford-cambridge",
     "action": "accept",
@@ -292,6 +303,7 @@
     "kjv-ebible": "and",
     "kjv-thiago": "and"
    },
+   "raw": "And the men of the city said unto him on the seventh day before the sun went down, What is sweeter than honey? And what is stronger than a lion? And he said unto them, If ye had not plowed with my heifer, ye had not found out my riddle.",
    "suggestion": {
     "class": "case",
     "action": "correct",
@@ -314,6 +326,7 @@
     "kjv-ebible": "LORD",
     "kjv-thiago": "Lord"
    },
+   "raw": "And he said, What is the thing that the LORD hath said unto thee? I pray thee hide it not from me: God do so to thee, and more also, if thou hide any thing from me of all the things that he said unto thee.",
    "suggestion": {
     "class": "divine-name",
     "action": null,
@@ -336,6 +349,7 @@
     "kjv-ebible": "LORD",
     "kjv-thiago": "Lord"
    },
+   "raw": "But the LORD said unto Samuel, Look not on his countenance, or on the height of his stature; because I have refused him: for the LORD seeth not as man seeth; for man looketh on the outward appearance, but the LORD looketh on the heart.",
    "suggestion": {
     "class": "divine-name",
     "action": null,
@@ -358,6 +372,7 @@
     "kjv-ebible": "Melchi-shua",
     "kjv-thiago": "Malchi-shua"
    },
+   "raw": "And the Philistines followed hard upon Saul and upon his sons; and the Philistines slew Jonathan, and Abinadab, and Melchishua, Saul’s sons.",
    "suggestion": {
     "class": null,
     "action": null,
@@ -380,6 +395,7 @@
     "kjv-ebible": "Shammuah",
     "kjv-thiago": "Shammua"
    },
+   "raw": "And these be the names of those that were born unto him in Jerusalem; Shammuah, and Shobab, and Nathan, and Solomon,",
    "suggestion": {
     "class": "oxford-cambridge",
     "action": "accept",
@@ -402,6 +418,7 @@
     "kjv-ebible": "Shimeah",
     "kjv-thiago": "Shimea"
    },
+   "raw": "And when he defied Israel, Jonathan the son of Shimeah the brother of David slew him.",
    "suggestion": {
     "class": "oxford-cambridge",
     "action": "accept",
@@ -424,6 +441,7 @@
     "kjv-ebible": "Nahari",
     "kjv-thiago": "Naharai"
    },
+   "raw": "Zelek the Ammonite, Nahari the Beerothite, armourbearer to Joab the son of Zeruiah,",
    "suggestion": {
     "class": "oxford-cambridge",
     "action": "accept",
@@ -446,6 +464,7 @@
     "kjv-ebible": "house tops",
     "kjv-thiago": "housetops"
    },
+   "raw": "Therefore their inhabitants were of small power, they were dismayed and confounded; they were as the grass of the field, and as the green herb, as the grass on the house tops, and as corn blasted before it be grown up.",
    "suggestion": {
     "class": "oxford-cambridge",
     "action": "accept",
@@ -468,6 +487,7 @@
     "kjv-ebible": "Ezar",
     "kjv-thiago": "Ezer"
    },
+   "raw": "And the sons of Seir; Lotan, and Shobal, and Zibeon, and Anah, and Dishon, and Ezar, and Dishan.",
    "suggestion": {
     "class": "oxford-cambridge",
     "action": "accept",
@@ -490,6 +510,7 @@
     "kjv-ebible": "Gesham",
     "kjv-thiago": "Geshan"
    },
+   "raw": "And the sons of Jahdai; Regem, and Jotham, and Gesham, and Pelet, and Ephah, and Shaaph.",
    "suggestion": {
     "class": "oxford-cambridge",
     "action": "accept",
@@ -512,6 +533,7 @@
     "kjv-ebible": "Achsa",
     "kjv-thiago": "Achsah"
    },
+   "raw": "She bare also Shaaph the father of Madmannah, Sheva the father of Machbenah, and the father of Gibea: and the daughter of Caleb was Achsa.",
    "suggestion": {
     "class": "oxford-cambridge",
     "action": "accept",
@@ -534,6 +556,7 @@
     "kjv-ebible": "Shimrom",
     "kjv-thiago": "Shimron"
    },
+   "raw": "Now the sons of Issachar were, Tola, and Puah, Jashub, and Shimrom, four.",
    "suggestion": {
     "class": "oxford-cambridge",
     "action": "accept",
@@ -556,6 +579,7 @@
     "kjv-ebible": "Shemidah",
     "kjv-thiago": "Shemida"
    },
+   "raw": "And the sons of Shemidah were, Ahian, and Shechem, and Likhi, and Aniam.",
    "suggestion": {
     "class": "oxford-cambridge",
     "action": "accept",
@@ -578,6 +602,7 @@
     "kjv-ebible": "Jehoshuah",
     "kjv-thiago": "Jehoshua"
    },
+   "raw": "Non his son, Jehoshuah his son,",
    "suggestion": {
     "class": "oxford-cambridge",
     "action": "accept",
@@ -600,6 +625,7 @@
     "kjv-ebible": "Lord",
     "kjv-thiago": "LORD"
    },
+   "raw": "And Phinehas the son of Eleazar was the ruler over them in time past, and the LORD was with him.",
    "suggestion": {
     "class": "divine-name",
     "action": null,
@@ -622,6 +648,7 @@
     "kjv-ebible": "Lord",
     "kjv-thiago": "LORD"
    },
+   "raw": "So they and their children had the oversight of the gates of the house of the LORD, namely, the house of the tabernacle, by wards.",
    "suggestion": {
     "class": "divine-name",
     "action": null,
@@ -644,6 +671,7 @@
     "kjv-ebible": "and",
     "kjv-thiago": "and"
    },
+   "raw": "And David enquired of God, saying, Shall I go up against the Philistines? And wilt thou deliver them into mine hand? And the LORD said unto him, Go up; for I will deliver them into thine hand.",
    "suggestion": {
     "class": "case",
     "action": "correct",
@@ -666,6 +694,7 @@
     "kjv-ebible": "Micah",
     "kjv-thiago": "Michah"
    },
+   "raw": "Of the sons of Uzziel; Micah the first, and Jesiah the second.",
    "suggestion": {
     "class": "oxford-cambridge",
     "action": "accept",
@@ -688,6 +717,7 @@
     "kjv-ebible": "Ezion-gaber",
     "kjv-thiago": "Ezion-geber"
    },
+   "raw": "And he joined himself with him to make ships to go to Tarshish: and they made the ships in Eziongaber.",
    "suggestion": {
     "class": null,
     "action": null,
@@ -710,6 +740,7 @@
     "kjv-ebible": "Charchemish",
     "kjv-thiago": "Carchemish"
    },
+   "raw": "After all this, when Josiah had prepared the temple, Necho king of Egypt came up to fight against Charchemish by Euphrates: and Josiah went out against him.",
    "suggestion": {
     "class": "oxford-cambridge",
     "action": "accept",
@@ -732,6 +763,7 @@
     "kjv-ebible": "Mizpar",
     "kjv-thiago": "Mispar"
    },
+   "raw": "Which came with Zerubbabel: Jeshua, Nehemiah, Seraiah, Reelaiah, Mordecai, Bilshan, Mizpar, Bigvai, Rehum, Baanah. The number of the men of the people of Israel:",
    "suggestion": {
     "class": "oxford-cambridge",
     "action": "accept",
@@ -754,6 +786,7 @@
     "kjv-ebible": "Asnapper",
     "kjv-thiago": "Asnappar"
    },
+   "raw": "And the rest of the nations whom the great and noble Asnapper brought over, and set in the cities of Samaria, and the rest that are on this side the river, and at such a time.",
    "suggestion": {
     "class": "oxford-cambridge",
     "action": "accept",
@@ -776,6 +809,7 @@
     "kjv-ebible": "Gaba",
     "kjv-thiago": "Geba"
    },
+   "raw": "The men of Ramah and Gaba, six hundred twenty and one.",
    "suggestion": {
     "class": "oxford-cambridge",
     "action": "accept",
@@ -798,6 +832,7 @@
     "kjv-ebible": "cliffs",
     "kjv-thiago": "clifts"
    },
+   "raw": "To dwell in the cliffs of the valleys, in caves of the earth, and in the rocks.",
    "suggestion": {
     "class": "oxford-cambridge",
     "action": "accept",
@@ -820,6 +855,7 @@
     "kjv-ebible": "Spirit",
     "kjv-thiago": "Spirit"
    },
+   "raw": "The spirit of God hath made me, and the breath of the Almighty hath given me life.",
    "suggestion": {
     "class": "case",
     "action": "correct",
@@ -842,6 +878,7 @@
     "kjv-ebible": "God",
     "kjv-thiago": "GOD"
    },
+   "raw": "He that is our God is the God of salvation; and unto GOD the Lord belong the issues from death.",
    "suggestion": {
     "class": "divine-name",
     "action": null,
@@ -864,6 +901,7 @@
     "kjv-ebible": "Make haste",
     "kjv-thiago": "Make haste"
    },
+   "raw": "MAKE HASTE, O God, TO DELIVER ME; MAKE HASTE TO HELP ME, O LORD.",
    "suggestion": {
     "class": "opening-capitals",
     "action": "correct",
@@ -886,6 +924,7 @@
     "kjv-ebible": "to deliver me make haste to help me O LORD",
     "kjv-thiago": "to deliver me make haste to help me O LORD"
    },
+   "raw": "MAKE HASTE, O God, TO DELIVER ME; MAKE HASTE TO HELP ME, O LORD.",
    "suggestion": {
     "class": "divine-name",
     "action": null,
@@ -908,6 +947,7 @@
     "kjv-ebible": "greyheaded",
     "kjv-thiago": "grayheaded"
    },
+   "raw": "Now also when I am old and greyheaded, O God, forsake me not; until I have shewed thy strength unto this generation, and thy power to every one that is to come.",
    "suggestion": {
     "class": "oxford-cambridge",
     "action": "accept",
@@ -930,6 +970,7 @@
     "kjv-ebible": "LORD hast helped",
     "kjv-thiago": "LORD hast holpen"
    },
+   "raw": "Shew me a token for good; that they which hate me may see it, and be ashamed: because thou, LORD, hast holpen me, and comforted me.",
    "suggestion": {
     "class": "divine-name",
     "action": null,
@@ -952,6 +993,7 @@
     "kjv-ebible": "It is a good thing to give thanks unto the LORD and to sing praises unto thy name O most High",
     "kjv-thiago": "It is a good thing to give thanks unto the LORD and to sing praises unto thy name O most High"
    },
+   "raw": "IT IS A GOOD THING TO GIVE THANKS UNTO THE LORD, AND TO SING PRAISES UNTO THY NAME, O MOST HIGH:",
    "suggestion": {
     "class": "divine-name",
     "action": null,
@@ -974,6 +1016,7 @@
     "kjv-ebible": "Lord",
     "kjv-thiago": "LORD"
    },
+   "raw": "Blessed be the LORD God of Israel from everlasting to everlasting: and let all the people say, Amen. Praise ye the LORD.",
    "suggestion": {
     "class": "divine-name",
     "action": null,
@@ -996,6 +1039,7 @@
     "kjv-ebible": "praise the LORD",
     "kjv-thiago": "praise the LORD"
    },
+   "raw": "O Praise the LORD, all ye nations: praise him, all ye people.",
    "suggestion": {
     "class": "divine-name",
     "action": null,
@@ -1018,6 +1062,7 @@
     "kjv-ebible": "vapours",
     "kjv-thiago": "vapour"
    },
+   "raw": "Fire, and hail; snow, and vapours; stormy wind fulfilling his word:",
    "suggestion": {
     "class": "oxford-cambridge",
     "action": "accept",
@@ -1040,6 +1085,7 @@
     "kjv-ebible": "grey",
     "kjv-thiago": "gray"
    },
+   "raw": "The glory of young men is their strength: and the beauty of old men is the grey head.",
    "suggestion": {
     "class": "oxford-cambridge",
     "action": "accept",
@@ -1062,6 +1108,7 @@
     "kjv-ebible": "good",
     "kjv-thiago": "good"
    },
+   "raw": "A GOOD name is rather to be chosen than great riches, and loving favour rather than silver and gold.",
    "suggestion": {
     "class": null,
     "action": null,
@@ -1084,6 +1131,7 @@
     "kjv-ebible": "LORD GOD",
     "kjv-thiago": "Lord GOD"
    },
+   "raw": "What mean ye that ye beat my people to pieces, and grind the faces of the poor? saith the Lord GOD of hosts.",
    "suggestion": {
     "class": "divine-name",
     "action": null,
@@ -1106,6 +1154,7 @@
     "kjv-ebible": "LORD",
     "kjv-thiago": "Lord"
    },
+   "raw": "Therefore the LORD will smite with a scab the crown of the head of the daughters of Zion, and the LORD will discover their secret parts.",
    "suggestion": {
     "class": "divine-name",
     "action": null,
@@ -1128,6 +1177,7 @@
     "kjv-ebible": "am",
     "kjv-thiago": "am"
    },
+   "raw": "I AM the man that hath seen affliction by the rod of his wrath.",
    "suggestion": {
     "class": null,
     "action": null,
@@ -1150,6 +1200,7 @@
     "kjv-ebible": "vats",
     "kjv-thiago": "fats"
    },
+   "raw": "And the floors shall be full of wheat, and the vats shall overflow with wine and oil.",
    "suggestion": {
     "class": "oxford-cambridge",
     "action": "accept",
@@ -1172,6 +1223,7 @@
     "kjv-ebible": "Kirioth",
     "kjv-thiago": "Kerioth"
    },
+   "raw": "But I will send a fire upon Moab, and it shall devour the palaces of Kirioth: and Moab shall die with tumult, with shouting, and with the sound of the trumpet:",
    "suggestion": {
     "class": "oxford-cambridge",
     "action": "accept",
@@ -1194,6 +1246,7 @@
     "kjv-ebible": "saw the LORD",
     "kjv-thiago": "saw the Lord"
    },
+   "raw": "I saw the LORD standing upon the altar: and he said, Smite the lintel of the door, that the posts may shake: and cut them in the head, all of them; and I will slay the last of them with the sword: he that fleeth of them shall not flee away, and he that escapeth of them shall not be delivered.",
    "suggestion": {
     "class": "divine-name",
     "action": null,
@@ -1216,6 +1269,7 @@
     "kjv-ebible": "fleeth",
     "kjv-thiago": "flieth"
    },
+   "raw": "Thou hast multiplied thy merchants above the stars of heaven: the cankerworm spoileth, and fleeth away.",
    "suggestion": {
     "class": "oxford-cambridge",
     "action": "accept",
@@ -1238,6 +1292,7 @@
     "kjv-ebible": "LORD",
     "kjv-thiago": "Lord"
    },
+   "raw": "Then said he, These are the two anointed ones, that stand by the LORD of the whole earth.",
    "suggestion": {
     "class": "divine-name",
     "action": null,
@@ -1260,6 +1315,7 @@
     "kjv-ebible": "LORD GOD",
     "kjv-thiago": "Lord GOD"
    },
+   "raw": "And the LORD shall be seen over them, and his arrow shall go forth as the lightning: and the LORD God shall blow the trumpet, and shall go with whirlwinds of the south.",
    "suggestion": {
     "class": "divine-name",
     "action": null,
@@ -1282,6 +1338,7 @@
     "kjv-ebible": "LORD",
     "kjv-thiago": "Lord"
    },
+   "raw": "But cursed be the deceiver, which hath in his flock a male, and voweth, and sacrificeth unto the LORD a corrupt thing: for I am a great King, saith the LORD of hosts, and my name is dreadful among the heathen.",
    "suggestion": {
     "class": "divine-name",
     "action": null,
@@ -1304,6 +1361,7 @@
     "kjv-ebible": "Son",
     "kjv-thiago": "Son"
    },
+   "raw": "And when Jesus departed thence, two blind men followed him, crying, and saying, Thou son of David, have mercy on us.",
    "suggestion": {
     "class": "case",
     "action": "correct",
@@ -1326,6 +1384,7 @@
     "kjv-ebible": "Son",
     "kjv-thiago": "Son"
    },
+   "raw": "And, behold, a woman of Canaan came out of the same coasts, and cried unto him, saying, Have mercy on me, O Lord, thou son of David; my daughter is grievously vexed with a devil.",
    "suggestion": {
     "class": "case",
     "action": "correct",
@@ -1348,6 +1407,7 @@
     "kjv-ebible": "Son",
     "kjv-thiago": "Son"
    },
+   "raw": "And, behold, two blind men sitting by the way side, when they heard that Jesus passed by, cried out, saying, Have mercy on us, O Lord, thou son of David.",
    "suggestion": {
     "class": "case",
     "action": "correct",
@@ -1370,6 +1430,7 @@
     "kjv-ebible": "Son",
     "kjv-thiago": "Son"
    },
+   "raw": "And the multitude rebuked them, because they should hold their peace: but they cried the more, saying, Have mercy on us, O Lord, thou son of David.",
    "suggestion": {
     "class": "case",
     "action": "correct",
@@ -1392,6 +1453,7 @@
     "kjv-ebible": "Son",
     "kjv-thiago": "Son"
    },
+   "raw": "And the multitudes that went before, and that followed, cried, saying, Hosanna to the son of David: Blessed is he that cometh in the name of the Lord; Hosanna in the highest.",
    "suggestion": {
     "class": "case",
     "action": "correct",
@@ -1414,6 +1476,7 @@
     "kjv-ebible": "Son",
     "kjv-thiago": "Son"
    },
+   "raw": "And when the chief priests and scribes saw the wonderful things that he did, and the children crying in the temple, and saying, Hosanna to the son of David; they were sore displeased,",
    "suggestion": {
     "class": "case",
     "action": "correct",
@@ -1436,6 +1499,7 @@
     "kjv-ebible": "Son",
     "kjv-thiago": "Son"
    },
+   "raw": "Saying, What think ye of Christ? whose son is he? They say unto him, The son of David.",
    "suggestion": {
     "class": "case",
     "action": "correct",
@@ -1458,6 +1522,7 @@
     "kjv-ebible": "farther",
     "kjv-thiago": "further"
    },
+   "raw": "And he went a little farther, and fell on his face, and prayed, saying, O my Father, if it be possible, let this cup pass from me: nevertheless not as I will, but as thou wilt.",
    "suggestion": {
     "class": "oxford-cambridge",
     "action": "accept",
@@ -1480,6 +1545,7 @@
     "kjv-ebible": "farther",
     "kjv-thiago": "further"
    },
+   "raw": "And when he had gone a little farther thence, he saw James the son of Zebedee, and John his brother, who also were in the ship mending their nets.",
    "suggestion": {
     "class": "oxford-cambridge",
     "action": "accept",
@@ -1502,6 +1568,7 @@
     "kjv-ebible": "Son",
     "kjv-thiago": "Son"
    },
+   "raw": "And when he heard that it was Jesus of Nazareth, he began to cry out, and say, Jesus, thou son of David, have mercy on me.",
    "suggestion": {
     "class": "case",
     "action": "correct",
@@ -1524,6 +1591,7 @@
     "kjv-ebible": "Son",
     "kjv-thiago": "Son"
    },
+   "raw": "And many charged him that he should hold his peace: but he cried the more a great deal, Thou son of David, have mercy on me.",
    "suggestion": {
     "class": "case",
     "action": "correct",
@@ -1546,6 +1614,7 @@
     "kjv-ebible": "Son",
     "kjv-thiago": "Son"
    },
+   "raw": "And Jesus answered and said, while he taught in the temple, How say the scribes that Christ is the son of David?",
    "suggestion": {
     "class": "case",
     "action": "correct",
@@ -1568,6 +1637,7 @@
     "kjv-ebible": "Lord",
     "kjv-thiago": "LORD"
    },
+   "raw": "For David himself said by the Holy Ghost, The LORD said to my Lord, Sit thou on my right hand, till I make thine enemies thy footstool.",
    "suggestion": {
     "class": "divine-name",
     "action": null,
@@ -1590,6 +1660,7 @@
     "kjv-ebible": "Son",
     "kjv-thiago": "Son"
    },
+   "raw": "And he cried, saying, Jesus, thou son of David, have mercy on me.",
    "suggestion": {
     "class": "case",
     "action": "correct",
@@ -1612,6 +1683,7 @@
     "kjv-ebible": "Son",
     "kjv-thiago": "Son"
    },
+   "raw": "And they which went before rebuked him, that he should hold his peace: but he cried so much the more, Thou son of David, have mercy on me.",
    "suggestion": {
     "class": "case",
     "action": "correct",
@@ -1634,6 +1706,7 @@
     "kjv-ebible": "spirit",
     "kjv-thiago": "Spirit"
    },
+   "raw": "And the Spirit bade me go with them, nothing doubting. Moreover these six brethren accompanied me, and we entered into the man’s house:",
    "suggestion": {
     "class": null,
     "action": null,
@@ -1656,6 +1729,7 @@
     "kjv-ebible": "spirit",
     "kjv-thiago": "Spirit"
    },
+   "raw": "And there stood up one of them named Agabus, and signified by the Spirit that there should be great dearth throughout all the world: which came to pass in the days of Claudius Caesar.",
    "suggestion": {
     "class": null,
     "action": null,
@@ -1678,6 +1752,7 @@
     "kjv-ebible": "Sarah's",
     "kjv-thiago": "Sara's"
    },
+   "raw": "And being not weak in faith, he considered not his own body now dead, when he was about an hundred years old, neither yet the deadness of Sarah’s womb:",
    "suggestion": {
     "class": "oxford-cambridge",
     "action": "accept",
@@ -1700,6 +1775,7 @@
     "kjv-ebible": "Sarah",
     "kjv-thiago": "Sara"
    },
+   "raw": "For this is the word of promise, At this time will I come, and Sarah shall have a son.",
    "suggestion": {
     "class": "oxford-cambridge",
     "action": "accept",
@@ -1722,6 +1798,7 @@
     "kjv-ebible": "spirit",
     "kjv-thiago": "Spirit"
    },
+   "raw": "And there are three that bear witness in earth, the Spirit, and the water, and the blood: and these three agree in one.",
    "suggestion": {
     "class": null,
     "action": null,
@@ -1744,6 +1821,7 @@
     "kjv-ebible": "Nicolaitanes",
     "kjv-thiago": "Nicolaitans"
    },
+   "raw": "But this thou hast, that thou hatest the deeds of the Nicolaitanes, which I also hate.",
    "suggestion": {
     "class": "oxford-cambridge",
     "action": "accept",
@@ -1766,6 +1844,7 @@
     "kjv-ebible": "Nicolaitanes",
     "kjv-thiago": "Nicolaitans"
    },
+   "raw": "So hast thou also them that hold the doctrine of the Nicolaitanes, which thing I hate.",
    "suggestion": {
     "class": "oxford-cambridge",
     "action": "accept",
