@@ -11,9 +11,10 @@
  * translation. `proofTexts` is the same list flattened with KJV text filled
  * in, for screens that show the text directly. Run after scripts/ingest/kjv.js.
  *
- * Before converting, the reviewed corrections in provenance/decisions/wcf.json
- * are applied: places where the 1649 printing and an independent transcription
- * agree with each other against Creeds.json (npm run verify; res/SOURCES.md).
+ * Before converting, the corrections in provenance/decisions/wcf.json are
+ * applied: places where the 1649 printing and an independent transcription
+ * agree against Creeds.json. This source is interim: the Confession is moving
+ * to the PCA's published text (res/SOURCES.md).
  *
  * Usage:
  *   node scripts/ingest/wcf.js                 # download from GitHub

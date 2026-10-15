@@ -1,7 +1,7 @@
 /**
  * Facts about a build, written next to the site as build.json (and, for a
  * preview, changes.json) so the app can show which version of the app and of
- * the content it is, and how far the content has been verified.
+ * the content it is, and where each source comes from.
  *
  * Set by the deploy workflow:
  *   RS_CHANNEL    'live' or 'preview' (default 'dev')
@@ -31,22 +31,16 @@ export function contentFingerprint() {
   return crypto.createHash('sha256').update(lines.join('\n')).digest('hex').slice(0, 12);
 }
 
-/** Per source: where it comes from and where its verification stands. */
+/** Per source: who publishes it, where it was downloaded, and its license. */
 export function sourceStatus() {
   const registry = readJson('provenance/registry.json');
-  return Object.entries(registry.sources).map(([id, s]) => {
-    const reportFile = `provenance/reports/${id}.json`;
-    const r = fs.existsSync(path.join(ROOT, reportFile)) ? readJson(reportFile) : null;
-    return {
-      id,
-      title: s.title,
-      source: s.commit ? `${s.repo}/tree/${s.commit}` : s.url,
-      license: s.license,
-      witnesses: s.witnesses.length,
-      verified: Boolean(r),
-      ...(r ? { checked: r.checked, corrections: r.corrections, accepted: r.accepted, awaitingReview: r.pending.length + r.stale.length, awaitingSignOff: r.awaitingSignOff ?? 0 } : {}),
-    };
-  });
+  return Object.entries(registry.sources).map(([id, s]) => ({
+    id,
+    title: s.title,
+    organization: s.organization ?? null,
+    source: s.commit ? `${s.repo}/tree/${s.commit}` : s.url ?? s.repo,
+    license: s.license,
+  }));
 }
 
 export function buildInfo(env = process.env) {

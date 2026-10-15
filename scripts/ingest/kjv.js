@@ -6,8 +6,8 @@
  * compared (see res/SOURCES.md) it has the fewest readings of its own and keeps
  * full punctuation, but it has 49 wrong words and spellings and loses the
  * LORD/Lord distinction in about 110 verses. The corrections in
- * provenance/decisions/kjv.json fix those, each reviewed against independent
- * copies (npm run verify).
+ * provenance/decisions/kjv.json fix those. This source is interim: the KJV is
+ * moving to eBible.org (res/SOURCES.md).
  *
  * Usage:
  *   node scripts/ingest/kjv.js                    # download from GitHub

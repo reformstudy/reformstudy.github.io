@@ -18,8 +18,6 @@ import { CANON } from '../lib/canon.js';
 import { normalizeText, parseArgs, writeBibleFile } from '../lib/io.js';
 import { readZip } from '../lib/zip.js';
 import { checkLock, sha256 } from '../lib/lock.js';
-import { loadDecisions } from '../lib/decisions.js';
-import { applyVerseCorrections } from '../lib/corrections.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUTPUT = path.join(__dirname, '../../res/bibles/bsb/bsb.json');
@@ -149,9 +147,6 @@ export async function loadBsbSource(args = {}) {
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   const bible = await loadBsbSource(args);
-  const { corrections } = loadDecisions('bsb');
-  applyVerseCorrections(bible, corrections, 'BSB');
-  if (corrections.length) bible.version.corrections = { count: corrections.length, file: 'provenance/decisions/bsb.json' };
   writeBibleFile(OUTPUT, bible);
   const total = bible.books.reduce((n, b) => n + b.verses.length, 0);
   console.log(`Wrote ${OUTPUT} (${bible.books.length} books, ${total} verses)`);

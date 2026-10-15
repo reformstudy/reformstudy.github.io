@@ -1,11 +1,17 @@
 /**
- * Download Strong's Greek and Hebrew dictionaries and write
- * res/strongs/greek/greek.json and res/strongs/hebrew/hebrew.json.
+ * Download the Strong's-numbered Greek and Hebrew lexicons from STEPBible
+ * (Tyndale House, Cambridge) and write res/strongs/greek/greek.json and
+ * res/strongs/hebrew/hebrew.json.
  *
- * Source: github.com/openscriptures/strongs, pinned to a commit. James
- * Strong's 1890 dictionaries are public domain; the Open Scriptures JSON
- * edition is CC-BY-SA, so it must be credited and this data shared under the
- * same license.
+ * Source: github.com/STEPBible/STEPBible-Data, pinned to a commit: TBESG
+ * (Greek; definitions from Abbott-Smith's Manual Greek Lexicon) and TBESH
+ * (Hebrew; definitions from a brief BDB). CC BY 4.0: the app must credit
+ * "STEPBible.org, Tyndale House, Cambridge".
+ *
+ * STEPBible extends Strong's numbering (H0001G, H0001H…) to tell apart words
+ * Strong's grouped together, mostly names. Each Strong's number here gets
+ * STEPBible's main entry for it; numbers beyond Strong's own range
+ * (G5624, H8674) are left out.
  *
  * Usage:
  *   node scripts/ingest/strongs.js                   # download from GitHub
@@ -17,79 +23,117 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { fetchBuffer, parseArgs, writeJson } from '../lib/io.js';
 import { checkLock, sha256 } from '../lib/lock.js';
-import { loadDecisions } from '../lib/decisions.js';
-import { applyStrongsCorrections } from '../lib/corrections.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const RES = path.join(__dirname, '../../res/strongs');
-export const SOURCE_REPO = 'https://github.com/openscriptures/strongs';
-export const SOURCE_COMMIT = '0acd2f251c2d35ff8db2dece4e0593979d3ac223';
-const RAW_BASE = `https://raw.githubusercontent.com/openscriptures/strongs/${SOURCE_COMMIT}`;
+export const SOURCE_REPO = 'https://github.com/STEPBible/STEPBible-Data';
+export const SOURCE_COMMIT = 'bd09545c7a44b39ace20f16c0359915f2aa23a62';
+const RAW_BASE = `https://raw.githubusercontent.com/STEPBible/STEPBible-Data/${SOURCE_COMMIT}`;
 
 const LANGUAGES = [
-  { id: 'greek', language: 'Greek', prefix: 'G', file: 'greek/strongs-greek-dictionary.js', name: "Strong's Greek Dictionary" },
-  { id: 'hebrew', language: 'Hebrew', prefix: 'H', file: 'hebrew/strongs-hebrew-dictionary.js', name: "Strong's Hebrew Dictionary" },
+  {
+    id: 'greek', language: 'Greek', prefix: 'G', max: 5624, name: "Strong's Greek Lexicon (STEPBible TBESG)",
+    file: 'Lexicons/TBESG - Translators Brief lexicon of Extended Strongs for Greek - STEPBible.org CC BY.txt',
+  },
+  {
+    id: 'hebrew', language: 'Hebrew', prefix: 'H', max: 8674, name: "Strong's Hebrew Lexicon (STEPBible TBESH)",
+    file: 'Lexicons/TBESH - Translators Brief lexicon of Extended Strongs for Hebrew - STEPBible.org CC BY.txt',
+  },
 ];
 
-/** The source files are JavaScript: `var x = {...}; module.exports = x;`. */
-export function parseDictionaryJs(js) {
-  const start = js.indexOf('= {');
-  const end = js.lastIndexOf('}');
-  if (start < 0 || end < start) throw new Error('Unrecognised dictionary file');
-  return JSON.parse(js.slice(start + 2, end + 1));
+const POS = {
+  N: 'Noun', V: 'Verb', A: 'Adjective', ADV: 'Adverb', PREP: 'Preposition', CONJ: 'Conjunction', PRT: 'Particle',
+  PART: 'Particle', INJ: 'Interjection', INTJ: 'Interjection', NEG: 'Negative particle', COND: 'Conditional',
+  PERP: 'Personal pronoun', P: 'Personal pronoun', DEMP: 'Demonstrative pronoun', D: 'Demonstrative pronoun',
+  RELP: 'Relative pronoun', R: 'Relative pronoun', INTG: 'Interrogative', F: 'Reflexive pronoun', S: 'Possessive pronoun',
+  PREFIX: 'Prefix', SUFFIX: 'Suffix',
+};
+const GENDER = { M: 'masculine', F: 'feminine', N: 'neuter', 'M/F': 'masculine or feminine' };
+
+/** "H:N-M" -> "Noun, masculine"; "N:N-M-P" -> "Proper name, masculine"; "A:V" -> "Verb (Aramaic)". */
+export function partOfSpeech(code) {
+  const m = String(code ?? '').trim().match(/^(?:([A-Z]):)?([A-Za-z]+)(?:-([A-Z/]+))?/);
+  if (!m) return undefined;
+  const [, lang, pos, gender] = m;
+  let text = lang === 'N' ? 'Proper name' : POS[pos.toUpperCase()];
+  if (!text) return undefined;
+  if (gender && GENDER[gender]) text += `, ${GENDER[gender]}`;
+  if (lang === 'A') text += ' (Aramaic)';
+  return text;
 }
 
-const clean = s => (s == null ? '' : String(s).replace(/\s+/g, ' ').trim());
+/** STEPBible's definition HTML -> plain text with line breaks. */
+export function definitionText(html) {
+  return String(html ?? '')
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<ref='[^']*'>([^<]*)<\/ref>/g, '$1')
+    .replace(/<[^>]+>/g, '')
+    .replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"')
+    .replace(/__/g, '  ')
+    .split('\n').map(l => l.replace(/[ \t]+$/g, '').replace(/^ (?! )/, '')).filter((l, i, a) => l.trim() || (i && a[i - 1].trim()))
+    .join('\n').trim();
+}
 
-/** Convert one dictionary object (keyed "G1", "H1"…) into the app's concordance format. */
-export function convertDictionary(dict, lang) {
-  const entries = Object.entries(dict)
-    .filter(([key]) => key.startsWith(lang.prefix))
-    .map(([key, e]) => {
-      const entry = {
-        number: key,
-        lemma: clean(e.lemma),
-        transliteration: clean(e.translit ?? e.xlit),
-        pronunciation: clean(e.pron),
-        definition: clean(e.strongs_def),
-        kjvDefinition: clean(e.kjv_def),
-        derivation: clean(e.derivation),
-      };
-      for (const k of Object.keys(entry)) if (entry[k] === '') delete entry[k];
-      return entry;
-    })
-    .sort((a, b) => Number(a.number.slice(1)) - Number(b.number.slice(1)));
+/** Parse the TSV: one row per (extended) entry. */
+export function parseLexicon(tsv) {
+  const rows = [];
+  for (const line of tsv.replace(/^﻿/, '').split('\n')) {
+    const cols = line.replace(/\r$/, '').split('\t');
+    if (cols.length < 8 || !/^[GH]\d{4}/.test(cols[0])) continue;
+    rows.push({ estrong: cols[0], dstrong: cols[1], ustrong: cols[2], lemma: cols[3], translit: cols[4], morph: cols[5], gloss: cols[6], meaning: cols[7] });
+  }
+  return rows;
+}
+
+/** One entry per Strong's number: STEPBible's main row (e.g. "H0001G =") over its sub-entries for names ("a Part of"). */
+export function convertLexicon(rows, lang) {
+  const byNumber = new Map();
+  for (const r of rows) {
+    const n = Number(r.estrong.slice(1, 5));
+    if (r.estrong[0] !== lang.prefix || n < 1 || n > lang.max) continue;
+    const main = /^\S+ =\s*$/.test(r.dstrong);
+    const current = byNumber.get(n);
+    if (!current || (main && !current.main)) byNumber.set(n, { main, r });
+  }
+  const entries = [...byNumber].sort(([a], [b]) => a - b).map(([n, { r }]) => {
+    const entry = {
+      number: `${lang.prefix}${n}`,
+      lemma: r.lemma.trim(),
+      transliteration: r.translit.trim(),
+      partOfSpeech: partOfSpeech(r.morph),
+      gloss: r.gloss.trim(),
+      definition: definitionText(r.meaning),
+    };
+    for (const k of Object.keys(entry)) if (!entry[k]) delete entry[k];
+    return entry;
+  });
   return {
     concordance: {
       id: lang.id,
       name: lang.name,
       language: lang.language,
       totalEntries: entries.length,
-      version: '1890',
-      source: { name: 'Open Scriptures', url: `${SOURCE_REPO}/tree/${SOURCE_COMMIT}` },
-      license: 'CC-BY-SA (Open Scriptures JSON edition); the 1890 text is public domain',
+      source: { name: 'STEPBible.org, Tyndale House, Cambridge', url: `${SOURCE_REPO}/tree/${SOURCE_COMMIT}` },
+      license: 'CC BY 4.0: credit "STEPBible.org, Tyndale House, Cambridge"',
     },
     entries,
   };
 }
 
-/** Download (or read) one pinned dictionary, check its checksum, and convert it. `id` is 'greek' or 'hebrew'. */
+/** Download (or read) one pinned lexicon, check its checksum, and convert it. `id` is 'greek' or 'hebrew'. */
 export async function loadStrongsSource(id, args = {}) {
   const lang = LANGUAGES.find(l => l.id === id);
   const raw = args['source-dir']
     ? fs.readFileSync(path.join(args['source-dir'], lang.file))
-    : await fetchBuffer(`${RAW_BASE}/${lang.file}`);
+    : await fetchBuffer(`${RAW_BASE}/${lang.file.split('/').map(encodeURIComponent).join('/')}`);
   checkLock(`strongs-${lang.id}`, { sha256: sha256(raw), files: 1 });
-  return convertDictionary(parseDictionaryJs(raw.toString('utf8')), lang);
+  return convertLexicon(parseLexicon(raw.toString('utf8')), lang);
 }
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   for (const lang of LANGUAGES) {
     const out = await loadStrongsSource(lang.id, args);
-    const { corrections } = loadDecisions(`strongs-${lang.id}`);
-    applyStrongsCorrections(out, corrections);
-    if (corrections.length) out.concordance.corrections = { count: corrections.length, file: `provenance/decisions/strongs-${lang.id}.json` };
     const file = path.join(RES, lang.id, `${lang.id}.json`);
     writeJson(file, out);
     console.log(`Wrote ${file} (${out.entries.length} entries)`);

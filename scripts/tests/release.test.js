@@ -29,15 +29,14 @@ test('Bible files compare verse by verse, confessions by section and proofs', ()
   assert.equal(unitsOf('res/commentaries/henry/ROM/8.json', '{}'), null);
 });
 
-test('build info: channel, content fingerprint and verification status', () => {
+test('build info: channel, content fingerprint and where each source comes from', () => {
   const info = buildInfo({ RS_CHANNEL: 'preview' });
   assert.equal(info.channel, 'preview');
   assert.match(info.content.fingerprint, /^[0-9a-f]{12}$/);
   assert.equal(info.content.fingerprint, contentFingerprint(), 'the fingerprint depends only on the content');
-  const kjv = sourceStatus().find(s => s.id === 'kjv');
-  assert.equal(kjv.verified, true);
-  assert.equal(typeof kjv.awaitingReview, 'number');
-  assert.equal(sourceStatus().find(s => s.id === 'henry').verified, false);
+  const strongs = sourceStatus().find(s => s.id === 'strongs-greek');
+  assert.equal(strongs.organization, 'STEPBible.org, Tyndale House, Cambridge');
+  assert.match(strongs.source, /github\.com\/STEPBible\/STEPBible-Data\/tree\/[0-9a-f]{40}/);
   assert.equal(buildInfo({}).channel, 'dev');
   assert.equal(buildInfo({}).live, undefined);
 });

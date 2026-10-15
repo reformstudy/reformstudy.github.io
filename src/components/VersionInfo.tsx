@@ -7,15 +7,9 @@ import { siteUrl } from '../utils/paths';
 interface SourceStatus {
   id: string;
   title: string;
+  organization: string | null;
   source: string;
   license: string;
-  witnesses: number;
-  verified: boolean;
-  checked?: string;
-  corrections?: number;
-  accepted?: number;
-  awaitingReview?: number;
-  awaitingSignOff?: number;
 }
 
 export interface BuildInfo {
@@ -61,14 +55,6 @@ export function versionLabel(info: BuildInfo): string {
 }
 
 const plural = (n: number, word: string) => `${n.toLocaleString()} ${word}${n === 1 ? '' : 's'}`;
-
-function verificationText(s: SourceStatus): string {
-  if (!s.verified) return s.witnesses ? 'Not verified yet' : 'Not verified (no witness available)';
-  const parts = [];
-  if (s.awaitingReview) parts.push(`${s.awaitingReview.toLocaleString()} awaiting review`);
-  if (s.awaitingSignOff) parts.push(`${s.awaitingSignOff.toLocaleString()} decisions awaiting sign-off`);
-  return parts.length ? parts.join(', ') : 'Verified, all differences reviewed';
-}
 
 function changeSummary(r: ResourceChanges): string {
   const parts = [];
@@ -116,7 +102,7 @@ function ChangesList({ changes }: { changes: ContentChanges }) {
   );
 }
 
-/** "About this version": app, content and verification status, and (on a preview) the changes from the live site. */
+/** "About this version": app and content versions, where each source comes from, and (on a preview) the changes from the live site. */
 export function VersionPanel({ info, onClose }: { info: BuildInfo; onClose: () => void }) {
   const [changes, setChanges] = useState<ContentChanges | null | undefined>(undefined);
   const closeRef = useRef<HTMLButtonElement>(null);
@@ -165,20 +151,20 @@ export function VersionPanel({ info, onClose }: { info: BuildInfo; onClose: () =
           <h3>Content <span className="version-muted">({info.content.fingerprint})</span></h3>
           <table className="version-sources">
             <thead>
-              <tr><th scope="col">Resource</th><th scope="col">Verification</th><th scope="col">Corrections</th></tr>
+              <tr><th scope="col">Resource</th><th scope="col">From</th><th scope="col">License</th></tr>
             </thead>
             <tbody>
               {info.content.sources.map(s => (
                 <tr key={s.id}>
-                  <th scope="row"><a href={s.source} target="_blank" rel="noreferrer">{s.title}</a></th>
-                  <td>{verificationText(s)}</td>
-                  <td>{s.corrections ?? '—'}</td>
+                  <th scope="row">{s.title}</th>
+                  <td><a href={s.source} target="_blank" rel="noreferrer">{s.organization ?? 'Source'}</a></td>
+                  <td>{s.license}</td>
                 </tr>
               ))}
             </tbody>
           </table>
           <p className="version-muted">
-            Sources, witnesses and every reviewed decision: <a href={`${REPO}/tree/${info.app.commit ?? 'main'}/provenance`} target="_blank" rel="noreferrer">provenance/</a>
+            Pins and checksums for every source: <a href={`${REPO}/blob/${info.app.commit ?? 'main'}/provenance/registry.json`} target="_blank" rel="noreferrer">provenance/registry.json</a>
           </p>
         </section>
 

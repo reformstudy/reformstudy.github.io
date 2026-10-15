@@ -6,7 +6,7 @@ import { compactRef, displayRef, parseOsisRef, versesInRef } from '../lib/refs.j
 import { cleanInline, convertBsb, parseUsfmBook } from '../ingest/bsb.js';
 import { convertHenryChapter, convertHenryIntroduction } from '../ingest/henry.js';
 import { applyKjvCorrections, convertKjv } from '../ingest/kjv.js';
-import { convertDictionary, parseDictionaryJs } from '../ingest/strongs.js';
+import { convertLexicon, definitionText, parseLexicon, partOfSpeech } from '../ingest/strongs.js';
 import { applyWcfCorrections, convertWcf } from '../ingest/wcf.js';
 import { validateBible, validateConfession, validateStrongs } from '../validate-resources.js';
 
@@ -144,15 +144,22 @@ test('convertHenryChapter rejects ranges outside the chapter', () => {
   assert.equal(convertHenryIntroduction({ units: [] }, 'PHM'), null);
 });
 
-test("Strong's dictionaries parse from the source JavaScript and sort by number", () => {
-  const js = 'var strongsGreekDictionary = {"G10":{"lemma":"x","translit":"ten","strongs_def":" ten ","kjv_def":"10"},'
-    + '"G2":{"lemma":"y","translit":"two","strongs_def":"two","kjv_def":"","derivation":"from G1;"}}; module.exports = strongsGreekDictionary;';
-  const out = convertDictionary(parseDictionaryJs(js), { id: 'greek', language: 'Greek', prefix: 'G', name: 'Greek' });
+test("Strong's lexicons: STEPBible's main entry per Strong's number, within Strong's range", () => {
+  const tsv = [
+    '\uFEFFTBESH - Translators Brief lexicon of Extended Strongs for Hebrew',
+    'H0001\tH0001H = a Part of\tH2438H, \tאָב\tav\tN:N-M-P\t(Huram)-abi\tA man …',
+    'H0001\tH0001G =\tH0001G\tאָב\tav\tH:N-M\tfather\t1) father of an individual<br>2) of God<br>',
+    'H0430\tH0430G = a Name of\tH3068G\tאֱלֹהִים\te.lo.him\tH:N-M\tGod\tThis name means "God"',
+    'H9001\tH9001 =\tH9001\tו\tve\tH:Conj\tand\tconjunction',
+    'G0001\tG0001 =\tG0001\tΑ\tA\tG:N-LI\tAlpha\t<b>Α</b>',
+  ].join('\n');
+  const out = convertLexicon(parseLexicon(tsv), { id: 'hebrew', language: 'Hebrew', prefix: 'H', max: 8674, name: 'Hebrew' });
   assert.equal(out.concordance.totalEntries, 2);
-  assert.deepEqual(out.entries, [
-    { number: 'G2', lemma: 'y', transliteration: 'two', definition: 'two', derivation: 'from G1;' },
-    { number: 'G10', lemma: 'x', transliteration: 'ten', definition: 'ten', kjvDefinition: '10' },
-  ]);
+  assert.deepEqual(out.entries[0], { number: 'H1', lemma: 'אָב', transliteration: 'av', partOfSpeech: 'Noun, masculine', gloss: 'father', definition: '1) father of an individual\n2) of God' });
+  assert.equal(out.entries[1].number, 'H430', 'a number with only sub-entries still gets one');
+  assert.equal(partOfSpeech('A:V'), 'Verb (Aramaic)');
+  assert.equal(partOfSpeech('N:N-F-L'), 'Proper name, feminine');
+  assert.equal(definitionText("<b>love</b>, <ref='Jhn.13.35'>Jhn.13:35;</ref> <BR />__1. Of men"), 'love, Jhn.13:35;\n  1. Of men');
 });
 
 test('convertKjv maps source books onto canon IDs in order', async () => {
@@ -269,5 +276,4 @@ test('digestFiles ignores order and records missing files', () => {
 test('checkLock rejects a changed or unknown source', () => {
   assert.throws(() => checkLock('wcf', { sha256: '0'.repeat(64) }, { update: false }), /has changed since it was verified/);
   assert.throws(() => checkLock('no-such-source', { sha256: '0'.repeat(64) }, { update: false }), /No sources\.no-such-source/);
-  assert.throws(() => checkLock('kjv-pce', { sha256: '0'.repeat(64) }, { kind: 'witnesses', update: false }), /Witness "kjv-pce" has changed/);
 });

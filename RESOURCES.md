@@ -13,7 +13,7 @@ Bible and commentary text is downloaded and converted by scripts, never typed in
 
 ### Sources
 
-Every source is pinned, so rerunning the pipeline gives the same files until the pin is changed. `provenance/registry.json` records each source's pin, SHA-256, license and lineage, and ingest stops if a download doesn't match. `npm run verify` compares each source with independent copies (witnesses, also in the registry) and reports every difference that isn't settled by a majority; `npm run review` records a person's decision about each one in `provenance/decisions/`. Corrections there are applied at ingest. See [res/SOURCES.md](res/SOURCES.md) for the method and findings.
+Every source comes from the organization that publishes it and is pinned, so rerunning the pipeline gives the same files until the pin is changed. `provenance/registry.json` records each source's organization, download location, license and SHA-256, and ingest stops if a download doesn't match. See [res/SOURCES.md](res/SOURCES.md).
 
 | Resource | Script | Source (pinned) | License |
 |----------|--------|-----------------|---------|
@@ -21,7 +21,7 @@ Every source is pinned, so rerunning the pipeline gives the same files until the
 | BSB | `bsb.js` | [BSB-publishing/bsb2usfm](https://github.com/BSB-publishing/bsb2usfm) release `BSB_usfm.zip` | Public domain (CC0) |
 | WCF (1647) | `wcf.js` | [NonlinearFruit/Creeds.json](https://github.com/NonlinearFruit/Creeds.json) at a commit | Public domain text; repo Unlicense |
 | Matthew Henry | `henry.js` | [samueldotj/bible-commentaries](https://github.com/samueldotj/bible-commentaries) `en/henry` at a commit, from CrossWire `MHC` | Public domain |
-| Strong's | `strongs.js` | [openscriptures/strongs](https://github.com/openscriptures/strongs) at a commit | CC-BY-SA, credit required |
+| Strong's | `strongs.js` | STEPBible lexicons (Tyndale House, Cambridge), [STEPBible/STEPBible-Data](https://github.com/STEPBible/STEPBible-Data) at a commit | CC BY 4.0, credit required |
 
 ## Architecture
 

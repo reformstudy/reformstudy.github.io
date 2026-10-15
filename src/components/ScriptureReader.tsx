@@ -596,6 +596,7 @@ export default function ScriptureReader() {
       transliteration: entry.transliteration,
       pronunciation: entry.pronunciation,
       partOfSpeech: entry.partOfSpeech,
+      gloss: entry.gloss,
       definition: entry.definition,
       kjvDefinition: entry.kjvDefinition,
       usageCount: entry.usageCount,
@@ -955,6 +956,7 @@ interface StrongsMatch {
   transliteration?: string;
   pronunciation?: string;
   partOfSpeech?: string;
+  gloss?: string;
   definition?: string;
   kjvDefinition?: string;
   usageCount?: number;
@@ -1067,7 +1069,12 @@ function StrongsEntryDisplay({ entry, prefix }: { entry: StrongsMatch; prefix: s
           {entry.partOfSpeech}
         </div>
       )}
-      <div style={{ fontSize: '0.9rem', color: 'var(--text-primary)', marginBottom: 6, lineHeight: 1.5 }}>
+      {entry.gloss && (
+        <div style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 4 }}>
+          {entry.gloss}
+        </div>
+      )}
+      <div style={{ fontSize: '0.9rem', color: 'var(--text-primary)', marginBottom: 6, lineHeight: 1.5, whiteSpace: 'pre-line', maxHeight: 320, overflowY: 'auto' }}>
         {entry.definition}
       </div>
       {entry.kjvDefinition && (

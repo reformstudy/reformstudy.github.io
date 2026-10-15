@@ -114,7 +114,8 @@ export interface StrongsEntry {
   transliteration?: string;
   pronunciation?: string;
   partOfSpeech?: string;
-  definition?: string;
+  gloss?: string;              // a one-line meaning (STEPBible)
+  definition?: string;         // may contain line breaks
   kjvDefinition?: string;      // how the KJV renders it
   derivation?: string;
   usageCount?: number;
