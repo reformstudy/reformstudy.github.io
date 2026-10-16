@@ -9,7 +9,7 @@ import { parseUsxBook } from '../lib/usx.js';
 import { convertVolume, romanToNumber } from '../ingest/henry.js';
 import { convertKjv } from '../ingest/kjv.js';
 import { convertLexicon, definitionText, parseLexicon, partOfSpeech } from '../ingest/strongs.js';
-import { applyWcfCorrections, convertWcf } from '../ingest/wcf.js';
+import { convertWcf } from '../ingest/wcf.js';
 import { validateBible, validateConfession, validateStrongs } from '../validate-resources.js';
 
 test('parseUsfmBook moves Psalm titles out of verse 1 and strips markup', () => {
@@ -274,23 +274,6 @@ test("validateStrongs requires ordered, prefixed numbers", () => {
   assert.deepEqual(validateStrongs(data(['G1', 'G2', 'G10']), 'greek').errors, []);
   assert.ok(validateStrongs(data(['G2', 'G1']), 'greek').errors.some(e => e.includes('out of order')));
   assert.ok(validateStrongs(data(['H1']), 'greek').errors.some(e => e.includes('should look like G123')));
-});
-
-test('applyWcfCorrections fixes wording in both texts and swaps proof references', () => {
-  const source = { Data: [{ Chapter: '8', Title: 'T', Sections: [{
-    Section: '1', Content: 'beside it, in matters', ContentWithProofs: 'beside it, in matters[1]',
-    Proofs: [{ Id: 1, References: ['Isa.42.1', '2Tim.2.5', 'Heb.1.2'] }],
-  }] }] };
-  const out = applyWcfCorrections(source, {
-    text: [{ section: '8.1', from: 'beside it, in matters', to: 'beside it, if matters' }],
-    proofs: [{ section: '8.1', footnote: 1, replace: ['2Tim.2.5'], with: ['1Tim.2.5'] }],
-  });
-  const s = out.Data[0].Sections[0];
-  assert.equal(s.Content, 'beside it, if matters');
-  assert.equal(s.ContentWithProofs, 'beside it, if matters[1]');
-  assert.deepEqual(s.Proofs[0].References, ['Isa.42.1', '1Tim.2.5', 'Heb.1.2']);
-  assert.equal(source.Data[0].Sections[0].Content, 'beside it, in matters', 'source is not modified');
-  assert.throws(() => applyWcfCorrections(source, { proofs: [{ section: '8.1', footnote: 1, replace: ['Rom.1.1'], with: [] }] }), /expected Rom.1.1/);
 });
 
 test('digestFiles ignores order and records missing files', () => {

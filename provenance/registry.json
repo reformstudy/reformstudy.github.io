@@ -48,7 +48,7 @@
       "files": "creeds/westminster_confession_of_faith.json",
       "license": "Text public domain; repository Unlicense",
       "credit": {
-        "text": "Westminster Confession of Faith (1647) from the Creeds.json project, with corrections recorded in provenance/decisions/wcf.json.",
+        "text": "Westminster Confession of Faith (1647) from the Creeds.json project, used as published.",
         "links": [
           {
             "label": "Creeds.json",

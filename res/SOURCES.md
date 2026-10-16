@@ -50,7 +50,7 @@ Ingest stops if a download doesn't match the recorded checksum. After deliberate
 
 ## Westminster Confession (interim)
 
-The WCF still comes from NonlinearFruit/Creeds.json, with 32 corrections in [`provenance/decisions/wcf.json`](../provenance/decisions/wcf.json). The corrections were found by comparing it with independent copies. Publisher editions that were checked (October 2026):
+The WCF comes from NonlinearFruit/Creeds.json, used as published, until a better source is found. Its wording mostly follows Schaff's 1877 edition. In about 15 places that differs from the Assembly's 1649 printing (for example, 9.2 "that which is good" where the 1649 printing has "was good"), and a few proof references differ (8.1 cites 2 Timothy 2:5 for 1 Timothy 2:5). Publisher editions that were checked (October 2026):
 
 - **PCA** ([pcaac.org/bco/westminster-confession](https://www.pcaac.org/bco/westminster-confession/)): a PDF with proof texts, "© copyright 2005, 2007 by The Orthodox Presbyterian Church", republished by the PCA's Christian Education & Publications. "All rights reserved… without the prior permission of the publisher." Not usable without permission.
 - **OPC** ([opc.org/confessions.html](https://opc.org/confessions.html)):
@@ -61,4 +61,4 @@ The WCF still comes from NonlinearFruit/Creeds.json, with 32 corrections in [`pr
   - Schaff's *Creeds of Christendom* vol. 3 (public domain) has the 1647 text with proofs. CCEL's digital copy has scanning errors, though: 2.2 "foundation" for *fountain*, 19.6 "covenant of words" for *works*, 22.7 "superstitions" for *superstitious*, and others. Its reference tags also misread Roman numerals (Ps. cxlv. 3 is tagged Psalm 45:3).
   - `westminster3` is the PCUSA's modern text, with renumbered chapters and no proofs.
 
-The corrections are removed when the WCF moves to a publisher's text that we have permission to use.
+The WCF moves to a publisher's text once one is found that we have permission to use.
