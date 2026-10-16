@@ -4,4 +4,4 @@
 
 Each entry is keyed by its Strong's number and has the Greek word, a transliteration, the part of speech, a one-line gloss, and a definition from Abbott-Smith's *Manual Greek Lexicon of the New Testament*.
 
-**License:** CC BY 4.0. Credit "STEPBible.org, Tyndale House, Cambridge" wherever the data is shown.
+**License:** CC BY 4.0. Credit "STEP Bible", linked to www.STEPBible.org; ReformStudy shows this in the "About this version" panel.

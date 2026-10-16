@@ -4,12 +4,18 @@ import { siteUrl } from '../utils/paths';
 
 // ---- build.json / changes.json (written by scripts/release/build-info.js) ----
 
+interface SourceCredit {
+  text: string;
+  links: { label: string; url: string }[];
+}
+
 interface SourceStatus {
   id: string;
   title: string;
   organization: string | null;
   source: string;
   license: string;
+  credit?: SourceCredit | null;
 }
 
 export interface BuildInfo {
@@ -102,7 +108,45 @@ function ChangesList({ changes }: { changes: ContentChanges }) {
   );
 }
 
-/** "About this version": app and content versions, where each source comes from, and (on a preview) the changes from the live site. */
+/** One entry per credit; sources that share a credit (the Greek and Hebrew lexicons) are listed together. */
+function creditEntries(sources: SourceStatus[]): { titles: string[]; credit: SourceCredit }[] {
+  const entries: { titles: string[]; credit: SourceCredit }[] = [];
+  for (const s of sources) {
+    if (!s.credit) continue;
+    const same = entries.find(e => e.credit.text === s.credit!.text);
+    if (same) same.titles.push(s.title);
+    else entries.push({ titles: [s.title], credit: s.credit });
+  }
+  return entries;
+}
+
+function Credits({ sources }: { sources: SourceStatus[] }) {
+  const entries = creditEntries(sources);
+  if (!entries.length) return null;
+  return (
+    <section>
+      <h3>Credits</h3>
+      <ul className="version-credits">
+        {entries.map(e => (
+          <li key={e.titles.join('|')}>
+            <div className="version-credit-title">{e.titles.join(' · ')}</div>
+            <p>
+              {e.credit.text}{' '}
+              {e.credit.links.map((l, i) => (
+                <span key={l.url}>
+                  {i > 0 && ' · '}
+                  <a href={l.url} target="_blank" rel="noreferrer">{l.label}</a>
+                </span>
+              ))}
+            </p>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+/** "About this version": app and content versions, where each source comes from, credits, and (on a preview) the changes from the live site. */
 export function VersionPanel({ info, onClose }: { info: BuildInfo; onClose: () => void }) {
   const [changes, setChanges] = useState<ContentChanges | null | undefined>(undefined);
   const closeRef = useRef<HTMLButtonElement>(null);
@@ -167,6 +211,8 @@ export function VersionPanel({ info, onClose }: { info: BuildInfo; onClose: () =
             Pins and checksums for every source: <a href={`${REPO}/blob/${info.app.commit ?? 'main'}/provenance/registry.json`} target="_blank" rel="noreferrer">provenance/registry.json</a>
           </p>
         </section>
+
+        <Credits sources={info.content.sources} />
 
         {info.live && (
           <section>

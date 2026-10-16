@@ -40,3 +40,14 @@ test('build info: channel, content fingerprint and where each source comes from'
   assert.equal(buildInfo({}).channel, 'dev');
   assert.equal(buildInfo({}).live, undefined);
 });
+
+test('every source has a credit to show, and STEPBible is credited as its license asks', () => {
+  for (const s of sourceStatus()) {
+    assert.ok(s.credit?.text, `${s.id} has no credit text`);
+    assert.ok(s.credit.links.length && s.credit.links.every(l => l.label && /^https:\/\//.test(l.url)), `${s.id} credit links`);
+  }
+  const strongs = sourceStatus().find(s => s.id === 'strongs-hebrew');
+  assert.match(strongs.credit.text, /STEP Bible/);
+  assert.ok(strongs.credit.links.some(l => /stepbible\.org/i.test(l.url)));
+  assert.ok(strongs.credit.links.some(l => l.url === 'https://creativecommons.org/licenses/by/4.0/'));
+});

@@ -46,7 +46,7 @@ Ingest stops if a download doesn't match the recorded checksum. After deliberate
   - The Greek definitions come from Abbott-Smith's *Manual Greek Lexicon of the New Testament*; the Hebrew from a brief Brown-Driver-Briggs.
   - Each entry has the word, a transliteration, a part of speech, a one-line gloss and a definition.
 - **Numbering:** STEPBible extends Strong's numbering to tell apart words Strong's grouped together, mostly names. Each Strong's number gets STEPBible's main entry, and only Strong's own range is included: G1–G5624 (5,523 entries) and H1–H8674 (8,674 entries).
-- **License:** CC BY 4.0. Credit "STEPBible.org, Tyndale House, Cambridge" wherever the data is shown.
+- **License:** CC BY 4.0. STEPBible asks for credit to "STEP Bible", linked to www.STEPBible.org, and for changes to the data to be recorded. The "About this version" panel carries the credit, and the changes are the selection described under Numbering.
 
 ## Westminster Confession (interim)
 

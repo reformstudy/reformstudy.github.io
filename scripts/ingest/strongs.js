@@ -5,8 +5,8 @@
  *
  * Source: github.com/STEPBible/STEPBible-Data, pinned to a commit: TBESG
  * (Greek; definitions from Abbott-Smith's Manual Greek Lexicon) and TBESH
- * (Hebrew; definitions from a brief BDB). CC BY 4.0: the app must credit
- * "STEPBible.org, Tyndale House, Cambridge".
+ * (Hebrew; definitions from a brief BDB). CC BY 4.0: the app credits
+ * "STEP Bible", linked to www.STEPBible.org (provenance/registry.json).
  *
  * STEPBible extends Strong's numbering (H0001G, H0001H…) to tell apart words
  * Strong's grouped together, mostly names. Each Strong's number here gets
@@ -114,7 +114,7 @@ export function convertLexicon(rows, lang) {
       language: lang.language,
       totalEntries: entries.length,
       source: { name: 'STEPBible.org, Tyndale House, Cambridge', url: `${SOURCE_REPO}/tree/${SOURCE_COMMIT}` },
-      license: 'CC BY 4.0: credit "STEPBible.org, Tyndale House, Cambridge"',
+      license: 'CC BY 4.0: credit "STEP Bible", linked to www.STEPBible.org',
     },
     entries,
   };

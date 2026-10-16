@@ -31,7 +31,7 @@ export function contentFingerprint() {
   return crypto.createHash('sha256').update(lines.join('\n')).digest('hex').slice(0, 12);
 }
 
-/** Per source: who publishes it, where it was downloaded, and its license. */
+/** Per source: who publishes it, where it was downloaded, its license, and the credit to show. */
 export function sourceStatus() {
   const registry = readJson('provenance/registry.json');
   return Object.entries(registry.sources).map(([id, s]) => ({
@@ -40,6 +40,7 @@ export function sourceStatus() {
     organization: s.organization ?? null,
     source: s.commit ? `${s.repo}/tree/${s.commit}` : s.page ?? s.url ?? s.repo,
     license: s.license,
+    credit: s.credit ?? null,
   }));
 }
 
