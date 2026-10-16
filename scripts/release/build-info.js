@@ -38,7 +38,7 @@ export function sourceStatus() {
     id,
     title: s.title,
     organization: s.organization ?? null,
-    source: s.commit ? `${s.repo}/tree/${s.commit}` : s.url ?? s.repo,
+    source: s.commit ? `${s.repo}/tree/${s.commit}` : s.page ?? s.url ?? s.repo,
     license: s.license,
   }));
 }

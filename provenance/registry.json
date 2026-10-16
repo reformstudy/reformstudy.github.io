@@ -3,20 +3,24 @@
   "sources": {
     "kjv": {
       "title": "King James Version",
-      "repo": "https://github.com/aruljohn/Bible-kjv",
-      "commit": "a9aa4e55afbb3e095f57e4b14cd1f22c5ee8d7c9",
-      "files": "Books.json and one {Book}.json per book",
-      "license": "Text public domain; repository MIT",
-      "sha256": "80604178dbcbc3aa92a1f85fd3303f575924406d2e8d2845b0441ce8ce710153",
-      "fileCount": 67
+      "organization": "eBible.org (with the CrossWire Bible Society)",
+      "page": "https://ebible.org/find/details.php?id=eng-kjv",
+      "url": "https://ebible.org/Scriptures/eng-kjv_usfm.zip",
+      "published": "2026-09-26",
+      "publishedNote": "eBible.org's \"Last updated\" date for the release that was checked; the file is replaced in place, so a new release changes the checksum.",
+      "license": "Public domain (outside the UK, where the Crown's letters patent apply)",
+      "sha256": "05b021ab465bd283e7df02409c78436487d582276b3a0b60d6fcf5d967a0af14",
+      "fileCount": 1
     },
     "bsb": {
       "title": "Berean Standard Bible",
-      "repo": "https://github.com/BSB-publishing/bsb2usfm",
-      "release": "v5.16",
-      "url": "https://github.com/BSB-publishing/bsb2usfm/releases/download/v5.16/BSB_usfm.zip",
-      "license": "Public domain (dedicated 2023)",
-      "sha256": "771eb584936e854b68c51a890a7de341697cda42d8515f9f279fbb3e83479a77",
+      "organization": "Berean Bible (publisher; bereanbible.com, berean.bible)",
+      "page": "https://berean.bible/downloads.htm",
+      "url": "https://bereanbible.com/bsb_usfm.zip",
+      "published": "2026-10-02",
+      "publishedNote": "The download's Last-Modified date for the file that was checked; the publisher replaces it in place, so a new release changes the checksum.",
+      "license": "Public domain (dedicated April 30, 2023; berean.bible/terms.htm). Attribution appreciated, not required.",
+      "sha256": "f0c56438eb89c98e8f62c5c00461e25cc35b098ad5b179bc350cede759ee5f87",
       "fileCount": 1
     },
     "wcf": {
@@ -30,12 +34,15 @@
     },
     "henry": {
       "title": "Matthew Henry's Commentary on the Whole Bible",
-      "repo": "https://github.com/samueldotj/bible-commentaries",
-      "commit": "23f2279a8a56f212aca0de7ef3fbe47cf7334a45",
-      "files": "en/henry/{BOOK}/{chapter}.json and {BOOK}/intro.json",
-      "license": "Text public domain; the repository has no LICENSE file",
-      "sha256": "63da60241cbeeef85b8bab14e2cc5c98d4ce60ad6b4dfdc23ae9161de70d47b6",
-      "fileCount": 1255
+      "organization": "Christian Classics Ethereal Library (CCEL), Calvin University",
+      "page": "https://ccel.org/ccel/henry",
+      "url": "https://ccel.org/ccel/h/henry/",
+      "files": "mhc1.xml, mhc2.xml, mhc3.xml, mhc4.xml, mhc5.xml, mhc6.xml",
+      "published": "2024-06-06",
+      "publishedNote": "Last-Modified date of the six volumes that were checked; CCEL replaces files in place.",
+      "license": "Public domain (\"May be copied and distributed freely\", in each volume). CCEL's site policy asks permission for republishing or commercial use.",
+      "sha256": "42ce89687c515ec36dfbf059fbbc7e87241b8862225af3b309652c7fd49a7fb8",
+      "fileCount": 6
     },
     "strongs-greek": {
       "title": "Strong's Greek Lexicon (STEPBible TBESG)",
@@ -58,18 +65,5 @@
       "fileCount": 1
     }
   },
-  "attestations": [
-    {
-      "subject": "bsb",
-      "claim": "The BSB-publishing GitHub organization is run by the BSB's publisher.",
-      "status": "unconfirmed",
-      "note": "Needs a link from the publisher's own site (berean.bible / bereanbible.com), which the build environment could not reach."
-    },
-    {
-      "subject": "henry",
-      "claim": "The text matches CrossWire's MHC module.",
-      "status": "unconfirmed",
-      "note": "Spot checks and word count fit; crosswire.org could not be reached for a full comparison."
-    }
-  ]
+  "attestations": []
 }
