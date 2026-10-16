@@ -16,11 +16,11 @@
       "title": "Berean Standard Bible",
       "organization": "Berean Bible (publisher; bereanbible.com, berean.bible)",
       "page": "https://berean.bible/downloads.htm",
-      "url": "https://bereanbible.com/bsb_usfm.zip",
+      "url": "https://bereanbible.com/bsb_usx.zip",
       "published": "2026-10-02",
       "publishedNote": "The download's Last-Modified date for the file that was checked; the publisher replaces it in place, so a new release changes the checksum.",
       "license": "Public domain (dedicated April 30, 2023; berean.bible/terms.htm). Attribution appreciated, not required.",
-      "sha256": "f0c56438eb89c98e8f62c5c00461e25cc35b098ad5b179bc350cede759ee5f87",
+      "sha256": "f5d9424c5e3c97db2497219343748d9d27f8c5b72ceb5017b2a0fbbb6bd6ace1",
       "fileCount": 1
     },
     "wcf": {

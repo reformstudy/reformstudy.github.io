@@ -18,7 +18,7 @@ Every source comes from the organization that publishes it and is pinned, so rer
 | Resource | Script | Source (pinned) | License |
 |----------|--------|-----------------|---------|
 | KJV | `kjv.js` | eBible.org's [eng-kjv](https://ebible.org/find/details.php?id=eng-kjv) USFM release, by SHA-256 | Public domain (outside the UK) |
-| BSB | `bsb.js` | The publisher's [bsb_usfm.zip](https://berean.bible/downloads.htm), by SHA-256 | Public domain |
+| BSB | `bsb.js` | The publisher's [bsb_usx.zip](https://berean.bible/downloads.htm), by SHA-256 | Public domain |
 | WCF (1647) | `wcf.js` | Interim: [NonlinearFruit/Creeds.json](https://github.com/NonlinearFruit/Creeds.json) at a commit, with corrections; moving to the PCA's text | Public domain text; repo Unlicense |
 | Matthew Henry | `henry.js` | [CCEL](https://ccel.org/ccel/henry)'s six ThML volumes, by SHA-256 | Public domain; CCEL asks permission for republishing |
 | Strong's | `strongs.js` | STEPBible lexicons (Tyndale House, Cambridge), [STEPBible/STEPBible-Data](https://github.com/STEPBible/STEPBible-Data) at a commit | CC BY 4.0, credit required |

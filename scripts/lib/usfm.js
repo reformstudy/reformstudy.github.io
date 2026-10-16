@@ -6,7 +6,7 @@ import { normalizeText } from './io.js';
 
 // Paragraph markers whose whole line is not verse text: identification,
 // titles, section headings, cross-reference lines, acrostic letters, blank lines.
-const SKIP = new Set(['id', 'ide', 'usfm', 'h', 'toc1', 'toc2', 'toc3', 'mt', 'mt1', 'mt2', 'mt3', 'ms', 'ms1', 'mr',
+export const SKIP = new Set(['id', 'ide', 'usfm', 'h', 'toc1', 'toc2', 'toc3', 'mt', 'mt1', 'mt2', 'mt3', 'ms', 'ms1', 'mr',
   's', 's1', 's2', 's3', 'r', 'sr', 'qa', 'sp', 'cl', 'rem', 'b']);
 
 /** Strip USFM character markup, keeping the words a reader sees. */
