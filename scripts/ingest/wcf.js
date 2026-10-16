@@ -13,8 +13,8 @@
  *
  * Before converting, the corrections in provenance/decisions/wcf.json are
  * applied: places where the 1649 printing and an independent transcription
- * agree against Creeds.json. This source is interim: the Confession is moving
- * to the PCA's published text (res/SOURCES.md).
+ * agree against Creeds.json. This source is interim: no openly licensed
+ * publisher edition with proofs has been found yet (res/SOURCES.md).
  *
  * Usage:
  *   node scripts/ingest/wcf.js                 # download from GitHub

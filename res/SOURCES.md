@@ -18,9 +18,7 @@ Ingest stops if a download doesn't match the recorded checksum. After deliberate
 | Berean Standard Bible | The publisher's [USX download](https://berean.bible/downloads.htm) | Berean Bible (bereanbible.com) | **In use** |
 | Matthew Henry's Commentary | CCEL's [six ThML volumes](https://ccel.org/ccel/henry) | Christian Classics Ethereal Library, Calvin University | **In use** |
 | Strong's Greek and Hebrew | STEPBible lexicons TBESG and TBESH ([STEPBible-Data](https://github.com/STEPBible/STEPBible-Data)) | STEPBible.org, Tyndale House, Cambridge | **In use** |
-| Westminster Confession of Faith | The PCA's published text, after checking license and credit terms | Presbyterian Church in America | Planned; interim source in use |
-
-The PCA's site (www.pcaac.org) still needs to be added to this environment's allowed network domains.
+| Westminster Confession of Faith | No openly licensed edition with proofs found; permission requested from the copyright holder | Orthodox Presbyterian Church (copyright holder of the PCA's and OPC's edition) | Interim source in use |
 
 ## King James Version (eBible.org)
 
@@ -50,6 +48,17 @@ The PCA's site (www.pcaac.org) still needs to be added to this environment's all
 - **Numbering:** STEPBible extends Strong's numbering to tell apart words Strong's grouped together, mostly names. Each Strong's number gets STEPBible's main entry, and only Strong's own range is included: G1–G5624 (5,523 entries) and H1–H8674 (8,674 entries).
 - **License:** CC BY 4.0. Credit "STEPBible.org, Tyndale House, Cambridge" wherever the data is shown.
 
-## Interim source
+## Westminster Confession (interim)
 
-Until the PCA's text is reachable, the WCF comes from NonlinearFruit/Creeds.json, with 32 corrections in [`provenance/decisions/wcf.json`](../provenance/decisions/wcf.json). The corrections were found by comparing it with independent copies. They are removed when the WCF moves to the PCA's text.
+The WCF still comes from NonlinearFruit/Creeds.json, with 32 corrections in [`provenance/decisions/wcf.json`](../provenance/decisions/wcf.json). The corrections were found by comparing it with independent copies. Publisher editions that were checked (October 2026):
+
+- **PCA** ([pcaac.org/bco/westminster-confession](https://www.pcaac.org/bco/westminster-confession/)): a PDF with proof texts, "© copyright 2005, 2007 by The Orthodox Presbyterian Church", republished by the PCA's Christian Education & Publications. "All rights reserved… without the prior permission of the publisher." Not usable without permission.
+- **OPC** ([opc.org/confessions.html](https://opc.org/confessions.html)):
+  - `CFLayout.pdf` is the same file as the PCA's PDF.
+  - `wcf.html` has the Confession's text but no proofs.
+  - The site states no reuse terms, and its Terms & Conditions link is broken.
+- **CCEL:**
+  - Schaff's *Creeds of Christendom* vol. 3 (public domain) has the 1647 text with proofs. CCEL's digital copy has scanning errors, though: 2.2 "foundation" for *fountain*, 19.6 "covenant of words" for *works*, 22.7 "superstitions" for *superstitious*, and others. Its reference tags also misread Roman numerals (Ps. cxlv. 3 is tagged Psalm 45:3).
+  - `westminster3` is the PCUSA's modern text, with renumbered chapters and no proofs.
+
+The corrections are removed when the WCF moves to a publisher's text that we have permission to use.

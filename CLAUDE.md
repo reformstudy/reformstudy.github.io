@@ -41,7 +41,7 @@
 │   └── strongs/{greek,hebrew}/{lang}.json  # Generated from STEPBible (Tyndale House); CC BY 4.0, credit required
 ├── provenance/
 │   ├── registry.json                  # Every source: publishing organization, pin, SHA-256, license
-│   └── decisions/wcf.json             # Corrections to the interim WCF source; removed when the PCA's text replaces it
+│   └── decisions/wcf.json             # Corrections to the interim WCF source; removed when a publisher's text replaces it
 ├── scripts/
 │   ├── build-resources.js             # Validates res/, then writes docs/resources/
 │   ├── validate-resources.js          # Canon, verse and commentary checks
