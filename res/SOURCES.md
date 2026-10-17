@@ -1,201 +1,95 @@
-# Sources and verification
+# Sources
 
-Where every text in `res/` comes from, how it is checked, and what was corrected.
-First checked October 2026.
+Every text in `res/` should come from the organization that publishes it, downloaded directly, pinned, and checked against a recorded SHA-256. ReformStudy doesn't correct published texts. If a source has an error, the fix belongs with its publisher.
 
-Three places in [`provenance/`](../provenance/) keep the record:
+[`provenance/registry.json`](../provenance/registry.json) records, for each source:
+- the organization;
+- where it's downloaded from, and the commit, release or file it's pinned to;
+- its license;
+- the SHA-256 of the files that were converted.
 
-- [`registry.json`](../provenance/registry.json): provenance for every source and every witness (an independent copy we compare against). It records:
-  - the repository and the commit or release each is pinned to;
-  - the SHA-256 of the files that were verified;
-  - the license;
-  - the lineage, meaning where the copy itself came from.
+The downloads themselves are committed under [`sources/`](../sources), so every conversion and check runs offline. Text files are stored gzipped and archives as they are, which changes no byte of the original. Ingest stops if a file doesn't match its recorded checksum. To take a publisher's new release, run the ingest script with `--download`, check what changed, and record the new checksum with `UPDATE_SOURCE_LOCK=1`.
 
-  It also lists **attestations**: facts a person has to confirm because comparing texts can't establish them.
-- [`decisions/`](../provenance/decisions/): what a person decided about each difference.
-  - `corrections` are edits applied to the source at ingest. Each must match the source exactly once, or ingest fails.
-  - `accepted` are differences checked and found benign; our reading stands.
+## Authentication
 
-  Every decision records who made it, when and why.
-- [`reports/`](../provenance/reports/README.md): the latest comparison for each resource, including everything still awaiting review.
+`npm run authenticate`, every build and `npm test` prove that what the app shows is the sources' text. The code is in [`scripts/authenticate/`](../scripts/authenticate), separate from the converters, and it fails on any of the following:
 
-## Method
+1. **Sources.** A committed file doesn't match the SHA-256 in the registry.
+2. **Reproduction.** Running the converters on `sources/` doesn't give `res/` exactly, byte for byte, with no file missing or extra. A hand edit to `res/` fails here.
+3. **Verbatim text.** The authenticator reads each source again with its own reader, and compares one unit at a time (a verse, a Psalm title, a paragraph, a section, a lexicon field):
+   - every letter, digit and mark must match the source, in order;
+   - there must be a word break wherever the source has one, and none where it hasn't;
+   - only the named exceptions below may differ.
+4. **Accounting.** Every character of the source is either in the output or left out under a named category, and the report prints each total. Examples of categories: footnotes, section headings, the KJV passage CCEL prints, STEPBible's sub-entries. Text that fits no category stops authentication, so nothing can be dropped unnoticed.
+5. **Derived fields.** Fields that aren't copied text are re-derived independently and must match:
+   - Henry's references and section verse ranges;
+   - the Confession's proof references, and its proof texts (which must equal the KJV's verses);
+   - Strong's parts of speech, from STEPBible's codes.
+6. **Site.** After a build, `docs/resources/` must carry exactly the content of `res/`.
 
-No single copy of these texts can be trusted on its own. `npm run verify` checks each source against its witnesses in five steps.
+The exceptions, each listed for the resources it applies to:
 
-1. **Download and check.** Download the source and every witness at its pin, and stop if any SHA-256 differs from the registry. This catches a moved release, a rewritten commit or an altered file.
-2. **Apply corrections.** Apply the reviewed corrections to the source.
-3. **Compare.** Split the text into units (verses, confession sections and the chapters their proofs cite, dictionary entries) and align each witness with our source word by word. Every place where any witness differs becomes an item.
-4. **Classify.** Count *independent lineages*, not copies: two copies descended from the same text count as one vote. Each item falls into one of three classes:
-   - **majority:** our reading has at least as much support as any other. These items are counted but not reviewed.
-   - **against:** no witness supports us, and two or more lineages agree on another reading.
-   - **split:** anything else, including any difference from a resource that has only one witness.
-5. **Match decisions.** Look up each item that isn't a majority in the decisions file, matching by content. An item's key is a hash of three things:
-   - the unit;
-   - our reading, with two words of context on each side;
-   - the set of witness readings.
-
-   A decision therefore stops matching as soon as the source or a witness changes there, and the item comes back for review instead of being waved through. Anything unmatched is listed as awaiting review.
-
-Reviewing uses `npm run review`:
-
-```bash
-npm run review -- kjv                                   # what awaits review, grouped by suggested class
-npm run review -- kjv accept <id> --reason "…"          # our reading stands
-npm run review -- kjv accept --class oxford-cambridge --reason "…"   # a whole class, after checking a sample
-npm run review -- kjv correct <id> --to "…" --reason "…"           # fix the source
-npm run review -- kjv confirm                           # sign off decisions Claude recorded
-```
-
-**Suggestions are hints only.** Each item carries a suggestion (for example "modernised spelling" or "Oxford/Cambridge spelling"), but nothing is accepted or corrected without a person running `review`.
-
-**Corrections recorded by Claude.** The corrections below were made in the first review, by Claude. The reports count them as awaiting a person's sign-off until someone runs `confirm`.
-
-## King James Version
-
-| | |
-|---|---|
-| Source | [aruljohn/Bible-kjv](https://github.com/aruljohn/Bible-kjv/tree/a9aa4e55afbb3e095f57e4b14cd1f22c5ee8d7c9) at `a9aa4e5` (MIT; the text is public domain) |
-| Witnesses | Pure Cambridge Edition and KJV from [scrollmapper/bible_databases](https://github.com/scrollmapper/bible_databases/tree/e1b254cef86d0e65b1a5d1a94b8b112d0f296a2c) `e1b254c`; eBible.org `eng-kjv` from [seven1m/open-bibles](https://github.com/seven1m/open-bibles) `f257a35`; [thiagobodruk/bible](https://github.com/thiagobodruk/bible) `en_kjv.json` |
-| Corrections | [`provenance/decisions/kjv.json`](../provenance/decisions/kjv.json): 169 corrections (49 words, 120 divine names) |
-| Latest report | [`provenance/reports/kjv.md`](../provenance/reports/kjv.md) |
-
-**Findings.** We compared all 31,102 verses with each witness, word by word. Of the copies, ours has the fewest readings of its own, and it keeps full punctuation. But it is not the clean 1769 text its description claimed:
-
-- **49 words or spellings:** in each, our source differs from all four witnesses, and all four agree. Examples:
-  - "first born" for "firstborn";
-  - "thoroughly" for "throughly" (Gen 11:3);
-  - "chestnut" for "chesnut" (Gen 30:37);
-  - "anything" for "any thing";
-  - "honor" for "honour".
-- **120 divine names in about 110 verses:**
-  - the KJV prints LORD for YHWH and Lord for Adonai, and GOD/God likewise;
-  - our source loses that distinction in these verses, for example "Lord GOD" printed as "Lord God" (Gen 15:2);
-  - each fix is where eBible and thiagobodruk agree against our source.
-
-**What the automated comparison added.** The first review compared words without case, and it only flagged verses where all four witnesses agreed. `npm run verify` compares with case and counts lineages, and it found readings that review missed. They await a person's decision in the [report](../provenance/reports/kjv.md):
-- **Likely errors in our source:**
-  - Deut 32:8 "Most High", where every witness reads "most High";
-  - Josh 19:2 "and Sheba", where three witnesses read "or Sheba";
-  - Exod 32:29 "today", where all four read "to day";
-  - "son of David" in eleven Gospel verses, where all four read "Son";
-  - Job 33:4 "spirit", where all four read "Spirit".
-- **Divine names:** about 20 more where the witnesses split.
-- **Edition differences (33):** proper-name spellings where our source and eBible follow the Oxford 1769 text and the copies descended from the Pure Cambridge Edition differ, for example "Sabtechah" against "Sabtecha".
-
-The Pure Cambridge Edition's own spellings, such as "inquire" for "enquire" and "counseller" for "counsellor", don't need review: the other witnesses agree with us there.
-
-## Berean Standard Bible
-
-| | |
-|---|---|
-| Source | [BSB-publishing/bsb2usfm](https://github.com/BSB-publishing/bsb2usfm/releases/tag/v5.16) release v5.16, `BSB_usfm.zip` (SHA-256 `771eb584…3479a77`) |
-| Witnesses | [thiagobodruk/bible](https://github.com/thiagobodruk/bible) `en_bsb.json`; [usfm-bible/examples.bsb](https://github.com/usfm-bible/examples.bsb) (2025 revision); the BSB in [HelloAOLab/bible-api](https://github.com/HelloAOLab/bible-api) (an older revision) |
-| Corrections | None |
-
-The BSB was dedicated to the public domain in 2023.
-
-**Findings.**
-
-- **thiagobodruk:**
-  - 31,070 verses are shared, and 98.86% of them are word-for-word identical;
-  - after normalising quotation marks, dashes and Psalm titles, 23 verses differ;
-  - all 23 differences are artifacts of that copy: 21 are the Hebrew letter headings of Psalm 119, which it puts in the verse text and we keep out, and 2 are the placeholder "vvv" at Luke 9:33 and Acts 4:36;
-  - the 16 verses not shared are verses the BSB leaves out of the text, such as Matt 17:21. That copy numbers verses by position, so in those chapters its last verse number is one lower.
-- **The other two copies:** they agree 97% (the older revision) and 93% (the 2025 revision). Their differences are the translators' own revisions between editions, for example "the Tigris" or "Hiddekel" in Gen 2:14. They are not errors.
-
-**What the automated comparison added:**
-- **A converter bug, fixed in the script:** markers were removed with a space, which split "forty-two" in 1 Sam 13:1 and similar words.
-- **A stray placeholder in the publisher's own file:** "she named vvv him Ben-oni" (Gen 35:18). It awaits review.
-
-**Not confirmed.** The text is the BSB, but we couldn't establish that the `BSB-publishing` GitHub organization belongs to the BSB's publisher. Checking that needs the publisher's own site (berean.bible / bereanbible.com), which this build environment cannot reach. The checksum lock means the zip we verified is the one used.
-
-## Westminster Confession of Faith (1647)
-
-| | |
-|---|---|
-| Source | [NonlinearFruit/Creeds.json](https://github.com/NonlinearFruit/Creeds.json/tree/2ae21a4c5387ecc91f474c9d3d67c826d2a6b9d5) at `2ae21a4` (Unlicense; the text is public domain) |
-| Witnesses | The 1649 London printing (Robert Bostock), transcribed by EEBO-TCP as [A80320](https://github.com/textcreationpartnership/A80320); [andrewhwaller/westminster-json](https://github.com/andrewhwaller/westminster-json) at `1162114` |
-| Corrections | [`provenance/decisions/wcf.json`](../provenance/decisions/wcf.json): 15 wording, 17 proof-reference |
-| Latest report | [`provenance/reports/wcf.md`](../provenance/reports/wcf.md) |
-
-**Findings.** Every section's wording and every footnote's references were compared with both witnesses. The 17th-century transcription is the authority.
-
-**Wording: 15 changed words.** In each, both witnesses agree against Creeds.json. Examples:
-
-| Section | Creeds.json | 1649 printing |
+| Exception | Applies to | What it allows |
 |---|---|---|
-| 5.5 | "support unto himself" | "support **upon** himself" |
-| 20.2 | "beside it, in matters" | "beside it, **if** matters" |
-| 21.5 | "upon several occasions" | "upon **special** occasions" |
-| 22.7 | "promise or ability" | "promise **of** ability" |
+| pilcrow | KJV | The ¶ marks eBible.org prints at some paragraph starts are left out. |
+| punctuation spacing | KJV | Where removing a marker leaves a space before closing punctuation, or after opening punctuation, the space is dropped. |
+| STEPBible indentation | Strong's | STEPBible's `__` indentation marks in definitions become spaces. |
 
-Modernised spelling ("honor", "forever") is an editorial choice, so we kept it.
+Adding an exception means adding it to `scripts/authenticate/compare.js` with a test, and listing it here.
 
-**Proof texts: 17 wrong or incomplete references.** Examples:
+`npm test` covers every transform: the converters, the authenticator, and tests that tamper with converted text to show each kind of change is caught. It also requires at least 99% of lines, 94% of branches and 99% of functions in `scripts/ingest`, `scripts/lib` and `scripts/authenticate` to be exercised.
 
-- 8.1: 2 Tim 2:5 for **1 Tim** 2:5;
-- 22.2: Ezra 10:25 for Ezra 10:**5**;
-- 33.1: 2 Cor 5:12 for 2 Cor 5:**10**;
-- 19.4: Exodus 22:1–29 was missing.
+## Status
 
-After the corrections there are 1,854 proof references. All of them resolve to KJV verses.
+| Resource | Source | Organization | Status |
+|---|---|---|---|
+| King James Version | eBible.org's [eng-kjv](https://ebible.org/find/details.php?id=eng-kjv) USFM release | eBible.org, with the CrossWire Bible Society | **In use** |
+| Berean Standard Bible | The publisher's [plain-text download](https://berean.bible/downloads.htm), with Psalm titles located by its USX | Berean Bible (bereanbible.com) | **In use** |
+| Matthew Henry's Commentary | CCEL's [six ThML volumes](https://ccel.org/ccel/henry) | Christian Classics Ethereal Library, Calvin University | **In use** |
+| Strong's Greek and Hebrew | STEPBible lexicons TBESG and TBESH ([STEPBible-Data](https://github.com/STEPBible/STEPBible-Data)) | STEPBible.org, Tyndale House, Cambridge | **In use** |
+| Westminster Confession of Faith | No openly licensed edition with proofs found; permission requested from the copyright holder | Orthodox Presbyterian Church (copyright holder of the PCA's and OPC's edition) | Interim source in use |
 
-**What the automated comparison added.** Further readings where both witnesses agree against Creeds.json await review in the [report](../provenance/reports/wcf.md):
-- "it is" where both read "is" (22.3, 24.3);
-- an extra "the" (27.2);
-- 2 Thess 1:7–9 cited where both cite 7–10 (33.2).
+## King James Version (eBible.org)
 
-The report also lists 24 modernised spellings (honor, pretense, forever). Those are to be accepted as an editorial choice, or not.
+- **What it is:** the 1769 standard text, from eBible.org's USFM release, prepared with the CrossWire Bible Society. Psalm titles are kept as chapter subtitles.
+- **Pin:** eBible.org replaces the zip in place when it updates the release, so the zip is pinned by its SHA-256. The registry records the release date that was checked.
+- **License:** public domain, outside the UK (there the Crown's letters patent apply).
 
-## Matthew Henry's Commentary on the Whole Bible
+## Berean Standard Bible (the publisher)
 
-| | |
-|---|---|
-| Source | [samueldotj/bible-commentaries](https://github.com/samueldotj/bible-commentaries/tree/23f2279a8a56f212aca0de7ef3fbe47cf7334a45/en/henry) `en/henry` at `23f2279` |
-| Upstream | CrossWire SWORD module [MHC](https://crosswire.org/sword/modules/ModInfo.jsp?modName=MHC), prepared from the Christian Classics Ethereal Library text (public domain) |
-| Corrections | None |
+- **What it is:** the publisher's plain-text download (`bsb.txt`, linked from berean.bible/downloads.htm), one verse per line. It's the text berean.bible shows.
+- **Psalm titles:** the plain text opens verse 1 of a Psalm with its title. The publisher's USX download (`bsb_usx.zip`) marks each title separately, so it's used only to find where the title ends. The title and verse 1 keep the plain text's own wording, and authentication checks both.
+- **Why not the USX or USFM text:** the publisher's USFM download has a stray "vvv" in Genesis 35:18. Their USX differs from the plain text in about 1,330 verses: a space after em dashes ("Testimony— before"), "[’’]" marks, bracketed supplied words, and a few missing spaces after footnotes ("Samuel,saying").
+- **Verses left out:** the 16 verses the BSB leaves out (Matthew 17:21, Acts 8:37…) are empty lines in the plain text and aren't in `res/`.
+- **Pin:** the two files are replaced in place, so they're pinned together by one SHA-256 and their Last-Modified dates.
+- **License:** public domain, dedicated April 30, 2023 (berean.bible/terms.htm). Attribution is appreciated, not required.
 
-**Findings.**
+## Matthew Henry (CCEL)
 
-- **Coverage is complete:**
-  - all 1,189 chapters, and introductions to 61 books (the source has none for the other 5);
-  - 4,253 passage sections, which together cover every verse;
-  - about 6.4 million words, as expected for the full commentary.
-- **Spot checks pass.** Well-known passages are present word for word, among them Gen 2 ("not made out of his head to rule over him, nor out of his feet to be trampled upon by him, but out of his side to be equal with him…"), John 3 and Romans 8.
+- **What it is:** Henry's *Commentary on the Whole Bible* in CCEL's six ThML volumes, which are marked up by passage. The KJV passage CCEL prints before each comment is left out.
+- **Pin:** the six files are pinned together by one SHA-256 (CCEL's copies are dated June 6, 2024).
+- **License:** each volume says "Public domain. May be copied and distributed freely." CCEL's site-wide copyright page also says its books "may be used for personal, educational, or non-profit purposes" and asks people to contact CCEL before republishing or using them commercially. ReformStudy is free and non-profit. Crediting CCEL in the app is a courtesy to them.
+- **Markup:** a few of CCEL's passage markers name the wrong chapter or run past a chapter's end. The ingest keeps the chapter from the block's title, cuts the range, and prints a note for each case. The text itself isn't changed.
 
-**Not confirmed.**
+## Strong's (STEPBible)
 
-- We haven't compared the full text against the MHC module itself: crosswire.org can't be reached from this environment. That comparison should be run from a machine that can download the module.
-- The repository has no LICENSE file. The text itself is public domain, but the extraction carries no stated license.
+- **What it is:** Tyndale House's brief lexicons, keyed to Strong's numbers.
+  - The Greek definitions come from Abbott-Smith's *Manual Greek Lexicon of the New Testament*; the Hebrew from a brief Brown-Driver-Briggs.
+  - Each entry has the word, a transliteration, a part of speech, a one-line gloss and a definition.
+- **Numbering:** STEPBible extends Strong's numbering to tell apart words Strong's grouped together, mostly names. Each Strong's number gets STEPBible's main entry, and only Strong's own range is included: G1–G5624 (5,523 entries) and H1–H8674 (8,674 entries).
+- **License:** CC BY 4.0. STEPBible asks for credit to "STEP Bible", linked to www.STEPBible.org, and for changes to the data to be recorded. The "About this version" panel carries the credit, and the changes are the selection described under Numbering.
 
-## Strong's Greek and Hebrew dictionaries
+## Westminster Confession (interim)
 
-| | |
-|---|---|
-| Source | [openscriptures/strongs](https://github.com/openscriptures/strongs/tree/0acd2f251c2d35ff8db2dece4e0593979d3ac223) at `0acd2f2` |
-| Witness | STEPBible TBESG and TBESH lexicons (Tyndale House), from [STEPBible/STEPBible-Data](https://github.com/STEPBible/STEPBible-Data) |
-| Corrections | None |
-| License | James Strong's 1890 text is public domain. The Open Scriptures edition is **CC-BY-SA**: credit Open Scriptures and share this data under the same license. |
+The WCF comes from NonlinearFruit/Creeds.json, used as published, until a better source is found. Its wording mostly follows Schaff's 1877 edition. In about 15 places that differs from the Assembly's 1649 printing (for example, 9.2 "that which is good" where the 1649 printing has "was good"), and a few proof references differ (8.1 cites 2 Timothy 2:5 for 1 Timothy 2:5). Publisher editions that were checked (October 2026):
 
-**Findings.**
+- **PCA** ([pcaac.org/bco/westminster-confession](https://www.pcaac.org/bco/westminster-confession/)): a PDF with proof texts, "© copyright 2005, 2007 by The Orthodox Presbyterian Church", republished by the PCA's Christian Education & Publications. "All rights reserved… without the prior permission of the publisher." Not usable without permission.
+- **OPC** ([opc.org/confessions.html](https://opc.org/confessions.html)):
+  - `CFLayout.pdf` is the same file as the PCA's PDF.
+  - `wcf.html` has the Confession's text but no proofs.
+  - The site states no reuse terms, and its Terms & Conditions link is broken.
+- **CCEL:**
+  - Schaff's *Creeds of Christendom* vol. 3 (public domain) has the 1647 text with proofs. CCEL's digital copy has scanning errors, though: 2.2 "foundation" for *fountain*, 19.6 "covenant of words" for *works*, 22.7 "superstitions" for *superstitious*, and others. Its reference tags also misread Roman numerals (Ps. cxlv. 3 is tagged Psalm 45:3).
+  - `westminster3` is the PCUSA's modern text, with renumbered chapters and no proofs.
 
-- **Every number exists:** each of the 5,523 Greek and 8,674 Hebrew entries is present in STEPBible.
-- **Almost every number names the same word.** The headword matches STEPBible's for 96.45% of the Greek and 94.18% of the Hebrew entries. With only one witness, each of the other 701 entries awaits a person's decision, grouped by class in the reports ([Greek](../provenance/reports/strongs-greek.md), [Hebrew](../provenance/reports/strongs-hebrew.md)):
-  - **Another form of the same word (680):**
-    - a verb cited in the middle or the active voice (ἀμύνομαι / ἀμύνω);
-    - a spelling with or without the vowel letters ו/י;
-    - a plural or comparative.
-  - **Unrelated-looking words (21):** 5 Greek and 16 Hebrew entries where the two words look unrelated. These are the ones to check for misnumbering in Strong's 1890 printing. Some have an obvious explanation, such as H4192 "Muth-labben", which STEPBible splits into two words.
-
-## Changing a source or a witness
-
-1. Change the pin in `provenance/registry.json`, and in the ingest script for a source. For a new witness, add its entry, including its lineage.
-2. Record the new checksums with `UPDATE_SOURCE_LOCK=1 npm run verify` (and `UPDATE_SOURCE_LOCK=1 npm run ingest` for a source).
-3. Run `npm run verify`.
-   - A correction that no longer matches makes the run fail. Fix it or remove it in the decisions file.
-   - Accepted decisions that no longer match are listed as stale.
-4. Review what is pending with `npm run review`.
-5. Run `npm run ingest`, then commit the registry, decisions, reports and regenerated `res/` files together.
-
-`npm run verify -- --check` exits with an error while anything awaits review. Use it before a release.
+The WCF moves to a publisher's text once one is found that we have permission to use.

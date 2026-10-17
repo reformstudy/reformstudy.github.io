@@ -1,56 +1,48 @@
 /**
- * Download the King James Version and write res/bibles/kjv/kjv.json.
+ * Download the King James Version from eBible.org and write res/bibles/kjv/kjv.json.
  *
- * Source: github.com/aruljohn/Bible-kjv (MIT; the KJV text itself is public
- * domain), pinned to a commit so the output is reproducible. Of the KJV copies
- * compared (see res/SOURCES.md) it has the fewest readings of its own and keeps
- * full punctuation, but it has 49 wrong words and spellings and loses the
- * LORD/Lord distinction in about 110 verses. The corrections in
- * provenance/decisions/kjv.json fix those, each reviewed against independent
- * copies (npm run verify).
+ * Source: eBible.org's "eng-kjv" USFM release (https://ebible.org/find/details.php?id=eng-kjv),
+ * the 1769 standard text, prepared by eBible.org with the CrossWire Bible
+ * Society. Public domain outside the UK. eBible.org updates the file in place,
+ * so the download is pinned by its SHA-256 in provenance/registry.json; a new
+ * release stops ingest until it is deliberately accepted.
+ *
+ * The zip also has the Apocrypha; only the 66 books are converted. Psalm
+ * titles become chapter subtitles; footnotes, Strong's tags and pilcrows (¶)
+ * are dropped; italics (\add) and divine names (\nd LORD) keep their words.
  *
  * Usage:
- *   node scripts/ingest/kjv.js                    # download from GitHub
- *   node scripts/ingest/kjv.js --source-dir DIR   # use a local clone
+ *   node scripts/ingest/kjv.js              # convert the committed copy in sources/kjv/
+ *   node scripts/ingest/kjv.js --download   # fetch it again from eBible.org first
  */
 
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
 import { CANON } from '../lib/canon.js';
-import { fetchBuffer, normalizeText, parseArgs, writeBibleFile } from '../lib/io.js';
-import { checkLock, digestFiles } from '../lib/lock.js';
-import { loadDecisions } from '../lib/decisions.js';
+import { bibleFileText } from '../lib/io.js';
+import { runAsScript } from '../lib/pipeline.js';
+import { parseUsfmBook } from '../lib/usfm.js';
+import { readZip } from '../lib/zip.js';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const OUTPUT = path.join(__dirname, '../../res/bibles/kjv/kjv.json');
+export const OUTPUT = 'res/bibles/kjv/kjv.json';
+export const SOURCE_PAGE = 'https://ebible.org/find/details.php?id=eng-kjv';
 
-export const SOURCE_REPO = 'https://github.com/aruljohn/Bible-kjv';
-export const SOURCE_COMMIT = 'a9aa4e55afbb3e095f57e4b14cd1f22c5ee8d7c9';
-const RAW_BASE = `https://raw.githubusercontent.com/aruljohn/Bible-kjv/${SOURCE_COMMIT}`;
-
-/**
- * Convert the source's per-book files into the app's Bible format.
- * @param {string[]} bookNames names from the source's Books.json, in canon order
- * @param {(name: string) => Promise<any>} loadBook returns the source JSON for one book
- */
-export async function convertKjv(bookNames, loadBook) {
-  if (bookNames.length !== CANON.length) {
-    throw new Error(`Expected ${CANON.length} books in the source, found ${bookNames.length}`);
+/** Convert eBible.org's USFM files (named like "02-GENeng-kjv.usfm") into the app's Bible format. */
+export function convertKjv(files) {
+  const byId = new Map();
+  for (const [name, data] of files) {
+    if (!name.endsWith('.usfm')) continue;
+    const text = data.toString('utf8').replace(/^﻿/, '');
+    const id = text.match(/^\\id\s+(\w+)/m)?.[1];
+    if (id) byId.set(id, text);
   }
-  const books = [];
-  for (let i = 0; i < CANON.length; i++) {
-    const canon = CANON[i];
-    const src = await loadBook(bookNames[i]);
-    const verses = [];
-    for (const ch of src.chapters) {
-      const chapter = Number(ch.chapter);
-      for (const v of ch.verses) {
-        verses.push({ book: canon.id, chapter, verse: Number(v.verse), text: normalizeText(v.text) });
-      }
-    }
-    books.push({ id: canon.id, name: canon.name, testament: canon.testament, chapters: canon.chapters, verses });
-  }
+  const books = CANON.map(canon => {
+    const usfm = byId.get(canon.id);
+    if (!usfm) throw new Error(`Source has no \\id ${canon.id}`);
+    const { verses, subtitles } = parseUsfmBook(usfm, canon.id);
+    const book = { id: canon.id, name: canon.name, testament: canon.testament, chapters: canon.chapters };
+    if (Object.keys(subtitles).length) book.subtitles = subtitles;
+    book.verses = verses;
+    return book;
+  });
   return {
     version: {
       id: 'kjv',
@@ -59,62 +51,22 @@ export async function convertKjv(bookNames, loadBook) {
       language: 'en',
       releaseDate: '1611',
       copyright: 'Public Domain',
-      description: 'The Authorized Version of 1611 in its standard 1769 text, checked against the Pure Cambridge Edition and other independent copies.',
-      source: { name: 'aruljohn/Bible-kjv', url: `${SOURCE_REPO}/tree/${SOURCE_COMMIT}` },
+      description: 'The Authorized Version of 1611 in its 1769 standard text, as published by eBible.org with the CrossWire Bible Society.',
+      source: { name: 'eBible.org (eng-kjv)', url: SOURCE_PAGE },
     },
     books,
   };
 }
 
-/**
- * Apply verse corrections in order. Each `from` must occur exactly once in
- * its verse, so a changed source fails instead of being corrected wrongly.
- */
-export function applyKjvCorrections(bible, corrections) {
-  const verses = new Map();
-  for (const book of bible.books) for (const v of book.verses) verses.set(`${book.id} ${v.chapter}:${v.verse}`, v);
-  for (const c of corrections) {
-    const v = verses.get(c.ref);
-    if (!v) throw new Error(`KJV correction: no verse ${c.ref}`);
-    const count = v.text.split(c.from).length - 1;
-    if (count !== 1) throw new Error(`KJV ${c.ref}: "${c.from}" appears ${count} times, expected once`);
-    v.text = v.text.replace(c.from, c.to);
-  }
-  return bible;
-}
+export const pipeline = {
+  id: 'kjv',
+  sources: ['kjv'],
+  owns: [OUTPUT],
+  generate(files) {
+    const bible = convertKjv(readZip(files.get('kjv').get('eng-kjv_usfm.zip')));
+    const total = bible.books.reduce((n, b) => n + b.verses.length, 0);
+    return { outputs: new Map([[OUTPUT, bibleFileText(bible)]]), summary: `${bible.books.length} books, ${total} verses` };
+  },
+};
 
-/** Download (or read) the pinned source, check its checksum, and convert it without corrections. */
-export async function loadKjvSource(args = {}) {
-  const fileName = name => `${name.replace(/\s+/g, '')}.json`;
-  const raw = new Map();
-  const load = async name => {
-    const data = args['source-dir']
-      ? fs.readFileSync(path.join(args['source-dir'], name))
-      : await fetchBuffer(`${RAW_BASE}/${encodeURIComponent(name)}`);
-    raw.set(name, data);
-    return JSON.parse(data.toString('utf8'));
-  };
-
-  const bookNames = await load('Books.json');
-  const bible = await convertKjv(bookNames, name => load(fileName(name)));
-  checkLock('kjv', digestFiles(raw));
-  return bible;
-}
-
-async function main() {
-  const args = parseArgs(process.argv.slice(2));
-  const bible = await loadKjvSource(args);
-  const { corrections } = loadDecisions('kjv');
-  applyKjvCorrections(bible, corrections);
-  bible.version.corrections = { count: corrections.length, file: 'provenance/decisions/kjv.json' };
-  writeBibleFile(OUTPUT, bible);
-  const total = bible.books.reduce((n, b) => n + b.verses.length, 0);
-  console.log(`Wrote ${OUTPUT} (${bible.books.length} books, ${total} verses)`);
-}
-
-if (import.meta.url === `file://${process.argv[1]}`) {
-  main().catch(err => {
-    console.error(err);
-    process.exit(1);
-  });
-}
+runAsScript(import.meta, pipeline);

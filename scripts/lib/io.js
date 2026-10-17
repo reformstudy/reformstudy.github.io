@@ -1,6 +1,6 @@
 /**
  * Shared helpers for the ingest scripts: downloading with retries,
- * normalizing text, and writing resource JSON in a diff-friendly layout.
+ * normalizing whitespace, and resource JSON in a diff-friendly layout.
  */
 
 import fs from 'fs';
@@ -28,22 +28,9 @@ export async function fetchBuffer(url, { retries = 3, allowMissing = false } = {
   throw lastError;
 }
 
-export async function fetchJson(url, options) {
-  return JSON.parse((await fetchBuffer(url, options)).toString('utf8'));
-}
-
 /** Collapse runs of whitespace (including poetry line breaks) to single spaces. */
 export function normalizeText(text) {
   return String(text).replace(/\s+/g, ' ').trim();
-}
-
-/** Trim each paragraph and drop empty ones, keeping paragraph breaks. */
-export function normalizeParagraphs(text) {
-  return String(text)
-    .split(/\n+/)
-    .map(p => p.replace(/[ \t]+/g, ' ').trim())
-    .filter(Boolean)
-    .join('\n');
 }
 
 /** Parse "--name value" pairs from argv. */
@@ -65,10 +52,10 @@ export function parseArgs(argv) {
 }
 
 /**
- * Write a Bible resource with one verse per line, so a change to a single
+ * A Bible resource as text, one verse per line, so a change to a single
  * verse shows up as a one-line diff in review.
  */
-export function writeBibleFile(filePath, bible) {
+export function bibleFileText(bible) {
   const lines = [];
   lines.push('{');
   lines.push(`  "version": ${JSON.stringify(bible.version)},`);
@@ -84,12 +71,14 @@ export function writeBibleFile(filePath, bible) {
   });
   lines.push('  ]');
   lines.push('}');
-  fs.mkdirSync(path.dirname(filePath), { recursive: true });
-  fs.writeFileSync(filePath, lines.join('\n') + '\n');
+  return lines.join('\n') + '\n';
 }
+
+/** Compact-indented JSON text, as every other resource file is written. */
+export const jsonText = data => JSON.stringify(data, null, 1) + '\n';
 
 /** Write compact-indented JSON, creating parent directories as needed. */
 export function writeJson(filePath, data) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
-  fs.writeFileSync(filePath, JSON.stringify(data, null, 1) + '\n');
+  fs.writeFileSync(filePath, jsonText(data));
 }

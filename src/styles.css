@@ -596,6 +596,7 @@ button {
 
 .version-sources th,
 .version-sources td {
+  overflow-wrap: anywhere;
   text-align: left;
   padding: 6px 8px;
   border-bottom: 1px solid var(--border-soft);
@@ -613,6 +614,33 @@ button {
 
 .version-panel a {
   color: var(--accent-geo);
+}
+
+.version-credits {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+.version-credits li {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.version-credits li:last-child {
+  border-bottom: none;
+}
+
+.version-credit-title {
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.version-credits p {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.5;
 }
 
 .version-changes details {

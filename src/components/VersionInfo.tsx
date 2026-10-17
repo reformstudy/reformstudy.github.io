@@ -4,18 +4,18 @@ import { siteUrl } from '../utils/paths';
 
 // ---- build.json / changes.json (written by scripts/release/build-info.js) ----
 
+interface SourceCredit {
+  text: string;
+  links: { label: string; url: string }[];
+}
+
 interface SourceStatus {
   id: string;
   title: string;
+  organization: string | null;
   source: string;
   license: string;
-  witnesses: number;
-  verified: boolean;
-  checked?: string;
-  corrections?: number;
-  accepted?: number;
-  awaitingReview?: number;
-  awaitingSignOff?: number;
+  credit?: SourceCredit | null;
 }
 
 export interface BuildInfo {
@@ -61,14 +61,6 @@ export function versionLabel(info: BuildInfo): string {
 }
 
 const plural = (n: number, word: string) => `${n.toLocaleString()} ${word}${n === 1 ? '' : 's'}`;
-
-function verificationText(s: SourceStatus): string {
-  if (!s.verified) return s.witnesses ? 'Not verified yet' : 'Not verified (no witness available)';
-  const parts = [];
-  if (s.awaitingReview) parts.push(`${s.awaitingReview.toLocaleString()} awaiting review`);
-  if (s.awaitingSignOff) parts.push(`${s.awaitingSignOff.toLocaleString()} decisions awaiting sign-off`);
-  return parts.length ? parts.join(', ') : 'Verified, all differences reviewed';
-}
 
 function changeSummary(r: ResourceChanges): string {
   const parts = [];
@@ -116,7 +108,45 @@ function ChangesList({ changes }: { changes: ContentChanges }) {
   );
 }
 
-/** "About this version": app, content and verification status, and (on a preview) the changes from the live site. */
+/** One entry per credit; sources that share a credit (the Greek and Hebrew lexicons) are listed together. */
+function creditEntries(sources: SourceStatus[]): { titles: string[]; credit: SourceCredit }[] {
+  const entries: { titles: string[]; credit: SourceCredit }[] = [];
+  for (const s of sources) {
+    if (!s.credit) continue;
+    const same = entries.find(e => e.credit.text === s.credit!.text);
+    if (same) same.titles.push(s.title);
+    else entries.push({ titles: [s.title], credit: s.credit });
+  }
+  return entries;
+}
+
+function Credits({ sources }: { sources: SourceStatus[] }) {
+  const entries = creditEntries(sources);
+  if (!entries.length) return null;
+  return (
+    <section>
+      <h3>Credits</h3>
+      <ul className="version-credits">
+        {entries.map(e => (
+          <li key={e.titles.join('|')}>
+            <div className="version-credit-title">{e.titles.join(' · ')}</div>
+            <p>
+              {e.credit.text}{' '}
+              {e.credit.links.map((l, i) => (
+                <span key={l.url}>
+                  {i > 0 && ' · '}
+                  <a href={l.url} target="_blank" rel="noreferrer">{l.label}</a>
+                </span>
+              ))}
+            </p>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+/** "About this version": app and content versions, where each source comes from, credits, and (on a preview) the changes from the live site. */
 export function VersionPanel({ info, onClose }: { info: BuildInfo; onClose: () => void }) {
   const [changes, setChanges] = useState<ContentChanges | null | undefined>(undefined);
   const closeRef = useRef<HTMLButtonElement>(null);
@@ -165,22 +195,24 @@ export function VersionPanel({ info, onClose }: { info: BuildInfo; onClose: () =
           <h3>Content <span className="version-muted">({info.content.fingerprint})</span></h3>
           <table className="version-sources">
             <thead>
-              <tr><th scope="col">Resource</th><th scope="col">Verification</th><th scope="col">Corrections</th></tr>
+              <tr><th scope="col">Resource</th><th scope="col">From</th><th scope="col">License</th></tr>
             </thead>
             <tbody>
               {info.content.sources.map(s => (
                 <tr key={s.id}>
-                  <th scope="row"><a href={s.source} target="_blank" rel="noreferrer">{s.title}</a></th>
-                  <td>{verificationText(s)}</td>
-                  <td>{s.corrections ?? '—'}</td>
+                  <th scope="row">{s.title}</th>
+                  <td><a href={s.source} target="_blank" rel="noreferrer">{s.organization ?? 'Source'}</a></td>
+                  <td>{s.license}</td>
                 </tr>
               ))}
             </tbody>
           </table>
           <p className="version-muted">
-            Sources, witnesses and every reviewed decision: <a href={`${REPO}/tree/${info.app.commit ?? 'main'}/provenance`} target="_blank" rel="noreferrer">provenance/</a>
+            Pins and checksums for every source: <a href={`${REPO}/blob/${info.app.commit ?? 'main'}/provenance/registry.json`} target="_blank" rel="noreferrer">provenance/registry.json</a>
           </p>
         </section>
+
+        <Credits sources={info.content.sources} />
 
         {info.live && (
           <section>

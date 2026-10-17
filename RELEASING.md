@@ -17,7 +17,7 @@ The preview is marked everywhere:
 
 Both channels show their version in the header. Clicking it opens **About this version**:
 - **App:** the version, commit and build time.
-- **Content:** a fingerprint of everything in `res/`, plus each source's verification status (items awaiting review, decisions awaiting sign-off, corrections applied).
+- **Content:** a fingerprint of everything in `res/`, and the organization, source and license of each resource.
 - **Changes from live (preview only):** every content change since the live release. Bibles are listed verse by verse, with the old and new text; the WCF by section and proof references; Strong's by entry; Henry by file.
 
 ## Releasing a version
@@ -26,11 +26,7 @@ Both channels show their version in the header. Clicking it opens **About this v
    ```bash
    npm run content:diff -- v0.1.0        # replace with the current live tag
    ```
-2. **Clear the review queue**, if this release should only carry reviewed content:
-   ```bash
-   npm run verify -- --check             # fails while anything awaits review
-   ```
-3. **Tag the commit on `main` and push the tag.** The workflow rebuilds both sites, and the tagged commit goes live.
+2. **Tag the commit on `main` and push the tag.** The workflow rebuilds both sites, and the tagged commit goes live.
    ```bash
    git tag -a v1.0.0 -m "Reformation Day release" origin/main
    git push origin v1.0.0

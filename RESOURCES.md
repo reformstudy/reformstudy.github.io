@@ -6,22 +6,23 @@ The ReformStudy platform uses a modular resource system for managing biblical an
 
 Bible and commentary text is downloaded and converted by scripts, never typed in:
 
-1. **Ingest** (`npm run ingest`, scripts in `scripts/ingest/`): each script downloads one source, converts it to the formats below, and writes it under `res/`. Each has a pure convert function with a fixture test in `scripts/tests/`.
-2. **Commit**: the converted files are committed, so builds never depend on another site being up. Bible files are written one verse per line, so a corrected verse is a one-line diff.
+1. **Sources** (`sources/`): each publisher's download, committed byte for byte and checked against its SHA-256 in `provenance/registry.json`. `--download` on an ingest script fetches it again.
+2. **Ingest** (`npm run ingest`, scripts in `scripts/ingest/`): each script converts its source to the formats below and writes it under `res/`. Each has a pure `generate` function, tested with fixtures in `scripts/tests/`. The converted files are committed. Bible files are written one verse per line, so a changed verse is a one-line diff.
 3. **Validate** (`scripts/validate-resources.js`, also run by every build): all 66 books in canon order, chapter counts, verse order and text. The KJV must have exactly 31,102 verses with no gaps. Other translations are compared with it, and differences are printed as warnings.
 4. **Build** (`scripts/build-resources.js`): writes each Bible as one whole file (for search), plus an index and one file per book (for the reader). Chaptered commentaries are copied one file per chapter. `manifest.json` lists everything and names `defaultBible`.
+5. **Authenticate** (`npm run authenticate`, also run by every build and by `npm test`): checks the sources' checksums, reproduces `res/` from them, and proves every text is its source's, verbatim. It also checks that the built site carries `res/` unchanged. See [res/SOURCES.md](res/SOURCES.md#authentication).
 
 ### Sources
 
-Every source is pinned, so rerunning the pipeline gives the same files until the pin is changed. `provenance/registry.json` records each source's pin, SHA-256, license and lineage, and ingest stops if a download doesn't match. `npm run verify` compares each source with independent copies (witnesses, also in the registry) and reports every difference that isn't settled by a majority; `npm run review` records a person's decision about each one in `provenance/decisions/`. Corrections there are applied at ingest. See [res/SOURCES.md](res/SOURCES.md) for the method and findings.
+Every source comes from the organization that publishes it and is pinned, so rerunning the pipeline gives the same files until the pin is changed. `provenance/registry.json` records each source's organization, download location, license and SHA-256, and ingest stops if a download doesn't match. See [res/SOURCES.md](res/SOURCES.md).
 
 | Resource | Script | Source (pinned) | License |
 |----------|--------|-----------------|---------|
-| KJV | `kjv.js` | [aruljohn/Bible-kjv](https://github.com/aruljohn/Bible-kjv) at a commit | Public domain text; repo MIT |
-| BSB | `bsb.js` | [BSB-publishing/bsb2usfm](https://github.com/BSB-publishing/bsb2usfm) release `BSB_usfm.zip` | Public domain (CC0) |
-| WCF (1647) | `wcf.js` | [NonlinearFruit/Creeds.json](https://github.com/NonlinearFruit/Creeds.json) at a commit | Public domain text; repo Unlicense |
-| Matthew Henry | `henry.js` | [samueldotj/bible-commentaries](https://github.com/samueldotj/bible-commentaries) `en/henry` at a commit, from CrossWire `MHC` | Public domain |
-| Strong's | `strongs.js` | [openscriptures/strongs](https://github.com/openscriptures/strongs) at a commit | CC-BY-SA, credit required |
+| KJV | `kjv.js` | eBible.org's [eng-kjv](https://ebible.org/find/details.php?id=eng-kjv) USFM release, by SHA-256 | Public domain (outside the UK) |
+| BSB | `bsb.js` | The publisher's [bsb.txt](https://berean.bible/downloads.htm), with Psalm titles located by its bsb_usx.zip; by SHA-256 | Public domain |
+| WCF (1647) | `wcf.js` | Interim: [NonlinearFruit/Creeds.json](https://github.com/NonlinearFruit/Creeds.json) at a commit, used as published | Public domain text; repo Unlicense |
+| Matthew Henry | `henry.js` | [CCEL](https://ccel.org/ccel/henry)'s six ThML volumes, by SHA-256 | Public domain; CCEL asks permission for republishing |
+| Strong's | `strongs.js` | STEPBible lexicons (Tyndale House, Cambridge), [STEPBible/STEPBible-Data](https://github.com/STEPBible/STEPBible-Data) at a commit | CC BY 4.0, credit required |
 
 ## Architecture
 

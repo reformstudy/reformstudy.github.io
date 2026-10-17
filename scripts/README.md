@@ -4,7 +4,7 @@ This directory contains build scripts for processing and bundling resource files
 
 ## Content pipeline
 
-`npm run ingest` downloads and converts every source into `res/`, then validates it:
+`npm run ingest` converts every committed source in `sources/` into `res/`, then validates and authenticates it. Add `--download` to an ingest script to fetch its source again from the publisher:
 
 | Script | Writes |
 |--------|--------|
@@ -14,22 +14,19 @@ This directory contains build scripts for processing and bundling resource files
 | `ingest/henry.js` | `res/commentaries/henry/` |
 | `ingest/strongs.js` | `res/strongs/{greek,hebrew}/` |
 
-`validate-resources.js` checks it all (also run by every build), and `npm test` runs the converter tests in `tests/`. Shared code is in `lib/`: the canon (`canon.js`), reference parsing (`refs.js`), a ZIP reader (`zip.js`) and file helpers (`io.js`). Sources and licenses are listed in [RESOURCES.md](../RESOURCES.md#sources).
+`validate-resources.js` checks it all (also run by every build). Shared code is in `lib/`:
+- `canon.js`: the canon;
+- `refs.js`: reference parsing;
+- `usfm.js`, `usx.js` and `xml.js`: readers for the source formats;
+- `zip.js`: a ZIP reader;
+- `io.js`: file helpers;
+- `sources.js`: the committed sources;
+- `lock.js`: checksums;
+- `pipeline.js`: running a converter.
 
-Each script checks its download against the SHA-256 in `provenance/registry.json` (helpers in `lib/lock.js`) and stops on a mismatch. Corrections to a source are reviewed decisions in `provenance/decisions/{resource}.json` (loaded by `lib/decisions.js`); each must match exactly once or ingest fails.
+Sources and licenses are listed in [RESOURCES.md](../RESOURCES.md#sources).
 
-## Verification
-
-`npm run verify` (`verify/verify.js`) compares each source with its witnesses and writes `provenance/reports/`; `npm run review` (`verify/review.js`) records decisions. The parts:
-
-| File | Does |
-|------|------|
-| `verify/witnesses.js` | Downloads witnesses at their pins into `.cache/witnesses/` and checks their SHA-256 |
-| `verify/consensus.js` | Aligns each witness with the source, finds the places that differ, classifies them by independent lineage, and keys them by content |
-| `verify/adapters/*.js` | Per resource: how to split it into units, normalize the text, read each witness, and suggest a class for each item |
-| `verify/report.js` | The Markdown reports |
-
-To add a witness, add it to the registry (with its lineage), record its checksum with `UPDATE_SOURCE_LOCK=1 npm run verify`, and read it in the resource's adapter. See [res/SOURCES.md](../res/SOURCES.md).
+`authenticate/` proves the result is verbatim. It is separate code from the converters, and `npm run authenticate`, every build and `npm test` run it. See [res/SOURCES.md](../res/SOURCES.md#authentication). `npm test` runs the tests in `tests/` and requires 99% line coverage of the converters, `lib/` and the authenticator.
 
 ## Scripts
 
