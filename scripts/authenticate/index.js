@@ -28,7 +28,9 @@ import { pipeline as bsb } from '../ingest/bsb.js';
 import { pipeline as wcf } from '../ingest/wcf.js';
 import { pipeline as henry, VOLUMES, verseCounter } from '../ingest/henry.js';
 import { LANGUAGES, pipeline as strongs } from '../ingest/strongs.js';
-import { authenticateBible, readBibleZip } from './bibles.js';
+import { authenticateBible, authenticatePsalmTitles, readBibleZip, readPlainTextBible } from './bibles.js';
+import { readUsxBook } from './bible-sources.js';
+import { readZip } from '../lib/zip.js';
 import { authenticateConfession } from './confessions.js';
 import { authenticateCommentary } from './commentaries.js';
 import { authenticateLexicon } from './lexicons.js';
@@ -39,7 +41,7 @@ export const PIPELINES = [kjv, bsb, wcf, henry, strongs];
 /** The exceptions each resource's text is allowed (compare.js). */
 export const RESOURCE_EXCEPTIONS = {
   kjv: ['pilcrow', 'punctuation spacing'],
-  bsb: ['punctuation spacing'],
+  bsb: [],
   wcf: [],
   henry: [],
   strongs: ['STEPBible indentation'],
@@ -93,15 +95,21 @@ export function authenticate({ root = ROOT, site = null, sourcesDir } = {}) {
     try { fn(); } catch (err) { entry(id).checks.push({ name, problems: [err.message] }); }
   };
 
-  for (const [id, file, format] of [['kjv', 'eng-kjv_usfm.zip', 'usfm'], ['bsb', 'bsb_usx.zip', 'usx']]) {
-    guard(id, 'the source can be read', () => {
-      const src = readBibleZip(files.get(id).get(file), format);
-      const r = authenticateBible(json(`res/bibles/${id}/${id}.json`), src, RESOURCE_EXCEPTIONS[id]);
-      entry(id).checks.push({ name: `${plural(r.verses, 'verse')} and ${plural(r.titles, 'Psalm title')} are the source's text`, problems: r.problems });
-      entry(id).excluded = src.units.excluded;
-      entry(id).kept = src.units.kept;
-    });
-  }
+  guard('kjv', 'the source can be read', () => {
+    const src = readBibleZip(files.get('kjv').get('eng-kjv_usfm.zip'), 'usfm');
+    const r = authenticateBible(json('res/bibles/kjv/kjv.json'), src, RESOURCE_EXCEPTIONS.kjv);
+    entry('kjv').checks.push({ name: `${plural(r.verses, 'verse')} and ${plural(r.titles, 'Psalm title')} are the source's text`, problems: r.problems });
+    entry('kjv').excluded = src.units.excluded;
+  });
+  guard('bsb', 'the source can be read', () => {
+    const bible = json('res/bibles/bsb/bsb.json');
+    const src = readPlainTextBible(files.get('bsb').get('bsb.txt').toString('utf8'));
+    const r = authenticateBible(bible, src, RESOURCE_EXCEPTIONS.bsb, { titlesInVerseOne: true });
+    entry('bsb').checks.push({ name: `${plural(r.verses, 'verse')} and ${plural(r.titles, 'Psalm title')} are the plain text's, verbatim (${plural(r.empty, 'verse')} the publisher leaves empty)`, problems: r.problems });
+    const usx = [...readZip(files.get('bsb').get('bsb_usx.zip')).values()].map(d => d.toString('utf8')).find(t => /<book\b[^>]*\bcode="PSA"/.test(t));
+    entry('bsb').checks.push({ name: 'each Psalm title ends where the USX marks it', problems: authenticatePsalmTitles(bible, readUsxBook(usx, 'PSA')) });
+    entry('bsb').excluded = src.units.excluded;
+  });
   guard('wcf', 'the source can be read', () => {
     const source = JSON.parse(files.get('wcf').get('westminster_confession_of_faith.json').toString('utf8'));
     const r = authenticateConfession(json('res/confessions/wcf/wcf.json'), source, json('res/bibles/kjv/kjv.json'));

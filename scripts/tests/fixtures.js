@@ -132,3 +132,23 @@ export const MINI_KJV = {
     ] },
   ],
 };
+
+/**
+ * The publisher's plain text: the attribution and headings, then one verse
+ * per line (CRLF, with a BOM). Psalm 3's title opens its verse 1, written
+ * with the plain text's own dash spacing, and Matthew 17:21 is empty.
+ */
+export function bsbPlainText(canon) {
+  const lines = ['﻿The Holy Bible, Berean Standard Bible, BSB is produced in cooperation with Bible Hub.', 'This text has been dedicated to the public domain.\t', 'Verse\tBerean Standard Bible'];
+  for (const b of canon) {
+    const name = b.id === 'PSA' ? 'Psalm' : b.name;
+    if (b.id === 'PSA') {
+      lines.push('Psalm 3:1\tA Psalm of David—when he fled from his son Absalom. O LORD, how my foes have increased!');
+      lines.push('Psalm 3:2\tMany say of me, “God will not deliver him.” Selah');
+    } else lines.push(`${name} 1:1\t${b.id}  one.`);
+    if (b.id === 'MAT') lines.push('Matthew 17:21\t');
+  }
+  return lines.join('\r\n') + '\r\n';
+}
+/** The same title as the USX marks it (its dash spacing differs). */
+export const USX_PSALM_TITLES = { 3: 'A Psalm of David— when he fled from his son Absalom.' };

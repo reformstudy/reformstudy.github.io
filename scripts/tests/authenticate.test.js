@@ -12,7 +12,9 @@ import os from 'os';
 import path from 'path';
 import { compareText, EXCEPTIONS, wordStream } from '../authenticate/compare.js';
 import { readUsfmBook, readUsxBook } from '../authenticate/bible-sources.js';
-import { authenticateBible } from '../authenticate/bibles.js';
+import { authenticateBible, authenticatePsalmTitles, readPlainTextBible } from '../authenticate/bibles.js';
+import { CANON } from '../lib/canon.js';
+import { convertBsb } from '../ingest/bsb.js';
 import { authenticateCommentary, fromRoman, rangesFor, readTree, readVolume } from '../authenticate/commentaries.js';
 import { authenticateConfession } from '../authenticate/confessions.js';
 import { authenticateLexicon, definitionSource, partOfSpeechFor, readLexicon } from '../authenticate/lexicons.js';
@@ -29,7 +31,7 @@ import { parseUsxBook } from '../lib/usx.js';
 import { henryOutputs } from '../ingest/henry.js';
 import { convertLexicon, parseLexicon, partOfSpeech } from '../ingest/strongs.js';
 import { convertWcf } from '../ingest/wcf.js';
-import { CREEDS, GEN_USFM, GREEK, HENRY_THML, LEXICON_TSV, MINI_KJV, PSA_USFM, PSA_USX } from './fixtures.js';
+import { bsbPlainText, CREEDS, GEN_USFM, GREEK, HENRY_THML, LEXICON_TSV, MINI_KJV, PSA_USFM, PSA_USX, USX_PSALM_TITLES } from './fixtures.js';
 
 const clone = x => JSON.parse(JSON.stringify(x));
 const tmp = () => fs.mkdtempSync(path.join(os.tmpdir(), 'rs-auth-'));
@@ -128,7 +130,7 @@ test('a converted Bible passes; every kind of tampering is caught', () => {
   const source = { units: readUsfmBook(GEN_USFM, 'GEN'), books: new Set(['GEN']) };
   const good = bibleFrom(GEN_USFM, 'GEN', parseUsfmBook);
   const ex = ['pilcrow', 'punctuation spacing'];
-  assert.deepEqual(authenticateBible(good, source, ex), { problems: [], verses: 3, titles: 0 });
+  assert.deepEqual(authenticateBible(good, source, ex), { problems: [], verses: 3, titles: 0, empty: 0 });
   assert.match(authenticateBible(good, source, ['punctuation spacing']).problems[0], /GEN 1:2: text differs/, 'without the pilcrow exception');
 
   const tamper = (fn) => { const b = clone(good); fn(b.books[0].verses); return authenticateBible(b, source, ex).problems; };
@@ -160,6 +162,36 @@ test('Psalm titles are checked like verses', () => {
   const none = clone(good);
   delete none.books[0].subtitles;
   assert.match(authenticateBible(none, source, []).problems[0], /PSA 3:title: in the source but not in the output/);
+});
+
+test('BSB plain text: verses verbatim, titles with their verse 1, empty verses allowed; tampering caught', () => {
+  const txt = bsbPlainText(CANON);
+  const source = readPlainTextBible(txt);
+  assert.equal(source.books.size, 66);
+  assert.ok(source.units.excluded.get('attribution and column headings') > 0);
+  const good = convertBsb(txt, USX_PSALM_TITLES);
+  const check = b => authenticateBible(b, source, [], { titlesInVerseOne: true });
+  const r = check(good);
+  assert.deepEqual(r.problems, []);
+  assert.deepEqual([r.verses, r.titles, r.empty], [67, 1, 1], 'Psalm 3 has two verses');
+  const psa = b => b.books.find(x => x.id === 'PSA');
+  const tamper = fn => { const b = clone(good); fn(b); return check(b).problems; };
+  assert.match(tamper(b => { psa(b).subtitles['3'] = 'A Psalm of David.'; })[0], /PSA 3:1: text missing|PSA 3:1: text differs/);
+  assert.match(tamper(b => { psa(b).verses[0].text = `when he fled from his son Absalom. ${psa(b).verses[0].text}`; psa(b).subtitles['3'] = 'A Psalm of David—'; })[0], /PSA 3:1: words are joined|a word is split/);
+  assert.match(tamper(b => { psa(b).verses = psa(b).verses.filter(v => v.verse !== 1); })[0], /PSA 3: a title without verse 1/);
+  assert.match(tamper(b => { b.books[0].verses[0].text = 'GEN one'; })[0], /GEN 1:1: text missing/);
+  assert.throws(() => readPlainTextBible('Hezekiah 1:1\tx'), /Unknown book "Hezekiah"/);
+});
+
+test('BSB Psalm titles must be the ones the USX marks', () => {
+  const usx = readUsxBook(PSA_USX, 'PSA');
+  const bible = { books: [{ id: 'PSA', subtitles: { 3: 'A Psalm of David, when he fled from his son Absalom.' } }] };
+  assert.deepEqual(authenticatePsalmTitles(bible, usx), []);
+  assert.deepEqual(authenticatePsalmTitles({ books: [{ id: 'PSA', subtitles: { 3: 'A Psalm of David.', 4: 'Another.' } }] }, usx), [
+    "PSA 3: the title isn't the one the USX marks",
+    "PSA 4: a title the USX doesn't mark",
+  ]);
+  assert.deepEqual(authenticatePsalmTitles({ books: [] }, usx), ['PSA 3: the USX marks a title the output lacks']);
 });
 
 // ---- Henry: tampering ----

@@ -37,8 +37,39 @@ export function readBibleZip(zip, format) {
   return { units: all, books };
 }
 
-/** Compare a converted Bible with the source's units. Returns { problems, verses, titles }. */
-export function authenticateBible(bible, { units, books }, exceptions) {
+/**
+ * Read the publisher's plain text ("Genesis 1:1<tab>In the beginning…"):
+ * units keyed "GEN 1:1", empty for verses the publisher leaves out. Lines that
+ * aren't verses (the attribution, the column headings) are left out by name.
+ */
+export function readPlainTextBible(txt) {
+  const names = new Map([...CANON.map(b => [b.name, b.id]), ['Psalm', 'PSA']]);
+  const units = new Units();
+  const books = new Set();
+  for (const line of txt.replace(/^\uFEFF/, '').split('\n')) {
+    const tab = line.indexOf('\t');
+    const ref = tab < 0 ? null : line.slice(0, tab).match(/^(.*\S) (\d+):(\d+)$/);
+    const book = ref && names.get(ref[1]);
+    if (!book) {
+      if (ref) throw new Error(`Unknown book "${ref[1]}"`);
+      units.exclude('attribution and column headings', line);
+      continue;
+    }
+    books.add(book);
+    const key = `${book} ${Number(ref[2])}:${Number(ref[3])}`;
+    units.open(key);
+    units.add(key, line.slice(tab + 1));
+  }
+  return { units, books };
+}
+
+/**
+ * Compare a converted Bible with the source's units. Returns { problems, verses, titles, empty }.
+ * With `titlesInVerseOne`, the source gives a Psalm's title as the start of its
+ * verse 1 (the plain text), so the output's title and verse 1 together must be
+ * that verse. A verse the source leaves empty may be absent from the output.
+ */
+export function authenticateBible(bible, { units, books }, exceptions, { titlesInVerseOne = false } = {}) {
   const problems = [];
   const seen = new Set();
   let verses = 0;
@@ -53,16 +84,41 @@ export function authenticateBible(bible, { units, books }, exceptions) {
   for (const id of books) if (!outputBooks.has(id)) problems.push(`${id}: in the source but not in the output`);
   for (const book of bible.books) {
     if (!books.has(book.id)) problems.push(`${book.id}: not in the source`);
+    const subtitles = book.subtitles ?? {};
     for (const v of book.verses) {
       if (v.book !== book.id) problems.push(`${book.id} ${v.chapter}:${v.verse}: filed under ${v.book}`);
-      check(`${book.id} ${v.chapter}:${v.verse}`, v.text);
+      const title = titlesInVerseOne && v.verse === 1 ? subtitles[v.chapter] : undefined;
+      check(`${book.id} ${v.chapter}:${v.verse}`, title === undefined ? v.text : `${title}\n${v.text}`);
       verses++;
     }
-    for (const [chapter, title] of Object.entries(book.subtitles ?? {})) {
-      check(`${book.id} ${chapter}:title`, title);
+    for (const [chapter, title] of Object.entries(subtitles)) {
+      if (!titlesInVerseOne) check(`${book.id} ${chapter}:title`, title);
+      else if (!book.verses.some(v => v.chapter === Number(chapter) && v.verse === 1)) problems.push(`${book.id} ${chapter}: a title without verse 1`);
       titles++;
     }
   }
-  for (const key of units.units.keys()) if (!seen.has(key)) problems.push(`${key}: in the source but not in the output`);
-  return { problems, verses, titles };
+  let empty = 0;
+  for (const [key, text] of units.units) {
+    if (seen.has(key)) continue;
+    if (text.trim()) problems.push(`${key}: in the source but not in the output`);
+    else empty++;
+  }
+  return { problems, verses, titles, empty };
+}
+
+/**
+ * Each Psalm title must be the one the USX marks (the same characters, not
+ * counting spaces), and every title the USX marks must be there.
+ */
+export function authenticatePsalmTitles(bible, usxUnits) {
+  const problems = [];
+  const psa = bible.books.find(b => b.id === 'PSA');
+  const marked = new Map([...usxUnits.units].filter(([k]) => /^PSA \d+:title$/.test(k)).map(([k, t]) => [Number(k.split(' ')[1].split(':')[0]), t]));
+  const ns = t => t.replace(/\s/g, '');
+  for (const [chapter, title] of Object.entries(psa?.subtitles ?? {})) {
+    if (!marked.has(Number(chapter))) problems.push(`PSA ${chapter}: a title the USX doesn't mark`);
+    else if (ns(marked.get(Number(chapter))) !== ns(title)) problems.push(`PSA ${chapter}: the title isn't the one the USX marks`);
+  }
+  for (const chapter of marked.keys()) if (!psa?.subtitles?.[chapter]) problems.push(`PSA ${chapter}: the USX marks a title the output lacks`);
+  return problems;
 }

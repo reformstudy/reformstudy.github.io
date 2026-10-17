@@ -30,8 +30,8 @@
       "title": "Berean Standard Bible",
       "organization": "Berean Bible (publisher; bereanbible.com, berean.bible)",
       "page": "https://berean.bible/downloads.htm",
-      "published": "2026-10-02",
-      "publishedNote": "The download's Last-Modified date for the file that was checked; the publisher replaces it in place, so a new release changes the checksum.",
+      "published": "2026-07-31",
+      "publishedNote": "Last-Modified dates of the files that were checked: bsb.txt (verse text) 2026-07-31, bsb_usx.zip (Psalm titles' extent) 2026-10-02. The publisher replaces files in place, so a new release changes the checksum.",
       "license": "Public domain (dedicated April 30, 2023; berean.bible/terms.htm). Attribution appreciated, not required.",
       "credit": {
         "text": "The Holy Bible, Berean Standard Bible, BSB is produced in cooperation with Bible Hub, Discovery Bible, OpenBible.com, and the Berean Bible Translation Committee. This text of God's Word has been dedicated to the public domain.",
@@ -44,12 +44,16 @@
       },
       "downloads": [
         {
+          "file": "bsb.txt",
+          "url": "https://bereanbible.com/bsb.txt"
+        },
+        {
           "file": "bsb_usx.zip",
           "url": "https://bereanbible.com/bsb_usx.zip"
         }
       ],
-      "sha256": "f5d9424c5e3c97db2497219343748d9d27f8c5b72ceb5017b2a0fbbb6bd6ace1",
-      "fileCount": 1
+      "sha256": "8238a4ddec8cca3e2de6352378feae9c1121802ca5760b5e42e63266a127babd",
+      "fileCount": 2
     },
     "wcf": {
       "title": "Westminster Confession of Faith (1647)",

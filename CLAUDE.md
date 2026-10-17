@@ -50,7 +50,7 @@
 │   ├── release/                       # build.json (version, content fingerprint), content diff vs the live tag
 │   ├── lib/canon.js                   # The 66 books: USFM and OSIS IDs, names, chapter counts
 │   ├── lib/refs.js                    # Scripture reference parsing (OSIS and compact "PSA.19.1-3")
-│   ├── lib/{usfm,usx,xml}.js          # USFM (KJV) and USX (BSB) verse parsing; a small XML reader
+│   ├── lib/{usfm,usx,xml}.js          # USFM (KJV) and USX (BSB Psalm titles) parsing; a small XML reader
 │   ├── lib/{sources,pipeline}.js      # The committed sources (checksummed); running a converter
 │   ├── tests/                         # node:test tests (npm test, with a coverage floor)
 │   └── README.md
@@ -104,7 +104,7 @@ Processes `res/` source files → `docs/resources/`. Run this when you add or ch
 ```bash
 npm run ingest                # everything below, in order, then validation and authentication
 npm run ingest:kjv            # KJV → res/bibles/kjv/kjv.json
-npm run ingest:bsb            # BSB (publisher's USX download) → res/bibles/bsb/bsb.json
+npm run ingest:bsb            # BSB (publisher's plain text) → res/bibles/bsb/bsb.json
 npm run ingest:wcf            # WCF 1647 + proofs → res/confessions/wcf/wcf.json (needs the KJV)
 npm run ingest:henry          # Matthew Henry (CCEL) → res/commentaries/henry/
 npm run ingest:strongs        # Strong's Greek + Hebrew → res/strongs/
