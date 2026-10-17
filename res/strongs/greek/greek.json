@@ -151,7 +151,7 @@
    "number": "G18",
    "lemma": "ἀγαθός",
    "transliteration": "agathos",
-   "partOfSpeech": "Adjective",
+   "partOfSpeech": "Adjective / Adverb",
    "gloss": "good",
    "definition": "ἀγαθός, -ή, -όν,\n[in LXX chiefly for טוֹב ;]\nin general, good, in physical and in moral sense, used of persons, things, acts, conditions, etc., applied to that which is regarded as \"perfect in its kind, so as to produce pleasure and satisfaction, . . . that which, in itself good, is also at once for the good and the advantage of him who comes in contact with it\" (Cremer, 3): γῆ, Luk.8:8; δένδρον, Mat.7:18; καρδία, Luk.8:15; δόσις, Jas.1:17; μέρις, Luk.10:42; ἔργον (frequently in Pl.), Php.1:6; ἐλπίς, 2Th.2:16; θησαυρός, Mat.12:35; μνεία, 1Th.3:6 (cf. 2Ma.7:20); as subst., τὸ ἀ, that which is morally good, beneficial, acceptable to God, Rom.12:2; ἐργάζεσθαι τὸ ἀ, Rom.2:10, Eph.4:28; πράσσειν, Rom.9:11, 2Co.5:10; διώκειν, 1Th.5:15; μιμεῖσθαι, III Jo 11; κολλᾶσθαι τῷ ἀ, Rom.12:9; ερωτᾶν περὶ τοῦ ἀ., Mat.19:17; διάκονος εἰς τὸ ἀ., Rom.13:4; τὸ ἀ. σου, thy favour, benefit, Phm 14; pl., τὰ ἀ., of goods, possessions, Luk.12:18; of spiritual benefits, Rom.10:15, Heb.9:11, 10:1. ἀ is opposite to πονηρός, Mat.5:45, 20:5; κακός, Rom.7:19; φαῦλος, Rom.9:11, 2Co.5:10 (cf. MM, VGT, see word).\nSYN.: καλός, δίκαιος. κ. properly refers to goodliness as manifested in form: ἀ. to inner excellence (cf. the cl. καλὸς κἀγαθός and ἐν καρδία κ. καὶ ἀ., Luk.8:15). In Rom.5:7, where it is contrasted with δ., ἀ. implies a kindliness and attractiveness not necessarily possessed by the δίκαιος, who merely measures up to a high standard of rectitude (cf. ἀγαθωσύνη). (AS)"
   },
@@ -1831,7 +1831,7 @@
    "number": "G228",
    "lemma": "ἀληθινός",
    "transliteration": "alēthinos",
-   "partOfSpeech": "Adjective",
+   "partOfSpeech": "Adjective / Adverb",
    "gloss": "true",
    "definition": "ἀληθινός, -ή, -όν\n(ἀληθής), [in LXX for אֶמֶת ;]\ntrue, in the sense of real, ideal, genuine: Luk.16:11 Jhn.1:9 4:23, 37 6:32 7:28 8:16 15:1 17:3 19:35, 1Th.1:9, Heb.8:2 9:24 10:22, 1Jn.2:8 Jn 5:20, Rev.3:7, 14 6:10 15:3 16:7 19:2; = ἀληθής, Rev.19:9 21:5 22:6 (MM, VGT, see word).†\nSYN.: ἀληθής, q.v (AS)"
   },
@@ -11614,7 +11614,7 @@
    "number": "G1451",
    "lemma": "ἐγγύς",
    "transliteration": "engus",
-   "partOfSpeech": "Preposition",
+   "partOfSpeech": "Preposition / Adjective",
    "gloss": "near",
    "definition": "ἐγγύς, adv.,\n[in LXX chiefly for קָרוֹב ;]\nnear;\n  1. of place: Jhn.19:20, 42; as prep. with genitive (M, Pr., 99), Luk.19:11, Jhn.3:23 6:19, 23 11:18, 54, Act.1:12; with dative, Act.9:38 27:8; superl., ἔγγιστα, Mrk.6:36, WH, mg.; metaphorically, ֹοἱ ἐ., opposite to οἱ μακράν, Eph.2:17; ἐ. γίνεσθαι, Eph.2:13; ἐ. σου τὸ ῥῆμα, Rom.10:8 (LXX).\n   2. Of time: Mat.24:32 26:18, Mrk.13:28, 29 Luk.21:30, 31 Jhn.2:13 6:4 7:2 11:55, Rev.1:3 22:10; ὁ κύριος ἐ., Php.4:5; before ἐπὶ θύραις, Mat.24:33; compar., ἐγγύτερον (neut. of adj. -ος, used adverbially), Rom.13:11 (cf. R, txt.); as prep. with genitive, ἐ. κατάρας, Heb.6:8; ἀφανισμοῦ, Heb.8:13 (cf. Cremer, 223).\n† (AS)"
   },
@@ -12070,7 +12070,7 @@
    "number": "G1508",
    "lemma": "εἰ μή",
    "transliteration": "ei mē",
-   "partOfSpeech": "Conditional",
+   "partOfSpeech": "Conditional + Particle, neuter",
    "gloss": "except",
    "definition": "εἰ,\nconjunctive particle, used in conditions and in indirect   questions.\n   I. Conditional, if;\n  1. with indic, expressing a general assumption;\n  (a) pres.: before indic, pres., Mat.11:14, Rom.8:25, al.; before imperat., Mrk.4:23  9:22, Jhn.15:18, 1Co.7:9, al.; before fut. indic., Luk.16:31, Rom.8:11, al.; before pf. or aor., with negation in apodosis, Mat.12:26, Rom.4:14, al.; similarly, before impf., Luk.17:6, Jhn.8:39; before quæst., Mat.6:23, Jhn.5:47  7:23 8:46, 1Pe.2:20;\n   (b) fut.: Mat.26:33, 1Pe.2:20;\n   (with) pf.: Jhn.11:12, Rom.6:5, al.;\n   (d) aor.: Luk.16:11  19:8, Jhn.13:32, 18:23, Rev.20:15, al.\n     2. Where the assumption is certain = ἐπεί: Mat.12:28, Jhn.7:4, Rom.5:17, al.\n   3. Of an unfulfilled condition, with indic, impf., aor. or plpf., before ἄν, with imp. or aor. (see: ἄν, I, i).\n   4. C. indic., after verbs denoting wonder, etc., sometimes, but not always, coupled with an element of doubt: Mrk.15:44, 1Jn.3:13, al.\n   5. C. indic., as in LXX (Num.14:3o, 1Ki.14:45, al. = Heb. אִם), in oaths, with the formula of imprecation understood in a suppressed apodosis (WM, 627; Burton, §272): Mrk.8:12, Heb.3:11\" (LXX)  4:3 (LXX).\n   6. Rarely (cl.) with optative, to express a merely possible condition: Act.24:19 27:39, 1Co.14:10 15:37, I Pe3:14, 17.\n   II. Interrogative, if, whether.\n  1. As in cl., in indir. questions after verbs of seeing, asking, knowing, saying, etc.: with indic. pres., Mat.26:63, Mrk.15:36, Act.19:2, 2Co.13:5, al.; fut., Mrk.3:2, Act.8:22, al.; aor., Mrk.15:44, 1Co.1:16, al.; with subjc. aor. (M, Pr., 194), Php.3:12.\n   2. As in LXX (= Heb. אִם and interrog. הֲ, Gen.17:17, al.; see WM, 639f.; Viteau, i, 22), in direct questions: Mrk.8:23 (Tr., WH, txt.), Luk.13:23, 22:49, Act.19:2, al.\n   III. With other particles.\n  1. εἰ ἄρα, εἴγε, εἰ δὲ μήγε, see: ἄρα, γε.\n   2. εἰ δὲ καί, but if also: Luk.11:18; but even if, 1Co.4:7, 2Co.4:3 11:16.\n   3. εἰ δὲ μή, but if not, but if otherwise: Mrk.2:21, 22 Jhn.14:2, Rev.2:5, al.\n   4. εἰ καί, if even, if also, although: Mrk.14:29, Luk.11:8, 1Co.7:21, 2Co.4:16, Php.2:17, al.\n   5. καὶ εἰ, even if, see: καί\n   6. εἰ μή, if not, unless, except, but only: Mat.24:22, Mrk.2:26 6:5, Jhn.9:33, 1Co.7:17 (only), Gal.1:19 (cf. ἐὰν μή, 2:16; see Hort., Ja., xvi); ἐκτὸς εἰ μή, pleonastic (Bl., §65, 6), 1Co.14:5 15:2, 1Ti.5:19.\n   7. εἰ μήν = cl. ἦ μήν (M, Pr., 46), in oaths, surely (Eze.33:27, al.): Heb.6:14.\n   8. εἴ πως, if haply: Act.27:12, Rom.1:10.\n   9. εἴτε . . . εἴτε, whether . . . or; Rom.12:6-8, 1Co.3:22 13:8, al.\n(AS)"
   },
@@ -12078,7 +12078,7 @@
    "number": "G1509",
    "lemma": "εἰ μή τι",
    "transliteration": "ei mē ti",
-   "partOfSpeech": "Conditional",
+   "partOfSpeech": "Conditional + Particle, neuter + Conjunction",
    "gloss": "except what",
    "definition": "εἰ,\nconjunctive particle, used in conditions and in indirect   questions.\n   I. Conditional, if;\n  1. with indic, expressing a general assumption;\n  (a) pres.: before indic, pres., Mat.11:14, Rom.8:25, al.; before imperat., Mrk.4:23  9:22, Jhn.15:18, 1Co.7:9, al.; before fut. indic., Luk.16:31, Rom.8:11, al.; before pf. or aor., with negation in apodosis, Mat.12:26, Rom.4:14, al.; similarly, before impf., Luk.17:6, Jhn.8:39; before quæst., Mat.6:23, Jhn.5:47  7:23 8:46, 1Pe.2:20;\n   (b) fut.: Mat.26:33, 1Pe.2:20;\n   (with) pf.: Jhn.11:12, Rom.6:5, al.;\n   (d) aor.: Luk.16:11  19:8, Jhn.13:32, 18:23, Rev.20:15, al.\n     2. Where the assumption is certain = ἐπεί: Mat.12:28, Jhn.7:4, Rom.5:17, al.\n   3. Of an unfulfilled condition, with indic, impf., aor. or plpf., before ἄν, with imp. or aor. (see: ἄν, I, i).\n   4. C. indic., after verbs denoting wonder, etc., sometimes, but not always, coupled with an element of doubt: Mrk.15:44, 1Jn.3:13, al.\n   5. C. indic., as in LXX (Num.14:3o, 1Ki.14:45, al. = Heb. אִם), in oaths, with the formula of imprecation understood in a suppressed apodosis (WM, 627; Burton, §272): Mrk.8:12, Heb.3:11\" (LXX)  4:3 (LXX).\n   6. Rarely (cl.) with optative, to express a merely possible condition: Act.24:19 27:39, 1Co.14:10 15:37, I Pe3:14, 17.\n   II. Interrogative, if, whether.\n  1. As in cl., in indir. questions after verbs of seeing, asking, knowing, saying, etc.: with indic. pres., Mat.26:63, Mrk.15:36, Act.19:2, 2Co.13:5, al.; fut., Mrk.3:2, Act.8:22, al.; aor., Mrk.15:44, 1Co.1:16, al.; with subjc. aor. (M, Pr., 194), Php.3:12.\n   2. As in LXX (= Heb. אִם and interrog. הֲ, Gen.17:17, al.; see WM, 639f.; Viteau, i, 22), in direct questions: Mrk.8:23 (Tr., WH, txt.), Luk.13:23, 22:49, Act.19:2, al.\n   III. With other particles.\n  1. εἰ ἄρα, εἴγε, εἰ δὲ μήγε, see: ἄρα, γε.\n   2. εἰ δὲ καί, but if also: Luk.11:18; but even if, 1Co.4:7, 2Co.4:3 11:16.\n   3. εἰ δὲ μή, but if not, but if otherwise: Mrk.2:21, 22 Jhn.14:2, Rev.2:5, al.\n   4. εἰ καί, if even, if also, although: Mrk.14:29, Luk.11:8, 1Co.7:21, 2Co.4:16, Php.2:17, al.\n   5. καὶ εἰ, even if, see: καί\n   6. εἰ μή, if not, unless, except, but only: Mat.24:22, Mrk.2:26 6:5, Jhn.9:33, 1Co.7:17 (only), Gal.1:19 (cf. ἐὰν μή, 2:16; see Hort., Ja., xvi); ἐκτὸς εἰ μή, pleonastic (Bl., §65, 6), 1Co.14:5 15:2, 1Ti.5:19.\n   7. εἰ μήν = cl. ἦ μήν (M, Pr., 46), in oaths, surely (Eze.33:27, al.): Heb.6:14.\n   8. εἴ πως, if haply: Act.27:12, Rom.1:10.\n   9. εἴτε . . . εἴτε, whether . . . or; Rom.12:6-8, 1Co.3:22 13:8, al.\n(AS)"
   },
@@ -12774,7 +12774,7 @@
    "number": "G1596",
    "lemma": "ἑκουσίως",
    "transliteration": "hekousiōs",
-   "partOfSpeech": "Adverb",
+   "partOfSpeech": "Adverb / Adjective",
    "gloss": "voluntarily",
    "definition": "ἑκουσίως\nadv., [in LXX: Psa.54:6 (נְדָבָה) 2Ma.14:3, al. ;]\nvoluntarily, willingly: Heb.10:26, 1Pe.5:2.†\n(AS)"
   },
@@ -14182,7 +14182,7 @@
    "number": "G1772",
    "lemma": "ἔννομος",
    "transliteration": "ennomos",
-   "partOfSpeech": "Adjective",
+   "partOfSpeech": "Adjective / Adverb",
    "gloss": "under law",
    "definition": "ἔν-νομος, -ον\n[in LXX: Sir, Pro.1:1-33 ogue 12* ;]\n  1. lawful, legal (MM, Exp., xiii): Act.19:39.\n   2. Of persons,\n   (a) law-abiding;\n   (b) under law: ἔ. Χριστοῦ, in relation to Christ, 1Co.9:21 (Cremer. 435).†\n(AS)"
   },
@@ -17636,7 +17636,7 @@
    "number": "G2205",
    "lemma": "ζῆλος",
    "transliteration": "zēlos",
-   "partOfSpeech": "Noun",
+   "partOfSpeech": "Noun, masculine or neuter",
    "gloss": "zeal",
    "definition": "ζῆλος, -ου, ὁ and in late Gk., also -εος, τό (2Co.9:2, Php.3:6),\n[in LXX for קִנְאָה, Num.25:11, al. ;]\n  1. zeal: 2Co.7:11 9:2; κατά ζῆλος, Php.3:6; with genitive obj., Jhn.2:17 (LXX), Rom.10:2; before ὑπέρ, 2Co.7:7; with genitive subj., θεοῦ, 2Co.11:2; πυρός, Heb.10:27 (cf. Isa.26:11, Wis.5:18, and cf. Westc., in l).\n   2. jealousy: Rom.13:13, 1Co.3:3 3:2 2Co.12:20, Gal.5:20 (WH, txt, RV), Jas.3:14, 16; πλησθῆναι ζήλου Act.5:17 13:45; pl., ζῆλοι (see B1., § 32, 6), Gal.5:20, WH, mg.†\n(AS)"
   },
@@ -18475,7 +18475,7 @@
    "number": "G2310",
    "lemma": "θεμέλιος",
    "transliteration": "themelios",
-   "partOfSpeech": "Noun",
+   "partOfSpeech": "Noun, masculine or neuter",
    "gloss": "foundation",
    "definition": "θεμέλιος, -ον\n(τίθημι), [in LXX for אַרְמוֹן, מוֹסָד, etc. ;]\nof or for a foundation; as subst., ὁ θ. (sc. λίθος), a foundation stone, foundation: Luk.6:48-49 14:29 (but see Deiss., BS, 123); pl., οἰ θ. (cl.), Heb.11:10 Rev.21:14, 19; neut., τὸ θ. (Arist., Phys., vi, 6, 10, LXX and later writers),  Act.16:26; metaphorically, Rom.15:20, 1Co.3:10-12 Eph.2:20, 1Ti.6:19, 2Ti.2:19, Heb.6:1.†\n(AS)"
   },
@@ -19483,7 +19483,7 @@
    "number": "G2436",
    "lemma": "ἵλεως",
    "transliteration": "hileōs",
-   "partOfSpeech": "Adjective",
+   "partOfSpeech": "Adjective / Adverb",
    "gloss": "propitious/gracious",
    "definition": "ἵλεως, -ων\n(Att.. for ἵλαος), [in LXX for חָלִיל, 1Ki.14:45, 2Ki.20:20, al.; ἵ. εἶναι, סָלַח, 3Ki.8:30 ff. Jer.31:34, al. ;]\npropitious, merciful: τ. ἀδικίαες, Heb.8:12 (Je, l.with; cf.1 Ki, l.with); ἵ. σοι (sc. ἔστω ὁ θεός), Mat.16:22 (cf. 1Sam, l.with).†\n(AS)"
   },
@@ -20027,7 +20027,7 @@
    "number": "G2504",
    "lemma": "κἀγώ",
    "transliteration": "kagō",
-   "partOfSpeech": "Conjunction",
+   "partOfSpeech": "Conjunction + Personal pronoun",
    "gloss": "and I",
    "definition": "κἀγώ see: ἐγώ.\n  ἐγώ, genitive, etc., ἐμοῦ, ἐμοί, ἐμέ (enclitic μου, μοι, με), pl. ἡμεῖς, -ῶν, -ῖν, -ᾶς,\nof person(s) pron.\nI.\n  (a) The nom. is usually emphatic, when expressed as subjc, as in Mat.3:11, Mrk.1:8, Luk.3:16, al. But often there is no apparent emphasis, as Mat.10:16, Jhn.10:17; ἰδοὺ ἐ. (= Heb. הִנֵּנִי, cf. 1Ki.3:8), Act.9:10; ἐ. (like Heb. אֲנִי), I am, Jhn.1:23 (LXX), Act.7:32 (LXX).\n   (b) The enclitic forms (see supr.) are used with nouns, adjectives, verbs, adverbs, where there is no emphasis: ἐν τ. πατρί μου, Jhn.14:20; μου τ. λόγους, Mat.7:24; ὀπίσω μου, Mat.3:11; ἰσχυρότερός μου, ib.; λέγει μοι, Rev.5:5; also with the prep. πρός, as Mrk.9:19, al. The full forms (ἐμοῦ, etc.) are used with the other prepositions, as δι᾽ ἐμοῦ, ἐν ἐμοί, εἰς ἐμέ, etc., also for emphasis, as Luk.10:16, Jhn.7:23, Mrk.14:7, al.\n   (with) The genitive μου and ἡμῶν are often used for the poss. pronouns ἐμός, ἡμέτερος: τ. λαόν μου, Mat.2:6; μου τῂ ἀπιστιᾳ, Mrk.9:24.\n   (d) τί ἐμοὶ καὶ σοί ( = Heb. מַה־לִי וָלָךְ, Jdg.11:12, al.), i.e. what have we in common: Mat.8:29, Mrk.1:24, 5:7, Luk.8:28, Jhn.2:4; τί γάρ μοι, 1Co.5:2.\n   (e) The interchange of ἐγώ and ἡμεῖς, common in π., appears in Pauline Epp. (see M, Pr., 86f., M, Th., 131f.).\n   (f) κἀγώ (= καὶ ἐγώ), and I, even I, I also: Mat.2:8, Luk.2:48, Jhn.6:56, Rom.3:7, 1Co.7:40, al.; κἀγώ . . . καί, both . . . and, Jhn.7:28.\n(AS)"
   },
@@ -25059,7 +25059,7 @@
    "number": "G3134",
    "lemma": "μαρὰν ἀθά",
    "transliteration": "maran atha",
-   "partOfSpeech": "Verb (Aramaic)",
+   "partOfSpeech": "Verb (Aramaic) + Noun (Aramaic)",
    "gloss": "Come, Lord!",
    "definition": "μαρὰν ἀθά (Rec. μαραναθά; Aram.: on the original form see Dalman, Gr., § 41, 1; 74, 3; Words, 328),\nMaranatha, i.e. the Lord cometh (but see Dalman, ll. with; Field, Notes, 180; ICC, in l): 1Co.16:22.†\n(AS)"
   },
@@ -25203,7 +25203,7 @@
    "number": "G3152",
    "lemma": "μάταιος",
    "transliteration": "mataios",
-   "partOfSpeech": "Adjective",
+   "partOfSpeech": "Adjective / Adverb",
    "gloss": "futile",
    "definition": "μάταιος, -ον\n(as in Att.., but -αία, -αιον, 1Co.15:17, 1Pe.1:18; μάτην), [in LXX for שָׁוְא, הֶבֶל, כָּזָב, etc. ;]\nvain, useless: ἀνωφελὴς κ. μ., Tit.3:9; πίστις, 1Co.15:17; θρησκεία, Jas.1:26; διαλογισμοί, 1Co.3:20 (LXX); ἀναστροφή, 1Pe.1:18; of idols and heathen gods, τὰ μ. (Jer.2:5, 4Ki.17:15, al.): Act.14:15\nSYN.: κενός, q.v  (AS)"
   },
@@ -26083,7 +26083,7 @@
    "number": "G3362",
    "lemma": "ἐὰν μή",
    "transliteration": "ean mē",
-   "partOfSpeech": "Conditional",
+   "partOfSpeech": "Conditional + Particle, neuter",
    "gloss": "unless",
    "definition": "- if not, i.e. unlessss, if not"
   },
@@ -26099,7 +26099,7 @@
    "number": "G3364",
    "lemma": "οὐ μή",
    "transliteration": "ou mē",
-   "partOfSpeech": "Particle, neuter",
+   "partOfSpeech": "Particle, neuter + Particle, neuter",
    "gloss": "never",
    "definition": "never, not ever, a double negative strengthening the denial; not at all, surely not"
   },
@@ -26115,7 +26115,7 @@
    "number": "G3366",
    "lemma": "μηδέ",
    "transliteration": "mēde",
-   "partOfSpeech": "Particle, neuter",
+   "partOfSpeech": "Particle, neuter + Conjunction",
    "gloss": "nor",
    "definition": "μηδέ\nnegative particle, related to οὐδέ as μή to οὐ,\n   1. as conic., continuing a negation or prohibition, but not, and not, nor: preceded by μή, Mat.6:25 22:29, Mrk.12:24, Luk.14:12, al.; ἵνα μή, Jhn.4:15; ὅπως μή, Luk.16:26; μηδέ . . . μηδέ, neither . . . nor, Mat.10:10, 1Co.10:8-9.\n   2. As adv., strengthening a negation, not even: Mrk.2:2, 1Co.5:11, al\n(AS)"
   },
@@ -26211,7 +26211,7 @@
    "number": "G3378",
    "lemma": "μὴ οὐκ",
    "transliteration": "mē ouk",
-   "partOfSpeech": "Particle, neuter",
+   "partOfSpeech": "Particle, neuter + Particle, neuter",
    "gloss": "isn't it?",
    "definition": "μὴ οὐκ, see: μή, III.\n  μή,\nsubjective negative particle,\nused where the negation depends on a condition or hypothesis, expressed or understood, as distinct from οὐ, which denies absolutely. μή is used where one thinks a thing is not, as distinct from an absolute negation. As a general rule, οὐ negatives the indic, μή the other moods, incl, ptcp. [In LXX for אֵין ,אַיִן ,אַל ]\n  I. As a neg. adv., not;\n  1. with ref. to thought or opinion: Jhn.3:18, Tit.1:11, 2Pe.1:9.\n   2. In delib. questions, with subjc. (M, Pr., 185): Mrk.12:14, Rom.3:8.\n   3. In conditional and final sentences, after εἰ, ἐάν, ἄν, ἵνα, ὅπως: Mat.10:14, Mrk.6:11 12:19, Luk.9:5, Jhn.6:50, Rom.11:25, al.\n   4. C. inf. (see M, Pr., 234f., 239, 255),\n  (a) after verbs of saying, etc.: Mat.2:12 5:34, Mrk.12:18, Act.15:38, Rom.2:21, al.;\n   (b) with artic. inf.: after a prep., Mat.13:5, Mrk.4:5, Act.7:19, 1Co.10:6, al.; without a prep., Rom.14:13, 2Co.2:1, 13 1Th 4:6;\n   (with) in sentences expressing consequence, after ὥστε: Mat.8:28, Mrk.3:20, 1Co.1:7, 2Co.3:7, al.\n   5. C. ptcp. (see M, Pr., 231f., 239), in hypothetical references to persons of a certain character or description: Mat.10:28 12:30, Luk.6:49, Jhn.3:18, Rom.4:5, 1Co.7:38, 1Jn.3:10, al.; where the person or thing being definite, the denial is a matter of opinion: Jhn.6:64, 1Co.1:28 4:7, 18, 2Co.5:21, al.; where the ptcp. has a concessive, causal or conditional force, if, though, because not: Mat.18:25, Luk.2:45, Jhn.7:49, Act.9:26, Rom.2:14 5:13, 2Co.3:14, Gal.6:9, Ju 5; where the ptcp. has a descriptive force (being such as), not: Act.9:9, Rom.1:28, 1Co.10:33, Gal.4:8, Heb.12:27, al.\n   6. μή prohibitive, in indep. sentences,\n  (a) with subjc. praes., 1 of person(s) pl.: Gal.5:26 6:9, 1Th.5:6, 1Jn.3:18;\n   (b) with imperat. praes., usually where one is bidden to desist from what has already begun (cf. M, Pr., 122ff.): Mat.7:1, Mrk.5:36, Luk.6:30, Jhn.2:16 5:45, Act.10:15, Rom.11:18, Jas.2:1, Rev.5:5, al.;\n   (with) forbidding that which is still future: with imperat. aor., 3 of person(s), Mat.24:18, Mrk.13:15, Luk.17:31, al.; with subjc. aor., 2 of person(s), Mat.3:9 10:26, Mrk.5:7, Luk.6:29, Jhn.3:7, Rom.10:6, al.;\n   (d) with optative, in wishes: 2Ti.4:16 (LXX); μὴ γένοιτο (see M, Pr., 194; Bl., §66, 1), Luk.20:16, Rom.3:3, al.; μή τις, Mrk.13:5, al.\n   II. As a conj.,\n  1. after verbs of fearing, caution, etc., that, lest, perhaps (M, Pr., 192f.): with subjc. praes., Heb.12:15; with subjc. aor., Mat.24:4, Mrk.13:5, Luk.21:8, Act.13:40, Gal.5:15, al.; ὅρα μή (see M, Pr., 124, 178), elliptically, Rev.19:10 22:9; with indic, fut. (M, Pr., l.with), Col.2:8.\n   2. in order that not: with subjc. aor., Mrk.13:36, 2Co.8:20 12:6.\n   III. Interrogative, in hesitant questions (M, Pr., 170), or where a negative answer is expected: Mat.7:9, 10, Mrk.2:19, Jhn.3:4, Rom.3:3 10:18, 19, 1Co.1:13, al.; μή τις, Luk.22:35, al.; before οὐ (Rom.10:17, al. in Pl.), expecting an affirm, ans.; οὐ μή, Luk.18:7, Jhn.18:11.\n   IV. οὐ μή as emphatic negation (cf. M, Pr., 188, 190ff.; Bl. §64, 5), not at all, by no means: with indic, fut., Mat.16:22, Jhn.6:35, Heb.10:17, al.; with subjc. aor., Mat.24:2, Mrk.13:2, Luk.6:37, Jhn.13:8, 1Co.8:13, al.\n(AS)"
   },
@@ -26251,7 +26251,7 @@
    "number": "G3383",
    "lemma": "μήτε",
    "transliteration": "mēte",
-   "partOfSpeech": "Particle, neuter",
+   "partOfSpeech": "Particle, neuter + Conjunction",
    "gloss": "neither",
    "definition": "μή-τε\nnegative particle, differing from οὔτε as μή from οὐ, neither, nor: μήτε . . . μήτε, neither . . .\nnor, Mat.11:18, Luk.7:33 9:3, Act.23:12, 21 27:20, Heb.7:3; μὴ (μηδὲ) . . . μήτε . . . μήτε, Mat.5:34, 36, Mrk.3:20 T, Act.23:8, 2Th.2:2, 1Ti.1:7, Jas.5:12, Rev.7:1, 3.†\n(AS)"
   },
@@ -26267,7 +26267,7 @@
    "number": "G3385",
    "lemma": "μήτι",
    "transliteration": "mēti",
-   "partOfSpeech": "Particle, neuter",
+   "partOfSpeech": "Particle, neuter + Conjunction",
    "gloss": "surely not",
    "definition": "μή-τι\ninterrog. particle, expecting a negative answer: Mat.7:16 26:22, 25, Mrk.4:21 14:19, Luk.6:39, Jhn.8:22 18:35, Act.10:47, 2Co.12:18, Jas.3:11; in hesitant questions (see M, Pr., 170.), μ οὗτός ἐστιν,\ncan this be, Mat.12:23, Jhn.4:29; μ. ἄρα, 2Co.1:17; On εἰ μήτι (Luk.9:13, cf. Bl., § 65, 6), see: εἰ.†\n  εἰ,\nconjunctive particle, used in conditions and in indirect   questions.\n   I. Conditional, if;\n  1. with indic, expressing a general assumption;\n  (a) pres.: before indic, pres., Mat.11:14, Rom.8:25, al.; before imperat., Mrk.4:23  9:22, Jhn.15:18, 1Co.7:9, al.; before fut. indic., Luk.16:31, Rom.8:11, al.; before pf. or aor., with negation in apodosis, Mat.12:26, Rom.4:14, al.; similarly, before impf., Luk.17:6, Jhn.8:39; before quæst., Mat.6:23, Jhn.5:47  7:23 8:46, 1Pe.2:20;\n   (b) fut.: Mat.26:33, 1Pe.2:20;\n   (with) pf.: Jhn.11:12, Rom.6:5, al.;\n   (d) aor.: Luk.16:11  19:8, Jhn.13:32, 18:23, Rev.20:15, al.\n     2. Where the assumption is certain = ἐπεί: Mat.12:28, Jhn.7:4, Rom.5:17, al.\n   3. Of an unfulfilled condition, with indic, impf., aor. or plpf., before ἄν, with imp. or aor. (see: ἄν, I, i).\n   4. C. indic., after verbs denoting wonder, etc., sometimes, but not always, coupled with an element of doubt: Mrk.15:44, 1Jn.3:13, al.\n   5. C. indic., as in LXX (Num.14:3o, 1Ki.14:45, al. = Heb. אִם), in oaths, with the formula of imprecation understood in a suppressed apodosis (WM, 627; Burton, §272): Mrk.8:12, Heb.3:11\" (LXX)  4:3 (LXX).\n   6. Rarely (cl.) with optative, to express a merely possible condition: Act.24:19 27:39, 1Co.14:10 15:37, I Pe3:14, 17.\n   II. Interrogative, if, whether.\n  1. As in cl., in indir. questions after verbs of seeing, asking, knowing, saying, etc.: with indic. pres., Mat.26:63, Mrk.15:36, Act.19:2, 2Co.13:5, al.; fut., Mrk.3:2, Act.8:22, al.; aor., Mrk.15:44, 1Co.1:16, al.; with subjc. aor. (M, Pr., 194), Php.3:12.\n   2. As in LXX (= Heb. אִם and interrog. הֲ, Gen.17:17, al.; see WM, 639f.; Viteau, i, 22), in direct questions: Mrk.8:23 (Tr., WH, txt.), Luk.13:23, 22:49, Act.19:2, al.\n   III. With other particles.\n  1. εἰ ἄρα, εἴγε, εἰ δὲ μήγε, see: ἄρα, γε.\n   2. εἰ δὲ καί, but if also: Luk.11:18; but even if, 1Co.4:7, 2Co.4:3 11:16.\n   3. εἰ δὲ μή, but if not, but if otherwise: Mrk.2:21, 22 Jhn.14:2, Rev.2:5, al.\n   4. εἰ καί, if even, if also, although: Mrk.14:29, Luk.11:8, 1Co.7:21, 2Co.4:16, Php.2:17, al.\n   5. καὶ εἰ, even if, see: καί\n   6. εἰ μή, if not, unless, except, but only: Mat.24:22, Mrk.2:26 6:5, Jhn.9:33, 1Co.7:17 (only), Gal.1:19 (cf. ἐὰν μή, 2:16; see Hort., Ja., xvi); ἐκτὸς εἰ μή, pleonastic (Bl., §65, 6), 1Co.14:5 15:2, 1Ti.5:19.\n   7. εἰ μήν = cl. ἦ μήν (M, Pr., 46), in oaths, surely (Eze.33:27, al.): Heb.6:14.\n   8. εἴ πως, if haply: Act.27:12, Rom.1:10.\n   9. εἴτε . . . εἴτε, whether . . . or; Rom.12:6-8, 1Co.3:22 13:8, al.\n(AS)"
   },
@@ -29311,7 +29311,7 @@
    "number": "G3766",
    "lemma": "οὐκοῦν",
    "transliteration": "oukoun",
-   "partOfSpeech": "Particle, neuter",
+   "partOfSpeech": "Particle, neuter + Conjunction",
    "gloss": "so",
    "definition": "οὐκοῦν\nadv. (οὔκουν, not therefore),\nwith the negative element lost, therefore, so then: Jhn.18:37.†\n(AS)"
   },
@@ -29399,7 +29399,7 @@
    "number": "G3777",
    "lemma": "οὔτε",
    "transliteration": "oute",
-   "partOfSpeech": "Particle, neuter",
+   "partOfSpeech": "Particle, neuter + Conjunction",
    "gloss": "neither",
    "definition": "οὔτε\nnegative particle, related to μήτε as οὐ to μή,\nand not, neither, nor: οὐδεὶς . . . οὔτε, Rev.5:4; οὐδὲ . . . οὔτε, Gal.1:12; οὔτε . . . καί, Jhn.4:11; after a question with μή interrog., Jas.3:12; οὔτε . . . οὔτε, neither . . . nor, Mat.6:20, Mrk.12:25, Jhn.4:21, Act.15:10, Rom.8:38-39, Gal.5:6, al\n(AS)"
   },
@@ -29894,7 +29894,7 @@
    "number": "G3839",
    "lemma": "πάντῃ",
    "transliteration": "pantē",
-   "partOfSpeech": "Adverb",
+   "partOfSpeech": "Adverb / Adjective",
    "gloss": "always",
    "definition": "πάντῃ (Rec. -τη),\nadv. (πᾶς), [in LXX: Sir.50:22, 3Ma.4:1 * ;]\nevery way, entirely: Act.24:3.†\n(AS)"
   },
@@ -31518,7 +31518,7 @@
    "number": "G4042",
    "lemma": "περιοχή",
    "transliteration": "periochē",
-   "partOfSpeech": "Noun, feminine",
+   "partOfSpeech": "Noun, feminine / Verb",
    "gloss": "passage",
    "definition": "περι-οχή, -ῆς, ἡ\n(περιέχω), [in LXX for מָצוּד, מָצוֹר, etc. ;]\n  1. compass, circumference.\n   2. a portion circumscribed, a section: Act.8:32.†\n(AS)"
   },
@@ -31606,7 +31606,7 @@
    "number": "G4053",
    "lemma": "περισσός",
    "transliteration": "perissos",
-   "partOfSpeech": "Adjective",
+   "partOfSpeech": "Adjective / Adverb",
    "gloss": "excessive",
    "definition": "περισσός, -ή, -όν\n[in LXX for יֶתֶר and cogn. forms ;]\n  1. more than sufficient, over and above, abundant: Jhn.10:10, 2Co.9:1; with genitive (a popular substitute for πλειών, Bl., § 11, 3.4), Mat.5:37; id. with ellips. genitive, Mat.5:47 (EV, more than others; but see infr.); εκ περισσοῦ, Mrk.6:51, Rec., T. (on ὑπὲρ ὲκ π., see: ὑπερεκπερισσοῦ). Compar. neut., -ότερον: Luk.12:4, 48; with genitive, Mrk.12:33; adverbially (cf. περισσῶς), more abund­antly, 2Co.10:8, Heb.6:17 7:15; with genitive, π. πάντων, 1Co.15:10; pleonast., μᾶλλον π., Mrk.7:36.\n   2. out of the common, pre-eminent, superior:  Mat.5:47 (Thayer, see word, but see supr.); τὸ π., as subst., Rom.3:1; compar., -ότερος, with genitive, Mat.11:9, Luk.7:26; with subst., Mrk.12:40, Luk.20:47, 1Co.12:23-24, 2Co.2:7.†\n(AS)"
   },
@@ -32006,7 +32006,7 @@
    "number": "G4103",
    "lemma": "πιστός",
    "transliteration": "pistos",
-   "partOfSpeech": "Adjective",
+   "partOfSpeech": "Adjective / Adverb",
    "gloss": "faithful",
    "definition": "πιστός, -ή, -όν\n(πείθω), [in LXX chiefly for אָמַן ;]\n  I. Pass., to be trusted or believed;\n   1. of persons, trusty, faithful : Mat.24:45 25:21, 23 Luk.12:42, Act.16:15, 1Co.4:2 4:17 7:25, Eph.1:1 6:21, Col.1:2, 7 4:7, 9, 1Ti.1:12, 2Ti.2:2, Heb.2:17 3:2, 5, 1Pe.5:12, Rev.2:13 19:11; of God, 1Co.1:9 10:13, 2Co.1:18, 1Th.5:24, 2Th.3:3, Heb.10:23 11:11, 2Ti.2:13, 1Jn.1:9, 1Pe.4:19; before ἐν, Luk.16:10-12 19:17, 1Ti.3:11; ἐπί, with accusative, Mat.25:23; ἄχρι θανάτου, Rev.2:10; ὁ μάρτυς ὁ π., Rev.1:5; id. καὶ ἀληθινός, Rev.3:14.\n   2. Of things, trustworthy, reliable, sure: Act.13:34, 1Ti.1:15 3:1 4:9, 2Ti.2:11, Tit.1:9 3:8, Rev.21:5 22:6.\n   II. Act., believing, trusting, relying: Act.16:1, 2Co.6:15, Gal.3:9, 1Ti.4:10 5:16 6:2, Tit.1:6, Rev.17:14; pl., Act.10:45, 1Ti.4:3 4:12; opposite to ἄπιστος, Jhn.20:27; π. εἰς θεόν, 1Pe.1:21; π. ποιεῖν, III Jn 5.\n(On the difficulty of choosing in some cases between the active and the passive meaning, see Lft., Gal., 157.) †\n(AS)"
   },
@@ -32110,7 +32110,7 @@
    "number": "G4116",
    "lemma": "πλατύς",
    "transliteration": "platus",
-   "partOfSpeech": "Noun, feminine",
+   "partOfSpeech": "Noun, feminine / Adjective, feminine",
    "gloss": "street",
    "definition": "πλατύς, -εῖα, -ύ\n[in LXX for רָחָב ;]\nbroad: Mat.7:13. As subst., ἡ π. (sc. ὁδός),\n[in LXX chiefly for רָחָב ;]\na street: Mat.6:5 12:19\" (LXX), Mrk.6:56, WH, mg., Luk.10:10 13:26 14:21, Act.5:15, Rev.11:8 21:21 22:2.†\n(AS)"
   },
@@ -32645,7 +32645,7 @@
    "number": "G4183",
    "lemma": "πολύς",
    "transliteration": "polus",
-   "partOfSpeech": "Adjective",
+   "partOfSpeech": "Adjective / Adverb",
    "gloss": "much",
    "definition": "πολύς, πολλή, πολύ,\n[in LXX chiefly for רַב and cognate forms ;]\n  1. as adj., much, many, great, of number, space, degree, value, time, etc.: ἀριθμός, Act.11:21; ὄχλος, Mrk.5:24; θερισμός, Mat.9:37; χόρτος, Jhn.6:10; χρόνος, Mat.25:19; γογγυσμός, Jhn.7:12; πόνος, Col.4:13; δόξα, Mat.24:30; σιγή, Act.21:40; pl., προφῆται, Mat.13:17; ὄχλοι, Mat.4:25; δαιμόνια, Mrk.1:34; δυνάμεις, Mat.7:22,\n   2. As subst., pl. masc, πολλοί, many (persons): Mat.7:22, Mrk.2:2, al.; with genitive partit., Mat.3:7, Luk.1:16, al.; before ἐκ, Jhn.7:31, Act.17:12; with art., οἱ π., the many, Mat.24:12, Rom.12:5, 1Co.10:17, 33 2Co.2:17; opposite to ὁ εἶς (Lft., Notes, 291), Rom.5:15, 19; neut. pl., πολλά: Mat.13:3, Mrk.5:26, al.; accusative with adverbial force, Mrk.1:45, Rom.16:6 (Deiss., LAE, 317), 1Co.16:12, Jas.3:2, al.; neut. sing., πολύ: Luk.12:48; adverbially, Mrk.12:27, al.; πολλοῦ (genitive pret.), Mat.26:9; with compar. (Bl., §44, 5), π. σπουδαιότερον, 2Co.8:22; πολλῷ πλείους, Jhn.4:41.\nCompar., πλείων\n, neut., πλεῖον and πλέον (see WH, App., 151), pl., πλείονες, -ας, -α, contr., πλείους, -ω (cf. Mayser, 69), more, greater;\n  1. as adj.: Jhn.15:2, Act.18:2o, Heb.3:3; before παρά, Heb.11:4 (cf. Westc, in l. Was ΠΛΙΟΝΑ here a primitive error for ΗΔΙΟΝΑ ?); pi., Act.13:31, al.; with genitive compar., Mat.21:36; with num. (ἤ of comp. omitted), Act.4:22 24:11, al.\n   2. As subst., οἱ π., the greater number: Act.10:32 27:12, 1Co.10:5 15:6; also (Bl., §44, 3) others, more, the more: 2Co.2:6 4:15, Php.1:14; πλείονα, Luk.11:53; πλειον, πλέον, Mat.20:10, 2Ti.3:9; with genitive comp., Mk  12:43, Luk.21:3; π. Ἰωνᾶ ὧδε, Mat.12:41; adverbially, Act.4:17 20:9 24:4.\n   3. As adv., πλεῖον: before ἤ, Luk.9:13; with genitive comp., Mat.5:20; πλείω: with num., Mat.26:53.\nSuperl., πλεῖστος, -η, -ον\n,   (a) prop., most: Mat.11:20 21:8; adverbially, τὸ π., 1Co.14:27;\n   (b) elative (M, Pr., 79), very great: ὄχλος π., Mrk.4:1.\n(AS)"
   },
@@ -36315,7 +36315,7 @@
    "number": "G4642",
    "lemma": "σκληρός",
    "transliteration": "sklēros",
-   "partOfSpeech": "Adjective",
+   "partOfSpeech": "Adjective / Adverb",
    "gloss": "hard",
    "definition": "σκληρός, -ά, -όν\n(σκέλλω, to dry), [in LXX chiefly for קָשָׁה ;]\nhard to the touch, rough, harsh, (opposite to μαλακός); metaphorically, in various uses;\n   (a) of men, hard, stern, severe: Mat.25:24;\n   (b) of things, hard, rough, violent: σκληρόν σοι (ἐστι), Act.26:14; λόγος, Jhn.6:60; ἄνεμος, Jas.3:4; σκληρὰ λαλεῖν, Ju 15.†\nSYN.: αὐστηρός, q.v  (AS)"
   },
@@ -36419,7 +36419,7 @@
    "number": "G4655",
    "lemma": "σκότος",
    "transliteration": "skotos",
-   "partOfSpeech": "Noun",
+   "partOfSpeech": "Noun, masculine or neuter",
    "gloss": "darkness",
    "definition": "σκότος, -ου, ὁ the more usual cl. form (cf.σ., τό),\ndarkness: Heb.12:18, Rec.†\n(AS)"
   },
@@ -36619,7 +36619,7 @@
    "number": "G4680",
    "lemma": "σοφός",
    "transliteration": "sophos",
-   "partOfSpeech": "Adjective",
+   "partOfSpeech": "Adjective / Adverb",
    "gloss": "wise",
    "definition": "σοφός, -ή, -όν\n[in LXX chiefly for חָכָם ;]\nskilled, clever, wise, whether in handicraft, the affairs of life, the sciences or learning: Rom.16:19, 1Co.3:10; of the learned, Rom.1:14, 22, 1Co.1:19-20 1:26-27 3:18-20; of Jewish teachers, Mat.11:25, Luk.10:21; Christian, Mat.23:34; of those en­dowed with practical wisdom, 1Co.6:5, Eph.5:15, Jas.3:13; of God, Rom.16:27; compar., τ. μωρὸν τ. θεοῦ σοφώτερον, 1Co.1:25.†\nSYN.: συνετός, φρόνιμος (see: σοφία, SYN.)  (AS)"
   },
@@ -36875,7 +36875,7 @@
    "number": "G4712",
    "lemma": "στάδιος",
    "transliteration": "stadios",
-   "partOfSpeech": "Noun",
+   "partOfSpeech": "Noun, masculine or neuter",
    "gloss": "stadium",
    "definition": "στάδιον, -ου, τό pl., στάδια (Jhn.6:19, T), and metapl., στάδιοι (see B1., 9, 1),\n[in LXX: Dan LXX 4:9, Sus 1:37, 2Ma.11:5 2Mac 12:9 ff. * ;]\na stadium, i.e.\n   1. a measure of length = 600 Greek feet or 1⁄8 of a Roman mile Mat.14:24 (Rec., WH, txt., R, mg.), Luk.24:13, Jhn.6:19 11:18, Rev.14:20 21:16, and, this being the length of the Olympic course,\n   2. a race-course: 1Co.9:24.†\n(AS)"
   },
@@ -41839,7 +41839,7 @@
    "number": "G5333",
    "lemma": "φάρμακος",
    "transliteration": "pharmakos",
-   "partOfSpeech": "Noun",
+   "partOfSpeech": "Noun, masculine or neuter",
    "gloss": "sorcerer",
    "definition": "φαρμακός, -ή, -όν\n[in LXX for כָּשַׁף, etc. ;]\ndevoted to magical arts. As subst., ὁ φ. = φαρμακεύς, a magician, sorcerer: Rev.21:8 22:15.†\n(AS)"
   },

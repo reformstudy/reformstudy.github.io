@@ -199,7 +199,7 @@
    "number": "H24",
    "lemma": "אָבִיב",
    "transliteration": "a.viv",
-   "partOfSpeech": "Noun, masculine",
+   "partOfSpeech": "Noun, masculine / Proper name",
    "gloss": "Abib",
    "definition": "Month of exodus and passover (March or April)\nAlso named: ni.san (נִיסָן \"Nisan\" H5212)\nThis name means fresh, young barley ears, barley"
   },
@@ -2631,7 +2631,7 @@
    "number": "H328",
    "lemma": "אִטִּי",
    "transliteration": "it.ti",
-   "partOfSpeech": "Noun, masculine",
+   "partOfSpeech": "Noun, masculine / Adverb",
    "gloss": "mutterer",
    "definition": "enchanter, necromancer (substantive)"
   },
@@ -14351,7 +14351,7 @@
    "number": "H1793",
    "lemma": "דַּכָּא",
    "transliteration": "dak.ka",
-   "partOfSpeech": "Adjective",
+   "partOfSpeech": "Adjective / Noun, masculine",
    "gloss": "contrite",
    "definition": "adj\ncontrite"
   },
@@ -16351,7 +16351,7 @@
    "number": "H2043",
    "lemma": "הֲרָרִי",
    "transliteration": "ha.ra.ri",
-   "partOfSpeech": "Proper name",
+   "partOfSpeech": "Proper name / Proper name, masculine",
    "gloss": "Hararite",
    "definition": "Someone descended from Harar or Harod (cf. 2Sa.23.11, 25), first mentioned at 2Sa.23.11\n§ Hararite = \"mountain dweller\"\nadj\n1) a resident in or descendant of Harar; perhaps only a mountain dweller\n2) Agee, a Hararite, one of David's heroes\n3) Shammah, the Hararite, one of David's heroes\n4) Sharar, the Hararite, the father of Ahiam, one of David's heroes"
   },
@@ -16439,7 +16439,7 @@
    "number": "H2054",
    "lemma": "וָזָר",
    "transliteration": "va.zar",
-   "partOfSpeech": "Noun, masculine",
+   "partOfSpeech": "Noun, masculine / Adjective",
    "gloss": "guilty",
    "definition": "1) guilty, burdened with guilt, strange\n2) criminal, guilty"
   },
@@ -18167,7 +18167,7 @@
    "number": "H2270",
    "lemma": "חָבֵר",
    "transliteration": "cha.ver",
-   "partOfSpeech": "Adjective",
+   "partOfSpeech": "Adjective / Noun, masculine",
    "gloss": "companion",
    "definition": "adj\n1) united\nn m\n2) associate, fellow, worshippers\n3) companion"
   },
@@ -19207,7 +19207,7 @@
    "number": "H2400",
    "lemma": "חַטָּא",
    "transliteration": "chat.ta",
-   "partOfSpeech": "Noun, masculine",
+   "partOfSpeech": "Noun, masculine / Adjective",
    "gloss": "sinner",
    "definition": "1) sinners\nadj\n2) sinful\n3) exposed to condemnation, reckoned as offenders"
   },
@@ -23127,7 +23127,7 @@
    "number": "H2890",
    "lemma": "טְהוֹר",
    "transliteration": "te.hor",
-   "partOfSpeech": "Noun, masculine",
+   "partOfSpeech": "Noun, masculine / Adjective",
    "gloss": "pureness",
    "definition": "1) pureness, cleanness, clean, pure\n1a) clean (ceremonially-of animals)\n1b) pure (physically)\n1c) pure, clean (morally, ethically)"
   },
@@ -36935,7 +36935,7 @@
    "number": "H4616",
    "lemma": "מַ֫עַן",
    "transliteration": "ma.an",
-   "partOfSpeech": "Preposition",
+   "partOfSpeech": "Preposition / Conjunction",
    "gloss": "because",
    "definition": "1) purpose, intent prep\n1a) for the sake of\n1b) in view of, on account of\n1c) for the purpose of, to the intent that, in order to conj\n1d) to the end that"
   },
@@ -46095,7 +46095,7 @@
    "number": "H5761",
    "lemma": "עַוִּים",
    "transliteration": "av.vim",
-   "partOfSpeech": "Proper name",
+   "partOfSpeech": "Proper name / Proper name",
    "gloss": "Avvim",
    "definition": "People who lived in modern Gaza, first mentioned at Deu.2.23\n§ Avim = \"ruins\"\n1) a people among the early inhabitants of Palestine located in the southwest corner of the seacoast\n2) a city in Benjamin"
   },
@@ -47367,7 +47367,7 @@
    "number": "H5920",
    "lemma": "עַל",
    "transliteration": "al",
-   "partOfSpeech": "Noun, masculine",
+   "partOfSpeech": "Noun, masculine / Adverb",
    "gloss": "height",
    "definition": "subst\n1) height\nadv\n2) above, upwards, on high"
   },
@@ -48383,7 +48383,7 @@
    "number": "H6047",
    "lemma": "עֲנָמִים",
    "transliteration": "a.na.mim",
-   "partOfSpeech": "Proper name, masculine",
+   "partOfSpeech": "Proper name, masculine / Proper name, masculine",
    "gloss": "Anamim",
    "definition": "People descended from Anam(?) of the Egyptians, first mentioned at Gen.10.13; descended from Egypt (H4714); along with Ludim (H3866), Lehabim (H3853), Naphtuhim (H5320), Pathrusim (H6625), Casluhim (H3695) and Caphtorim (H3732)\n§ Anamim = \"affliction of the waters\"\na tribe of Egyptians"
   },
@@ -50023,7 +50023,7 @@
    "number": "H6252",
    "lemma": "עַשְׁתָּרוֹת",
    "transliteration": "ash.ta.rot",
-   "partOfSpeech": "Proper name, feminine",
+   "partOfSpeech": "Proper name, feminine / Proper name",
    "gloss": "Ashtaroth",
    "definition": "§ Ashtaroth or Astaroth = \"star\"\nfalse goddesses in the Canaanite religion, usually related to fertility cult"
   },
@@ -53990,7 +53990,7 @@
    "number": "H6748",
    "lemma": "צָלִי",
    "transliteration": "tsa.li",
-   "partOfSpeech": "Noun, masculine",
+   "partOfSpeech": "Noun, masculine / Adjective",
    "gloss": "roasted",
    "definition": "1) roasted, roast\n2) (CLBL) roasted"
   },
@@ -62398,7 +62398,7 @@
    "number": "H7799",
    "lemma": "שׁוּשַׁן",
    "transliteration": "shu.shan",
-   "partOfSpeech": "Noun, masculine",
+   "partOfSpeech": "Noun, masculine / Proper name, masculine",
    "gloss": "lily",
    "definition": "1) lily\n1a) probably any lily-like flower\n1b) Shoshannim, in title of Ps 45:1"
   },
@@ -62838,7 +62838,7 @@
    "number": "H7854",
    "lemma": "שָׂטָן",
    "transliteration": "sa.tan",
-   "partOfSpeech": "Noun, masculine",
+   "partOfSpeech": "Noun, masculine / Proper name",
    "gloss": "Satan",
    "definition": "This name means  adversary, one who withstands\n1a) adversary (in general-personal or national)\n2) superhuman adversary\n2a) Satan (as noun pr)"
   },

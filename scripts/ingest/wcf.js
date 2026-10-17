@@ -15,22 +15,18 @@
  * publisher edition with proofs has been found yet (res/SOURCES.md).
  *
  * Usage:
- *   node scripts/ingest/wcf.js                 # download from GitHub
- *   node scripts/ingest/wcf.js --input FILE    # use a saved westminster_confession_of_faith.json
+ *   node scripts/ingest/wcf.js              # convert the committed copy in sources/wcf/
+ *   node scripts/ingest/wcf.js --download   # fetch it again from GitHub first
  */
 
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
 import { compactRef, displayRef, parseOsisRef, versesInRef } from '../lib/refs.js';
-import { fetchBuffer, parseArgs, writeJson } from '../lib/io.js';
-import { checkLock, sha256 } from '../lib/lock.js';
+import { jsonText } from '../lib/io.js';
+import { runAsScript } from '../lib/pipeline.js';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const OUTPUT = path.join(__dirname, '../../res/confessions/wcf/wcf.json');
-const KJV = path.join(__dirname, '../../res/bibles/kjv/kjv.json');
+export const OUTPUT = 'res/confessions/wcf/wcf.json';
+export const KJV = 'res/bibles/kjv/kjv.json';
+export const SOURCE_FILE = 'westminster_confession_of_faith.json';
 export const SOURCE_COMMIT = '2ae21a4c5387ecc91f474c9d3d67c826d2a6b9d5';
-export const SOURCE_URL = `https://raw.githubusercontent.com/NonlinearFruit/Creeds.json/${SOURCE_COMMIT}/creeds/westminster_confession_of_faith.json`;
 
 /** Look up verse text in an app-format Bible. */
 export function verseLookup(bible) {
@@ -116,28 +112,18 @@ export function convertWcf(source, kjv) {
   };
 }
 
-/** Download (or read) the pinned Creeds.json file and check its checksum. */
-export async function loadWcfSource(args = {}) {
-  const raw = args.input ? fs.readFileSync(args.input) : await fetchBuffer(SOURCE_URL);
-  checkLock('wcf', { sha256: sha256(raw), files: 1 });
-  return JSON.parse(raw.toString('utf8'));
-}
+export const pipeline = {
+  id: 'wcf',
+  sources: ['wcf'],
+  owns: [OUTPUT],
+  /** ctx.readJson reads the KJV this pipeline fills proof texts from. */
+  generate(files, ctx) {
+    const source = JSON.parse(files.get('wcf').get(SOURCE_FILE).toString('utf8'));
+    const wcf = convertWcf(source, ctx.readJson(KJV));
+    const sections = wcf.sections.reduce((n, c) => n + c.sections.length, 0);
+    const refs = wcf.sections.reduce((n, c) => n + c.sections.reduce((m, s) => m + s.proofTexts.length, 0), 0);
+    return { outputs: new Map([[OUTPUT, jsonText(wcf)]]), summary: `${wcf.sections.length} chapters, ${sections} sections, ${refs} proof references` };
+  },
+};
 
-async function main() {
-  const args = parseArgs(process.argv.slice(2));
-  const source = await loadWcfSource(args);
-  if (!fs.existsSync(KJV)) throw new Error('Run scripts/ingest/kjv.js first: the proof texts are filled in from the KJV.');
-  const kjv = JSON.parse(fs.readFileSync(KJV, 'utf8'));
-  const wcf = convertWcf(source, kjv);
-  writeJson(OUTPUT, wcf);
-  const sections = wcf.sections.reduce((n, c) => n + c.sections.length, 0);
-  const refs = wcf.sections.reduce((n, c) => n + c.sections.reduce((m, s) => m + s.proofTexts.length, 0), 0);
-  console.log(`Wrote ${OUTPUT} (${wcf.sections.length} chapters, ${sections} sections, ${refs} proof references)`);
-}
-
-if (import.meta.url === `file://${process.argv[1]}`) {
-  main().catch(err => {
-    console.error(err);
-    process.exit(1);
-  });
-}
+runAsScript(import.meta, pipeline);

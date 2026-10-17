@@ -6,9 +6,10 @@ import { compactRef, displayRef, parseOsisRef, versesInRef } from '../lib/refs.j
 import { convertBsb } from '../ingest/bsb.js';
 import { cleanInline, parseUsfmBook } from '../lib/usfm.js';
 import { parseUsxBook } from '../lib/usx.js';
-import { convertVolume, romanToNumber } from '../ingest/henry.js';
+import { convertVolume, henryOutputs, romanToNumber, verseCounter } from '../ingest/henry.js';
 import { convertKjv } from '../ingest/kjv.js';
 import { convertLexicon, definitionText, parseLexicon, partOfSpeech } from '../ingest/strongs.js';
+import { HENRY_ROM_8, HENRY_THML, MINI_KJV, PSA_USX } from './fixtures.js';
 import { convertWcf } from '../ingest/wcf.js';
 import { validateBible, validateConfession, validateStrongs } from '../validate-resources.js';
 
@@ -143,33 +144,56 @@ test('convertWcf fails on references it cannot resolve', () => {
   assert.throws(() => convertWcf(source(['Nope.1.1']), miniKjv()), /can't read reference/);
 });
 
-test("convertVolume reads CCEL's ThML: chapters from titles, passages from markers", () => {
-  const xml = `<?xml version="1.0"?><!DOCTYPE ThML><ThML><ThML.body>
-<div1 title="Romans" id="Rom">
- <div2 title="Introduction" id="Rom.i"><h2>Romans</h2><p class="Center">Completed by John Evans.</p>
-  <div class="Center"><h3>EXPOSITION,</h3></div><p class="indent">If we may compare scripture&#8212;</p></div2>
- <div2 title="Chapter VIII" id="Rom.ix">
-  <p class="intro">The chapter, <scripRef osisRef="Bible:Rom.8.1">v. 1</scripRef>.</p>
-  <scripCom type="Commentary" osisRef="Bible:Rom.8.1-Rom.8.9" /><div class="Commentary" id="Bible:Rom.8.1-Rom.8.9">
-   <h4>Privileges.</h4><p class="passage">1 There is therefore now no condemnation</p>
-   <p class="indent">No condemnation, <scripRef osisRef="Bible:Rom.8.1">v. 1</scripRef>.</p></div>
-  <scripCom osisRef="Bible:Rom.8.10" type="Commentary" /><div class="Commentary" id="Rom.ix-p3">
-   <p class="passage">10 And if Christ be in you</p></div>
-  <scripCom type="Commentary" osisRef="Bible:Rom.7.11-Rom.7.40" /><div class="Commentary" id="Rom.ix-p4">
-   <p class="passage">11 But if the Spirit</p><p class="indent">Both passages.</p></div>
- </div2>
-</div1></ThML.body></ThML>`;
-  const vol = convertVolume(xml, () => 39);
-  assert.deepEqual(vol.introductions.get('ROM'), [{ text: 'Completed by John Evans.' }, { text: 'If we may compare scripture—' }]);
-  assert.equal(vol.chapters.length, 1);
-  const [ch] = vol.chapters;
-  assert.deepEqual([ch.book, ch.chapter], ['ROM', 8]);
-  assert.deepEqual(ch.introduction, [{ text: 'The chapter, v. 1.', refs: [{ text: 'v. 1', ref: 'ROM.8.1' }] }]);
-  assert.deepEqual(ch.sections, [
-    { start: 1, end: 9, title: 'Privileges.', paragraphs: [{ text: 'No condemnation, v. 1.', refs: [{ text: 'v. 1', ref: 'ROM.8.1' }] }] },
-    { start: 10, end: 39, paragraphs: [{ text: 'Both passages.' }] },
+test("Henry: chapters from titles, passages from markers, and every kind of Henry's text kept", () => {
+  const vol = convertVolume(HENRY_THML, () => 39);
+  assert.deepEqual(vol.introductions.get('ROM'), [
+    { text: 'Completed by John Evans.' },
+    { text: 'If we may compare scripture—' },
+    { text: 'The occasion.', heading: true },
+    { text: 'Written from Corinth.' },
   ]);
+  assert.equal(vol.chapters.length, 1);
+  assert.deepEqual(vol.chapters[0], HENRY_ROM_8);
   assert.deepEqual(vol.notes, ['ROM 8: passage Rom.ix-p4 is marked ROM 7', 'ROM 8: passage Rom.ix-p4 11-40 cut at verse 39']);
+});
+
+test('Henry: an element the content model does not name stops the conversion', () => {
+  const withTable = HENRY_THML.replace('<attr>Herbert.</attr>', '<table><tr><td>A table of kings</td></tr></table>');
+  assert.throws(() => convertVolume(withTable, () => 39), /ROM 8 \(Bible:Rom.8.1-Rom.8.9\): unexpected <table> with text "A table of kings"/);
+  const loose = HENRY_THML.replace('<h3>CHAP. VIII.</h3>', '<h3>CHAP. VIII.</h3><blockquote>Stray</blockquote>');
+  assert.throws(() => convertVolume(loose, () => 39), /unexpected <blockquote>/);
+  const twoTitles = HENRY_THML.replace('<h4>Privileges.</h4>', '<h4>Privileges.</h4><h4>Again.</h4>');
+  assert.throws(() => convertVolume(twoTitles, () => 39), /two titles before a passage block/);
+  const late = HENRY_THML.replace('<ol><li>First, life;</li><li>then glory.</li></ol></div>', '</div><p>After the passages.</p>');
+  assert.throws(() => convertVolume(late, () => 39), /a paragraph after the commentary began/);
+  const unmarked = HENRY_THML.replace('<scripCom type="Commentary" osisRef="Bible:Rom.8.1-Rom.8.9" />', '').replace('id="Bible:Rom.8.1-Rom.8.9"', 'id="x1"');
+  assert.throws(() => convertVolume(unmarked, () => 39), /commentary block without a passage reference \(x1\)/);
+});
+
+test('Henry: henryOutputs writes meta.json, introductions and chapters as JSON text', () => {
+  const { outputs, summary } = henryOutputs([HENRY_THML], () => 39);
+  assert.deepEqual([...outputs.keys()], ['res/commentaries/henry/ROM/introduction.json', 'res/commentaries/henry/ROM/8.json', 'res/commentaries/henry/meta.json']);
+  assert.deepEqual(JSON.parse(outputs.get('res/commentaries/henry/ROM/8.json')), HENRY_ROM_8);
+  assert.deepEqual(JSON.parse(outputs.get('res/commentaries/henry/meta.json')).books, [{ id: 'ROM', name: 'Romans', chapters: [8], hasIntroduction: true }]);
+  assert.equal(summary, '1 books, 1 chapters');
+  assert.equal(verseCounter(MINI_KJV)('ROM', 1), 20);
+  assert.equal(verseCounter(MINI_KJV)('ROM', 2), 0);
+});
+
+test("Strong's: compound morphology codes name each part", () => {
+  assert.equal(partOfSpeech('H:N-M / H:A'), 'Noun, masculine / Adjective');
+  assert.equal(partOfSpeech('G:COND + G:PRT-N'), 'Conditional + Particle, neuter');
+  assert.equal(partOfSpeech('G:N-M/F'), 'Noun, masculine or feminine');
+  assert.equal(partOfSpeech('G:A/ G:ADV'), 'Adjective / Adverb');
+  assert.equal(partOfSpeech('G:T + G:V'), undefined, 'a part with no name gives no label');
+  assert.equal(partOfSpeech(''), undefined);
+});
+
+test('removed footnotes leave the text around them exactly as it was', () => {
+  const usx = PSA_USX.replace('increased!<note', 'increased<note').replace('</note></para>', '</note>!</para>');
+  assert.equal(parseUsxBook(usx, 'PSA').verses[0].text, 'O LORD, how my foes have increased! How many rise up against me!');
+  const { verses } = parseUsfmBook('\\c 1\n\\p \\v 1 Samuel,\\f + \\ft A note.\\f*saying', 'GEN');
+  assert.equal(verses[0].text, 'Samuel,saying', 'no space is added where the source has none');
 });
 
 test('romanToNumber reads chapter numerals', () => {

@@ -12,23 +12,18 @@
  * are dropped; italics (\add) and divine names (\nd LORD) keep their words.
  *
  * Usage:
- *   node scripts/ingest/kjv.js                 # download from eBible.org
- *   node scripts/ingest/kjv.js --input FILE    # use a saved eng-kjv_usfm.zip
+ *   node scripts/ingest/kjv.js              # convert the committed copy in sources/kjv/
+ *   node scripts/ingest/kjv.js --download   # fetch it again from eBible.org first
  */
 
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
 import { CANON } from '../lib/canon.js';
-import { fetchBuffer, parseArgs, writeBibleFile } from '../lib/io.js';
-import { checkLock, sha256 } from '../lib/lock.js';
+import { bibleFileText } from '../lib/io.js';
+import { runAsScript } from '../lib/pipeline.js';
 import { parseUsfmBook } from '../lib/usfm.js';
 import { readZip } from '../lib/zip.js';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const OUTPUT = path.join(__dirname, '../../res/bibles/kjv/kjv.json');
+export const OUTPUT = 'res/bibles/kjv/kjv.json';
 export const SOURCE_PAGE = 'https://ebible.org/find/details.php?id=eng-kjv';
-export const SOURCE_URL = 'https://ebible.org/Scriptures/eng-kjv_usfm.zip';
 
 /** Convert eBible.org's USFM files (named like "02-GENeng-kjv.usfm") into the app's Bible format. */
 export function convertKjv(files) {
@@ -63,24 +58,15 @@ export function convertKjv(files) {
   };
 }
 
-/** Download (or read) the release, check its checksum, and convert it. */
-export async function loadKjvSource(args = {}) {
-  const zip = args.input ? fs.readFileSync(args.input) : await fetchBuffer(SOURCE_URL);
-  checkLock('kjv', { sha256: sha256(zip), files: 1 });
-  return convertKjv(readZip(zip));
-}
+export const pipeline = {
+  id: 'kjv',
+  sources: ['kjv'],
+  owns: [OUTPUT],
+  generate(files) {
+    const bible = convertKjv(readZip(files.get('kjv').get('eng-kjv_usfm.zip')));
+    const total = bible.books.reduce((n, b) => n + b.verses.length, 0);
+    return { outputs: new Map([[OUTPUT, bibleFileText(bible)]]), summary: `${bible.books.length} books, ${total} verses` };
+  },
+};
 
-async function main() {
-  const args = parseArgs(process.argv.slice(2));
-  const bible = await loadKjvSource(args);
-  writeBibleFile(OUTPUT, bible);
-  const total = bible.books.reduce((n, b) => n + b.verses.length, 0);
-  console.log(`Wrote ${OUTPUT} (${bible.books.length} books, ${total} verses)`);
-}
-
-if (import.meta.url === `file://${process.argv[1]}`) {
-  main().catch(err => {
-    console.error(err);
-    process.exit(1);
-  });
-}
+runAsScript(import.meta, pipeline);

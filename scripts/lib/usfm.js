@@ -14,9 +14,9 @@ export function cleanInline(text) {
   return normalizeText(String(text)
     .replace(/\|[^\\|]*(?=\\\+?[a-z]+\d*\*)/g, '')     // word attributes: \w word|strong="H7225"\w*
     .replace(/¶/g, ' ')                             // pilcrows (paragraph marks printed in the KJV)
-    .replace(/\\f\s.*?\\f\*/g, ' ')                 // footnotes
-    .replace(/\\fe\s.*?\\fe\*/g, ' ')               // endnotes
-    .replace(/\\x\s.*?\\x\*/g, ' ')                 // cross-references
+    .replace(/\\f\s.*?\\f\*/g, '')                  // footnotes
+    .replace(/\\fe\s.*?\\fe\*/g, '')                // endnotes
+    .replace(/\\x\s.*?\\x\*/g, '')                  // cross-references
     .replace(/\\\+?ref\s+([^|\\]*?)(\|[^\\]*)?\\\+?ref\*/g, '$1')  // \ref shown|target\ref*
     .replace(/\\\+?[a-z]+\d*\*/g, '')               // closers (\add*): nothing, so "forty-\add*two" stays one word
     .replace(/\\\+?[a-z]+\d*/g, ' ')                // openers (\add, \wj, \nd)

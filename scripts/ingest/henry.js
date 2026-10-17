@@ -1,6 +1,6 @@
 /**
- * Download Matthew Henry's Commentary on the Whole Bible from the Christian
- * Classics Ethereal Library (CCEL, Calvin University) and write one file per
+ * Convert Matthew Henry's Commentary on the Whole Bible, from the Christian
+ * Classics Ethereal Library (CCEL, Calvin University), into one file per
  * chapter under res/commentaries/henry/.
  *
  *   res/commentaries/henry/meta.json                commentary details + chapters present
@@ -9,37 +9,62 @@
  *
  * Source: CCEL's six ThML volumes (https://ccel.org/ccel/henry, files
  * ccel.org/ccel/h/henry/mhc1.xml … mhc6.xml), marked "Public domain. May be
- * copied and distributed freely." CCEL replaces files in place, so the set is
- * pinned by its SHA-256 in provenance/registry.json.
+ * copied and distributed freely." The committed copies are in sources/henry/.
  *
  * Henry comments on passages: in each chapter a <scripCom type="Commentary"
  * osisRef="Bible:Gen.2.1-Gen.2.3"/> marker is followed by a
- * <div class="Commentary"> with a heading, the KJV passage (class "passage",
- * left out here: the reader shows the Bible text itself) and Henry's
- * paragraphs. Scripture references in the paragraphs are kept for linking.
+ * <div class="Commentary">. Every element in a chapter or introduction is
+ * either kept or left out by name (CONTENT below); anything else stops the
+ * conversion, so nothing is dropped unnoticed.
  *
  * Usage:
- *   node scripts/ingest/henry.js                    # download from CCEL
- *   node scripts/ingest/henry.js --source-dir DIR   # a folder with mhc1.xml … mhc6.xml
+ *   node scripts/ingest/henry.js              # convert the committed copies in sources/henry/
+ *   node scripts/ingest/henry.js --download   # fetch them again from CCEL first
  */
 
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
 import { CANON } from '../lib/canon.js';
 import { compactRef, parseOsisRef } from '../lib/refs.js';
-import { fetchBuffer, parseArgs, writeJson } from '../lib/io.js';
-import { checkLock, digestFiles } from '../lib/lock.js';
+import { jsonText } from '../lib/io.js';
+import { runAsScript } from '../lib/pipeline.js';
 import { elements, findAll, parseXml, textOf } from '../lib/xml.js';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const OUT_DIR = path.join(__dirname, '../../res/commentaries/henry');
-const KJV = path.join(__dirname, '../../res/bibles/kjv/kjv.json');
+export const OUT_DIR = 'res/commentaries/henry';
+export const KJV = 'res/bibles/kjv/kjv.json';
 export const SOURCE_PAGE = 'https://ccel.org/ccel/henry';
-export const VOLUMES = [1, 2, 3, 4, 5, 6].map(n => ({ file: `mhc${n}.xml`, url: `https://ccel.org/ccel/h/henry/mhc${n}.xml` }));
+export const VOLUMES = [1, 2, 3, 4, 5, 6].map(n => `mhc${n}.xml`);
+
+/**
+ * What each element of a chapter, a commentary block or a book introduction
+ * becomes. Elements without text (page breaks, rules, markers) need no entry.
+ *   chapter heading   the running head ("G E N E S I S", "CHAP. I."): the app shows its own
+ *   printed passage   the KJV text CCEL prints before each comment, with Psalm titles
+ *                     (class "passage", and centred blocks): the reader shows the Bible itself
+ *   title page        the reproduced title page of a book introduction
+ */
+export const CONTENT = {
+  chapter: {
+    h2: 'chapter heading', h3: 'chapter heading',
+    h4: 'title', // before a passage block: that block's title
+    p: 'paragraph',
+  },
+  commentary: {
+    h4: 'title',
+    'p.passage': 'printed passage', 'div.Center': 'printed passage',
+    p: 'paragraph', verse: 'poetry', attr: 'attribution', ol: 'list', ul: 'list',
+  },
+  introduction: {
+    h2: 'book name', 'div.Center': 'title page',
+    p: 'paragraph', h3: 'heading', h4: 'heading', h5: 'heading',
+  },
+};
 
 const isCommentaryMarker = el => el.name === 'scripCom' && el.attrs.type === 'Commentary' && el.attrs.osisRef?.startsWith('Bible:');
 const isCommentaryDiv = el => el.name === 'div' && el.attrs.class === 'Commentary';
+
+/** The CONTENT entry for an element: "p.passage" before "p". */
+export function contentKind(table, el) {
+  return table[`${el.name}.${el.attrs.class}`] ?? table[el.name];
+}
 
 /** Scripture references in a paragraph: [{ text, ref }] in the app's compact form. */
 function refsOf(el) {
@@ -54,32 +79,44 @@ function refsOf(el) {
   return out;
 }
 
-function paragraph(el, heading = false) {
-  const text = textOf(el);
+/** One paragraph: its text (lines of poetry kept on separate lines), its kind, and its references. */
+export function paragraph(el, kind = 'paragraph') {
+  const lines = kind === 'poetry' && findAll(el, e => e.name === 'l').length
+    ? findAll(el, e => e.name === 'l').map(textOf).filter(Boolean)
+    : [textOf(el)];
+  const text = lines.join('\n');
   if (!text) return null;
   const p = { text };
-  if (heading) p.heading = true;
+  if (kind !== 'paragraph') p[kind] = true;
   const refs = refsOf(el);
   if (refs.length) p.refs = refs;
   return p;
 }
 
-/**
- * Paragraphs of a book introduction, headings marked. The book's name (h2) and
- * the reproduced title page (a centred block) are left out.
- */
-function paragraphsOf(el) {
+/** Paragraphs from an element that CONTENT says to keep (a list gives one paragraph per item). */
+function keep(el, kind) {
+  if (kind === 'list') return findAll(el, e => e.name === 'li').map(li => paragraph(li)).filter(Boolean);
+  const p = paragraph(el, kind);
+  return p ? [p] : [];
+}
+
+const KEPT = new Set(['paragraph', 'poetry', 'attribution', 'list', 'heading']);
+
+/** Stop on an element with text that CONTENT doesn't name. */
+function unexpected(el, where) {
+  if (!textOf(el)) return;
+  throw new Error(`${where}: unexpected <${el.name}${el.attrs.class ? ` class="${el.attrs.class}"` : ''}> with text "${textOf(el).slice(0, 60)}"`);
+}
+
+/** A book introduction: its paragraphs and headings. */
+export function convertIntroduction(div, where) {
   const out = [];
-  const walk = e => {
-    for (const c of elements(e)) {
-      if (c.name === 'p') out.push(paragraph(c));
-      else if (c.name === 'h2' || (c.name === 'div' && c.attrs.class === 'Center')) continue;
-      else if (/^h[1-6]$/.test(c.name)) out.push(paragraph(c, true));
-      else if (c.name !== 'scripCom' && c.name !== 'pb') walk(c);
-    }
-  };
-  walk(el);
-  return out.filter(Boolean);
+  for (const el of elements(div)) {
+    const kind = contentKind(CONTENT.introduction, el);
+    if (KEPT.has(kind)) out.push(...keep(el, kind));
+    else if (!kind) unexpected(el, where);
+  }
+  return out;
 }
 
 const ROMAN = { I: 1, V: 5, X: 10, L: 50, C: 100 };
@@ -100,58 +137,83 @@ export function romanToNumber(roman) {
  * cut at the chapter's last verse, and each case is listed in `notes`.
  */
 export function convertChapterDiv(div, book, chapter, lastVerse) {
+  const where = `${book} ${chapter}`;
   const introduction = [];
   const sections = [];
   const notes = [];
   let pending = null;
+  let pendingTitle = null;
 
-  const range = (r, where) => {
-    if (r.book !== book || r.chapter !== chapter) notes.push(`${book} ${chapter}: ${where} is marked ${r.book} ${r.chapter}`);
+  const range = (r, block) => {
+    if (r.book !== book || r.chapter !== chapter) notes.push(`${where}: passage ${block} is marked ${r.book} ${r.chapter}`);
     const start = r.verse ?? 1;
     let end = r.endChapter !== r.chapter ? lastVerse : (r.endVerse ?? r.verse ?? lastVerse);
     if (end > lastVerse) {
-      notes.push(`${book} ${chapter}: ${where} ${start}-${end} cut at verse ${lastVerse}`);
+      notes.push(`${where}: passage ${block} ${start}-${end} cut at verse ${lastVerse}`);
       end = lastVerse;
     }
     return { start, end };
   };
 
-  const visit = el => {
-    for (const c of elements(el)) {
-      if (isCommentaryMarker(c)) {
-        const r = parseOsisRef(c.attrs.osisRef.replace(/^Bible:/, ''));
-        if (r && r.verse !== null) pending = r;
-        continue;
+  const commentary = (c, r) => {
+    const section = range(r, c.attrs.id);
+    const paragraphs = [];
+    const children = pendingTitle ? [pendingTitle, ...elements(c)] : elements(c);
+    pendingTitle = null;
+    // A title after the last of the block's own text introduces the next block.
+    const lastText = children.findLastIndex(el => KEPT.has(contentKind(CONTENT.commentary, el)));
+    const trailing = children.findIndex((el, i) => i > lastText && lastText >= 0 && contentKind(CONTENT.commentary, el) === 'title');
+    if (trailing >= 0) {
+      if (children.slice(trailing + 1).some(el => contentKind(CONTENT.commentary, el) === 'title')) {
+        throw new Error(`${where} (${c.attrs.id}): two titles after the block's text`);
       }
-      if (isCommentaryDiv(c)) {
-        const r = pending ?? (c.attrs.id?.startsWith('Bible:') ? parseOsisRef(c.attrs.id.slice(6)) : null);
-        pending = null;
-        if (!r) throw new Error(`${book} ${chapter}: commentary block without a passage reference (${c.attrs.id})`);
-        const section = range(r, `passage ${c.attrs.id}`);
-        const title = findAll(c, e => e.name === 'h4')[0];
-        if (title && textOf(title)) section.title = textOf(title);
-        section.paragraphs = findAll(c, e => e.name === 'p' && e.attrs.class !== 'passage').map(p => paragraph(p)).filter(Boolean);
-        // Henry sometimes prints two passages and then comments on both; CCEL
-        // files the comment under the second, so a passage-only block joins the next.
-        const prev = sections.at(-1);
-        if (prev && !prev.paragraphs.length) {
-          section.start = Math.min(prev.start, section.start);
-          section.end = Math.max(prev.end, section.end);
-          if (prev.title && !section.title) section.title = prev.title;
-          sections.pop();
-        }
-        sections.push(section);
-        continue;
-      }
-      if (c.name === 'p' && !sections.length && c.attrs.class !== 'passage') {
-        const p = paragraph(c);
-        if (p) introduction.push(p);
-        continue;
-      }
-      if (c.name === 'div') visit(c);
+      pendingTitle = children[trailing];
     }
+    for (const [i, el] of children.entries()) {
+      if (i === trailing) continue;
+      const kind = contentKind(CONTENT.commentary, el);
+      if (kind === 'title' && section.title === undefined && !paragraphs.length) section.title = textOf(el) || undefined;
+      else if (kind === 'title') paragraphs.push(...keep(el, 'heading'));
+      else if (KEPT.has(kind)) paragraphs.push(...keep(el, kind));
+      else if (!kind) unexpected(el, `${where} (${c.attrs.id})`);
+    }
+    if (section.title === undefined) delete section.title;
+    section.paragraphs = paragraphs;
+    // Henry sometimes prints two passages and then comments on both; CCEL
+    // files the comment under the second, so a passage-only block joins the next.
+    const prev = sections.at(-1);
+    if (prev && !prev.paragraphs.length) {
+      section.start = Math.min(prev.start, section.start);
+      section.end = Math.max(prev.end, section.end);
+      if (prev.title && !section.title) section.title = prev.title;
+      sections.pop();
+    }
+    sections.push(section);
   };
-  visit(div);
+
+  for (const el of elements(div)) {
+    if (isCommentaryMarker(el)) {
+      const r = parseOsisRef(el.attrs.osisRef.replace(/^Bible:/, ''));
+      if (r && r.verse !== null) pending = r;
+      continue;
+    }
+    if (isCommentaryDiv(el)) {
+      const r = pending ?? (el.attrs.id?.startsWith('Bible:') ? parseOsisRef(el.attrs.id.slice(6)) : null);
+      pending = null;
+      if (!r) throw new Error(`${where}: commentary block without a passage reference (${el.attrs.id})`);
+      commentary(el, r);
+      continue;
+    }
+    const kind = contentKind(CONTENT.chapter, el);
+    if (kind === 'title') {
+      if (pendingTitle) throw new Error(`${where}: two titles before a passage block`);
+      pendingTitle = el;
+    } else if (kind === 'paragraph') {
+      if (sections.length) throw new Error(`${where}: a paragraph after the commentary began, outside any passage block`);
+      introduction.push(...keep(el, kind));
+    } else if (!kind) unexpected(el, where);
+  }
+  if (pendingTitle) throw new Error(`${where}: a title with no passage block after it`);
   sections.sort((a, b) => a.start - b.start || a.end - b.end);
   return { introduction, sections, notes };
 }
@@ -182,55 +244,48 @@ export function convertVolume(xml, verseCount) {
         file.sections = ch.sections;
         chapters.push(file);
       } else if (/^introduction$/i.test(title)) {
-        introductions.set(book, paragraphsOf(d));
+        introductions.set(book, convertIntroduction(d, `${book} introduction`));
       }
     }
   }
   return { chapters, introductions, notes };
 }
 
-function kjvVerseCount() {
+/** Chapter lengths from an app-format Bible. */
+export function verseCounter(bible) {
   const counts = new Map();
-  for (const b of JSON.parse(fs.readFileSync(KJV, 'utf8')).books) {
+  for (const b of bible.books) {
     for (const v of b.verses) counts.set(`${b.id} ${v.chapter}`, Math.max(counts.get(`${b.id} ${v.chapter}`) ?? 0, v.verse));
   }
   return (book, chapter) => counts.get(`${book} ${chapter}`) ?? 0;
 }
 
-async function main() {
-  const args = parseArgs(process.argv.slice(2));
-  const raw = new Map();
-  for (const v of VOLUMES) {
-    raw.set(v.file, args['source-dir'] ? fs.readFileSync(path.join(args['source-dir'], v.file)) : await fetchBuffer(v.url));
-  }
-  checkLock('henry', digestFiles(raw));
-
-  const verseCount = kjvVerseCount();
+/** Every output file: meta.json, then each book's introduction and chapters. */
+export function henryOutputs(volumes, verseCount) {
   const files = new Map();
   const introductions = new Map();
-  for (const [file, data] of raw) {
-    const vol = convertVolume(data.toString('utf8'), verseCount);
+  const notes = [];
+  for (const xml of volumes) {
+    const vol = convertVolume(xml, verseCount);
     for (const ch of vol.chapters) files.set(`${ch.book} ${ch.chapter}`, ch);
     for (const [b, p] of vol.introductions) introductions.set(b, p);
-    console.log(`  ${file}: ${vol.chapters.length} chapters`);
-    for (const n of vol.notes) console.log(`    note: ${n}`);
+    notes.push(...vol.notes);
   }
-
-  for (const b of CANON) fs.rmSync(path.join(OUT_DIR, b.id), { recursive: true, force: true });
+  const outputs = new Map();
   const books = [];
   for (const canon of CANON) {
     const intro = introductions.get(canon.id);
-    if (intro?.length) writeJson(path.join(OUT_DIR, canon.id, 'introduction.json'), { book: canon.id, paragraphs: intro });
+    if (intro?.length) outputs.set(`${OUT_DIR}/${canon.id}/introduction.json`, jsonText({ book: canon.id, paragraphs: intro }));
     const present = [];
     for (let n = 1; n <= canon.chapters; n++) {
       const f = files.get(`${canon.id} ${n}`);
       if (!f) continue;
-      writeJson(path.join(OUT_DIR, canon.id, `${n}.json`), f);
+      outputs.set(`${OUT_DIR}/${canon.id}/${n}.json`, jsonText(f));
       present.push(n);
     }
     if (present.length || intro?.length) books.push({ id: canon.id, name: canon.name, chapters: present, hasIntroduction: Boolean(intro?.length) });
   }
-  writeJson(path.join(OUT_DIR, 'meta.json'), {
+  outputs.set(`${OUT_DIR}/meta.json`, jsonText({
     commentary: {
       id: 'henry',
       name: "Matthew Henry's Commentary on the Whole Bible",
@@ -240,14 +295,19 @@ async function main() {
       source: { name: 'Christian Classics Ethereal Library (CCEL), Calvin University', url: SOURCE_PAGE, license: 'Public domain' },
     },
     books,
-  });
-  const missing = CANON.filter(c => !books.some(b => b.id === c.id)).map(c => c.id);
-  console.log(`Wrote ${OUT_DIR}: ${books.length} books, ${files.size} chapters${missing.length ? `; no commentary for ${missing.join(', ')}` : ''}`);
+  }));
+  return { outputs, notes, summary: `${books.length} books, ${files.size} chapters` };
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
-  main().catch(err => {
-    console.error(err);
-    process.exit(1);
-  });
-}
+export const pipeline = {
+  id: 'henry',
+  sources: ['henry'],
+  owns: [OUT_DIR],
+  /** ctx.readJson reads the KJV, for chapter lengths. */
+  generate(files, ctx) {
+    const volumes = VOLUMES.map(f => files.get('henry').get(f).toString('utf8'));
+    return henryOutputs(volumes, verseCounter(ctx.readJson(KJV)));
+  },
+};
+
+runAsScript(import.meta, pipeline);

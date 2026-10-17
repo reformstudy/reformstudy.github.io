@@ -14,30 +14,24 @@
  * (G5624, H8674) are left out.
  *
  * Usage:
- *   node scripts/ingest/strongs.js                   # download from GitHub
- *   node scripts/ingest/strongs.js --source-dir DIR  # a local clone
+ *   node scripts/ingest/strongs.js              # convert the committed copies in sources/strongs-greek and -hebrew
+ *   node scripts/ingest/strongs.js --download   # fetch them again from GitHub first
  */
 
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import { fetchBuffer, parseArgs, writeJson } from '../lib/io.js';
-import { checkLock, sha256 } from '../lib/lock.js';
+import { jsonText } from '../lib/io.js';
+import { runAsScript } from '../lib/pipeline.js';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const RES = path.join(__dirname, '../../res/strongs');
 export const SOURCE_REPO = 'https://github.com/STEPBible/STEPBible-Data';
 export const SOURCE_COMMIT = 'bd09545c7a44b39ace20f16c0359915f2aa23a62';
-const RAW_BASE = `https://raw.githubusercontent.com/STEPBible/STEPBible-Data/${SOURCE_COMMIT}`;
 
-const LANGUAGES = [
+export const LANGUAGES = [
   {
-    id: 'greek', language: 'Greek', prefix: 'G', max: 5624, name: "Strong's Greek Lexicon (STEPBible TBESG)",
-    file: 'Lexicons/TBESG - Translators Brief lexicon of Extended Strongs for Greek - STEPBible.org CC BY.txt',
+    id: 'greek', source: 'strongs-greek', file: 'TBESG.txt', output: 'res/strongs/greek/greek.json',
+    language: 'Greek', prefix: 'G', max: 5624, name: "Strong's Greek Lexicon (STEPBible TBESG)",
   },
   {
-    id: 'hebrew', language: 'Hebrew', prefix: 'H', max: 8674, name: "Strong's Hebrew Lexicon (STEPBible TBESH)",
-    file: 'Lexicons/TBESH - Translators Brief lexicon of Extended Strongs for Hebrew - STEPBible.org CC BY.txt',
+    id: 'hebrew', source: 'strongs-hebrew', file: 'TBESH.txt', output: 'res/strongs/hebrew/hebrew.json',
+    language: 'Hebrew', prefix: 'H', max: 8674, name: "Strong's Hebrew Lexicon (STEPBible TBESH)",
   },
 ];
 
@@ -48,11 +42,11 @@ const POS = {
   RELP: 'Relative pronoun', R: 'Relative pronoun', INTG: 'Interrogative', F: 'Reflexive pronoun', S: 'Possessive pronoun',
   PREFIX: 'Prefix', SUFFIX: 'Suffix',
 };
-const GENDER = { M: 'masculine', F: 'feminine', N: 'neuter', 'M/F': 'masculine or feminine' };
+const GENDER = { M: 'masculine', F: 'feminine', N: 'neuter', 'M/F': 'masculine or feminine', 'M/N': 'masculine or neuter' };
 
-/** "H:N-M" -> "Noun, masculine"; "N:N-M-P" -> "Proper name, masculine"; "A:V" -> "Verb (Aramaic)". */
-export function partOfSpeech(code) {
-  const m = String(code ?? '').trim().match(/^(?:([A-Z]):)?([A-Za-z]+)(?:-([A-Z/]+))?/);
+/** One code: "H:N-M" -> "Noun, masculine"; "N:N-M-P" -> "Proper name, masculine"; "A:V" -> "Verb (Aramaic)". */
+function singlePartOfSpeech(code) {
+  const m = code.match(/^(?:([A-Z]):)?([A-Za-z]+)(?:-([A-Z/]+))?/);
   if (!m) return undefined;
   const [, lang, pos, gender] = m;
   let text = lang === 'N' ? 'Proper name' : POS[pos.toUpperCase()];
@@ -60,6 +54,23 @@ export function partOfSpeech(code) {
   if (gender && GENDER[gender]) text += `, ${GENDER[gender]}`;
   if (lang === 'A') text += ' (Aramaic)';
   return text;
+}
+
+/**
+ * A morphology code as words. Compound codes give each part, keeping how
+ * they are joined: "H:N-M / H:A" -> "Noun, masculine / Adjective" (either),
+ * "G:COND + G:PRT-N" -> "Conditional + Particle, neuter" (combined). If any
+ * part names no part of speech, there is no label.
+ */
+export function partOfSpeech(code) {
+  const pieces = String(code ?? '').trim().split(/\s*(\+|\/(?=\s*[A-Z]:))\s*/);
+  let label = '';
+  for (let i = 0; i < pieces.length; i += 2) {
+    const part = singlePartOfSpeech(pieces[i]);
+    if (!part) return undefined;
+    label += i ? ` ${pieces[i - 1]} ${part}` : part;
+  }
+  return label;
 }
 
 /** STEPBible's definition HTML -> plain text with line breaks. */
@@ -120,29 +131,20 @@ export function convertLexicon(rows, lang) {
   };
 }
 
-/** Download (or read) one pinned lexicon, check its checksum, and convert it. `id` is 'greek' or 'hebrew'. */
-export async function loadStrongsSource(id, args = {}) {
-  const lang = LANGUAGES.find(l => l.id === id);
-  const raw = args['source-dir']
-    ? fs.readFileSync(path.join(args['source-dir'], lang.file))
-    : await fetchBuffer(`${RAW_BASE}/${lang.file.split('/').map(encodeURIComponent).join('/')}`);
-  checkLock(`strongs-${lang.id}`, { sha256: sha256(raw), files: 1 });
-  return convertLexicon(parseLexicon(raw.toString('utf8')), lang);
-}
+export const pipeline = {
+  id: 'strongs',
+  sources: LANGUAGES.map(l => l.source),
+  owns: LANGUAGES.map(l => l.output),
+  generate(files) {
+    const outputs = new Map();
+    const counts = [];
+    for (const lang of LANGUAGES) {
+      const out = convertLexicon(parseLexicon(files.get(lang.source).get(lang.file).toString('utf8')), lang);
+      outputs.set(lang.output, jsonText(out));
+      counts.push(`${out.entries.length} ${lang.language}`);
+    }
+    return { outputs, summary: `${counts.join(', ')} entries` };
+  },
+};
 
-async function main() {
-  const args = parseArgs(process.argv.slice(2));
-  for (const lang of LANGUAGES) {
-    const out = await loadStrongsSource(lang.id, args);
-    const file = path.join(RES, lang.id, `${lang.id}.json`);
-    writeJson(file, out);
-    console.log(`Wrote ${file} (${out.entries.length} entries)`);
-  }
-}
-
-if (import.meta.url === `file://${process.argv[1]}`) {
-  main().catch(err => {
-    console.error(err);
-    process.exit(1);
-  });
-}
+runAsScript(import.meta, pipeline);

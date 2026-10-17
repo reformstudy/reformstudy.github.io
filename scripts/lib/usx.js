@@ -43,7 +43,7 @@ export function parseUsxBook(xml, bookId) {
         if (verses.has(key)) throw new Error(`${bookId} ${key} appears twice`);
         verses.set(key, { book: bookId, chapter, verse, text: '' });
       } else if (c.name === 'note') {
-        buffer += ' '; // footnotes and cross-references
+        // footnotes and cross-references: left out, leaving the text around them as it is
       } else if (c.name !== 'verse') {
         inline(c); // <char>, <ref>: keep the words
       }

@@ -8,7 +8,36 @@ Every text in `res/` should come from the organization that publishes it, downlo
 - its license;
 - the SHA-256 of the files that were converted.
 
-Ingest stops if a download doesn't match the recorded checksum. After deliberately moving a pin, record the new checksum with `UPDATE_SOURCE_LOCK=1 npm run ingest`.
+The downloads themselves are committed under [`sources/`](../sources), so every conversion and check runs offline. Text files are stored gzipped and archives as they are, which changes no byte of the original. Ingest stops if a file doesn't match its recorded checksum. To take a publisher's new release, run the ingest script with `--download`, check what changed, and record the new checksum with `UPDATE_SOURCE_LOCK=1`.
+
+## Authentication
+
+`npm run authenticate`, every build and `npm test` prove that what the app shows is the sources' text. The code is in [`scripts/authenticate/`](../scripts/authenticate), separate from the converters, and it fails on any of the following:
+
+1. **Sources.** A committed file doesn't match the SHA-256 in the registry.
+2. **Reproduction.** Running the converters on `sources/` doesn't give `res/` exactly, byte for byte, with no file missing or extra. A hand edit to `res/` fails here.
+3. **Verbatim text.** The authenticator reads each source again with its own reader, and compares one unit at a time (a verse, a Psalm title, a paragraph, a section, a lexicon field):
+   - every letter, digit and mark must match the source, in order;
+   - there must be a word break wherever the source has one, and none where it hasn't;
+   - only the named exceptions below may differ.
+4. **Accounting.** Every character of the source is either in the output or left out under a named category, and the report prints each total. Examples of categories: footnotes, section headings, the KJV passage CCEL prints, STEPBible's sub-entries. Text that fits no category stops authentication, so nothing can be dropped unnoticed.
+5. **Derived fields.** Fields that aren't copied text are re-derived independently and must match:
+   - Henry's references and section verse ranges;
+   - the Confession's proof references, and its proof texts (which must equal the KJV's verses);
+   - Strong's parts of speech, from STEPBible's codes.
+6. **Site.** After a build, `docs/resources/` must carry exactly the content of `res/`.
+
+The exceptions, each listed for the resources it applies to:
+
+| Exception | Applies to | What it allows |
+|---|---|---|
+| pilcrow | KJV | The ¶ marks eBible.org prints at some paragraph starts are left out. |
+| punctuation spacing | KJV, BSB | Where removing a marker leaves a space before closing punctuation, or after opening punctuation, the space is dropped. |
+| STEPBible indentation | Strong's | STEPBible's `__` indentation marks in definitions become spaces. |
+
+Adding an exception means adding it to `scripts/authenticate/compare.js` with a test, and listing it here.
+
+`npm test` covers every transform: the converters, the authenticator, and tests that tamper with converted text to show each kind of change is caught. It also requires at least 99% of lines, 94% of branches and 99% of functions in `scripts/ingest`, `scripts/lib` and `scripts/authenticate` to be exercised.
 
 ## Status
 
@@ -32,6 +61,11 @@ Ingest stops if a download doesn't match the recorded checksum. After deliberate
 - **Pin:** the file is replaced in place, so it's pinned by its SHA-256 and its Last-Modified date.
 - **License:** public domain, dedicated April 30, 2023 (berean.bible/terms.htm). Attribution is appreciated, not required.
 - **Why USX, not USFM:** the publisher's USFM download (bsb_usfm.zip, `GEN.usfm`) has a stray "vvv" in Genesis 35:18 ("she named vvv him Ben-oni"). The USX and plain-text downloads don't. Converted, the USX and USFM agree on every other verse and every Psalm title.
+- **The USX is not the publisher's plain text.** The authenticator holds the BSB to the USX exactly. Their plain-text download (`bsb.txt`), which matches berean.bible, differs from the USX in about 1,440 verses:
+  - em dashes: the USX puts a space after them ("Testimony— before");
+  - quote marks: some paragraph ends carry a continuation mark, "[’’]";
+  - brackets: some supplied words are bracketed ("[of silver]");
+  - missing spaces: a few verses lack a space after a footnote ("Samuel,saying").
 
 ## Matthew Henry (CCEL)
 

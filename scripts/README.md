@@ -4,7 +4,7 @@ This directory contains build scripts for processing and bundling resource files
 
 ## Content pipeline
 
-`npm run ingest` downloads and converts every source into `res/`, then validates it:
+`npm run ingest` converts every committed source in `sources/` into `res/`, then validates and authenticates it. Add `--download` to an ingest script to fetch its source again from the publisher:
 
 | Script | Writes |
 |--------|--------|
@@ -14,9 +14,19 @@ This directory contains build scripts for processing and bundling resource files
 | `ingest/henry.js` | `res/commentaries/henry/` |
 | `ingest/strongs.js` | `res/strongs/{greek,hebrew}/` |
 
-`validate-resources.js` checks it all (also run by every build), and `npm test` runs the converter tests in `tests/`. Shared code is in `lib/`: the canon (`canon.js`), reference parsing (`refs.js`), a ZIP reader (`zip.js`) and file helpers (`io.js`). Sources and licenses are listed in [RESOURCES.md](../RESOURCES.md#sources).
+`validate-resources.js` checks it all (also run by every build). Shared code is in `lib/`:
+- `canon.js`: the canon;
+- `refs.js`: reference parsing;
+- `usfm.js`, `usx.js` and `xml.js`: readers for the source formats;
+- `zip.js`: a ZIP reader;
+- `io.js`: file helpers;
+- `sources.js`: the committed sources;
+- `lock.js`: checksums;
+- `pipeline.js`: running a converter.
 
-Each script downloads from the organization that publishes the text and checks the download against the SHA-256 in `provenance/registry.json` (helpers in `lib/lock.js`), stopping on a mismatch. See [res/SOURCES.md](../res/SOURCES.md).
+Sources and licenses are listed in [RESOURCES.md](../RESOURCES.md#sources).
+
+`authenticate/` proves the result is verbatim. It is separate code from the converters, and `npm run authenticate`, every build and `npm test` run it. See [res/SOURCES.md](../res/SOURCES.md#authentication). `npm test` runs the tests in `tests/` and requires 99% line coverage of the converters, `lib/` and the authenticator.
 
 ## Scripts
 

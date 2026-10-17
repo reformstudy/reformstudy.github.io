@@ -6,7 +6,7 @@
 npm run ingest:bsb
 ```
 
-- **Source:** the publisher's USX download (USX is the XML form of USFM), [bereanbible.com/bsb_usx.zip](https://bereanbible.com/bsb_usx.zip), linked from [berean.bible/downloads.htm](https://berean.bible/downloads.htm). The file is updated in place, so it's pinned by its SHA-256 in `provenance/registry.json`. The publisher's USFM download has a stray "vvv" in Genesis 35:18; the USX and plain-text downloads don't, which is why the USX is used.
+- **Source:** the publisher's USX download (USX is the XML form of USFM), [bereanbible.com/bsb_usx.zip](https://bereanbible.com/bsb_usx.zip), linked from [berean.bible/downloads.htm](https://berean.bible/downloads.htm). The file is updated in place, so it's pinned by its SHA-256 in `provenance/registry.json`. The publisher's USFM download has a stray "vvv" in Genesis 35:18; the USX and plain-text downloads don't, which is why the USX is used. The text is the USX's, verbatim: see [SOURCES.md](../../SOURCES.md#berean-standard-bible-the-publisher) for how it differs from the publisher's plain text.
 - **License:** public domain, dedicated April 30, 2023. See https://berean.bible/terms.htm. Attribution is appreciated but not required.
 - **Text:** verse text, plus Psalm titles in `subtitles` (keyed by chapter). Section headings, cross-reference lines and footnotes are not kept yet. Words of Jesus (`wj`) are kept as plain text.
 - **Versification:**

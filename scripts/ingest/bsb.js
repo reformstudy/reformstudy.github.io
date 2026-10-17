@@ -13,23 +13,18 @@
  * lines and footnotes are dropped for now.
  *
  * Usage:
- *   node scripts/ingest/bsb.js                 # download from the publisher
- *   node scripts/ingest/bsb.js --input FILE    # use a saved bsb_usx.zip
+ *   node scripts/ingest/bsb.js              # convert the committed copy in sources/bsb/
+ *   node scripts/ingest/bsb.js --download   # fetch it again from the publisher first
  */
 
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
 import { CANON } from '../lib/canon.js';
-import { fetchBuffer, parseArgs, writeBibleFile } from '../lib/io.js';
+import { bibleFileText } from '../lib/io.js';
+import { runAsScript } from '../lib/pipeline.js';
 import { parseUsxBook } from '../lib/usx.js';
 import { readZip } from '../lib/zip.js';
-import { checkLock, sha256 } from '../lib/lock.js';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const OUTPUT = path.join(__dirname, '../../res/bibles/bsb/bsb.json');
+export const OUTPUT = 'res/bibles/bsb/bsb.json';
 export const SOURCE_PAGE = 'https://berean.bible/downloads.htm';
-export const SOURCE_URL = 'https://bereanbible.com/bsb_usx.zip';
 
 /** Convert the download's 66 USX files into the app's Bible format, finding each book by its <book code>. */
 export function convertBsb(files) {
@@ -64,29 +59,15 @@ export function convertBsb(files) {
   };
 }
 
-/** Download (or read) the pinned release, check its checksum, and convert it. */
-export async function loadBsbSource(args = {}) {
-  let zip;
-  if (args.input) {
-    zip = fs.readFileSync(args.input);
-  } else {
-    zip = await fetchBuffer(SOURCE_URL);
-  }
-  checkLock('bsb', { sha256: sha256(zip), files: 1 });
-  return convertBsb(readZip(zip));
-}
+export const pipeline = {
+  id: 'bsb',
+  sources: ['bsb'],
+  owns: [OUTPUT],
+  generate(files) {
+    const bible = convertBsb(readZip(files.get('bsb').get('bsb_usx.zip')));
+    const total = bible.books.reduce((n, b) => n + b.verses.length, 0);
+    return { outputs: new Map([[OUTPUT, bibleFileText(bible)]]), summary: `${bible.books.length} books, ${total} verses` };
+  },
+};
 
-async function main() {
-  const args = parseArgs(process.argv.slice(2));
-  const bible = await loadBsbSource(args);
-  writeBibleFile(OUTPUT, bible);
-  const total = bible.books.reduce((n, b) => n + b.verses.length, 0);
-  console.log(`Wrote ${OUTPUT} (${bible.books.length} books, ${total} verses)`);
-}
-
-if (import.meta.url === `file://${process.argv[1]}`) {
-  main().catch(err => {
-    console.error(err);
-    process.exit(1);
-  });
-}
+runAsScript(import.meta, pipeline);

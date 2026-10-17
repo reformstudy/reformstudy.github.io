@@ -6,10 +6,11 @@ The ReformStudy platform uses a modular resource system for managing biblical an
 
 Bible and commentary text is downloaded and converted by scripts, never typed in:
 
-1. **Ingest** (`npm run ingest`, scripts in `scripts/ingest/`): each script downloads one source, converts it to the formats below, and writes it under `res/`. Each has a pure convert function with a fixture test in `scripts/tests/`.
-2. **Commit**: the converted files are committed, so builds never depend on another site being up. Bible files are written one verse per line, so a corrected verse is a one-line diff.
+1. **Sources** (`sources/`): each publisher's download, committed byte for byte and checked against its SHA-256 in `provenance/registry.json`. `--download` on an ingest script fetches it again.
+2. **Ingest** (`npm run ingest`, scripts in `scripts/ingest/`): each script converts its source to the formats below and writes it under `res/`. Each has a pure `generate` function, tested with fixtures in `scripts/tests/`. The converted files are committed. Bible files are written one verse per line, so a changed verse is a one-line diff.
 3. **Validate** (`scripts/validate-resources.js`, also run by every build): all 66 books in canon order, chapter counts, verse order and text. The KJV must have exactly 31,102 verses with no gaps. Other translations are compared with it, and differences are printed as warnings.
 4. **Build** (`scripts/build-resources.js`): writes each Bible as one whole file (for search), plus an index and one file per book (for the reader). Chaptered commentaries are copied one file per chapter. `manifest.json` lists everything and names `defaultBible`.
+5. **Authenticate** (`npm run authenticate`, also run by every build and by `npm test`): checks the sources' checksums, reproduces `res/` from them, and proves every text is its source's, verbatim. It also checks that the built site carries `res/` unchanged. See [res/SOURCES.md](res/SOURCES.md#authentication).
 
 ### Sources
 

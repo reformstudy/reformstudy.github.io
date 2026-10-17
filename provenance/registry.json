@@ -5,7 +5,6 @@
       "title": "King James Version",
       "organization": "eBible.org (with the CrossWire Bible Society)",
       "page": "https://ebible.org/find/details.php?id=eng-kjv",
-      "url": "https://ebible.org/Scriptures/eng-kjv_usfm.zip",
       "published": "2026-09-26",
       "publishedNote": "eBible.org's \"Last updated\" date for the release that was checked; the file is replaced in place, so a new release changes the checksum.",
       "license": "Public domain (outside the UK, where the Crown's letters patent apply)",
@@ -18,6 +17,12 @@
           }
         ]
       },
+      "downloads": [
+        {
+          "file": "eng-kjv_usfm.zip",
+          "url": "https://ebible.org/Scriptures/eng-kjv_usfm.zip"
+        }
+      ],
       "sha256": "05b021ab465bd283e7df02409c78436487d582276b3a0b60d6fcf5d967a0af14",
       "fileCount": 1
     },
@@ -25,7 +30,6 @@
       "title": "Berean Standard Bible",
       "organization": "Berean Bible (publisher; bereanbible.com, berean.bible)",
       "page": "https://berean.bible/downloads.htm",
-      "url": "https://bereanbible.com/bsb_usx.zip",
       "published": "2026-10-02",
       "publishedNote": "The download's Last-Modified date for the file that was checked; the publisher replaces it in place, so a new release changes the checksum.",
       "license": "Public domain (dedicated April 30, 2023; berean.bible/terms.htm). Attribution appreciated, not required.",
@@ -38,6 +42,12 @@
           }
         ]
       },
+      "downloads": [
+        {
+          "file": "bsb_usx.zip",
+          "url": "https://bereanbible.com/bsb_usx.zip"
+        }
+      ],
       "sha256": "f5d9424c5e3c97db2497219343748d9d27f8c5b72ceb5017b2a0fbbb6bd6ace1",
       "fileCount": 1
     },
@@ -45,7 +55,6 @@
       "title": "Westminster Confession of Faith (1647)",
       "repo": "https://github.com/NonlinearFruit/Creeds.json",
       "commit": "2ae21a4c5387ecc91f474c9d3d67c826d2a6b9d5",
-      "files": "creeds/westminster_confession_of_faith.json",
       "license": "Text public domain; repository Unlicense",
       "credit": {
         "text": "Westminster Confession of Faith (1647) from the Creeds.json project, used as published.",
@@ -56,6 +65,12 @@
           }
         ]
       },
+      "downloads": [
+        {
+          "file": "westminster_confession_of_faith.json",
+          "url": "https://raw.githubusercontent.com/NonlinearFruit/Creeds.json/2ae21a4c5387ecc91f474c9d3d67c826d2a6b9d5/creeds/westminster_confession_of_faith.json"
+        }
+      ],
       "sha256": "90f793e3444f9a6a834c29fc7b6ba21250b33e92979525b5d5158bed16c24f06",
       "fileCount": 1
     },
@@ -63,8 +78,6 @@
       "title": "Matthew Henry's Commentary on the Whole Bible",
       "organization": "Christian Classics Ethereal Library (CCEL), Calvin University",
       "page": "https://ccel.org/ccel/henry",
-      "url": "https://ccel.org/ccel/h/henry/",
-      "files": "mhc1.xml, mhc2.xml, mhc3.xml, mhc4.xml, mhc5.xml, mhc6.xml",
       "published": "2024-06-06",
       "publishedNote": "Last-Modified date of the six volumes that were checked; CCEL replaces files in place.",
       "license": "Public domain (\"May be copied and distributed freely\", in each volume). CCEL's site policy asks permission for republishing or commercial use.",
@@ -77,6 +90,32 @@
           }
         ]
       },
+      "downloads": [
+        {
+          "file": "mhc1.xml",
+          "url": "https://ccel.org/ccel/h/henry/mhc1.xml"
+        },
+        {
+          "file": "mhc2.xml",
+          "url": "https://ccel.org/ccel/h/henry/mhc2.xml"
+        },
+        {
+          "file": "mhc3.xml",
+          "url": "https://ccel.org/ccel/h/henry/mhc3.xml"
+        },
+        {
+          "file": "mhc4.xml",
+          "url": "https://ccel.org/ccel/h/henry/mhc4.xml"
+        },
+        {
+          "file": "mhc5.xml",
+          "url": "https://ccel.org/ccel/h/henry/mhc5.xml"
+        },
+        {
+          "file": "mhc6.xml",
+          "url": "https://ccel.org/ccel/h/henry/mhc6.xml"
+        }
+      ],
       "sha256": "42ce89687c515ec36dfbf059fbbc7e87241b8862225af3b309652c7fd49a7fb8",
       "fileCount": 6
     },
@@ -85,7 +124,6 @@
       "organization": "STEPBible.org, Tyndale House, Cambridge",
       "repo": "https://github.com/STEPBible/STEPBible-Data",
       "commit": "bd09545c7a44b39ace20f16c0359915f2aa23a62",
-      "files": "Lexicons/TBESG - Translators Brief lexicon of Extended Strongs for Greek - STEPBible.org CC BY.txt",
       "license": "CC BY 4.0: credit \"STEP Bible\", linked to www.STEPBible.org; changes to the data recorded",
       "credit": {
         "text": "Lexicon data from STEP Bible, created by Tyndale House, Cambridge, and licensed under CC BY 4.0. ReformStudy keeps the main entry for each Strong's number and reformats it; the changes are described in res/SOURCES.md.",
@@ -100,6 +138,12 @@
           }
         ]
       },
+      "downloads": [
+        {
+          "file": "TBESG.txt",
+          "url": "https://raw.githubusercontent.com/STEPBible/STEPBible-Data/bd09545c7a44b39ace20f16c0359915f2aa23a62/Lexicons/TBESG%20-%20Translators%20Brief%20lexicon%20of%20Extended%20Strongs%20for%20Greek%20-%20STEPBible.org%20CC%20BY.txt"
+        }
+      ],
       "sha256": "312f723d7b8ef263bbdfb0451c9b8057125804dfff390b6f8544cff2a84b57f4",
       "fileCount": 1
     },
@@ -108,7 +152,6 @@
       "organization": "STEPBible.org, Tyndale House, Cambridge",
       "repo": "https://github.com/STEPBible/STEPBible-Data",
       "commit": "bd09545c7a44b39ace20f16c0359915f2aa23a62",
-      "files": "Lexicons/TBESH - Translators Brief lexicon of Extended Strongs for Hebrew - STEPBible.org CC BY.txt",
       "license": "CC BY 4.0: credit \"STEP Bible\", linked to www.STEPBible.org; changes to the data recorded",
       "credit": {
         "text": "Lexicon data from STEP Bible, created by Tyndale House, Cambridge, and licensed under CC BY 4.0. ReformStudy keeps the main entry for each Strong's number and reformats it; the changes are described in res/SOURCES.md.",
@@ -123,6 +166,12 @@
           }
         ]
       },
+      "downloads": [
+        {
+          "file": "TBESH.txt",
+          "url": "https://raw.githubusercontent.com/STEPBible/STEPBible-Data/bd09545c7a44b39ace20f16c0359915f2aa23a62/Lexicons/TBESH%20-%20Translators%20Brief%20lexicon%20of%20Extended%20Strongs%20for%20Hebrew%20-%20STEPBible.org%20CC%20BY.txt"
+        }
+      ],
       "sha256": "464dccadd95fd8620dd05fa0d7a4caba58ec3c4d5db3ebf38e43d046ca25b591",
       "fileCount": 1
     }

@@ -22,14 +22,20 @@ henry/{BOOK}/{chapter}.json      {
 ```
 
 - Henry comments on passages, not single verses. To show the note for a verse, find the section whose `start`–`end` contains it.
-- `heading: true` marks a heading paragraph.
+- Paragraph kinds:
+  - `heading: true` marks a heading inside a section.
+  - `poetry: true` marks verse Henry quotes, one line per line of the source.
+  - `attribution: true` marks the name that follows a quotation ("Sir R. Blackmore.").
+  - The items of a list are paragraphs of their own.
 - `refs` are the references Henry cites, in his wording and in compact form.
 - Each paragraph is one of Henry's paragraphs. Some are long, up to about 11,000 characters.
-- The KJV passage CCEL prints before each comment is left out, because the reader shows the Bible text itself.
+- The KJV passage CCEL prints before each comment is left out, with the Psalm titles printed beside it, because the reader shows the Bible text itself. So are the running heads ("CHAP. VIII.") and each introduction's reproduced title page.
+- Every element is either kept or left out by name (`CONTENT` in `scripts/ingest/henry.js`). An element the list doesn't name stops the conversion.
 - How CCEL's markup is read:
   - The chapter number comes from each block's "Chapter N" title.
   - The verse range comes from CCEL's passage markers.
   - Where Henry prints two passages and comments on both together, they become one section.
+  - A title that stands before a chapter's first passage, or at the end of a block after Henry's text, is the title of the next section.
   - A few markers name the wrong chapter (2 Chronicles 28–29, Luke 16) or run past the chapter's end (Proverbs 31, Isaiah 7, Acts 26). The ingest keeps the block's chapter, cuts the range at the last verse, and prints a note for each.
 - Validation warns where sections share a verse (Romans 7:14, for example). These follow Henry's own divisions.
 
