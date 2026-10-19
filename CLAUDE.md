@@ -71,6 +71,7 @@
 ├── vite.config.ts
 ├── index.html
 ├── RESOURCES.md                       # Detailed resource system documentation
+├── PIPELINE.md                        # Sequence diagrams: download, ingest, authenticate
 ├── RELEASING.md                       # Live vs preview channels; how to release
 └── README.md
 ```

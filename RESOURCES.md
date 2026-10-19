@@ -4,7 +4,7 @@ The ReformStudy platform uses a modular resource system for managing biblical an
 
 ## Content Pipeline
 
-Bible and commentary text is downloaded and converted by scripts, never typed in:
+Bible and commentary text is downloaded and converted by scripts, never typed in. [PIPELINE.md](PIPELINE.md) shows each step as a sequence diagram.
 
 1. **Sources** (`sources/`): each publisher's download, committed byte for byte and checked against its SHA-256 in `provenance/registry.json`. `--download` on an ingest script fetches it again.
 2. **Ingest** (`npm run ingest`, scripts in `scripts/ingest/`): each script converts its source to the formats below and writes it under `res/`. Each has a pure `generate` function, tested with fixtures in `scripts/tests/`. The converted files are committed. Bible files are written one verse per line, so a changed verse is a one-line diff.
