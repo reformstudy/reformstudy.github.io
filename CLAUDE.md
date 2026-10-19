@@ -47,6 +47,7 @@
 │   ├── validate-resources.js          # Canon, verse and commentary checks
 │   ├── ingest/{kjv,bsb,wcf,henry,strongs}.js  # Convert sources/ into res/ (each exports a pure `pipeline`)
 │   ├── authenticate/                  # Proves res/ and the built site are the sources' text, verbatim
+│   ├── explore/                       # npm run explore: local, read-only UI for each pipeline step
 │   ├── release/                       # build.json (version, content fingerprint), content diff vs the live tag
 │   ├── lib/canon.js                   # The 66 books: USFM and OSIS IDs, names, chapter counts
 │   ├── lib/refs.js                    # Scripture reference parsing (OSIS and compact "PSA.19.1-3")
@@ -112,6 +113,7 @@ npm run ingest:strongs        # Strong's Greek + Hebrew → res/strongs/
 npm run content:diff -- v0.1.0  # content changes since a release tag (what a release would change)
 npm run validate:resources    # also runs inside every build; errors fail the build
 npm run authenticate          # proves res/ is the sources' text, verbatim (also in every build and npm test)
+npm run explore               # local UI (http://127.0.0.1:4310): sources, ingest, authentication, unit by unit
 npm test                      # all tests, including full authentication; fails below 99% line coverage
 ```
 Ingest scripts read the committed downloads in `sources/` and work offline; `--download` (e.g. `node scripts/ingest/kjv.js --download`) fetches a source again from its publisher.

@@ -79,8 +79,12 @@ export function readLexicon(tsv) {
 }
 
 /** Compare one converted lexicon with its source rows. Returns { problems, entries, excluded }. */
-export function authenticateLexicon(output, tsv, { prefix, max }) {
-  const problems = [];
+/**
+ * STEPBible's main row for each Strong's number in range (the row whose
+ * "dStrong" ends in " =", otherwise its first row), and the size of what is
+ * left out: Map of number -> { r, isMain }, and Map of category -> characters.
+ */
+export function mainEntries(tsv, { prefix, max }) {
   const excluded = new Map();
   const { rows, other } = readLexicon(tsv);
   excluded.set('header and notes', other);
@@ -99,6 +103,13 @@ export function authenticateLexicon(output, tsv, { prefix, max }) {
       add('extended entries (STEPBible\'s sub-entries)', (isMain && !current.isMain ? current.r : r).size);
     }
   }
+  return { main, excluded };
+}
+
+export function authenticateLexicon(output, tsv, lang) {
+  const { prefix } = lang;
+  const problems = [];
+  const { main, excluded } = mainEntries(tsv, lang);
   const seen = new Set();
   for (const e of output.entries) {
     const n = Number(String(e.number).slice(1));

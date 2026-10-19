@@ -26,6 +26,8 @@ This directory contains build scripts for processing and bundling resource files
 
 Sources and licenses are listed in [RESOURCES.md](../RESOURCES.md#sources).
 
+`explore/` is a local, read-only web app (`npm run explore`) that shows each step and lets you inspect any unit: raw source, the text authentication reads from it, and the output.
+
 `authenticate/` proves the result is verbatim. It is separate code from the converters, and `npm run authenticate`, every build and `npm test` run it. See [res/SOURCES.md](../res/SOURCES.md#authentication). `npm test` runs the tests in `tests/` and requires 99% line coverage of the converters, `lib/` and the authenticator.
 
 ## Scripts

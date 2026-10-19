@@ -12,6 +12,12 @@ Bible and commentary text is downloaded and converted by scripts, never typed in
 4. **Build** (`scripts/build-resources.js`): writes each Bible as one whole file (for search), plus an index and one file per book (for the reader). Chaptered commentaries are copied one file per chapter. `manifest.json` lists everything and names `defaultBible`.
 5. **Authenticate** (`npm run authenticate`, also run by every build and by `npm test`): checks the sources' checksums, reproduces `res/` from them, and proves every text is its source's, verbatim. It also checks that the built site carries `res/` unchanged. See [res/SOURCES.md](res/SOURCES.md#authentication).
 
+To see each step for yourself, run `npm run explore` and open http://127.0.0.1:4310. The explorer is read-only and works through four tabs:
+- **Sources:** the committed files and their checksums.
+- **Ingest:** run any converter in memory and compare its files with `res/`.
+- **Authenticate:** run the full check and read its report.
+- **Inspect:** any verse, paragraph or entry, shown as the raw source, the text authentication reads from it, and the output, with the verdict.
+
 ### Sources
 
 Every source comes from the organization that publishes it and is pinned, so rerunning the pipeline gives the same files until the pin is changed. `provenance/registry.json` records each source's organization, download location, license and SHA-256, and ingest stops if a download doesn't match. See [res/SOURCES.md](res/SOURCES.md).

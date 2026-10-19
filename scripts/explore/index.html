@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pipeline Explorer · ReformStudy</title>
+<style>
+  :root {
+    --bg: #f7f6f2; --surface: #ffffff; --ink: #1f2328; --muted: #5f6670; --faint: #8a9099;
+    --line: #e2dfd6; --accent: #3b6e8f; --accent-soft: #e6eff5;
+    --ok: #2f7d4a; --ok-soft: #e6f3ea; --bad: #b3261e; --bad-soft: #fbe9e7; --warn-soft: #fff6dc;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 14px/1.5 var(--sans); }
+  header { background: var(--surface); border-bottom: 1px solid var(--line); padding: 14px 24px 0; position: sticky; top: 0; z-index: 2; }
+  h1 { font-size: 17px; margin: 0 0 2px; }
+  .sub { color: var(--muted); font-size: 13px; margin: 0 0 12px; }
+  nav { display: flex; gap: 4px; flex-wrap: wrap; }
+  nav button { border: 1px solid var(--line); border-bottom: none; background: var(--bg); padding: 8px 14px; border-radius: 8px 8px 0 0; cursor: pointer; font: inherit; color: var(--muted); }
+  nav button[aria-selected="true"] { background: var(--accent-soft); color: var(--ink); font-weight: 600; border-color: var(--accent); }
+  nav .arrow { align-self: center; color: var(--faint); padding: 0 2px; }
+  main { padding: 20px 24px 60px; max-width: 1400px; }
+  .lead { color: var(--muted); max-width: 900px; margin: 0 0 16px; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; margin-bottom: 12px; }
+  .card h3 { margin: 0 0 6px; font-size: 15px; }
+  table { border-collapse: collapse; width: 100%; font-size: 13px; }
+  th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); vertical-align: top; overflow-wrap: anywhere; }
+  th { color: var(--muted); font-weight: 600; }
+  code, .mono { font-family: var(--mono); font-size: 12px; }
+  .badge { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+  .ok { background: var(--ok-soft); color: var(--ok); }
+  .bad { background: var(--bad-soft); color: var(--bad); }
+  .muted { color: var(--muted); }
+  button.primary { background: var(--accent); color: #fff; border: none; border-radius: 6px; padding: 7px 14px; font: inherit; cursor: pointer; }
+  button.primary:disabled { opacity: .6; cursor: wait; }
+  button.link { background: none; border: none; color: var(--accent); cursor: pointer; padding: 0; font: inherit; text-decoration: underline; }
+  .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 12px; }
+  select, input[type=search] { font: inherit; padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); }
+  .unit { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; margin-bottom: 10px; overflow: hidden; }
+  .unit.failed { border-color: var(--bad); }
+  .unit-head { display: flex; gap: 10px; align-items: center; padding: 8px 12px; border-bottom: 1px solid var(--line); background: #fbfaf7; flex-wrap: wrap; }
+  .unit-head .key { font-weight: 600; }
+  .cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .cols > div { padding: 8px 12px; border-right: 1px solid var(--line); min-width: 0; }
+  .cols > div:last-child { border-right: none; }
+  .cols h4 { margin: 0 0 4px; font-size: 11px; text-transform: uppercase; letter-spacing: .04em; color: var(--faint); }
+  pre { margin: 0; white-space: pre-wrap; word-break: break-word; font: 12px/1.5 var(--mono); }
+  .notes { padding: 6px 12px 8px; border-top: 1px dashed var(--line); font-size: 12px; color: var(--muted); }
+  .verdict { padding: 6px 12px; background: var(--bad-soft); color: var(--bad); font: 12px var(--mono); border-top: 1px solid var(--bad); }
+  details > summary { cursor: pointer; color: var(--accent); }
+  .raw-block { max-height: 420px; overflow: auto; background: #fbfaf7; border: 1px solid var(--line); border-radius: 6px; padding: 8px; margin-top: 8px; }
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin-bottom: 18px; }
+  .step { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+  .step b { display: block; margin-bottom: 4px; }
+  .bar { height: 8px; background: var(--accent-soft); border-radius: 4px; overflow: hidden; }
+  .bar > span { display: block; height: 100%; background: var(--accent); }
+  .spinner { display: inline-block; width: 14px; height: 14px; border: 2px solid var(--line); border-top-color: var(--accent); border-radius: 50%; animation: spin 1s linear infinite; vertical-align: -2px; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .error { background: var(--bad-soft); color: var(--bad); padding: 10px 12px; border-radius: 8px; }
+  @media (max-width: 800px) {
+    header, main { padding-left: 16px; padding-right: 16px; }
+    .cols { grid-template-columns: 1fr; }
+    .cols > div { border-right: none; border-bottom: 1px solid var(--line); }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>ReformStudy pipeline explorer</h1>
+  <p class="sub">See what each step does with the publishers' files. Read-only: everything runs in memory; nothing in sources/, res/ or the registry is changed.</p>
+  <nav role="tablist" aria-label="Pipeline steps">
+    <button role="tab" data-tab="sources">1 · Sources</button><span class="arrow" aria-hidden="true">→</span>
+    <button role="tab" data-tab="ingest">2 · Ingest</button><span class="arrow" aria-hidden="true">→</span>
+    <button role="tab" data-tab="authenticate">3 · Authenticate</button><span class="arrow" aria-hidden="true">→</span>
+    <button role="tab" data-tab="inspect">4 · Inspect units</button>
+  </nav>
+</header>
+<main id="view" aria-live="polite"></main>
+<script src="app.js"></script>
+</body>
+</html>

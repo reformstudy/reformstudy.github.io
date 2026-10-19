@@ -179,7 +179,7 @@ export function rangesFor(blocks, lastVerse) {
 }
 
 /** The output's units for a chapter file or introduction, in order, with their kind. */
-function outputUnits(file) {
+export function outputUnits(file) {
   const out = [];
   const para = p => ({ kind: p.heading ? 'title' : p.poetry ? 'poetry' : p.attribution ? 'attribution' : 'paragraph', text: p.text, refs: p.refs ?? [] });
   for (const p of file.introduction ?? file.paragraphs ?? []) out.push(para(p));
