@@ -9,6 +9,19 @@ export class Units {
     this.units = new Map();     // key -> text
     this.excluded = new Map();  // category -> characters left out (whitespace not counted)
     this.kept = 0;              // characters kept (whitespace not counted)
+    this.tags = new Map();      // key -> [{ word, attributes }]: tagged words (\w word|attributes\w*)
+    this.untagged = new Map();  // category -> tagged words outside any unit (Psalm titles)
+  }
+
+  /** A tagged word in a unit, with its attributes (strong="H7225"). */
+  tag(key, word, attributes) {
+    if (!this.tags.has(key)) this.tags.set(key, []);
+    this.tags.get(key).push({ word, attributes });
+  }
+
+  /** A tagged word whose tag is left out, by category. */
+  untag(category) {
+    this.untagged.set(category, (this.untagged.get(category) ?? 0) + 1);
   }
 
   /** Append text to a unit, creating it if needed. */
@@ -39,6 +52,8 @@ export class Units {
       this.units.set(k, v);
     }
     for (const [k, v] of other.excluded) this.excluded.set(k, (this.excluded.get(k) ?? 0) + v);
+    for (const [k, v] of other.tags) this.tags.set(k, v);
+    for (const [k, v] of other.untagged) this.untagged.set(k, (this.untagged.get(k) ?? 0) + v);
     this.kept += other.kept;
     return this;
   }

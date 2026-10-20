@@ -228,18 +228,29 @@ test("Strong's lexicons: STEPBible's main entry per Strong's number, within Stro
   assert.equal(definitionText("<b>love</b>, <ref='Jhn.13.35'>Jhn.13:35;</ref> <BR />__1. Of men"), 'love, Jhn.13:35;\n  1. Of men');
 });
 
-test('convertKjv reads eBible.org USFM: the 66 books by \\id, divine names and italics kept, tags and pilcrows dropped', () => {
+test('convertKjv reads eBible.org USFM: the 66 books by \\id, divine names and italics kept, pilcrows dropped, Strong\'s numbers beside the text', () => {
   const files = new Map(CANON.map((b, i) => [`${String(i + 2).padStart(2, '0')}-${b.id}eng-kjv.usfm`, Buffer.from(`\\id ${b.id} ${b.name}\n\\c 1\n\\p\n\\v 1 ${b.name} text\n`)]));
   files.set('02-GENeng-kjv.usfm', Buffer.from([
     '\\id GEN Genesis', '\\c 1', '\\p',
     '\\v 1 ¶ And \\w Abram|strong="H0087"\\w* said, \\w Lord|strong="H0136"\\w* \\nd \\+w GOD|strong="H3069"\\+w*\\nd*, what \\add is\\add* it?\\f + \\fr 1.1 \\ft a note\\f*',
+    '\\v 2 But \\w who|strong="G3739"\\w*\\w soever|strong="G0302"\\w* ( \\w is it not|strong="G3756"\\w* ) ,',
+    '\\d \\w Selah|strong="H5542"\\w* in a title line',
   ].join('\n')));
   files.set('41-TOBeng-kjv.usfm', Buffer.from('\\id TOB Tobit\n\\c 1\n\\v 1 not canon\n'));
   files.set('copr.htm', Buffer.from('<html>'));
   const bible = convertKjv(files);
   assert.equal(bible.books.length, 66);
   assert.equal(bible.books[21].id, 'SNG');
-  assert.deepEqual(bible.books[0].verses[0], { book: 'GEN', chapter: 1, verse: 1, text: 'And Abram said, Lord GOD, what is it?' });
+  assert.deepEqual(bible.books[0].verses[0], {
+    book: 'GEN', chapter: 1, verse: 1, text: 'And Abram said, Lord GOD, what is it?',
+    strongs: [[4, 9, 'H87'], [16, 20, 'H136'], [21, 24, 'H3069']],
+  });
+  const v2 = bible.books[0].verses[1];
+  assert.equal(v2.text, 'But whosoever (is it not), Selah in a title line', 'two tagged halves of one word stay one word');
+  assert.deepEqual(v2.strongs.map(([s, e, n]) => [v2.text.slice(s, e), n]), [['who', 'G3739'], ['soever', 'G302'], ['is it not', 'G3756'], ['Selah', 'H5542']]);
+  assert.equal(bible.books[1].verses[0].strongs, undefined, 'no tags, no field');
+  files.set('02-GENeng-kjv.usfm', Buffer.from('\\id GEN\n\\c 1\n\\p\n\\v 1 odd \uE000 text'));
+  assert.throws(() => convertKjv(files), /characters that mark Strong's words/);
   files.delete('02-GENeng-kjv.usfm');
   assert.throws(() => convertKjv(files), /no \\id GEN/);
 });

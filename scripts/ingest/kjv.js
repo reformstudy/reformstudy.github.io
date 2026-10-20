@@ -8,8 +8,11 @@
  * release stops ingest until it is deliberately accepted.
  *
  * The zip also has the Apocrypha; only the 66 books are converted. Psalm
- * titles become chapter subtitles; footnotes, Strong's tags and pilcrows (¶)
- * are dropped; italics (\add) and divine names (\nd LORD) keep their words.
+ * titles become chapter subtitles; footnotes and pilcrows (¶) are dropped;
+ * italics (\add) and divine names (\nd LORD) keep their words. The Strong's
+ * number on each tagged word (\w beginning|strong="H7225"\w*) is kept beside
+ * the verse text as `strongs: [[start, end, "H7225"], …]`, character offsets
+ * of the word in `text`.
  *
  * Usage:
  *   node scripts/ingest/kjv.js              # convert the committed copy in sources/kjv/
@@ -37,7 +40,7 @@ export function convertKjv(files) {
   const books = CANON.map(canon => {
     const usfm = byId.get(canon.id);
     if (!usfm) throw new Error(`Source has no \\id ${canon.id}`);
-    const { verses, subtitles } = parseUsfmBook(usfm, canon.id);
+    const { verses, subtitles } = parseUsfmBook(usfm, canon.id, { strongs: true });
     const book = { id: canon.id, name: canon.name, testament: canon.testament, chapters: canon.chapters };
     if (Object.keys(subtitles).length) book.subtitles = subtitles;
     book.verses = verses;
@@ -64,8 +67,12 @@ export const pipeline = {
   owns: [OUTPUT],
   generate(files) {
     const bible = convertKjv(readZip(files.get('kjv').get('eng-kjv_usfm.zip')));
-    const total = bible.books.reduce((n, b) => n + b.verses.length, 0);
-    return { outputs: new Map([[OUTPUT, bibleFileText(bible)]]), summary: `${bible.books.length} books, ${total} verses` };
+    const verses = bible.books.flatMap(b => b.verses);
+    const tagged = verses.reduce((n, v) => n + (v.strongs?.length ?? 0), 0);
+    return {
+      outputs: new Map([[OUTPUT, bibleFileText(bible)]]),
+      summary: `${bible.books.length} books, ${verses.length} verses, ${tagged} words with Strong's numbers`,
+    };
   },
 };
 

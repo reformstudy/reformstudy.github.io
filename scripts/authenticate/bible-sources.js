@@ -86,6 +86,12 @@ class Reader {
     this.units.open(`${this.book} ${this.chapter}:${n}`);
   }
 
+  /** A tagged word just read: kept with its verse, or counted under the place it was found. */
+  tag(word, attributes) {
+    if (this.kind === 'text' && this.verse !== null) this.units.tag(`${this.book} ${this.chapter}:${this.verse}`, word, attributes);
+    else this.units.untag(this.kind === 'title' ? 'Psalm titles' : String(this.kind));
+  }
+
   text(text, category = null) {
     if (category) return this.units.exclude(category, text);
     if (this.kind === 'title') { this.title += text; return; }
@@ -111,7 +117,8 @@ class Reader {
  * Read one USFM book. Markers are read one at a time: paragraph markers
  * (at the start of a line), \c and \v with their numbers, notes, and
  * character markers, whose words stay in the text. In \w word|attributes\w*
- * the part after "|" is markup (Strong's numbers), not text.
+ * the part after "|" is markup (Strong's numbers), not text; each tagged
+ * word is recorded with its attributes (Units.tag).
  */
 export function readUsfmBook(usfm, book) {
   const r = new Reader(book);
@@ -119,6 +126,9 @@ export function readUsfmBook(usfm, book) {
   let depth = 0;
   let inWord = false;
   let inAttributes = false;
+  let word = '';
+  let attributes = '';
+  let afterOpener = false;
   let expect = null; // 'c' or 'v': the next text starts with a number
   const re = /\\(\+?)([a-z]+\d*)(\*?)|([^\\]+)/g;
   let m;
@@ -135,15 +145,22 @@ export function readUsfmBook(usfm, book) {
         text = text.slice(n[0].length);
         expect = null;
       }
+      // The space after an opening character marker (\w word) separates the
+      // marker from its text; it is not part of the text.
+      if (afterOpener) text = text.replace(/^(?:\r?\n|[ \t])/, '');
+      afterOpener = false;
       if (note) { r.text(text, note); continue; }
-      if (inAttributes) { r.text(text, 'word attributes (markup)'); continue; }
+      if (inAttributes) { attributes += text; r.text(text, 'word attributes (markup)'); continue; }
       if (inWord && text.includes('|')) {
         const bar = text.indexOf('|');
+        word += text.slice(0, bar);
+        attributes += text.slice(bar + 1);
         r.text(text.slice(0, bar));
         r.text(text.slice(bar + 1), 'word attributes (markup)');
         inAttributes = true;
         continue;
       }
+      if (inWord) word += text;
       r.text(text);
       continue;
     }
@@ -158,7 +175,14 @@ export function readUsfmBook(usfm, book) {
     if (name === 'c' && !closing) { expect = 'c'; continue; }
     if (name === 'v' && !closing) { expect = 'v'; continue; }
     if (CHARACTER.has(name)) {
-      if (name === 'w') { inWord = !closing; inAttributes = false; }
+      afterOpener = !closing;
+      if (name === 'w') {
+        if (closing && inAttributes) r.tag(word, attributes);
+        inWord = !closing;
+        inAttributes = false;
+        word = '';
+        attributes = '';
+      }
       continue;
     }
     if (!closing && atLineStart && PARAGRAPHS[name]) {

@@ -28,7 +28,7 @@ import { pipeline as bsb } from '../ingest/bsb.js';
 import { pipeline as wcf } from '../ingest/wcf.js';
 import { pipeline as henry, VOLUMES, verseCounter } from '../ingest/henry.js';
 import { LANGUAGES, pipeline as strongs } from '../ingest/strongs.js';
-import { authenticateBible, authenticatePsalmTitles, readBibleZip, readPlainTextBible } from './bibles.js';
+import { authenticateBible, authenticatePsalmTitles, authenticateWordTags, readBibleZip, readPlainTextBible } from './bibles.js';
 import { readUsxBook } from './bible-sources.js';
 import { readZip } from '../lib/zip.js';
 import { authenticateConfession } from './confessions.js';
@@ -97,8 +97,11 @@ export function authenticate({ root = ROOT, site = null, sourcesDir } = {}) {
 
   guard('kjv', 'the source can be read', () => {
     const src = readBibleZip(files.get('kjv').get('eng-kjv_usfm.zip'), 'usfm');
-    const r = authenticateBible(json('res/bibles/kjv/kjv.json'), src, RESOURCE_EXCEPTIONS.kjv);
+    const bible = json('res/bibles/kjv/kjv.json');
+    const r = authenticateBible(bible, src, RESOURCE_EXCEPTIONS.kjv);
     entry('kjv').checks.push({ name: `${plural(r.verses, 'verse')} and ${plural(r.titles, 'Psalm title')} are the source's text`, problems: r.problems });
+    const w = authenticateWordTags(bible, src.units, RESOURCE_EXCEPTIONS.kjv);
+    entry('kjv').checks.push({ name: `${plural(w.words, 'word')} carry the source's Strong's numbers (${plural(w.untagged, 'tagged word')} in Psalm titles not linked)`, problems: w.problems });
     entry('kjv').excluded = src.units.excluded;
   });
   guard('bsb', 'the source can be read', () => {

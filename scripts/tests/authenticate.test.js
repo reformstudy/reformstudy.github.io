@@ -12,7 +12,7 @@ import os from 'os';
 import path from 'path';
 import { compareText, EXCEPTIONS, wordStream } from '../authenticate/compare.js';
 import { readUsfmBook, readUsxBook } from '../authenticate/bible-sources.js';
-import { authenticateBible, authenticatePsalmTitles, readPlainTextBible } from '../authenticate/bibles.js';
+import { authenticateBible, authenticatePsalmTitles, authenticateWordTags, readPlainTextBible, strongsNumber } from '../authenticate/bibles.js';
 import { CANON } from '../lib/canon.js';
 import { convertBsb } from '../ingest/bsb.js';
 import { authenticateCommentary, fromRoman, rangesFor, readTree, readVolume } from '../authenticate/commentaries.js';
@@ -150,6 +150,36 @@ test('a converted Bible passes; every kind of tampering is caught', () => {
   extraBook.books.push({ id: 'EXO', verses: [] });
   assert.match(authenticateBible(extraBook, source, ex).problems[0], /EXO: not in the source/);
   assert.match(authenticateBible({ books: [] }, source, ex).problems[0], /GEN: in the source but not in the output/);
+});
+
+test("Strong's word tags: each verse's tagged words and numbers are the source's; tampering is caught", () => {
+  const usfm = [
+    '\\id GEN Test', '\\c 1', '\\p',
+    '\\v 1 \\w In|strong="H7225"\\w* \\w the beginning|strong="H0430"\\w* God created.',
+    '\\v 2 And \\w who|strong="G3739"\\w*\\w soever|strong="G0302"\\w* \\nd \\+w LORD|strong="H3068"\\+w*\\nd* said.',
+    '\\v 3 No tags here.',
+  ].join('\n');
+  const units = readUsfmBook(usfm, 'GEN');
+  assert.equal(compareText(units.units.get('GEN 1:2'), 'And whosoever LORD said.'), null, 'the space after a marker is markup');
+  const good = bibleFrom(usfm, 'GEN', (t, id) => parseUsfmBook(t, id, { strongs: true }));
+  assert.deepEqual(authenticateWordTags(good, units, []), { problems: [], words: 5, untagged: 0 });
+
+  const tamper = fn => { const b = clone(good); fn(b.books[0].verses); return authenticateWordTags(b, units, []).problems; };
+  assert.match(tamper(v => { v[0].strongs[1][2] = 'H431'; })[0], /GEN 1:1, word 2: H431, the source has H430/);
+  assert.match(tamper(v => { v[0].strongs[1][0] += 1; })[0], /not the tagged word "the beginning"/);
+  assert.ok(tamper(v => { v[1].strongs.reverse(); }).some(p => /word 2: offsets .* out of order/.test(p)));
+  assert.match(tamper(v => { v[0].strongs[0] = [0, 99, 'H7225']; })[0], /outside the verse/);
+  assert.match(tamper(v => { v[0].strongs[0] = [1, 1, 'H7225']; })[0], /out of order/);
+  assert.match(tamper(v => { v[0].strongs.pop(); })[0], /GEN 1:1: 1 tagged words, the source has 2/);
+  assert.match(tamper(v => { v[2].strongs = [[0, 2, 'G1']]; })[0], /GEN 1:3: 1 tagged words, the source has 0/);
+  assert.match(tamper(v => { v.pop(); v.pop(); })[0], /GEN 1:2: tagged words in the source but no verse in the output/);
+
+  const noNumber = readUsfmBook('\\id GEN\n\\c 1\n\\p\n\\v 1 \\w In|lemma="x"\\w* it.', 'GEN');
+  assert.match(authenticateWordTags({ books: [{ id: 'GEN', verses: [{ chapter: 1, verse: 1, text: 'In it.', strongs: [[0, 2, 'H1']] }] }] }, noNumber, []).problems[0], /H1, the source has no Strong's number/);
+  const titles = readUsfmBook(PSA_USFM.replace('A Psalm', '\\w A Psalm|strong="H4210"\\w*'), 'PSA');
+  assert.equal(authenticateWordTags({ books: [] }, titles, []).untagged, 1, 'a tagged word in a Psalm title is counted');
+  assert.equal(strongsNumber('strong="G0026" x-morph="V"'), 'G26');
+  assert.equal(strongsNumber('lemma="x"'), null);
 });
 
 test('Psalm titles are checked like verses', () => {
@@ -374,11 +404,12 @@ function siteFixture() {
   const root = tmp();
   const site = path.join(root, 'site');
   const write = (file, data) => { fs.mkdirSync(path.dirname(file), { recursive: true }); fs.writeFileSync(file, JSON.stringify(data)); };
-  const bible = id => ({ version: { id }, books: [{ id: 'GEN', chapters: 1, verses: [{ book: 'GEN', chapter: 1, verse: 1, text: 'In the beginning.' }], subtitles: {} }] });
+  const bible = id => ({ version: { id }, books: [{ id: 'GEN', chapters: 1, verses: [{ book: 'GEN', chapter: 1, verse: 1, text: 'In the beginning.', strongs: [[0, 2, 'H7225']] }], subtitles: {} }] });
   for (const id of ['kjv', 'bsb']) {
     const b = bible(id);
     write(path.join(root, `res/bibles/${id}/${id}.json`), b);
-    write(path.join(site, `bible-${id}.json`), b);
+    // The search file leaves out the word tags.
+    write(path.join(site, `bible-${id}.json`), { ...b, books: b.books.map(k => ({ ...k, verses: k.verses.map(({ strongs, ...v }) => v) })) });
     write(path.join(site, `bibles/${id}/GEN.json`), b.books[0]);
     write(path.join(site, `bibles/${id}/index.json`), { version: b.version, books: [{ id: 'GEN', chapters: 1, verseCounts: [1] }] });
   }
@@ -400,12 +431,14 @@ test('the site must carry res/ unchanged', () => {
   assert.deepEqual(authenticateSite(root, site), { problems: [], files: 11 });
   const edit = (rel, fn) => { const f = path.join(site, rel); const d = JSON.parse(fs.readFileSync(f)); fn(d); fs.writeFileSync(f, JSON.stringify(d)); };
   edit('bibles/kjv/GEN.json', b => { b.verses[0].text = 'In the beginning,'; });
+  edit('bible-bsb.json', b => { b.books[0].verses[0].strongs = [[0, 2, 'H7225']]; });
   edit('commentaries/henry/ROM/8.json', c => { c.sections[0].start = 2; });
   fs.rmSync(path.join(site, 'strongs-hebrew.json'));
   fs.writeFileSync(path.join(site, 'commentaries/henry/extra.json'), '{}');
   const { problems } = authenticateSite(root, site);
   assert.deepEqual(problems, [
     'bibles/kjv/GEN.json: differs from res/',
+    'bible-bsb.json: differs from res/',
     'strongs-hebrew.json: missing from the site',
     'commentaries/henry/ROM/8.json: differs from res/',
     'commentaries/henry: 3 files on the site, 2 in res/',

@@ -122,3 +122,52 @@ export function authenticatePsalmTitles(bible, usxUnits) {
   for (const chapter of marked.keys()) if (!psa?.subtitles?.[chapter]) problems.push(`PSA ${chapter}: the USX marks a title the output lacks`);
   return problems;
 }
+
+/** The Strong's number in a word's attributes, without leading zeros: strong="H0430" is H430. */
+export function strongsNumber(attributes) {
+  const m = String(attributes).match(/\bstrong="([GH])(\d+)"/);
+  return m ? `${m[1]}${Number(m[2])}` : null;
+}
+
+/**
+ * Each verse's `strongs` ([start, end, number] per tagged word) must be the
+ * source's tagged words, in order: the characters at [start, end) are the
+ * word as the source writes it (compare.js, with the resource's exceptions),
+ * and the number is the one in its attributes. Every tagged word in a verse
+ * must be there; words tagged in Psalm titles are counted, not linked.
+ * Returns { problems, words, untagged }.
+ */
+export function authenticateWordTags(bible, units, exceptions) {
+  const problems = [];
+  let words = 0;
+  const seen = new Set();
+  for (const book of bible.books) {
+    for (const v of book.verses) {
+      const key = `${book.id} ${v.chapter}:${v.verse}`;
+      seen.add(key);
+      const source = units.tags.get(key) ?? [];
+      const tags = v.strongs ?? [];
+      if (tags.length !== source.length) {
+        problems.push(`${key}: ${tags.length} tagged words, the source has ${source.length}`);
+        continue;
+      }
+      let last = 0;
+      tags.forEach(([start, end, number], i) => {
+        const where = `${key}, word ${i + 1}`;
+        if (!Number.isInteger(start) || !Number.isInteger(end) || start < last || end <= start || end > v.text.length) {
+          problems.push(`${where}: offsets [${start}, ${end}] are out of order or outside the verse`);
+          return;
+        }
+        last = end;
+        const diff = compareText(source[i].word, v.text.slice(start, end), exceptions);
+        if (diff) problems.push(`${where}: not the tagged word "${source[i].word.trim()}": ${diff}`);
+        const expected = strongsNumber(source[i].attributes);
+        if (number !== expected) problems.push(`${where}: ${number}, the source has ${expected ?? 'no Strong\'s number'}`);
+        words++;
+      });
+    }
+  }
+  for (const key of units.tags.keys()) if (!seen.has(key)) problems.push(`${key}: tagged words in the source but no verse in the output`);
+  const untagged = [...units.untagged.values()].reduce((a, b) => a + b, 0);
+  return { problems, words, untagged };
+}

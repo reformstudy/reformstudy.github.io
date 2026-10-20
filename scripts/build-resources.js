@@ -101,7 +101,7 @@ function processBibles() {
         console.log(`  ✓ Loaded Bible: ${result.data.version.name}`);
         
         const outputPath = path.join(OUTPUT_DIR, `bible-${versionId}.json`);
-        fs.writeFileSync(outputPath, JSON.stringify(result.data));
+        fs.writeFileSync(outputPath, JSON.stringify(searchBible(result.data)));
         writeBibleBooks(versionId, result.data);
       }
     } else {
@@ -110,6 +110,17 @@ function processBibles() {
   });
   
   return output;
+}
+
+/**
+ * The whole translation as search uses it: the text without the Strong's
+ * word tags, which only the reader needs (they are in the per-book files).
+ */
+function searchBible(bible) {
+  return {
+    ...bible,
+    books: bible.books.map(book => ({ ...book, verses: book.verses.map(({ strongs, ...verse }) => verse) })),
+  };
 }
 
 /**

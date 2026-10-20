@@ -30,7 +30,11 @@ export function authenticateSite(root, siteDir) {
 
   for (const id of ['kjv', 'bsb']) {
     const bible = read(path.join(root, `res/bibles/${id}/${id}.json`));
-    same(`bible-${id}.json`, site(`bible-${id}.json`), bible);
+    // The search file is the whole text without the Strong's word tags (the reader's per-book files have them).
+    same(`bible-${id}.json`, site(`bible-${id}.json`), {
+      ...bible,
+      books: bible.books.map(b => ({ ...b, verses: b.verses.map(({ strongs, ...v }) => v) })),
+    });
     for (const book of bible.books) same(`bibles/${id}/${book.id}.json`, site(`bibles/${id}/${book.id}.json`), book);
     const index = site(`bibles/${id}/index.json`);
     same(`bibles/${id}/index.json`, index, {
