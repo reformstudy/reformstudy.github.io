@@ -55,6 +55,31 @@
       "sha256": "8238a4ddec8cca3e2de6352378feae9c1121802ca5760b5e42e63266a127babd",
       "fileCount": 2
     },
+    "bsb-tables": {
+      "title": "BSB Translation Tables",
+      "organization": "Berean Bible (publisher; bereanbible.com, berean.bible)",
+      "page": "https://berean.bible/downloads.htm",
+      "published": "2026-07-31",
+      "publishedNote": "Last-Modified date of bsb_tables.tsv when it was checked. The publisher replaces the file in place, so a new release changes the checksum.",
+      "license": "Public domain: the publisher dedicates the Berean Bible texts to the public domain (April 30, 2023; berean.bible/terms.htm). The terms don't name the tables separately. Attribution appreciated, not required.",
+      "credit": {
+        "text": "The Holy Bible, Berean Standard Bible, BSB is produced in cooperation with Bible Hub, Discovery Bible, OpenBible.com, and the Berean Bible Translation Committee. This text of God's Word has been dedicated to the public domain.",
+        "links": [
+          {
+            "label": "berean.bible",
+            "url": "https://berean.bible"
+          }
+        ]
+      },
+      "downloads": [
+        {
+          "file": "bsb_tables.tsv",
+          "url": "https://bereanbible.com/bsb_tables.tsv"
+        }
+      ],
+      "sha256": "09bbee6f9fe4fa22b5df28e8a9ffa99bf9c33435f4eb8c47c2dc221d855d35cb",
+      "fileCount": 1
+    },
     "wcf": {
       "title": "Westminster Confession of Faith (1647)",
       "repo": "https://github.com/NonlinearFruit/Creeds.json",

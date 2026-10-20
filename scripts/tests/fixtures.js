@@ -152,3 +152,30 @@ export function bsbPlainText(canon) {
 }
 /** The same title as the USX marks it (its dash spacing differs). */
 export const USX_PSALM_TITLES = { 3: 'A Psalm of David— when he fled from his son Absalom.' };
+
+/**
+ * The publisher's translation tables for the verses of bsbPlainText: the
+ * real header, rows in Hebrew/Greek order with "BSB Sort" giving English
+ * order, a verse name on each verse's first row only, and the English
+ * column's markup (supplied [ ] and implied { } words, "-", ". . .", "vvv",
+ * spaced punctuation). Psalm 3's title phrases are rows of verse 1. "Lo" is a
+ * phrase the plain text doesn't have; Matthew 17:21 is an empty verse.
+ */
+export const BSB_TABLES = [
+  '﻿Heb Sort\tGreek Sort\tBSB Sort\tVerse\tLanguage\tWLC / Nestle Base TR RP WH NE NA SBL\tWLC / Nestle Base {TR} ⧼RP⧽ (WH) 〈NE〉 [NA] ‹SBL› [[ECM]]\tTranslit\tParsing\tParsing\tStr Heb\tStr Grk\tVerseId\tHdg\tCrossref\tPar\tSpace\tbegQ\t BSB version \tpnc\tendQ\tfootnotes\tEnd text',
+  ['1', '0', '1', '1', 'Hebrew', 'א', 'א', 'a', 'N', 'Noun', '1', '', 'Genesis 1:1', '', '', '', '', '', ' GEN . . . ', '', '', '', ''],
+  ['2', '0', '2', '1', 'Hebrew', '', '', '', '', '', '', '', '', '', '', '', '', '', ' one ', '.', '', '', ''],
+  ['10', '0', '3', '2', 'Hebrew', 'יהוה', 'יהוה', 'Yah', 'N', 'Noun', '3068', '', 'Psalm 3:1', '', '', '', '', '', ' O LORD ', ',', '', '', ''],
+  ['11', '0', '1', '2', 'Hebrew', 'מזמור', 'מזמור', 'miz', 'N', 'Noun', '4210', '', '', '', '', '', '', '', ' A Psalm ', '', '', '', ''],
+  ['12', '0', '2', '2', 'Hebrew', 'לדוד', 'לדוד', 'le', 'N', 'Noun', '1732', '', '', '', '', '', '', '', ' of David ', '', '', '', ''],
+  ['13', '0', '4', '2', 'Hebrew', 'מה', 'מה', 'mah', 'Interrog', 'Interrogative', '4100', '', '', '', '', '', '', '', ' how ', '', '', '', ''],
+  ['14', '0', '5', '2', 'Hebrew', 'צרי', 'צרי', 'tsa', 'N', 'Noun', '6862', '', '', '', '', '', '', '', ' my foes ', '', '', '', ''],
+  ['15', '0', '6', '2', 'Hebrew', 'רבו', 'רבו', 'rab', 'V', 'Verb', '7231', '', '', '', '', '', '', '', ' [have] increased ', '!', '', '', ''],
+  ['16', '0', '7', '2', 'Hebrew', 'את', 'את', 'et', 'DirObjM', 'Direct object marker', '853', '', '', '', '', '', '', '', ' - ', '', '', '', ''],
+  ['17', '0', '8', '2', 'Hebrew', '', '', '', '', '', '', '', '', '', '', '', '', '', ' vvv ', '', '', '', ''],
+  ['20', '0', '9', '3', 'Hebrew', 'רבים', 'רבים', 'rab', 'Adj', 'Adjective', '7227', '', 'Psalm 3:2', '', '', '', '', '', ' Many say {of} me ', ',', '', '', ''],
+  ['21', '0', '10', '3', 'Hebrew', 'אלהים', 'אלהים', 'el', 'N', 'Noun', '0430', '', '', '', '', '', '', '“', ' God ', '', '', '', ''],
+  ['22', '0', '11', '3', 'Hebrew', 'הנה', 'הנה', 'hin', 'Interj', 'Interjection', '2009', '', '', '', '', '', '', '', ' Lo ', '', '', '', ''],
+  ['23', '0', '12', '3', 'Hebrew', 'סלה', 'סלה', 'se', 'Interj', 'Interjection', '5542', '', '', '', '', '', '', '', ' Selah ', '', '', '', ''],
+  ['0', '1', '13', '4', 'Greek', 'ἐξ', 'ἐξ', 'ex', 'Prep', 'Preposition', '', '1607', 'Matthew 17:21', '', '', '', '', '', ' gone ', '', '', '', ''],
+].map(r => (Array.isArray(r) ? r.join('\t') : r)).join('\r\n') + '\r\n';

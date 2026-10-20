@@ -37,7 +37,7 @@
 │   └── vite-env.d.ts                  # Vite environment type declarations
 ├── res/                               # Source resource files (not served directly)
 │   ├── SOURCES.md                     # Where each source comes from and why it is trusted
-│   ├── bibles/{kjv,bsb}/{id}.json     # Generated from eBible.org (KJV, with Strong's numbers per word) and the publisher (BSB); one verse per line
+│   ├── bibles/{kjv,bsb}/{id}.json     # Generated from eBible.org (KJV) and the publisher (BSB), both with Strong's numbers per word; one verse per line
 │   ├── confessions/wcf/wcf.json       # Generated; 1647 text with proof references
 │   ├── commentaries/henry/            # Generated from CCEL; meta.json + {BOOK}/{chapter}.json (passage sections)
 │   └── strongs/{greek,hebrew}/{lang}.json  # Generated from STEPBible (Tyndale House); CC BY 4.0, credit required
@@ -106,7 +106,7 @@ Processes `res/` source files → `docs/resources/`. Run this when you add or ch
 ```bash
 npm run ingest                # everything below, in order, then validation and authentication
 npm run ingest:kjv            # KJV → res/bibles/kjv/kjv.json
-npm run ingest:bsb            # BSB (publisher's plain text) → res/bibles/bsb/bsb.json
+npm run ingest:bsb            # BSB (publisher's plain text + translation tables) → res/bibles/bsb/bsb.json
 npm run ingest:wcf            # WCF 1647 + proofs → res/confessions/wcf/wcf.json (needs the KJV)
 npm run ingest:henry          # Matthew Henry (CCEL) → res/commentaries/henry/
 npm run ingest:strongs        # Strong's Greek + Hebrew → res/strongs/
@@ -208,7 +208,7 @@ The manifest is fetched on app init. Individual resources are lazy-loaded and ca
 ### Resource Types and IDs
 | Type        | IDs available            | Context key       |
 |-------------|--------------------------|-------------------|
-| Bible       | `'bsb'` (default), `'kjv'` (its per-book verses carry `strongs` word tags) | `bibleIndexes` / `bibleBooks` (per book), `bibles` (whole text, no word tags) |
+| Bible       | `'bsb'` (default), `'kjv'` (per-book verses of both carry `strongs` word tags) | `bibleIndexes` / `bibleBooks` (per book), `bibles` (whole text, no word tags) |
 | Confession  | `'wcf'`                  | `confessions`     |
 | Commentary (chaptered) | `'henry'`         | `commentaryChapters` (per chapter), `commentaryIntroductions` |
 | Strong's    | `'strongs-greek'`, `'strongs-hebrew'` | `strongsGreek`, `strongsHebrew` |

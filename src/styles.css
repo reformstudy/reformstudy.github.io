@@ -986,7 +986,7 @@ button.v-num:focus-visible {
   background: var(--bg-exe-light);
 }
 
-.word-row-kjv {
+.word-row-english {
   font-family: var(--font-serif);
   color: var(--text-primary);
 }

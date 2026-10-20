@@ -14,6 +14,12 @@
  * text's own wording. The 16 verses the BSB leaves out are empty lines in the
  * plain text and are left out here too.
  *
+ * Strong's numbers: the publisher's translation tables (bsb_tables.tsv) give,
+ * for each Hebrew or Greek word, the BSB phrase that translates it and its
+ * Strong's number, in English order. Each phrase is found in the verse text,
+ * in order, and kept as `strongs: [[start, end, "H7225"], …]` (see
+ * alignPhrases). The verse text itself is always the plain text's.
+ *
  * Usage:
  *   node scripts/ingest/bsb.js              # convert the committed copies in sources/bsb/
  *   node scripts/ingest/bsb.js --download   # fetch them again from the publisher first
@@ -29,6 +35,7 @@ export const OUTPUT = 'res/bibles/bsb/bsb.json';
 export const SOURCE_PAGE = 'https://berean.bible/downloads.htm';
 export const TEXT_FILE = 'bsb.txt';
 export const USX_FILE = 'bsb_usx.zip';
+export const TABLES_FILE = 'bsb_tables.tsv';
 
 /** The plain text's book names: the canon's, with "Psalm" for Psalms. */
 const BOOK_BY_NAME = new Map([...CANON.map(b => [b.name, b.id]), ['Psalm', 'PSA']]);
@@ -73,8 +80,96 @@ export function usxPsalmTitles(usxFiles) {
   throw new Error('The USX download has no Psalms');
 }
 
-/** Convert the plain text (and the USX's Psalm titles) into the app's Bible format. */
-export function convertBsb(txt, titles) {
+/** The verse in the tables' "Genesis 1:1" form as "GEN 1:1". */
+function verseKey(name) {
+  const m = name.match(/^(.+) (\d+):(\d+)$/);
+  const book = m && BOOK_BY_NAME.get(m[1]);
+  if (!book) throw new Error(`Unknown verse "${name}" in the translation tables`);
+  return `${book} ${Number(m[2])}:${Number(m[3])}`;
+}
+
+/**
+ * Read the translation tables: Map of "GEN 1:1" -> rows in English order,
+ * each { english, number } with number "H7225" / "G26" or null. A verse's
+ * name stands on its first row only; the rows after it belong to it too.
+ */
+export function readTables(tsv) {
+  const lines = tsv.replace(/^\uFEFF/, '').split(/\r?\n/);
+  const head = lines.shift().split('\t').map(h => h.trim());
+  const col = name => {
+    const i = head.indexOf(name);
+    if (i < 0) throw new Error(`The translation tables have no "${name}" column`);
+    return i;
+  };
+  const [order, verseId, english, hebrew, greek] = ['BSB Sort', 'VerseId', 'BSB version', 'Str Heb', 'Str Grk'].map(col);
+  const verses = new Map();
+  let key = null;
+  for (const line of lines) {
+    if (!line) continue;
+    const f = line.split('\t');
+    if (f[verseId]) key = verseKey(f[verseId]);
+    if (!key) throw new Error('The translation tables have a row before the first verse');
+    const number = f[hebrew] ? `H${Number(f[hebrew])}` : f[greek] ? `G${Number(f[greek])}` : null;
+    if (!verses.has(key)) verses.set(key, []);
+    verses.get(key).push({ order: Number(f[order]), english: f[english] ?? '', number });
+  }
+  for (const rows of verses.values()) rows.sort((a, b) => a.order - b.order);
+  return verses;
+}
+
+const WORD = /[\p{L}\p{N}]/u;
+
+/**
+ * The words of a table's English phrase as the plain text prints them. The
+ * tables mark untranslated words "-", the rest of a split phrase ". . .",
+ * a placeholder "vvv", supplied words [like this] and implied ones {like
+ * this}, and space punctuation apart ("Likewise , every"). Punctuation at
+ * either end is not part of the phrase.
+ */
+export function phraseOf(english) {
+  return english
+    .replace(/<[^>]*>/g, ' ')
+    .replace(/vvv|\. \. \./g, ' ')
+    .replace(/[[\]{}]/g, '')
+    .replace(/(^|\s)-(?=\s|$)/g, ' ')
+    .replace(/\s+/g, ' ')
+    .replace(/\s+([,.;:!?’”)])/g, '$1')
+    .replace(/([“‘(])\s+/g, '$1')
+    .replace(/\s*—\s*/g, '—')
+    .replace(/^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$/gu, '');
+}
+
+/**
+ * Find each row's phrase in the text, in order: at or after the end of the
+ * last phrase found, as whole words. Rows with a Strong's number become
+ * [start, end, number]; a phrase not found is skipped and counted.
+ */
+export function alignPhrases(text, rows) {
+  const tags = [];
+  let cursor = 0;
+  let missed = 0;
+  for (const row of rows) {
+    const phrase = phraseOf(row.english);
+    if (!phrase) continue;
+    let at = text.indexOf(phrase, cursor);
+    while (at >= 0 && (WORD.test(text[at - 1] ?? '') || WORD.test(text[at + phrase.length] ?? ''))) at = text.indexOf(phrase, at + 1);
+    if (at < 0) {
+      if (row.number) missed++;
+      continue;
+    }
+    if (row.number) tags.push([at, at + phrase.length, row.number]);
+    cursor = at + phrase.length;
+  }
+  return { tags, missed };
+}
+
+/**
+ * Convert the plain text (and the USX's Psalm titles) into the app's Bible
+ * format, with each verse's Strong's numbers from the translation tables.
+ * A Psalm's title and verse 1 are one verse in the tables; phrases in the
+ * title are found but not kept, as the title has no tags.
+ */
+export function convertBsb(txt, titles, tables = new Map()) {
   const text = readPlainText(txt);
   const books = CANON.map(canon => {
     const verses = [];
@@ -90,7 +185,11 @@ export function convertBsb(txt, titles) {
         subtitles[chapter] = split.title;
         t = split.text;
       }
-      verses.push({ book: canon.id, chapter, verse, text: t });
+      const title = subtitles[chapter] && verse === 1 ? subtitles[chapter] : null;
+      const { tags } = alignPhrases(title ? `${title}\n${t}` : t, tables.get(key) ?? []);
+      const shift = title ? title.length + 1 : 0;
+      const strongs = tags.filter(([start]) => start >= shift).map(([start, end, n]) => [start - shift, end - shift, n]);
+      verses.push({ book: canon.id, chapter, verse, text: t, ...(strongs.length ? { strongs } : {}) });
     }
     if (!verses.length) throw new Error(`Source has no book ${canon.id}`);
     const book = { id: canon.id, name: canon.name, testament: canon.testament, chapters: canon.chapters };
@@ -115,13 +214,18 @@ export function convertBsb(txt, titles) {
 
 export const pipeline = {
   id: 'bsb',
-  sources: ['bsb'],
+  sources: ['bsb', 'bsb-tables'],
   owns: [OUTPUT],
   generate(files) {
     const bsb = files.get('bsb');
-    const bible = convertBsb(bsb.get(TEXT_FILE).toString('utf8'), usxPsalmTitles(readZip(bsb.get(USX_FILE))));
-    const total = bible.books.reduce((n, b) => n + b.verses.length, 0);
-    return { outputs: new Map([[OUTPUT, bibleFileText(bible)]]), summary: `${bible.books.length} books, ${total} verses` };
+    const tables = readTables(files.get('bsb-tables').get(TABLES_FILE).toString('utf8'));
+    const bible = convertBsb(bsb.get(TEXT_FILE).toString('utf8'), usxPsalmTitles(readZip(bsb.get(USX_FILE))), tables);
+    const verses = bible.books.flatMap(b => b.verses);
+    const tagged = verses.reduce((n, v) => n + (v.strongs?.length ?? 0), 0);
+    return {
+      outputs: new Map([[OUTPUT, bibleFileText(bible)]]),
+      summary: `${bible.books.length} books, ${verses.length} verses, ${tagged} phrases with Strong's numbers`,
+    };
   },
 };
 

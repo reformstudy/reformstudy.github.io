@@ -27,8 +27,13 @@ const BIBLICAL_PLACES = new Set([
 /** The commentary and confession the reader links to. */
 const COMMENTARY_ID = 'henry';
 const CONFESSION_ID = 'wcf';
-/** The translation whose words carry Strong's numbers. */
+/** The translation another one borrows Strong's numbers from when it has none of its own. */
 const TAGGED_BIBLE_ID = 'kjv';
+/** Where each translation's Strong's numbers come from, for the credit line. */
+const TAG_SOURCES: Record<string, string> = {
+  kjv: "the KJV's word tagging (eBible.org)",
+  bsb: 'the BSB Translation Tables (Berean Bible)',
+};
 
 type InsightTab = 'word' | 'commentary' | 'geo' | 'confession';
 
@@ -69,7 +74,7 @@ function verseTokens(verse: BibleVerse): Token[] {
   return tokens;
 }
 
-/** The verse's tagged words, from a KJV verse. */
+/** A verse's tagged words. */
 function taggedWords(verse: BibleVerse | undefined): TaggedWord[] {
   return (verse?.strongs ?? []).map(([start, end, number]) => ({ word: verse!.text.slice(start, end), number }));
 }
@@ -348,17 +353,20 @@ export default function ScriptureReader() {
   const bookInfo = bibleIndex?.books.find(b => b.id === selectedBook);
   const currentBook = bibleId ? bibleBooks[`${bibleId}/${selectedBook}`] : undefined;
   const hasTaggedBible = !!manifest?.resources.bibles.some(b => b.id === TAGGED_BIBLE_ID);
-  const readingKjv = bibleId === TAGGED_BIBLE_ID;
+  // A translation with its own Strong's numbers uses them; another borrows the KJV's.
+  const ownTags = !!currentBook?.verses.some(v => v.strongs);
 
   useEffect(() => {
     if (bibleId && bookInfo) ensureBibleBook(bibleId, bookInfo.id);
   }, [bibleId, bookInfo, ensureBibleBook]);
 
-  // Another translation borrows the KJV's word tags, once a verse is selected.
+  // A translation without tags borrows the KJV's, once a verse is selected.
+  const borrowTags = !!currentBook && !ownTags && hasTaggedBible;
   useEffect(() => {
-    if (selection && !readingKjv && hasTaggedBible && bookInfo) ensureBibleBook(TAGGED_BIBLE_ID, bookInfo.id);
-  }, [selection, readingKjv, hasTaggedBible, bookInfo, ensureBibleBook]);
-  const taggedBook = hasTaggedBible ? bibleBooks[`${TAGGED_BIBLE_ID}/${selectedBook}`] : undefined;
+    if (selection && borrowTags && bookInfo) ensureBibleBook(TAGGED_BIBLE_ID, bookInfo.id);
+  }, [selection, borrowTags, bookInfo, ensureBibleBook]);
+  const taggedBook = ownTags ? currentBook : borrowTags ? bibleBooks[`${TAGGED_BIBLE_ID}/${selectedBook}`] : undefined;
+  const tagsFromId = ownTags ? bibleId ?? '' : TAGGED_BIBLE_ID;
 
   const bookTestament = bookInfo?.testament;
   useEffect(() => {
@@ -526,20 +534,19 @@ export default function ScriptureReader() {
   const lexiconLoading = bookInfo?.testament === 'NT' ? !loadedResources.has('strongs-greek') : !loadedResources.has('strongs-hebrew');
 
   const verseWords = useMemo(() => {
-    if (!selection || !hasTaggedBible) return undefined;
-    if (!taggedBook) return undefined;
+    if (!selection || !taggedBook) return undefined;
     return taggedWords(taggedBook.verses.find(v => v.chapter === selection.chapter && v.verse === selection.verse));
-  }, [selection, hasTaggedBible, taggedBook]);
+  }, [selection, taggedBook]);
 
-  // The word studied: the clicked KJV word's own tag, or in another
-  // translation the KJV word that matches the clicked one.
+  // The word studied: the clicked word's own tag, or in a translation that
+  // borrows the KJV's tags, the KJV word that matches the clicked one.
   const matchedFocus = useMemo(() => {
     if (!selection?.word || !verseWords) return null;
-    if (readingKjv) return selection.word.tag;
+    if (ownTags) return selection.word.tag;
     const clean = cleanOf(selection.word.text);
     const i = verseWords.findIndex(w => w.word.split(/\s+/).some(part => cleanOf(part) === clean));
     return i < 0 ? null : i;
-  }, [selection, verseWords, readingKjv]);
+  }, [selection, verseWords, ownTags]);
   const focus = focusOverride ?? matchedFocus;
 
   const usesInBook = useMemo(() => {
@@ -683,7 +690,7 @@ export default function ScriptureReader() {
                       </select>
                     </label>
                     <span style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)', fontStyle: 'italic' }}>
-                      {readingKjv ? 'Underlined words have Strong’s numbers · ' : ''}Click a word, or a verse number for commentary
+                      {ownTags ? 'Underlined words have Strong’s numbers · ' : ''}Click a word, or a verse number for commentary
                     </span>
                   </div>
                 </div>
@@ -781,7 +788,7 @@ export default function ScriptureReader() {
               </div>
               <div style={{ marginTop: 24, display: 'flex', flexDirection: 'column', gap: 10 }}>
                 {[
-                  { icon: <Hash size={14} />, label: 'Word Study', desc: `${lang} words and Strong's numbers, from the KJV's tagging`, color: 'var(--accent-exe)', bg: 'var(--bg-exe-light)' },
+                  { icon: <Hash size={14} />, label: 'Word Study', desc: `${lang} words and Strong's numbers behind the translation`, color: 'var(--accent-exe)', bg: 'var(--bg-exe-light)' },
                   { icon: <MessageSquare size={14} />, label: 'Commentary', desc: "Matthew Henry's exposition of the passage", color: 'var(--accent-theo)', bg: 'var(--bg-theo-light)' },
                   { icon: <MapPin size={14} />, label: 'Geography', desc: 'Place names & atlas links', color: 'var(--accent-geo)', bg: 'var(--bg-geo-light)' },
                   { icon: <Bookmark size={14} />, label: 'Confession', desc: 'Where the Westminster Confession cites the verse', color: 'var(--accent-theo)', bg: 'var(--bg-theo-light)' },
@@ -836,13 +843,15 @@ export default function ScriptureReader() {
                   />
                   <div style={{ flex: 1, overflowY: 'auto' }}>
                     {activeTab === 'word' && (
-                      hasTaggedBible ? (
+                      ownTags || borrowTags ? (
                         <WordStudyPanel
                           words={verseWords}
                           focus={focus}
                           clickedWord={selection.word?.text ?? null}
-                          readingKjv={readingKjv}
+                          ownTags={ownTags}
                           abbreviation={bibleIndex.version.abbreviation}
+                          tagsFrom={manifest?.resources.bibles.find(b => b.id === tagsFromId)?.abbreviation ?? tagsFromId.toUpperCase()}
+                          tagSource={TAG_SOURCES[tagsFromId] ?? `the ${tagsFromId.toUpperCase()}'s tagging`}
                           lexicon={lexicon}
                           lexiconLoading={lexiconLoading}
                           usesInBook={usesInBook}
@@ -850,7 +859,7 @@ export default function ScriptureReader() {
                           onFocus={setFocusOverride}
                         />
                       ) : (
-                        <div className="insight-body"><div className="insight-note">Strong's numbers come from the KJV, which this site doesn't have.</div></div>
+                        <div className="insight-body"><div className="insight-note">{currentBook ? "This translation has no Strong's numbers." : 'Loading…'}</div></div>
                       )
                     )}
                     {activeTab === 'commentary' && (

@@ -14,12 +14,13 @@ import { compareText, EXCEPTIONS, wordStream } from '../authenticate/compare.js'
 import { readUsfmBook, readUsxBook } from '../authenticate/bible-sources.js';
 import { authenticateBible, authenticatePsalmTitles, authenticateWordTags, readPlainTextBible, strongsNumber } from '../authenticate/bibles.js';
 import { CANON } from '../lib/canon.js';
-import { convertBsb } from '../ingest/bsb.js';
+import { convertBsb, readTables } from '../ingest/bsb.js';
 import { authenticateCommentary, fromRoman, rangesFor, readTree, readVolume } from '../authenticate/commentaries.js';
 import { authenticateConfession } from '../authenticate/confessions.js';
 import { authenticateLexicon, definitionSource, partOfSpeechFor, readLexicon } from '../authenticate/lexicons.js';
 import { compactOf, displayOf, readOsis } from '../authenticate/refs.js';
 import { authenticateSite } from '../authenticate/site.js';
+import { authenticateTableTags, expectedTags, readTables as readTablesForCheck, tablePhrase } from '../authenticate/tables.js';
 import { decodeXml, Units, xmlTokens } from '../authenticate/units.js';
 import { authenticate, printReport } from '../authenticate/index.js';
 import { compareOutputs, filesUnder, writeOutputs } from '../lib/pipeline.js';
@@ -31,7 +32,7 @@ import { parseUsxBook } from '../lib/usx.js';
 import { henryOutputs } from '../ingest/henry.js';
 import { convertLexicon, parseLexicon, partOfSpeech } from '../ingest/strongs.js';
 import { convertWcf } from '../ingest/wcf.js';
-import { bsbPlainText, CREEDS, GEN_USFM, GREEK, HENRY_THML, LEXICON_TSV, MINI_KJV, PSA_USFM, PSA_USX, USX_PSALM_TITLES } from './fixtures.js';
+import { BSB_TABLES, bsbPlainText, CREEDS, GEN_USFM, GREEK, HENRY_THML, LEXICON_TSV, MINI_KJV, PSA_USFM, PSA_USX, USX_PSALM_TITLES } from './fixtures.js';
 
 const clone = x => JSON.parse(JSON.stringify(x));
 const tmp = () => fs.mkdtempSync(path.join(os.tmpdir(), 'rs-auth-'));
@@ -211,6 +212,33 @@ test('BSB plain text: verses verbatim, titles with their verse 1, empty verses a
   assert.match(tamper(b => { psa(b).verses = psa(b).verses.filter(v => v.verse !== 1); })[0], /PSA 3: a title without verse 1/);
   assert.match(tamper(b => { b.books[0].verses[0].text = 'GEN one'; })[0], /GEN 1:1: text missing/);
   assert.throws(() => readPlainTextBible('Hezekiah 1:1\tx'), /Unknown book "Hezekiah"/);
+});
+
+test("BSB Strong's numbers: re-derived from the translation tables; tampering is caught", () => {
+  const tables = readTablesForCheck(BSB_TABLES);
+  const good = convertBsb(bsbPlainText(CANON), USX_PSALM_TITLES, readTables(BSB_TABLES));
+  assert.deepEqual(authenticateTableTags(good, tables), { problems: [], tags: 8, inTitles: 2, untranslated: 1, missed: 2 });
+
+  const tamper = fn => {
+    const b = clone(good);
+    fn(b.books.find(x => x.id === 'PSA').verses);
+    return authenticateTableTags(b, tables).problems;
+  };
+  assert.deepEqual(tamper(v => { v[0].strongs[1][2] = 'H4101'; }), ['PSA 3:1, tag 2: "how" H4101 [8, 11], the tables give "how" H4100 [8, 11]']);
+  assert.match(tamper(v => { v[0].strongs[0][1] = 3; })[0], /PSA 3:1, tag 1: "O L" H3068/);
+  assert.match(tamper(v => { v[0].strongs.pop(); })[0], /PSA 3:1, tag 4: nothing, the tables give "have increased" H7231/);
+  assert.match(tamper(v => { v[1].strongs.push([0, 4, 'H1']); })[0], /PSA 3:2, tag 4: "Many" H1 \[0, 4\], the tables give nothing/);
+  assert.match(tamper(v => { delete v[1].strongs; })[0], /PSA 3:2, tag 1: nothing/);
+
+  assert.equal(tablePhrase(' {Am} I my brother’s keeper ? '), 'Am I my brother’s keeper');
+  assert.equal(tablePhrase(' . . . ) '), '');
+  assert.deepEqual(expectedTags('so then the', [{ english: ' the ', strongs: 'G3588' }]).tags, [[8, 11, 'G3588']], 'not the "the" inside "then"');
+
+  const header = BSB_TABLES.split('\r\n')[0];
+  assert.throws(() => readTablesForCheck(header.replace('BSB Sort', 'Order')), /no "BSB Sort" column/);
+  assert.throws(() => readTablesForCheck(`${header}\n1\t0\t1\t1\tHebrew\t\t\t\t\t\tH12\t\tGenesis 1:1`), /GEN 1:1: unreadable Strong's number "H12"/);
+  assert.throws(() => readTablesForCheck(`${header}\n1\t0\t1\t1\tHebrew\t\t\t\t\t\t1\t\tNowhere 1:1`), /unknown verse "Nowhere 1:1"/);
+  assert.throws(() => readTablesForCheck(`${header}\n1\t0\t1\t1\tHebrew\t\t\t\t\t\t1\t\t`), /a row before the first verse/);
 });
 
 test('BSB Psalm titles must be the ones the USX marks', () => {

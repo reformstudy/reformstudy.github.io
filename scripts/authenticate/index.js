@@ -35,6 +35,7 @@ import { authenticateConfession } from './confessions.js';
 import { authenticateCommentary } from './commentaries.js';
 import { authenticateLexicon } from './lexicons.js';
 import { authenticateSite } from './site.js';
+import { authenticateTableTags, readTables } from './tables.js';
 
 export const PIPELINES = [kjv, bsb, wcf, henry, strongs];
 
@@ -111,6 +112,11 @@ export function authenticate({ root = ROOT, site = null, sourcesDir } = {}) {
     entry('bsb').checks.push({ name: `${plural(r.verses, 'verse')} and ${plural(r.titles, 'Psalm title')} are the plain text's, verbatim (${plural(r.empty, 'verse')} the publisher leaves empty)`, problems: r.problems });
     const usx = [...readZip(files.get('bsb').get('bsb_usx.zip')).values()].map(d => d.toString('utf8')).find(t => /<book\b[^>]*\bcode="PSA"/.test(t));
     entry('bsb').checks.push({ name: 'each Psalm title ends where the USX marks it', problems: authenticatePsalmTitles(bible, readUsxBook(usx, 'PSA')) });
+    const t = authenticateTableTags(bible, readTables(files.get('bsb-tables').get('bsb_tables.tsv').toString('utf8')));
+    entry('bsb').checks.push({
+      name: `${plural(t.tags, 'phrase')} carry the translation tables' Strong's numbers (not linked: ${plural(t.inTitles, 'phrase')} in Psalm titles, ${plural(t.untranslated, 'word')} the BSB leaves untranslated, ${plural(t.missed, 'phrase')} not found in the plain text)`,
+      problems: t.problems,
+    });
     entry('bsb').excluded = src.units.excluded;
   });
   guard('wcf', 'the source can be read', () => {

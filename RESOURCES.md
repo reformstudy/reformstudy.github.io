@@ -118,7 +118,7 @@ The generated JSON file lives at:
 }
 ```
 
-Each book has `verses: [{ "book", "chapter", "verse", "text" }]`. KJV verses also have `strongs`: the Strong's number of each word the source tags, as `[start, end, "H7225"]` with the word at `text.slice(start, end)` (see [res/bibles/kjv/README.md](res/bibles/kjv/README.md)). The reader links these words to the lexicons. Other translations borrow the KJV's tags for the same verse.
+Each book has `verses: [{ "book", "chapter", "verse", "text" }]`. KJV and BSB verses also have `strongs`: the Strong's number of each tagged word or phrase, as `[start, end, "H7225"]`, with the words at `text.slice(start, end)`. The KJV's tags come from eBible.org's word tags ([res/bibles/kjv/README.md](res/bibles/kjv/README.md)). The BSB's come from the publisher's translation tables ([res/bibles/bsb/README.md](res/bibles/bsb/README.md)). The reader links them to the lexicons. A translation without tags borrows the KJV's for the same verse.
 
 ### Confessions
 

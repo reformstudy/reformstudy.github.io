@@ -25,6 +25,7 @@ The downloads themselves are committed under [`sources/`](../sources), so every 
    - Henry's references and section verse ranges;
    - the Confession's proof references, and its proof texts (which must equal the KJV's verses);
    - the KJV's Strong's numbers: each tagged word's place in the verse, its letters and its number, in the source's order;
+   - the BSB's Strong's numbers, worked out again from the translation tables by the rule in the BSB section below;
    - Strong's parts of speech, from STEPBible's codes.
 6. **Site.** After a build, `docs/resources/` must carry exactly the content of `res/`.
 
@@ -45,7 +46,7 @@ Adding an exception means adding it to `scripts/authenticate/compare.js` with a 
 | Resource | Source | Organization | Status |
 |---|---|---|---|
 | King James Version | eBible.org's [eng-kjv](https://ebible.org/find/details.php?id=eng-kjv) USFM release | eBible.org, with the CrossWire Bible Society | **In use** |
-| Berean Standard Bible | The publisher's [plain-text download](https://berean.bible/downloads.htm), with Psalm titles located by its USX | Berean Bible (bereanbible.com) | **In use** |
+| Berean Standard Bible | The publisher's [plain-text download](https://berean.bible/downloads.htm), with Psalm titles located by its USX and Strong's numbers from its translation tables | Berean Bible (bereanbible.com) | **In use** |
 | Matthew Henry's Commentary | CCEL's [six ThML volumes](https://ccel.org/ccel/henry) | Christian Classics Ethereal Library, Calvin University | **In use** |
 | Strong's Greek and Hebrew | STEPBible lexicons TBESG and TBESH ([STEPBible-Data](https://github.com/STEPBible/STEPBible-Data)) | STEPBible.org, Tyndale House, Cambridge | **In use** |
 | Westminster Confession of Faith | No openly licensed edition with proofs found; permission requested from the copyright holder | Orthodox Presbyterian Church (copyright holder of the PCA's and OPC's edition) | Interim source in use |
@@ -64,6 +65,13 @@ Adding an exception means adding it to `scripts/authenticate/compare.js` with a 
 - **Psalm titles:** the plain text opens verse 1 of a Psalm with its title. The publisher's USX download (`bsb_usx.zip`) marks each title separately, so it's used only to find where the title ends. The title and verse 1 keep the plain text's own wording, and authentication checks both.
 - **Why not the USX or USFM text:** the publisher's USFM download has a stray "vvv" in Genesis 35:18. Their USX differs from the plain text in about 1,330 verses: a space after em dashes ("Testimony— before"), "[’’]" marks, bracketed supplied words, and a few missing spaces after footnotes ("Samuel,saying").
 - **Verses left out:** the 16 verses the BSB leaves out (Matthew 17:21, Acts 8:37…) are empty lines in the plain text and aren't in `res/`.
+- **Strong's numbers (`sources/bsb-tables/`):** the publisher's BSB Translation Tables (`bsb_tables.tsv`) have one row per Hebrew, Aramaic or Greek word. Each row gives the word, its transliteration, parsing and Strong's number, and the BSB phrase that translates it. Rows are numbered in both Hebrew/Greek and English order.
+  - **Rule:** take each verse's rows in English order and find each phrase in the plain text's verse, as whole words, after the last phrase found. A row that is found and has a Strong's number becomes a tag, `[start, end, "G4286"]`. The text itself is never taken from the tables.
+  - **Table markup:** the English column marks untranslated words "-", the rest of a split phrase ". . .", supplied words [in brackets] and words implied by the verb {in braces}. It also has a placeholder "vvv", which is where the stray "vvv" in the USFM comes from. It spaces punctuation apart ("Likewise , every") and has a few HTML layout tags. All of this is removed before searching, and punctuation at either end of a phrase isn't part of the tag.
+  - **Coverage:** 381,487 phrases are linked, and every phrase in the tables is found in the plain text. Not linked: 461 phrases in Psalm titles (titles have no tags) and 55,639 words the BSB doesn't translate with a phrase of their own (the Greek article, the Hebrew object marker…).
+  - **Pin:** the file is replaced in place, so it's pinned by its own SHA-256 and Last-Modified date.
+  - **License:** the publisher dedicates "the Berean Bible and Majority Bible texts" to the public domain. The terms don't name the tables separately.
+  - The tables also hold everything an interlinear needs: the original word, transliteration and parsing. Only the Strong's numbers are used so far.
 - **Pin:** the two files are replaced in place, so they're pinned together by one SHA-256 and their Last-Modified dates.
 - **License:** public domain, dedicated April 30, 2023 (berean.bible/terms.htm). Attribution is appreciated, not required.
 

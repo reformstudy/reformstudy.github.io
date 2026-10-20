@@ -3,13 +3,13 @@ import assert from 'node:assert/strict';
 import { CANON } from '../lib/canon.js';
 import { checkLock, digestFiles } from '../lib/lock.js';
 import { compactRef, displayRef, parseOsisRef, versesInRef } from '../lib/refs.js';
-import { convertBsb, readPlainText, splitTitle, usxPsalmTitles } from '../ingest/bsb.js';
+import { alignPhrases, convertBsb, phraseOf, readPlainText, readTables, splitTitle, usxPsalmTitles } from '../ingest/bsb.js';
 import { cleanInline, parseUsfmBook } from '../lib/usfm.js';
 import { parseUsxBook } from '../lib/usx.js';
 import { convertVolume, henryOutputs, romanToNumber, verseCounter } from '../ingest/henry.js';
 import { convertKjv } from '../ingest/kjv.js';
 import { convertLexicon, definitionText, parseLexicon, partOfSpeech } from '../ingest/strongs.js';
-import { bsbPlainText, HENRY_ROM_8, HENRY_THML, MINI_KJV, PSA_USX, USX_PSALM_TITLES } from './fixtures.js';
+import { BSB_TABLES, bsbPlainText, HENRY_ROM_8, HENRY_THML, MINI_KJV, PSA_USX, USX_PSALM_TITLES } from './fixtures.js';
 import { convertWcf } from '../ingest/wcf.js';
 import { validateBible, validateConfession, validateStrongs } from '../validate-resources.js';
 
@@ -60,6 +60,36 @@ test('parseUsfmBook rejects text before the first verse and repeated verses', ()
 
 test('cleanInline tidies spacing left by removed markers', () => {
   assert.equal(cleanInline('He broke \\add it\\add* , saying \\wj “Take.” \\wj*'), 'He broke it, saying “Take.”');
+});
+
+test("convertBsb: Strong's numbers from the translation tables, found in each verse in English order", () => {
+  const tables = readTables(BSB_TABLES);
+  assert.deepEqual([...tables.keys()], ['GEN 1:1', 'PSA 3:1', 'PSA 3:2', 'MAT 17:21']);
+  assert.deepEqual(tables.get('PSA 3:1').map(r => r.english.trim()), ['A Psalm', 'of David', 'O LORD', 'how', 'my foes', '[have] increased', '-', 'vvv'], 'rows in English order');
+  assert.equal(tables.get('PSA 3:2')[1].number, 'H430', 'leading zeros dropped');
+  assert.equal(tables.get('MAT 17:21')[0].number, 'G1607');
+
+  const bible = convertBsb(bsbPlainText(CANON), USX_PSALM_TITLES, tables);
+  const verse = (book, c, v) => bible.books.find(b => b.id === book).verses.find(x => x.chapter === c && x.verse === v);
+  const words = v => v.strongs.map(([s, e, n]) => [v.text.slice(s, e), n]);
+  assert.deepEqual(verse('GEN', 1, 1).strongs, [[0, 3, 'H1']]);
+  assert.deepEqual(words(verse('PSA', 3, 1)), [['O LORD', 'H3068'], ['how', 'H4100'], ['my foes', 'H6862'], ['have increased', 'H7231']], "the title's phrases aren't kept");
+  assert.deepEqual(words(verse('PSA', 3, 2)), [['Many say of me', 'H7227'], ['God', 'H430'], ['Selah', 'H5542']], 'a phrase the text lacks is skipped');
+  assert.equal(verse('EXO', 1, 1).strongs, undefined, 'no rows, no field');
+  assert.equal(convertBsb(bsbPlainText(CANON), USX_PSALM_TITLES).books[0].verses[0].strongs, undefined, 'without tables, no tags');
+
+  assert.equal(phraseOf(' Likewise , every '), 'Likewise, every');
+  assert.equal(phraseOf(' with justice — '), 'with justice');
+  assert.equal(phraseOf(' “ No , ” he said '), 'No,” he said');
+  assert.equal(phraseOf(' (vvv '), '');
+  assert.equal(phraseOf(' and Aram. <p class=|list2|>[The sons of Aram:] '), 'and Aram. The sons of Aram');
+  assert.deepEqual(alignPhrases('the other the', [{ english: 'other', number: null }, { english: 'the', number: 'G3588' }]).tags, [[10, 13, 'G3588']], 'whole words, after the last phrase found');
+  assert.deepEqual(alignPhrases('nothing', [{ english: 'other', number: 'G1' }]), { tags: [], missed: 1 });
+
+  const header = BSB_TABLES.split('\r\n')[0];
+  assert.throws(() => readTables(header.replace('Str Grk', 'Strongs Greek')), /no "Str Grk" column/);
+  assert.throws(() => readTables(`${header}\n1\t0\t1\t1\tHebrew\t\t\t\t\t\t1\t\tNowhere 1:1`), /Unknown verse "Nowhere 1:1"/);
+  assert.throws(() => readTables(`${header}\n1\t0\t1\t1\tHebrew\t\t\t\t\t\t1\t\t`), /a row before the first verse/);
 });
 
 test("convertBsb: the plain text's verses, with Psalm titles split where the USX marks them", () => {

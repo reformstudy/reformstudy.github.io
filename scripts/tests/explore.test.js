@@ -16,7 +16,7 @@ const explorer = new Explorer();
 
 test('overview: every source checks out, with its files and both checksums', () => {
   const o = explorer.overview();
-  assert.deepEqual(o.sources.map(s => s.id), ['kjv', 'bsb', 'wcf', 'henry', 'strongs-greek', 'strongs-hebrew']);
+  assert.deepEqual(o.sources.map(s => s.id), ['kjv', 'bsb', 'bsb-tables', 'wcf', 'henry', 'strongs-greek', 'strongs-hebrew']);
   for (const s of o.sources) {
     assert.equal(s.ok, true, s.id);
     assert.equal(s.actual, s.recorded);
@@ -153,7 +153,7 @@ test('the server serves the page, the script and every API route; errors are JSO
     assert.match(page.headers.get('content-type'), /text\/html/);
     assert.match(await page.text(), /pipeline explorer/i);
     assert.match(await (await fetch(`${base}/app.js`)).text(), /\/api\/inspect/);
-    assert.equal((await (await fetch(`${base}/api/overview`)).json()).sources.length, 6);
+    assert.equal((await (await fetch(`${base}/api/overview`)).json()).sources.length, 7);
     assert.equal((await (await fetch(`${base}/api/places?resource=wcf`)).json())[0].places.length, 33);
     assert.equal((await (await fetch(`${base}/api/inspect?resource=wcf&place=2`)).json()).summary.failed, 0);
     assert.equal((await (await fetch(`${base}/api/ingest?id=wcf`)).json()).same, 1);
