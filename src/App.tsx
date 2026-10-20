@@ -114,6 +114,7 @@ function AppContent() {
           <Route path="/search" element={<GlobalSearch />} />
           <Route path="/reader" element={<ScriptureReader />} />
           <Route path="/reader/:book/:chapter" element={<ScriptureReader />} />
+          <Route path="/reader/:book/:chapter/:verse" element={<ScriptureReader />} />
           <Route path="/atlas" element={<AtlasAndTimeline />} />
           <Route path="/atlas/:eraId" element={<AtlasAndTimeline />} />
           <Route path="/theology" element={<TheologyExplorer />} />
@@ -121,6 +122,7 @@ function AppContent() {
           <Route path="/theology/heresy/:id" element={<TheologyExplorer />} />
           <Route path="/archive" element={<ConfessionalArchive />} />
           <Route path="/archive/:confessionId/:chapter" element={<ConfessionalArchive />} />
+          <Route path="/archive/:confessionId/:chapter/:section" element={<ConfessionalArchive />} />
           <Route path="*" element={<Navigate to="/reader" replace />} />
         </Routes>
       )}

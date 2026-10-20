@@ -19,13 +19,16 @@
 │   │   ├── AtlasAndTimeline.tsx      # Geographic map + historical timeline
 │   │   ├── ConfessionalArchive.tsx    # Confessions with proof-text cards
 │   │   ├── GlobalSearch.tsx           # Full-text search across Bible and confessions
-│   │   ├── ScriptureReader.tsx        # Bible reader; loads one book at a time
+│   │   ├── ScriptureReader.tsx        # Bible reader; loads one book at a time; translation picker
+│   │   ├── reader/                    # Reader panels: Strong's words, Henry, WCF citations, linked references
 │   │   ├── TheologyExplorer.tsx       # Doctrines and heresies
 │   │   └── VersionInfo.tsx            # Version badge, preview banner, "About this version" panel
 │   ├── context/
 │   │   └── ResourceContext.tsx        # React context + useResources() hook for all resource state
 │   ├── utils/
 │   │   ├── paths.ts                   # siteUrl(): URLs relative to the deploy base ("/" or "/preview/")
+│   │   ├── scriptureRefs.ts           # Compact references ("ROM.8.28-30"): parse, contain, format, reader links
+│   │   ├── confessionCitations.ts     # Index of the verses a confession's proofs cite, with each footnote's clause
 │   │   ├── resourceLoader.ts          # Type definitions, ResourceManager class, fetch helpers
 │   │   └── ResourceBrowserExample.tsx # Reference/example component (not used in production)
 │   ├── App.tsx                        # Root component; wraps app in ResourceProvider
@@ -34,10 +37,9 @@
 │   └── vite-env.d.ts                  # Vite environment type declarations
 ├── res/                               # Source resource files (not served directly)
 │   ├── SOURCES.md                     # Where each source comes from and why it is trusted
-│   ├── bibles/{kjv,bsb}/{id}.json     # Generated from eBible.org (KJV) and the publisher (BSB); one verse per line
+│   ├── bibles/{kjv,bsb}/{id}.json     # Generated from eBible.org (KJV, with Strong's numbers per word) and the publisher (BSB); one verse per line
 │   ├── confessions/wcf/wcf.json       # Generated; 1647 text with proof references
 │   ├── commentaries/henry/            # Generated from CCEL; meta.json + {BOOK}/{chapter}.json (passage sections)
-│   ├── commentaries/matthew-gill/     # Placeholder (not Gill's text); remove when the panel uses Henry
 │   └── strongs/{greek,hebrew}/{lang}.json  # Generated from STEPBible (Tyndale House); CC BY 4.0, credit required
 ├── sources/{id}/                      # Every publisher's download, committed byte for byte (text gzipped)
 ├── provenance/
@@ -63,7 +65,6 @@
 │       ├── bibles/{id}/{BOOK}.json    # one book (reader)
 │       ├── commentaries/{id}/…        # chaptered commentaries, copied as is
 │       ├── confession-wcf.json
-│       ├── commentary-matthew-gill.json
 │       ├── strongs-greek.json
 │       └── strongs-hebrew.json
 ├── package.json
@@ -72,7 +73,6 @@
 ├── vite.config.ts
 ├── index.html
 ├── RESOURCES.md                       # Detailed resource system documentation
-├── PIPELINE.md                        # Sequence diagrams: download, ingest, authenticate
 ├── RELEASING.md                       # Live vs preview channels; how to release
 └── README.md
 ```
@@ -146,7 +146,7 @@ The app has 5 modules, selectable via the top nav bar in `App.tsx`:
 | `archive`  | Confessional Archive | `ConfessionalArchive` | Implemented |
 | `theology` | Theology Explorer    | `TheologyExplorer` | Implemented    |
 
-Routing uses `HashRouter`, so links look like `/#/reader/ROM/8` and work on GitHub Pages without a 404 fallback. `GenericView` is no longer used by any route.
+Routing uses `HashRouter`, so links look like `/#/reader/ROM/8` and work on GitHub Pages without a 404 fallback. `/#/reader/ROM/8/28` opens the chapter with verse 28 highlighted and in view; `/#/archive/wcf/3/3.6` opens a confession section with its proof texts. Link to Scripture with `readerPath()` (`src/utils/scriptureRefs.ts`). `GenericView` is no longer used by any route.
 
 ## Resource System
 
@@ -159,13 +159,13 @@ The resource system is the core data layer. Resources (Bible, confessions, comme
 import { useResources } from '../context/ResourceContext';
 
 function MyComponent() {
-  const { defaultBibleId, bibleIndexes, bibleBooks, ensureBibleIndex, ensureBibleBook,
+  const { bibleId, bibleIndexes, bibleBooks, ensureBibleIndex, ensureBibleBook,
           confessions, ensureResourceLoaded } = useResources();
 
-  // Reading: load the book list, then only the book on screen.
-  useEffect(() => { if (defaultBibleId) ensureBibleIndex(defaultBibleId); }, [defaultBibleId, ensureBibleIndex]);
-  useEffect(() => { if (defaultBibleId) ensureBibleBook(defaultBibleId, 'ROM'); }, [defaultBibleId, ensureBibleBook]);
-  const romans = defaultBibleId ? bibleBooks[`${defaultBibleId}/ROM`] : undefined; // undefined until loaded
+  // Reading: load the book list, then only the book on screen, in the reader's chosen translation.
+  useEffect(() => { if (bibleId) ensureBibleIndex(bibleId); }, [bibleId, ensureBibleIndex]);
+  useEffect(() => { if (bibleId) ensureBibleBook(bibleId, 'ROM'); }, [bibleId, ensureBibleBook]);
+  const romans = bibleId ? bibleBooks[`${bibleId}/ROM`] : undefined; // undefined until loaded
 
   useEffect(() => {
     ensureResourceLoaded('wcf');          // Westminster Confession of Faith
@@ -182,18 +182,24 @@ interface ResourceContextType {
   manifest: ResourceManifest | null;
   bibles: Record<string, BibleVersion>;       // keyed by id, e.g. 'kjv'
   confessions: Record<string, Confession>;    // keyed by id, e.g. 'wcf'
-  commentaries: Record<string, Commentary>;   // single-file commentaries, e.g. 'matthew-gill'
+  commentaries: Record<string, Commentary>;   // single-file commentaries (none published now)
   strongsGreek: StrongsConcordance | null;
   strongsHebrew: StrongsConcordance | null;
   bibleIndexes: Record<string, BibleIndex>;   // book lists without text, keyed by translation id
   bibleBooks: Record<string, BibleBook>;      // single books, keyed `${translationId}/${bookId}`
   defaultBibleId: string | null;              // from manifest.defaultBible ('bsb' when present, else 'kjv')
+  bibleId: string | null;                     // the translation the user chose (remembered in localStorage), else the default
+  setBibleId: (bibleId: string) => void;
+  commentaryChapters: Record<string, CommentaryChapter>;  // keyed `${commentaryId}/${bookId}/${chapter}`, e.g. 'henry/ROM/8'
+  commentaryIntroductions: Record<string, CommentaryBookIntroduction>;  // keyed `${commentaryId}/${bookId}`
   isLoading: boolean;                         // true while manifest loads
   error: Error | null;
   loadedResources: Set<string>;
   ensureResourceLoaded: (resourceId: string) => Promise<void>;
   ensureBibleIndex: (bibleId: string) => Promise<void>;
   ensureBibleBook: (bibleId: string, bookId: string) => Promise<void>;
+  ensureCommentaryChapter: (commentaryId: string, bookId: string, chapter: number) => Promise<void>;
+  ensureCommentaryIntroduction: (commentaryId: string, bookId: string) => Promise<void>;
 }
 ```
 
@@ -202,10 +208,9 @@ The manifest is fetched on app init. Individual resources are lazy-loaded and ca
 ### Resource Types and IDs
 | Type        | IDs available            | Context key       |
 |-------------|--------------------------|-------------------|
-| Bible       | `'bsb'` (default, once downloaded), `'kjv'` | `bibleIndexes` / `bibleBooks` (per book), `bibles` (whole text) |
+| Bible       | `'bsb'` (default), `'kjv'` (its per-book verses carry `strongs` word tags) | `bibleIndexes` / `bibleBooks` (per book), `bibles` (whole text, no word tags) |
 | Confession  | `'wcf'`                  | `confessions`     |
-| Commentary  | `'matthew-gill'` (placeholder; not Gill's text) | `commentaries` |
-| Commentary (chaptered) | `'henry'` (in the manifest; reader support comes next) | — |
+| Commentary (chaptered) | `'henry'`         | `commentaryChapters` (per chapter), `commentaryIntroductions` |
 | Strong's    | `'strongs-greek'`, `'strongs-hebrew'` | `strongsGreek`, `strongsHebrew` |
 
 ### Bible Book IDs

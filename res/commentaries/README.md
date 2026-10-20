@@ -39,8 +39,4 @@ henry/{BOOK}/{chapter}.json      {
   - A few markers name the wrong chapter (2 Chronicles 28–29, Luke 16) or run past the chapter's end (Proverbs 31, Isaiah 7, Acts 26). The ingest keeps the block's chapter, cuts the range at the last verse, and prints a note for each.
 - Validation warns where sections share a verse (Romans 7:14, for example). These follow Henry's own divisions.
 
-The build copies these files one per chapter to `docs/resources/commentaries/henry/`, so the reader downloads only the chapter it shows.
-
-## Placeholder (`matthew-gill/`)
-
-`matthew-gill` is a three-entry placeholder that the reader's commentary panel still uses. Its text is not Gill's own words. Remove it when the panel switches to Henry.
+The build copies these files one per chapter to `docs/resources/commentaries/henry/`, so the reader downloads only the chapter it shows. In the app, `ensureCommentaryChapter('henry', book, chapter)` loads one; the reader's Henry tab shows the sections whose range holds the selected verse, with Henry's references linked.

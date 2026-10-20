@@ -4,12 +4,12 @@ The ReformStudy platform uses a modular resource system for managing biblical an
 
 ## Content Pipeline
 
-Bible and commentary text is downloaded and converted by scripts, never typed in. [PIPELINE.md](PIPELINE.md) shows each step as a sequence diagram.
+Bible and commentary text is downloaded and converted by scripts, never typed in.
 
 1. **Sources** (`sources/`): each publisher's download, committed byte for byte and checked against its SHA-256 in `provenance/registry.json`. `--download` on an ingest script fetches it again.
 2. **Ingest** (`npm run ingest`, scripts in `scripts/ingest/`): each script converts its source to the formats below and writes it under `res/`. Each has a pure `generate` function, tested with fixtures in `scripts/tests/`. The converted files are committed. Bible files are written one verse per line, so a changed verse is a one-line diff.
 3. **Validate** (`scripts/validate-resources.js`, also run by every build): all 66 books in canon order, chapter counts, verse order and text. The KJV must have exactly 31,102 verses with no gaps. Other translations are compared with it, and differences are printed as warnings.
-4. **Build** (`scripts/build-resources.js`): writes each Bible as one whole file (for search), plus an index and one file per book (for the reader). Chaptered commentaries are copied one file per chapter. `manifest.json` lists everything and names `defaultBible`.
+4. **Build** (`scripts/build-resources.js`): writes each Bible as one whole file (for search, without the KJV's Strong's word tags), plus an index and one file per book (for the reader). Chaptered commentaries are copied one file per chapter. `manifest.json` lists everything and names `defaultBible`.
 5. **Authenticate** (`npm run authenticate`, also run by every build and by `npm test`): checks the sources' checksums, reproduces `res/` from them, and proves every text is its source's, verbatim. It also checks that the built site carries `res/` unchanged. See [res/SOURCES.md](res/SOURCES.md#authentication).
 
 To see each step for yourself, run `npm run explore` and open http://127.0.0.1:4310. The explorer is read-only and works through four tabs:
@@ -61,11 +61,7 @@ reformstudy.github.io/
 │   │   │   └── wcf.json
 │   │   └── README.md
 │   ├── commentaries/                  # Biblical commentaries
-│   │   ├── matthew-gill/
-│   │   │   ├── matthew-gill.txt
-│   │   │   ├── process.js
-│   │   │   ├── README.md
-│   │   │   └── matthew-gill.json
+│   │   ├── henry/                     # meta.json + {BOOK}/{chapter}.json (generated)
 │   │   └── README.md
 │   ├── strongs/                       # Strong's concordances
 │   │   ├── greek/
@@ -85,7 +81,7 @@ reformstudy.github.io/
 │   ├── manifest.json                  # Index of all resources
 │   ├── bible-*.json                   # Individual Bible versions
 │   ├── confession-*.json              # Individual confessions
-│   ├── commentary-*.json              # Individual commentaries
+│   ├── commentaries/{id}/…            # Chaptered commentaries, one file per chapter
 │   └── strongs-*.json                 # Individual concordances
 ├── scripts/
 │   ├── build-resources.js             # Resource builder
@@ -122,6 +118,8 @@ The generated JSON file lives at:
 }
 ```
 
+Each book has `verses: [{ "book", "chapter", "verse", "text" }]`. KJV verses also have `strongs`: the Strong's number of each word the source tags, as `[start, end, "H7225"]` with the word at `text.slice(start, end)` (see [res/bibles/kjv/README.md](res/bibles/kjv/README.md)). The reader links these words to the lexicons. Other translations borrow the KJV's tags for the same verse.
+
 ### Confessions
 
 Historical confessional documents structured by chapters and sections.
@@ -146,25 +144,9 @@ The generated JSON file lives at:
 
 ### Commentaries
 
-Verse-by-verse biblical commentaries with explanatory text.
+Matthew Henry's commentary is chaptered: `res/commentaries/henry/meta.json` plus one file per chapter, `{BOOK}/{chapter}.json`, each holding passage sections (`start`–`end` verses) of paragraphs with the references Henry cites. The format is in [res/commentaries/README.md](res/commentaries/README.md).
 
-**Folder Format**: `res/commentaries/{id}/`
-
-The generated JSON file lives at:
-
-`res/commentaries/{id}/{id}.json`
-
-**Example**:
-```json
-{
-  "commentary": {
-    "id": "matthew-gill",
-    "name": "John Gill's Exposition - Matthew",
-    ...
-  },
-  "entries": [...]
-}
-```
+The loader still reads single-file commentaries (`res/commentaries/{id}/{id}.json` with `entries`), but none is published now.
 
 ### Strong's Concordances
 
@@ -245,7 +227,6 @@ const chapter = resourceManager.getChapter(kjv, 'GEN', 1);
 
 // Load other resources
 const wcf = await resourceManager.loadConfession('wcf');
-const commentary = await resourceManager.loadCommentary('matthew-gill');
 const strongs = await resourceManager.loadStrongs('hebrew');
 ```
 
@@ -429,7 +410,7 @@ When deployed to GitHub Pages, the `docs/resources/` directory is served statica
 - `/resources/manifest.json`
 - `/resources/bible-kjv.json`
 - `/resources/confession-wcf.json`
-- `/resources/commentary-matthew-gill.json`
+- `/resources/commentaries/henry/ROM/8.json`
 - `/resources/strongs-hebrew.json`
 
 The GitHub Pages configuration automatically serves these files with proper MIME types.

@@ -5,6 +5,8 @@ import {
   BibleVersion,
   Confession,
   Commentary,
+  CommentaryBookIntroduction,
+  CommentaryChapter,
   StrongsConcordance,
   ResourceManifest,
   loadResourceManifest,
@@ -13,6 +15,7 @@ import {
   loadBibleIndex,
   loadConfession,
   loadCommentary,
+  loadCommentaryChapter,
   loadStrongsGreek,
   loadStrongsHebrew
 } from '../utils/resourceLoader';
@@ -32,6 +35,13 @@ interface ResourceContextType {
   bibleBooks: Record<string, BibleBook>;
   /** The translation the app opens in, from the manifest. */
   defaultBibleId: string | null;
+  /** The translation the reader chose (remembered on this device), else the default. */
+  bibleId: string | null;
+  setBibleId: (bibleId: string) => void;
+  /** Chapters of chaptered commentaries (Henry), keyed `${commentaryId}/${bookId}/${chapter}`. */
+  commentaryChapters: Record<string, CommentaryChapter>;
+  /** Book introductions of chaptered commentaries, keyed `${commentaryId}/${bookId}`. */
+  commentaryIntroductions: Record<string, CommentaryBookIntroduction>;
 
   // Status
   isLoading: boolean;
@@ -45,12 +55,19 @@ interface ResourceContextType {
   ensureBibleIndex: (bibleId: string) => Promise<void>;
   /** Load one book of a translation. Safe to call repeatedly. */
   ensureBibleBook: (bibleId: string, bookId: string) => Promise<void>;
+  /** Load one chapter of a chaptered commentary. Safe to call repeatedly; chapters the commentary lacks are skipped. */
+  ensureCommentaryChapter: (commentaryId: string, bookId: string, chapter: number) => Promise<void>;
+  /** Load a book's introduction in a chaptered commentary, if it has one. Safe to call repeatedly. */
+  ensureCommentaryIntroduction: (commentaryId: string, bookId: string) => Promise<void>;
   // Local editable content (e.g. atlas, theology)
   content: Record<string, any>;
   loadContent?: (resourceId: string, path: string) => Promise<void>;
 }
 
 const ResourceContext = createContext<ResourceContextType | undefined>(undefined);
+
+/** Where the chosen translation is remembered (this device only). */
+const BIBLE_KEY = 'reformstudy.bible';
 
 export function ResourceProvider({ children }: { children: ReactNode }) {
   const [manifest, setManifest] = useState<ResourceManifest | null>(null);
@@ -61,6 +78,11 @@ export function ResourceProvider({ children }: { children: ReactNode }) {
   const [strongsHebrew, setStrongsHebrew] = useState<StrongsConcordance | null>(null);
   const [bibleIndexes, setBibleIndexes] = useState<Record<string, BibleIndex>>({});
   const [bibleBooks, setBibleBooks] = useState<Record<string, BibleBook>>({});
+  const [commentaryChapters, setCommentaryChapters] = useState<Record<string, CommentaryChapter>>({});
+  const [commentaryIntroductions, setCommentaryIntroductions] = useState<Record<string, CommentaryBookIntroduction>>({});
+  const [chosenBibleId, setChosenBibleId] = useState<string | null>(() => {
+    try { return localStorage.getItem(BIBLE_KEY); } catch { return null; }
+  });
   const [content, setContent] = useState<Record<string, any>>({});
   const [localContentAvailable, setLocalContentAvailable] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -190,7 +212,31 @@ export function ResourceProvider({ children }: { children: ReactNode }) {
     setBibleBooks(prev => ({ ...prev, [`${bibleId}/${bookId}`]: data }));
   }), [once]);
 
+  const ensureCommentaryChapter = useCallback((commentaryId: string, bookId: string, chapter: number) => once(`commentary:${commentaryId}/${bookId}/${chapter}`, async () => {
+    const { resources } = await loadResourceManifest();
+    const entry = resources.commentaries.find(c => c.id === commentaryId);
+    if (!entry?.path) throw new Error(`No chaptered commentary: ${commentaryId}`);
+    if (!entry.books?.find(b => b.id === bookId)?.chapters.includes(chapter)) return;
+    const data = await loadCommentaryChapter(entry.path, bookId, chapter) as CommentaryChapter;
+    setCommentaryChapters(prev => ({ ...prev, [`${commentaryId}/${bookId}/${chapter}`]: data }));
+  }), [once]);
+
+  const ensureCommentaryIntroduction = useCallback((commentaryId: string, bookId: string) => once(`commentary-intro:${commentaryId}/${bookId}`, async () => {
+    const { resources } = await loadResourceManifest();
+    const entry = resources.commentaries.find(c => c.id === commentaryId);
+    if (!entry?.path) throw new Error(`No chaptered commentary: ${commentaryId}`);
+    if (!entry.books?.find(b => b.id === bookId)?.hasIntroduction) return;
+    const data = await loadCommentaryChapter(entry.path, bookId, 'introduction') as CommentaryBookIntroduction;
+    setCommentaryIntroductions(prev => ({ ...prev, [`${commentaryId}/${bookId}`]: data }));
+  }), [once]);
+
   const defaultBibleId = manifest?.defaultBible ?? manifest?.resources.bibles[0]?.id ?? null;
+  // A remembered choice counts only while the site still has that translation.
+  const bibleId = chosenBibleId && manifest?.resources.bibles.some(b => b.id === chosenBibleId) ? chosenBibleId : defaultBibleId;
+  const setBibleId = useCallback((id: string) => {
+    setChosenBibleId(id);
+    try { localStorage.setItem(BIBLE_KEY, id); } catch { /* private browsing: remember for this visit only */ }
+  }, []);
 
   return (
     <ResourceContext.Provider
@@ -204,6 +250,10 @@ export function ResourceProvider({ children }: { children: ReactNode }) {
         bibleIndexes,
         bibleBooks,
         defaultBibleId,
+        bibleId,
+        setBibleId,
+        commentaryChapters,
+        commentaryIntroductions,
         isLoading,
         error,
         loadedResources,
@@ -211,7 +261,9 @@ export function ResourceProvider({ children }: { children: ReactNode }) {
         loadContent,
         ensureResourceLoaded,
         ensureBibleIndex,
-        ensureBibleBook
+        ensureBibleBook,
+        ensureCommentaryChapter,
+        ensureCommentaryIntroduction
       }}
     >
       {children}

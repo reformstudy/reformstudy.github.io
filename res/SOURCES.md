@@ -24,6 +24,7 @@ The downloads themselves are committed under [`sources/`](../sources), so every 
 5. **Derived fields.** Fields that aren't copied text are re-derived independently and must match:
    - Henry's references and section verse ranges;
    - the Confession's proof references, and its proof texts (which must equal the KJV's verses);
+   - the KJV's Strong's numbers: each tagged word's place in the verse, its letters and its number, in the source's order;
    - Strong's parts of speech, from STEPBible's codes.
 6. **Site.** After a build, `docs/resources/` must carry exactly the content of `res/`.
 
@@ -52,6 +53,8 @@ Adding an exception means adding it to `scripts/authenticate/compare.js` with a 
 ## King James Version (eBible.org)
 
 - **What it is:** the 1769 standard text, from eBible.org's USFM release, prepared with the CrossWire Bible Society. Psalm titles are kept as chapter subtitles.
+- **Strong's numbers:** eBible.org tags 349,308 words with a Strong's number (`\w beginning|strong="H7225"\w*`). The 348,884 in verse text are kept beside each verse (`strongs`), and the reader links them to the STEPBible lexicons. The 424 in Psalm titles aren't linked yet. Leading zeros are dropped ("H0430" is H430), as the lexicons number them.
+- **Compound words:** in 39 places the source tags the two halves of one word separately with no space between them (`\w who\w*\w soever\w*`). The KJV prints one word, "whosoever", and so does `res/`. Under USFM the space after a marker belongs to the marker, not the text. Until October 2026 both the converter and the authenticator misread that space as text and printed "who soever".
 - **Pin:** eBible.org replaces the zip in place when it updates the release, so the zip is pinned by its SHA-256. The registry records the release date that was checked.
 - **License:** public domain, outside the UK (there the Crown's letters patent apply).
 

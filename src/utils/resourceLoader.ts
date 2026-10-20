@@ -56,6 +56,12 @@ export interface BibleVerse {
   chapter: number;
   verse: number;
   text: string;
+  /**
+   * The verse's words that carry a Strong's number in the source (KJV only):
+   * [start, end, number], the word being text.slice(start, end). Only the
+   * per-book files have them; the whole-translation file leaves them out.
+   */
+  strongs?: Array<[number, number, string]>;
 }
 
 export interface Confession {
@@ -106,6 +112,38 @@ export interface CommentaryEntry {
   verse: number;
   text: string;
   commentary: string;
+}
+
+/** A paragraph of a chaptered commentary, with the references it cites. */
+export interface CommentaryParagraph {
+  text: string;
+  /** Each reference as the author wrote it (text, found in the paragraph) and in compact form ("ROM.8.1"). */
+  refs?: Array<{ text: string; ref: string }>;
+  heading?: boolean;
+  poetry?: boolean;
+  attribution?: boolean;
+}
+
+/** A comment on a passage: verses start–end of the chapter. */
+export interface CommentarySection {
+  start: number;
+  end: number;
+  title?: string;
+  paragraphs: CommentaryParagraph[];
+}
+
+/** One chapter of a chaptered commentary (Matthew Henry). */
+export interface CommentaryChapter {
+  book: string;
+  chapter: number;
+  introduction?: CommentaryParagraph[];
+  sections: CommentarySection[];
+}
+
+/** A book's introduction in a chaptered commentary. */
+export interface CommentaryBookIntroduction {
+  book: string;
+  paragraphs: CommentaryParagraph[];
 }
 
 export interface StrongsEntry {
@@ -469,6 +507,14 @@ export async function loadBibleIndex(filePath: string): Promise<BibleIndex> {
  */
 export async function loadBibleBook(filePath: string): Promise<BibleBook> {
   return resourceManager.loadFile<BibleBook>(filePath);
+}
+
+/**
+ * Load one chapter (or, with chapter 'introduction', a book's introduction)
+ * of a chaptered commentary, from its folder (`path` in the manifest)
+ */
+export async function loadCommentaryChapter(folder: string, bookId: string, chapter: number | 'introduction'): Promise<CommentaryChapter | CommentaryBookIntroduction> {
+  return resourceManager.loadFile(`${folder}/${bookId}/${chapter}.json`);
 }
 
 /**

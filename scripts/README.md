@@ -63,7 +63,7 @@ docs/resources/
 ├── manifest.json                    # Index of all resources
 ├── bible-kjv.json                  # Bible version
 ├── confession-wcf.json             # Confession
-├── commentary-matthew-gill.json    # Commentary
+├── commentaries/henry/…           # Matthew Henry, one file per chapter
 ├── strongs-hebrew.json             # Strong's concordance
 └── strongs-greek.json
 ```
