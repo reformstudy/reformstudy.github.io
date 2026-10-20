@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, type ReactNode } from 'react';
 import { BookOpen, Library, ChevronRight, SlidersHorizontal, X } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { useResources } from '../context/ResourceContext';
 
 type SearchResultType = 'scripture' | 'confession';
@@ -12,6 +13,8 @@ interface SearchResult {
   theme: string;
   bg: string;
   icon: ReactNode;
+  /** Where the result opens: the verse in the reader, or the section in the archive. */
+  to: string;
 }
 
 type FilterId = 'all' | 'scripture' | 'theology';
@@ -25,7 +28,8 @@ const FILTERS: { id: FilterId; label: string; type?: SearchResultType }[] = [
 const RESULT_LIMIT = 20;
 
 export default function GlobalSearch() {
-  const { bibles, confessions, ensureResourceLoaded, defaultBibleId } = useResources();
+  const { manifest, bibles, confessions, ensureResourceLoaded, bibleId, setBibleId } = useResources();
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('Abraham');
   const [debouncedTerm, setDebouncedTerm] = useState(searchTerm);
   const [results, setResults] = useState<SearchResult[]>([]);
@@ -33,9 +37,9 @@ export default function GlobalSearch() {
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    if (defaultBibleId) ensureResourceLoaded(defaultBibleId);
+    if (bibleId) ensureResourceLoaded(bibleId);
     ensureResourceLoaded('wcf');
-  }, [defaultBibleId, ensureResourceLoaded]);
+  }, [bibleId, ensureResourceLoaded]);
 
   useEffect(() => {
     if (debounceRef.current) clearTimeout(debounceRef.current);
@@ -48,7 +52,7 @@ export default function GlobalSearch() {
     const term = debouncedTerm.toLowerCase().trim();
     if (!term) { setResults([]); return; }
 
-    const bible = defaultBibleId ? bibles[defaultBibleId] : undefined;
+    const bible = bibleId ? bibles[bibleId] : undefined;
     if (bible) {
       for (const book of bible.books) {
         for (const verse of book.verses) {
@@ -60,7 +64,8 @@ export default function GlobalSearch() {
               label: 'Scripture Reference',
               theme: '--accent-exe',
               bg: '--bg-exe-light',
-              icon: <BookOpen size={14} />
+              icon: <BookOpen size={14} />,
+              to: `/reader/${book.id}/${verse.chapter}/${verse.verse}`,
             });
           }
         }
@@ -79,7 +84,8 @@ export default function GlobalSearch() {
               label: 'Confessional Doctrine',
               theme: '--accent-theo',
               bg: '--bg-theo-light',
-              icon: <Library size={14} />
+              icon: <Library size={14} />,
+              to: `/archive/wcf/${section.chapter}/${subsection.number}`,
             });
           }
         }
@@ -87,7 +93,7 @@ export default function GlobalSearch() {
     }
 
     setResults(newResults);
-  }, [debouncedTerm, bibles, confessions, defaultBibleId]);
+  }, [debouncedTerm, bibles, confessions, bibleId]);
 
   const [mobileFilters, setMobileFilters] = useState(false);
 
@@ -164,6 +170,7 @@ export default function GlobalSearch() {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search scriptures, keywords, or references..."
+              aria-label="Search"
               style={{
                 flex: 1,
                 padding: '8px 12px',
@@ -173,6 +180,14 @@ export default function GlobalSearch() {
                 fontFamily: 'inherit'
               }}
             />
+            <label className="translation-picker">
+              <span className="visually-hidden">Translation</span>
+              <select value={bibleId ?? ''} onChange={e => setBibleId(e.target.value)} aria-label="Translation">
+                {manifest?.resources.bibles.map(b => (
+                  <option key={b.id} value={b.id}>{b.abbreviation}</option>
+                ))}
+              </select>
+            </label>
           </div>
           <div style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', fontWeight: 600 }}>
             {visibleResults.length < results.length
@@ -184,7 +199,15 @@ export default function GlobalSearch() {
         {visibleResults.length > 0 ? (
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: 24 }}>
             {visibleResults.map((card, idx) => (
-              <div key={idx} className="card" style={{ cursor: 'pointer', display: 'flex', flexDirection: 'column' }}>
+              <div
+                key={idx}
+                className="card"
+                role="link"
+                tabIndex={0}
+                onClick={() => navigate(card.to)}
+                onKeyDown={e => { if (e.key === 'Enter') navigate(card.to); }}
+                style={{ cursor: 'pointer', display: 'flex', flexDirection: 'column' }}
+              >
                 <div style={{ height: 4, width: '100%', backgroundColor: `var(${card.theme})` }} />
                 <div style={{ padding: '16px 20px', display: 'flex', alignItems: 'center', gap: 8, fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', borderBottom: '1px solid var(--border-soft)', color: `var(${card.theme})`, backgroundColor: `var(${card.bg})` }}>
                   {card.icon} {card.label}

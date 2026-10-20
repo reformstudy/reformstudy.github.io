@@ -252,7 +252,7 @@ export function validateStrongs(data, id) {
     const n = Number(m[1]);
     if (n <= prev) err(`${e.number} is out of order or repeated`);
     prev = n;
-    if (!e.definition && !e.kjvDefinition) warnings.push(`strongs-${id}: ${e.number} has no definition`);
+    if (!e.definition && !e.kjvDefinition && !e.gloss) warnings.push(`strongs-${id}: ${e.number} has no definition`);
   }
   return { errors, warnings, total: entries.length };
 }

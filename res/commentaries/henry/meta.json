@@ -6,8 +6,8 @@
   "published": 1710,
   "description": "Exposition of the whole Bible by the English Presbyterian minister Matthew Henry, published 1708–1710 and completed by his colleagues after his death. Henry comments passage by passage.",
   "source": {
-   "name": "samueldotj/bible-commentaries (from CrossWire SWORD \"MHC\")",
-   "url": "https://github.com/samueldotj/bible-commentaries/tree/23f2279a8a56f212aca0de7ef3fbe47cf7334a45/en/henry",
+   "name": "Christian Classics Ethereal Library (CCEL), Calvin University",
+   "url": "https://ccel.org/ccel/henry",
    "license": "Public domain"
   }
  },
@@ -1116,7 +1116,7 @@
    "chapters": [
     1
    ],
-   "hasIntroduction": false
+   "hasIntroduction": true
   },
   {
    "id": "JON",
@@ -1542,7 +1542,7 @@
    "chapters": [
     1
    ],
-   "hasIntroduction": false
+   "hasIntroduction": true
   },
   {
    "id": "HEB",
@@ -1616,7 +1616,7 @@
    "chapters": [
     1
    ],
-   "hasIntroduction": false
+   "hasIntroduction": true
   },
   {
    "id": "3JN",
@@ -1624,7 +1624,7 @@
    "chapters": [
     1
    ],
-   "hasIntroduction": false
+   "hasIntroduction": true
   },
   {
    "id": "JUD",
@@ -1632,7 +1632,7 @@
    "chapters": [
     1
    ],
-   "hasIntroduction": false
+   "hasIntroduction": true
   },
   {
    "id": "REV",

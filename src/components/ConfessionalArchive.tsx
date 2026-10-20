@@ -1,11 +1,27 @@
-import { useState, useEffect } from 'react';
+import { Fragment, useState, useEffect } from 'react';
 import { BookMarked, Calendar, MapPin, FileText, ChevronRight, X, List, BookOpen } from 'lucide-react';
 import { ReferenceCard } from './ReferenceCard';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useResources } from '../context/ResourceContext';
+import { clauseFor } from '../utils/confessionCitations';
+import { parseCompactRef, readerPath } from '../utils/scriptureRefs';
+import type { ConfessionSubsection } from '../utils/resourceLoader';
+
+/** A section's text with its footnote markers ("…inexcusable;[1] yet…") as superscripts. */
+function SectionText({ section }: { section: ConfessionSubsection }) {
+  const text = section.contentWithProofs ?? section.content;
+  const parts = text.split(/\[(\d+)\]/);
+  return (
+    <>
+      {parts.map((part, i) => i % 2 === 0
+        ? <Fragment key={i}>{part}</Fragment>
+        : <sup key={i} className="proof-marker">{part}</sup>)}
+    </>
+  );
+}
 
 export default function ConfessionalArchive() {
-  const { confessionId: paramConfessionId, chapter: paramChapter } = useParams<{ confessionId?: string; chapter?: string }>();
+  const { confessionId: paramConfessionId, chapter: paramChapter, section: paramSection } = useParams<{ confessionId?: string; chapter?: string; section?: string }>();
   const routerNavigate = useNavigate();
   const { manifest, confessions, ensureResourceLoaded } = useResources();
   const [selectedId, setSelectedId] = useState<string | null>(paramConfessionId ?? null);
@@ -43,7 +59,17 @@ export default function ConfessionalArchive() {
     routerNavigate(`/archive/${id}/1`);
   };
 
-  const [selectedSection, setSelectedSection] = useState<string | null>(null);
+  const [selectedSection, setSelectedSection] = useState<string | null>(paramSection ?? null);
+
+  // A link to a section (from the reader's proof texts) selects it and brings it into view.
+  useEffect(() => {
+    if (!paramSection) return;
+    setSelectedSection(paramSection);
+  }, [paramSection]);
+  const sectionLoaded = !!confession?.sections.find(s => s.chapter === selectedChapter);
+  useEffect(() => {
+    if (paramSection && sectionLoaded) document.getElementById(`section-${paramSection}`)?.scrollIntoView({ block: 'center' });
+  }, [paramSection, sectionLoaded]);
 
   const handleChapterSelect = (ch: number) => {
     setSelectedChapter(ch);
@@ -69,7 +95,7 @@ export default function ConfessionalArchive() {
       </button>
     </div>
 
-    <div className="workspace">
+    <div className="workspace sticky-panels">
       {/* Left sidebar: confession list + chapter nav */}
       <aside className={`left-sidebar${mobileSidebar === 'left' ? ' mobile-open' : ''}`}>
         <div className="sidebar-close-row mobile-only">
@@ -181,7 +207,8 @@ export default function ConfessionalArchive() {
                 return (
                   <div
                     key={section.number}
-                    onClick={() => setSelectedSection(isActive ? null : section.number)}
+                    id={`section-${section.number}`}
+                    onClick={() => { setSelectedSection(isActive ? null : section.number); if (!isActive) setMobileSidebar('right'); }}
                     style={{
                       display: 'flex',
                       gap: 20,
@@ -219,7 +246,7 @@ export default function ConfessionalArchive() {
                         lineHeight: 1.85,
                         color: 'var(--text-primary)',
                       }}>
-                        {section.content}
+                        <SectionText section={section} />
                       </p>
                       {hasProofTexts && (
                         <div style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: '0.75rem', fontWeight: 600, color: isActive ? 'var(--accent-geo)' : 'var(--text-tertiary)' }}>
@@ -296,7 +323,7 @@ export default function ConfessionalArchive() {
           </h2>
         </div>
 
-        <div style={{ flex: 1, overflowY: 'auto', padding: 20, display: 'flex', flexDirection: 'column', gap: 16 }}>
+        <div className="panel-stack" style={{ flex: 1, overflowY: 'auto', padding: 20, display: 'flex', flexDirection: 'column', gap: 16 }}>
           {confessionMeta && confession ? (
             selectedSection ? (() => {
               const section = chapterData?.sections.find(s => s.number === selectedSection);
@@ -326,17 +353,32 @@ export default function ConfessionalArchive() {
                     </p>
                   </div>
 
-                  {/* Proof texts */}
+                  {/* Proof texts, by footnote */}
                   {(section.proofTexts?.length ?? 0) > 0 ? (
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-                      {section.proofTexts!.map((pt, i) => (
-                        <ReferenceCard
-                          key={i}
-                          variant="scripture"
-                          title={pt.reference}
-                          excerpt={pt.text}
-                        />
-                      ))}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
+                      {(section.proofs ?? []).map(proof => {
+                        const texts = section.proofTexts!.filter(pt => pt.footnote === proof.id);
+                        return (
+                          <div key={proof.id} style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                            <div className="proof-clause">
+                              <sup className="proof-marker">{proof.id}</sup> {clauseFor(section, proof.id)}
+                            </div>
+                            {texts.map((pt, i) => {
+                              const ref = pt.ref ? parseCompactRef(pt.ref) : null;
+                              return (
+                                <ReferenceCard
+                                  key={i}
+                                  variant="scripture"
+                                  title={pt.reference}
+                                  subtitle="KJV"
+                                  excerpt={pt.text}
+                                  to={ref ? readerPath(ref) : undefined}
+                                />
+                              );
+                            })}
+                          </div>
+                        );
+                      })}
                     </div>
                   ) : (
                     <div style={{ padding: '24px 16px', textAlign: 'center', color: 'var(--text-tertiary)', fontSize: '0.85rem', fontStyle: 'italic' }}>

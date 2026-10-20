@@ -11,67 +11,22 @@
  * translation. `proofTexts` is the same list flattened with KJV text filled
  * in, for screens that show the text directly. Run after scripts/ingest/kjv.js.
  *
- * Before converting, the reviewed corrections in provenance/decisions/wcf.json
- * are applied: places where the 1649 printing and an independent transcription
- * agree with each other against Creeds.json (npm run verify; res/SOURCES.md).
+ * The text is used as published. This source is interim: no openly licensed
+ * publisher edition with proofs has been found yet (res/SOURCES.md).
  *
  * Usage:
- *   node scripts/ingest/wcf.js                 # download from GitHub
- *   node scripts/ingest/wcf.js --input FILE    # use a saved westminster_confession_of_faith.json
+ *   node scripts/ingest/wcf.js              # convert the committed copy in sources/wcf/
+ *   node scripts/ingest/wcf.js --download   # fetch it again from GitHub first
  */
 
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
 import { compactRef, displayRef, parseOsisRef, versesInRef } from '../lib/refs.js';
-import { fetchBuffer, parseArgs, writeJson } from '../lib/io.js';
-import { checkLock, sha256 } from '../lib/lock.js';
-import { loadDecisions } from '../lib/decisions.js';
+import { jsonText } from '../lib/io.js';
+import { runAsScript } from '../lib/pipeline.js';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const OUTPUT = path.join(__dirname, '../../res/confessions/wcf/wcf.json');
-const KJV = path.join(__dirname, '../../res/bibles/kjv/kjv.json');
+export const OUTPUT = 'res/confessions/wcf/wcf.json';
+export const KJV = 'res/bibles/kjv/kjv.json';
+export const SOURCE_FILE = 'westminster_confession_of_faith.json';
 export const SOURCE_COMMIT = '2ae21a4c5387ecc91f474c9d3d67c826d2a6b9d5';
-export const SOURCE_URL = `https://raw.githubusercontent.com/NonlinearFruit/Creeds.json/${SOURCE_COMMIT}/creeds/westminster_confession_of_faith.json`;
-
-/**
- * Apply text and proof-reference corrections to the Creeds.json source.
- * Every correction must match exactly once, so a changed source fails loudly
- * instead of being corrected in the wrong place.
- */
-export function applyWcfCorrections(source, corrections) {
-  const out = JSON.parse(JSON.stringify(source));
-  const sections = new Map();
-  for (const ch of out.Data) for (const s of ch.Sections) sections.set(`${Number(ch.Chapter)}.${Number(s.Section)}`, s);
-  const find = num => {
-    const s = sections.get(num);
-    if (!s) throw new Error(`WCF correction: no section ${num}`);
-    return s;
-  };
-
-  for (const c of corrections.text ?? []) {
-    const s = find(c.section);
-    for (const field of ['Content', 'ContentWithProofs']) {
-      if (s[field] === undefined) continue;
-      const count = s[field].split(c.from).length - 1;
-      if (count !== 1) throw new Error(`WCF ${c.section}: "${c.from}" appears ${count} times in ${field}, expected once`);
-      s[field] = s[field].replace(c.from, c.to);
-    }
-  }
-
-  for (const c of corrections.proofs ?? []) {
-    const proof = (find(c.section).Proofs ?? []).find(p => p.Id === c.footnote);
-    if (!proof) throw new Error(`WCF ${c.section}: no footnote [${c.footnote}]`);
-    const at = proof.References.indexOf(c.replace[0]);
-    if (at < 0 || c.replace.some(r => !proof.References.includes(r))) {
-      throw new Error(`WCF ${c.section} [${c.footnote}]: expected ${c.replace.join(', ')} in ${proof.References.join(', ')}`);
-    }
-    const kept = proof.References.filter(r => !c.replace.includes(r));
-    kept.splice(Math.min(at, kept.length), 0, ...c.with);
-    proof.References = kept;
-  }
-  return out;
-}
 
 /** Look up verse text in an app-format Bible. */
 export function verseLookup(bible) {
@@ -157,30 +112,18 @@ export function convertWcf(source, kjv) {
   };
 }
 
-/** Download (or read) the pinned Creeds.json file and check its checksum. */
-export async function loadWcfSource(args = {}) {
-  const raw = args.input ? fs.readFileSync(args.input) : await fetchBuffer(SOURCE_URL);
-  checkLock('wcf', { sha256: sha256(raw), files: 1 });
-  return JSON.parse(raw.toString('utf8'));
-}
+export const pipeline = {
+  id: 'wcf',
+  sources: ['wcf'],
+  owns: [OUTPUT],
+  /** ctx.readJson reads the KJV this pipeline fills proof texts from. */
+  generate(files, ctx) {
+    const source = JSON.parse(files.get('wcf').get(SOURCE_FILE).toString('utf8'));
+    const wcf = convertWcf(source, ctx.readJson(KJV));
+    const sections = wcf.sections.reduce((n, c) => n + c.sections.length, 0);
+    const refs = wcf.sections.reduce((n, c) => n + c.sections.reduce((m, s) => m + s.proofTexts.length, 0), 0);
+    return { outputs: new Map([[OUTPUT, jsonText(wcf)]]), summary: `${wcf.sections.length} chapters, ${sections} sections, ${refs} proof references` };
+  },
+};
 
-async function main() {
-  const args = parseArgs(process.argv.slice(2));
-  const source = await loadWcfSource(args);
-  if (!fs.existsSync(KJV)) throw new Error('Run scripts/ingest/kjv.js first: the proof texts are filled in from the KJV.');
-  const kjv = JSON.parse(fs.readFileSync(KJV, 'utf8'));
-  const { corrections } = loadDecisions('wcf', { text: [], proofs: [] });
-  const wcf = convertWcf(applyWcfCorrections(source, corrections), kjv);
-  wcf.confession.corrections = { text: corrections.text.length, proofs: corrections.proofs.length, file: 'provenance/decisions/wcf.json' };
-  writeJson(OUTPUT, wcf);
-  const sections = wcf.sections.reduce((n, c) => n + c.sections.length, 0);
-  const refs = wcf.sections.reduce((n, c) => n + c.sections.reduce((m, s) => m + s.proofTexts.length, 0), 0);
-  console.log(`Wrote ${OUTPUT} (${wcf.sections.length} chapters, ${sections} sections, ${refs} proof references)`);
-}
-
-if (import.meta.url === `file://${process.argv[1]}`) {
-  main().catch(err => {
-    console.error(err);
-    process.exit(1);
-  });
-}
+runAsScript(import.meta, pipeline);

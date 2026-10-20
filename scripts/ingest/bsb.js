@@ -1,115 +1,197 @@
 /**
- * Download the Berean Standard Bible and write res/bibles/bsb/bsb.json.
+ * Convert the Berean Standard Bible from its publisher's downloads into
+ * res/bibles/bsb/bsb.json.
  *
- * Source: the publisher's own USFM release (github.com/BSB-publishing/bsb2usfm),
- * pinned to a version. The BSB has been public domain (CC0) since
- * April 30, 2023. This keeps verse text and Psalm titles; section headings,
- * cross-reference lines and footnotes are dropped for now.
+ * Source: the plain-text download on the publisher's site
+ * (https://berean.bible/downloads.htm -> bereanbible.com/bsb.txt), one verse
+ * per line ("Genesis 1:1<tab>In the beginning…"), the text berean.bible shows.
+ * The BSB has been dedicated to the public domain since April 30, 2023
+ * (berean.bible/terms.htm).
+ *
+ * Psalm titles: the plain text begins verse 1 of a Psalm with its title. The
+ * publisher's USX download (bsb_usx.zip) marks each title separately, so it
+ * shows where the title ends; the title and verse 1 both keep the plain
+ * text's own wording. The 16 verses the BSB leaves out are empty lines in the
+ * plain text and are left out here too.
+ *
+ * Strong's numbers: the publisher's translation tables (bsb_tables.tsv) give,
+ * for each Hebrew or Greek word, the BSB phrase that translates it and its
+ * Strong's number, in English order. Each phrase is found in the verse text,
+ * in order, and kept as `strongs: [[start, end, "H7225"], …]` (see
+ * alignPhrases). The verse text itself is always the plain text's.
  *
  * Usage:
- *   node scripts/ingest/bsb.js                 # download the release ZIP
- *   node scripts/ingest/bsb.js --input FILE    # use a saved BSB_usfm.zip
+ *   node scripts/ingest/bsb.js              # convert the committed copies in sources/bsb/
+ *   node scripts/ingest/bsb.js --download   # fetch them again from the publisher first
  */
 
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
 import { CANON } from '../lib/canon.js';
-import { normalizeText, parseArgs, writeBibleFile } from '../lib/io.js';
+import { bibleFileText, normalizeText } from '../lib/io.js';
+import { runAsScript } from '../lib/pipeline.js';
+import { parseUsxBook } from '../lib/usx.js';
 import { readZip } from '../lib/zip.js';
-import { checkLock, sha256 } from '../lib/lock.js';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const OUTPUT = path.join(__dirname, '../../res/bibles/bsb/bsb.json');
-export const SOURCE_VERSION = 'v5.16';
-export const SOURCE_URL = `https://github.com/BSB-publishing/bsb2usfm/releases/download/${SOURCE_VERSION}/BSB_usfm.zip`;
+export const OUTPUT = 'res/bibles/bsb/bsb.json';
+export const SOURCE_PAGE = 'https://berean.bible/downloads.htm';
+export const TEXT_FILE = 'bsb.txt';
+export const USX_FILE = 'bsb_usx.zip';
+export const TABLES_FILE = 'bsb_tables.tsv';
 
-// Paragraph markers whose whole line is not verse text: identification,
-// titles, section headings, cross-reference lines, acrostic letters, blank lines.
-const SKIP = new Set(['id', 'ide', 'h', 'toc1', 'toc2', 'toc3', 'mt', 'mt1', 'mt2', 'mt3', 'ms', 'ms1', 'mr',
-  's', 's1', 's2', 's3', 'r', 'sr', 'qa', 'sp', 'cl', 'rem', 'b']);
+/** The plain text's book names: the canon's, with "Psalm" for Psalms. */
+const BOOK_BY_NAME = new Map([...CANON.map(b => [b.name, b.id]), ['Psalm', 'PSA']]);
 
-/** Strip USFM character markup, keeping the words a reader sees. */
-export function cleanInline(text) {
-  return normalizeText(String(text)
-    .replace(/\\f\s.*?\\f\*/g, ' ')                 // footnotes
-    .replace(/\\fe\s.*?\\fe\*/g, ' ')               // endnotes
-    .replace(/\\x\s.*?\\x\*/g, ' ')                 // cross-references
-    .replace(/\\\+?ref\s+([^|\\]*?)(\|[^\\]*)?\\\+?ref\*/g, '$1')  // \ref shown|target\ref*
-    .replace(/\\\+?[a-z]+\d*\*/g, '')               // closers (\add*): nothing, so "forty-\add*two" stays one word
-    .replace(/\\\+?[a-z]+\d*/g, ' ')                // openers (\add, \wj, \nd)
-  ).replace(/\s+([,.;:!?’”)])/g, '$1').replace(/([“‘(])\s+/g, '$1');
+/** Read the plain text: Map of "GEN 1:1" -> text (empty for verses the BSB leaves out). */
+export function readPlainText(txt) {
+  const verses = new Map();
+  for (const line of txt.replace(/^\uFEFF/, '').split(/\r?\n/)) {
+    const m = line.match(/^(.+) (\d+):(\d+)\t(.*)$/);
+    if (!m) continue; // the attribution and column headings
+    const book = BOOK_BY_NAME.get(m[1]);
+    if (!book) throw new Error(`Unknown book "${m[1]}" in ${line.slice(0, 40)}`);
+    const key = `${book} ${m[2]}:${m[3]}`;
+    if (verses.has(key)) throw new Error(`${key} appears twice`);
+    verses.set(key, m[4]);
+  }
+  return verses;
 }
 
 /**
- * Parse one USFM book into verses and Psalm titles.
- * Psalm titles sit in \d lines that also open verse 1; their text becomes the
- * chapter's subtitle so verse 1 starts where the KJV's does. In other books
- * (Habakkuk 3, Zechariah 12) \d text is part of the verse, as in the KJV.
+ * Split a Psalm's title off its verse 1: `title` (from the USX) says how many
+ * characters, not counting spaces, the title has; the words are the plain text's.
  */
-export function parseUsfmBook(usfm, bookId) {
-  const verses = new Map();
-  const subtitles = {};
-  let chapter = 0;
-  let verse = null;
-  let para = null;
-
-  const append = (target, text) => {
-    const clean = cleanInline(text);
-    if (!clean) return;
-    if (target === 'title') {
-      subtitles[chapter] = subtitles[chapter] ? `${subtitles[chapter]} ${clean}` : clean;
-      return;
-    }
-    if (verse === null) throw new Error(`${bookId} ${chapter}: text before the first verse: "${clean.slice(0, 60)}"`);
-    const v = verses.get(`${chapter}:${verse}`);
-    v.text = v.text ? `${v.text} ${clean}` : clean;
-  };
-
-  for (const rawLine of usfm.split(/\r?\n/)) {
-    const line = rawLine.trim();
-    if (!line) continue;
-    let rest = line;
-    const m = line.match(/^\\([a-z]+\d*)\s?(.*)$/);
-    if (m) {
-      if (m[1] === 'c') {
-        chapter = parseInt(m[2], 10);
-        verse = null;
-        para = null;
-        continue;
-      }
-      if (m[1] !== 'v') {
-        para = m[1];
-        rest = m[2];
-      }
-    }
-    if (para && SKIP.has(para)) continue;
-
-    const titleLine = para === 'd' && bookId === 'PSA';
-    // The book divisions in Psalms ("Psalms 1–41") are labels, not titles.
-    if (titleLine && /^Psalms \d+–\d+$/.test(cleanInline(rest))) continue;
-
-    const pieces = rest.split(/\\v\s+(\d+)\s*/);
-    append(titleLine ? 'title' : 'verse', pieces[0]);
-    for (let i = 1; i < pieces.length; i += 2) {
-      verse = parseInt(pieces[i], 10);
-      const key = `${chapter}:${verse}`;
-      if (verses.has(key)) throw new Error(`${bookId} ${key} appears twice`);
-      verses.set(key, { book: bookId, chapter, verse, text: '' });
-      append(titleLine ? 'title' : 'verse', pieces[i + 1]);
-    }
+export function splitTitle(verse, title, where) {
+  const want = title.replace(/\s/g, '');
+  let i = 0;
+  let seen = '';
+  while (i < verse.length && seen.length < want.length) {
+    if (!/\s/.test(verse[i])) seen += verse[i];
+    i++;
   }
-
-  const list = [...verses.values()].sort((a, b) => a.chapter - b.chapter || a.verse - b.verse);
-  return { verses: list, subtitles };
+  if (seen !== want) throw new Error(`${where}: verse 1 doesn't begin with the title "${title}"`);
+  return { title: normalizeText(verse.slice(0, i)), text: normalizeText(verse.slice(i)) };
 }
 
-/** Convert the release's 66 USFM files ({BOOK}.usfm) into the app's Bible format. */
-export function convertBsb(files) {
+/** The Psalm titles marked in the USX download: { chapter: title }. */
+export function usxPsalmTitles(usxFiles) {
+  for (const [name, data] of usxFiles) {
+    const usx = data.toString('utf8');
+    if (name.endsWith('.usx') && /<book\b[^>]*\bcode="PSA"/.test(usx)) return parseUsxBook(usx, 'PSA').subtitles;
+  }
+  throw new Error('The USX download has no Psalms');
+}
+
+/** The verse in the tables' "Genesis 1:1" form as "GEN 1:1". */
+function verseKey(name) {
+  const m = name.match(/^(.+) (\d+):(\d+)$/);
+  const book = m && BOOK_BY_NAME.get(m[1]);
+  if (!book) throw new Error(`Unknown verse "${name}" in the translation tables`);
+  return `${book} ${Number(m[2])}:${Number(m[3])}`;
+}
+
+/**
+ * Read the translation tables: Map of "GEN 1:1" -> rows in English order,
+ * each { english, number } with number "H7225" / "G26" or null. A verse's
+ * name stands on its first row only; the rows after it belong to it too.
+ */
+export function readTables(tsv) {
+  const lines = tsv.replace(/^\uFEFF/, '').split(/\r?\n/);
+  const head = lines.shift().split('\t').map(h => h.trim());
+  const col = name => {
+    const i = head.indexOf(name);
+    if (i < 0) throw new Error(`The translation tables have no "${name}" column`);
+    return i;
+  };
+  const [order, verseId, english, hebrew, greek] = ['BSB Sort', 'VerseId', 'BSB version', 'Str Heb', 'Str Grk'].map(col);
+  const verses = new Map();
+  let key = null;
+  for (const line of lines) {
+    if (!line) continue;
+    const f = line.split('\t');
+    if (f[verseId]) key = verseKey(f[verseId]);
+    if (!key) throw new Error('The translation tables have a row before the first verse');
+    const number = f[hebrew] ? `H${Number(f[hebrew])}` : f[greek] ? `G${Number(f[greek])}` : null;
+    if (!verses.has(key)) verses.set(key, []);
+    verses.get(key).push({ order: Number(f[order]), english: f[english] ?? '', number });
+  }
+  for (const rows of verses.values()) rows.sort((a, b) => a.order - b.order);
+  return verses;
+}
+
+const WORD = /[\p{L}\p{N}]/u;
+
+/**
+ * The words of a table's English phrase as the plain text prints them. The
+ * tables mark untranslated words "-", the rest of a split phrase ". . .",
+ * a placeholder "vvv", supplied words [like this] and implied ones {like
+ * this}, and space punctuation apart ("Likewise , every"). Punctuation at
+ * either end is not part of the phrase.
+ */
+export function phraseOf(english) {
+  return english
+    .replace(/<[^>]*>/g, ' ')
+    .replace(/vvv|\. \. \./g, ' ')
+    .replace(/[[\]{}]/g, '')
+    .replace(/(^|\s)-(?=\s|$)/g, ' ')
+    .replace(/\s+/g, ' ')
+    .replace(/\s+([,.;:!?’”)])/g, '$1')
+    .replace(/([“‘(])\s+/g, '$1')
+    .replace(/\s*—\s*/g, '—')
+    .replace(/^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$/gu, '');
+}
+
+/**
+ * Find each row's phrase in the text, in order: at or after the end of the
+ * last phrase found, as whole words. Rows with a Strong's number become
+ * [start, end, number]; a phrase not found is skipped and counted.
+ */
+export function alignPhrases(text, rows) {
+  const tags = [];
+  let cursor = 0;
+  let missed = 0;
+  for (const row of rows) {
+    const phrase = phraseOf(row.english);
+    if (!phrase) continue;
+    let at = text.indexOf(phrase, cursor);
+    while (at >= 0 && (WORD.test(text[at - 1] ?? '') || WORD.test(text[at + phrase.length] ?? ''))) at = text.indexOf(phrase, at + 1);
+    if (at < 0) {
+      if (row.number) missed++;
+      continue;
+    }
+    if (row.number) tags.push([at, at + phrase.length, row.number]);
+    cursor = at + phrase.length;
+  }
+  return { tags, missed };
+}
+
+/**
+ * Convert the plain text (and the USX's Psalm titles) into the app's Bible
+ * format, with each verse's Strong's numbers from the translation tables.
+ * A Psalm's title and verse 1 are one verse in the tables; phrases in the
+ * title are found but not kept, as the title has no tags.
+ */
+export function convertBsb(txt, titles, tables = new Map()) {
+  const text = readPlainText(txt);
   const books = CANON.map(canon => {
-    const usfm = files.get(`${canon.id}.usfm`);
-    if (!usfm) throw new Error(`Source is missing ${canon.id}.usfm`);
-    const { verses, subtitles } = parseUsfmBook(usfm.toString('utf8').replace(/^﻿/, ''), canon.id);
+    const verses = [];
+    const subtitles = {};
+    for (const [key, raw] of text) {
+      const m = key.match(/^(\w+) (\d+):(\d+)$/);
+      if (m[1] !== canon.id || !raw.trim()) continue;
+      const chapter = Number(m[2]);
+      const verse = Number(m[3]);
+      let t = normalizeText(raw);
+      if (canon.id === 'PSA' && verse === 1 && titles[chapter]) {
+        const split = splitTitle(raw, titles[chapter], key);
+        subtitles[chapter] = split.title;
+        t = split.text;
+      }
+      const title = subtitles[chapter] && verse === 1 ? subtitles[chapter] : null;
+      const { tags } = alignPhrases(title ? `${title}\n${t}` : t, tables.get(key) ?? []);
+      const shift = title ? title.length + 1 : 0;
+      const strongs = tags.filter(([start]) => start >= shift).map(([start, end, n]) => [start - shift, end - shift, n]);
+      verses.push({ book: canon.id, chapter, verse, text: t, ...(strongs.length ? { strongs } : {}) });
+    }
+    if (!verses.length) throw new Error(`Source has no book ${canon.id}`);
     const book = { id: canon.id, name: canon.name, testament: canon.testament, chapters: canon.chapters };
     if (Object.keys(subtitles).length) book.subtitles = subtitles;
     book.verses = verses;
@@ -124,37 +206,27 @@ export function convertBsb(files) {
       releaseDate: '2016',
       copyright: 'Public Domain (CC0, dedicated April 30, 2023)',
       description: 'A modern English translation from the Hebrew and Greek, published by the Berean Bible team.',
-      source: { name: `BSB-publishing/bsb2usfm ${SOURCE_VERSION}`, url: SOURCE_URL },
+      source: { name: 'Berean Bible (bereanbible.com)', url: SOURCE_PAGE },
     },
     books,
   };
 }
 
-/** Download (or read) the pinned release, check its checksum, and convert it. */
-export async function loadBsbSource(args = {}) {
-  let zip;
-  if (args.input) {
-    zip = fs.readFileSync(args.input);
-  } else {
-    const res = await fetch(SOURCE_URL);
-    if (!res.ok) throw new Error(`HTTP ${res.status} for ${SOURCE_URL}`);
-    zip = Buffer.from(await res.arrayBuffer());
-  }
-  checkLock('bsb', { sha256: sha256(zip), files: 1 });
-  return convertBsb(readZip(zip));
-}
+export const pipeline = {
+  id: 'bsb',
+  sources: ['bsb', 'bsb-tables'],
+  owns: [OUTPUT],
+  generate(files) {
+    const bsb = files.get('bsb');
+    const tables = readTables(files.get('bsb-tables').get(TABLES_FILE).toString('utf8'));
+    const bible = convertBsb(bsb.get(TEXT_FILE).toString('utf8'), usxPsalmTitles(readZip(bsb.get(USX_FILE))), tables);
+    const verses = bible.books.flatMap(b => b.verses);
+    const tagged = verses.reduce((n, v) => n + (v.strongs?.length ?? 0), 0);
+    return {
+      outputs: new Map([[OUTPUT, bibleFileText(bible)]]),
+      summary: `${bible.books.length} books, ${verses.length} verses, ${tagged} phrases with Strong's numbers`,
+    };
+  },
+};
 
-async function main() {
-  const args = parseArgs(process.argv.slice(2));
-  const bible = await loadBsbSource(args);
-  writeBibleFile(OUTPUT, bible);
-  const total = bible.books.reduce((n, b) => n + b.verses.length, 0);
-  console.log(`Wrote ${OUTPUT} (${bible.books.length} books, ${total} verses)`);
-}
-
-if (import.meta.url === `file://${process.argv[1]}`) {
-  main().catch(err => {
-    console.error(err);
-    process.exit(1);
-  });
-}
+runAsScript(import.meta, pipeline);
