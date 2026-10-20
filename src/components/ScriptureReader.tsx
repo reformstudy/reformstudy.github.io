@@ -1074,9 +1074,15 @@ function StrongsEntryDisplay({ entry, prefix }: { entry: StrongsMatch; prefix: s
           {entry.gloss}
         </div>
       )}
-      <div style={{ fontSize: '0.9rem', color: 'var(--text-primary)', marginBottom: 6, lineHeight: 1.5, whiteSpace: 'pre-line', maxHeight: 320, overflowY: 'auto' }}>
-        {entry.definition}
-      </div>
+      {entry.definition ? (
+        <div style={{ fontSize: '0.9rem', color: 'var(--text-primary)', marginBottom: 6, lineHeight: 1.5, whiteSpace: 'pre-line', maxHeight: 320, overflowY: 'auto' }}>
+          {entry.definition}
+        </div>
+      ) : entry.number.startsWith('H') && (
+        <div style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)', marginBottom: 6 }}>
+          Full Hebrew definitions aren't available yet.
+        </div>
+      )}
       {entry.kjvDefinition && (
         <div style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)' }}>
           KJV renders as: <em style={{ color: 'var(--text-secondary)' }}>{entry.kjvDefinition}</em>

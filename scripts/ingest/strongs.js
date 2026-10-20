@@ -5,7 +5,9 @@
  *
  * Source: github.com/STEPBible/STEPBible-Data, pinned to a commit: TBESG
  * (Greek; definitions from Abbott-Smith's Manual Greek Lexicon) and TBESH
- * (Hebrew; definitions from a brief BDB). CC BY 4.0: the app credits
+ * (Hebrew). The Hebrew definitions are left out: they are © Larry Pierce of
+ * OnlineBible.net, and the file asks for Online Bible's permission before
+ * they are used in a project (see DEFINITIONS_WITHHELD). CC BY 4.0: the app credits
  * "STEP Bible", linked to www.STEPBible.org (provenance/registry.json).
  *
  * STEPBible extends Strong's numbering (H0001G, H0001H…) to tell apart words
@@ -24,6 +26,9 @@ import { runAsScript } from '../lib/pipeline.js';
 export const SOURCE_REPO = 'https://github.com/STEPBible/STEPBible-Data';
 export const SOURCE_COMMIT = 'bd09545c7a44b39ace20f16c0359915f2aa23a62';
 
+/** Why a language's definitions are left out, quoting the source file's own notes. */
+export const DEFINITIONS_WITHHELD = 'Left out until Online Bible gives permission: TBESH says its definitions are "based on the Abridged BDB by Online Bible, © Larry Pierce of OnlineBible.net" and "Permission should be gained from Online Bible before these are applied in any project."';
+
 export const LANGUAGES = [
   {
     id: 'greek', source: 'strongs-greek', file: 'TBESG.txt', output: 'res/strongs/greek/greek.json',
@@ -32,6 +37,7 @@ export const LANGUAGES = [
   {
     id: 'hebrew', source: 'strongs-hebrew', file: 'TBESH.txt', output: 'res/strongs/hebrew/hebrew.json',
     language: 'Hebrew', prefix: 'H', max: 8674, name: "Strong's Hebrew Lexicon (STEPBible TBESH)",
+    definitions: false,
   },
 ];
 
@@ -113,7 +119,7 @@ export function convertLexicon(rows, lang) {
       transliteration: r.translit.trim(),
       partOfSpeech: partOfSpeech(r.morph),
       gloss: r.gloss.trim(),
-      definition: definitionText(r.meaning),
+      definition: lang.definitions === false ? undefined : definitionText(r.meaning),
     };
     for (const k of Object.keys(entry)) if (!entry[k]) delete entry[k];
     return entry;
@@ -126,6 +132,7 @@ export function convertLexicon(rows, lang) {
       totalEntries: entries.length,
       source: { name: 'STEPBible.org, Tyndale House, Cambridge', url: `${SOURCE_REPO}/tree/${SOURCE_COMMIT}` },
       license: 'CC BY 4.0: credit "STEP Bible", linked to www.STEPBible.org',
+      ...(lang.definitions === false ? { definitions: DEFINITIONS_WITHHELD } : {}),
     },
     entries,
   };

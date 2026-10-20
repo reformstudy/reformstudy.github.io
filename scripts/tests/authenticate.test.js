@@ -269,6 +269,19 @@ test("Strong's: the converted lexicon passes; tampering is caught", () => {
   assert.match(tamper(e => { e[0].definition = undefined; })[0], /G1 definition: text missing/);
 });
 
+test("Strong's: withheld definitions must be absent, and are counted as left out", () => {
+  const lang = { ...GREEK, definitions: false };
+  const out = convertLexicon(parseLexicon(LEXICON_TSV), lang);
+  assert.ok(out.entries.every(e => e.definition === undefined));
+  assert.match(out.concordance.definitions, /Online Bible/);
+  const r = authenticateLexicon(out, LEXICON_TSV, lang);
+  assert.deepEqual(r.problems, []);
+  assert.ok(r.excluded.get('definitions left out (Online Bible permission needed)') > 0);
+  const leaked = JSON.parse(JSON.stringify(out));
+  leaked.entries[0].definition = 'alpha';
+  assert.match(authenticateLexicon(leaked, LEXICON_TSV, lang).problems[0], /G1 definition: should be left out/);
+});
+
 test("Strong's: definitions and parts of speech are re-derived", () => {
   assert.equal(definitionSource('<b>a</b><br/>b &amp; c'), 'a\nb & c');
   assert.equal(partOfSpeechFor('H:N-M / H:A'), 'Noun, masculine / Adjective');

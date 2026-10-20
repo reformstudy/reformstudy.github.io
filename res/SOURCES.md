@@ -74,7 +74,8 @@ Adding an exception means adding it to `scripts/authenticate/compare.js` with a 
 ## Strong's (STEPBible)
 
 - **What it is:** Tyndale House's brief lexicons, keyed to Strong's numbers.
-  - The Greek definitions come from Abbott-Smith's *Manual Greek Lexicon of the New Testament*; the Hebrew from a brief Brown-Driver-Briggs.
+  - The Greek definitions come from Abbott-Smith's *Manual Greek Lexicon of the New Testament* (marked "(AS)"), or from Middle Liddell (marked "(ML)") where Abbott-Smith has no entry.
+  - The Hebrew definitions are left out for now. TBESH's notes say they are "based on the Abridged BDB by Online Bible, © Larry Pierce of OnlineBible.net", and that "Permission should be gained from Online Bible before these are applied in any project." Hebrew entries keep the word, transliteration, part of speech and gloss. See `res/strongs/hebrew/README.md`.
   - Each entry has the word, a transliteration, a part of speech, a one-line gloss and a definition.
 - **Numbering:** STEPBible extends Strong's numbering to tell apart words Strong's grouped together, mostly names. Each Strong's number gets STEPBible's main entry, and only Strong's own range is included: G1–G5624 (5,523 entries) and H1–H8674 (8,674 entries).
 - **License:** CC BY 4.0. STEPBible asks for credit to "STEP Bible", linked to www.STEPBible.org, and for changes to the data to be recorded. The "About this version" panel carries the credit, and the changes are the selection described under Numbering.

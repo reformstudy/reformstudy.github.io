@@ -156,7 +156,7 @@
       "organization": "STEPBible.org, Tyndale House, Cambridge",
       "repo": "https://github.com/STEPBible/STEPBible-Data",
       "commit": "bd09545c7a44b39ace20f16c0359915f2aa23a62",
-      "license": "CC BY 4.0: credit \"STEP Bible\", linked to www.STEPBible.org; changes to the data recorded",
+      "license": "CC BY 4.0: credit \"STEP Bible\", linked to www.STEPBible.org; changes to the data recorded. The definitions (Abridged BDB, © Larry Pierce of OnlineBible.net) need Online Bible's permission and are left out.",
       "credit": {
         "text": "Lexicon data from STEP Bible, created by Tyndale House, Cambridge, and licensed under CC BY 4.0. ReformStudy keeps the main entry for each Strong's number and reformats it; the changes are described in res/SOURCES.md.",
         "links": [

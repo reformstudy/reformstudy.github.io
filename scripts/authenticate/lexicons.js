@@ -5,7 +5,8 @@
  * STEPBible's main entry for it (the row whose "dStrong" column ends in " =",
  * otherwise its first row), with the word, transliteration and gloss exactly
  * as written there, and the definition as its text once the HTML tags are
- * read (compare.js). The part of speech is re-derived from the row's
+ * read (compare.js). A language whose definitions are withheld
+ * (lang.definitions === false) must have none, and they are counted as left out. The part of speech is re-derived from the row's
  * morphology code. Numbers, rows and columns that aren't used are counted.
  */
 
@@ -123,7 +124,11 @@ export function authenticateLexicon(output, tsv, lang) {
       if (e[field] !== expected) problems.push(`${where} ${field}: "${e[field]}", source "${expected}"`);
     }
     const definition = definitionSource(r.meaning);
-    if (!definition.trim()) {
+    if (lang.definitions === false) {
+      // Withheld (see DEFINITIONS_WITHHELD in ingest/strongs.js): must be absent, and is counted as left out.
+      if (e.definition !== undefined) problems.push(`${where} definition: should be left out`);
+      excluded.set('definitions left out (Online Bible permission needed)', (excluded.get('definitions left out (Online Bible permission needed)') ?? 0) + definition.replace(/\s/g, '').length);
+    } else if (!definition.trim()) {
       if (e.definition !== undefined) problems.push(`${where} definition: the source has none`);
     } else {
       const diff = compareText(definition, e.definition, ['STEPBible indentation']);

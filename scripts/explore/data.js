@@ -357,7 +357,14 @@ export class Explorer {
       notes.push(`part of speech: ${e?.partOfSpeech ?? '—'} from code ${r?.morph ?? '—'}${e?.partOfSpeech === pos ? '' : ` (expected ${pos ?? '—'})`}`);
       if (e?.partOfSpeech !== pos) fields.push('part of speech');
       const definition = r ? definitionSource(r.meaning) : undefined;
-      const row = this.row(`${lang.prefix}${n}`, m?.isMain === false ? 'entry (no main row marked; the first row is used)' : 'entry', raw, definition, e?.definition, ['STEPBible indentation'], notes);
+      const kind = m?.isMain === false ? 'entry (no main row marked; the first row is used)' : 'entry';
+      let row;
+      if (lang.definitions === false) {
+        notes.unshift('definition: left out until Online Bible gives permission (see the file\'s notes)');
+        row = { key: `${lang.prefix}${n}`, kind, raw, source: definition ?? null, output: e?.definition ?? null, verdict: e?.definition !== undefined ? 'the definition should be left out' : !e ? 'in the source but not in the output' : null, notes };
+      } else {
+        row = this.row(`${lang.prefix}${n}`, kind, raw, definition, e?.definition, ['STEPBible indentation'], notes);
+      }
       if (!row.verdict && fields.length) row.verdict = `${fields.join(', ')} differ${fields.length === 1 ? 's' : ''}`;
       rows.push(row);
     }

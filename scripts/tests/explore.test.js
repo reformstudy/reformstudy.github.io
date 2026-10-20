@@ -123,6 +123,11 @@ test('inspect the Confession and the lexicons', () => {
   assert.equal(g.summary.failed, 0);
   assert.match(g.units[0].raw, /^G0001\t/);
   assert.match(g.units[0].notes.at(-1), /^part of speech: Noun from code G:N-LI$/);
+  const h = explorer.inspect('strongs-hebrew', 'H1');
+  assert.equal(h.summary.failed, 0);
+  assert.equal(h.units[0].output, null);
+  assert.ok(h.units[0].source.length > 0, 'the withheld definition is still shown as read from the source');
+  assert.match(h.units[0].notes[0], /left out until Online Bible gives permission/);
 });
 
 test('verdicts: a row reports missing units and differences', () => {
@@ -185,7 +190,7 @@ function tamperable(files) {
 test('inspect shows every kind of failure the authenticator would report', () => {
   const { root, edit } = tamperable([
     'res/bibles/kjv/kjv.json', 'res/bibles/bsb/bsb.json', 'res/confessions/wcf/wcf.json',
-    'res/commentaries/henry/meta.json', 'res/commentaries/henry/ROM/8.json', 'res/strongs/greek/greek.json',
+    'res/commentaries/henry/meta.json', 'res/commentaries/henry/ROM/8.json', 'res/strongs/greek/greek.json', 'res/strongs/hebrew/hebrew.json',
   ]);
   edit('res/bibles/kjv/kjv.json', b => {
     const gen = b.books[0];
@@ -201,6 +206,10 @@ test('inspect shows every kind of failure the authenticator would report', () =>
   edit('res/confessions/wcf/wcf.json', w => {
     w.sections[0].sections[0].content = 'Changed.';
     w.sections[0].sections[1].proofs[0].refs = ['GEN.1.1'];
+  });
+  edit('res/strongs/hebrew/hebrew.json', h => {
+    h.entries[0].definition = 'father';
+    h.entries.splice(1, 1);
   });
   edit('res/strongs/greek/greek.json', g => {
     g.entries[0].gloss = 'Omega';
@@ -233,5 +242,8 @@ test('inspect shows every kind of failure the authenticator would report', () =>
   assert.equal(g.units[2].verdict, 'in the source but not in the output');
   assert.match(g.units[0].notes[2], /gloss: Omega \(source: Alpha\)/);
 
+  const hb = x.inspect('strongs-hebrew', 'H1');
+  assert.equal(hb.units[0].verdict, 'the definition should be left out');
+  assert.equal(hb.units[1].verdict, 'in the source but not in the output');
   assert.equal(x.inspect('bsb', 'GEN 1').summary.failed, 0);
 });
