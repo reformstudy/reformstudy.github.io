@@ -1,0 +1,140 @@
+{
+ "channel": "preview",
+ "app": {
+  "version": "0.1.0",
+  "release": null,
+  "describe": "v0.1.0-27-g3ae6814",
+  "commit": "3ae6814",
+  "builtAt": "2026-10-20T14:34:34.501Z"
+ },
+ "content": {
+  "fingerprint": "45ce289a8b42",
+  "sources": [
+   {
+    "id": "kjv",
+    "title": "King James Version",
+    "organization": "eBible.org (with the CrossWire Bible Society)",
+    "source": "https://ebible.org/find/details.php?id=eng-kjv",
+    "license": "Public domain (outside the UK, where the Crown's letters patent apply)",
+    "credit": {
+     "text": "King James Version text from eBible.org, prepared with the CrossWire Bible Society.",
+     "links": [
+      {
+       "label": "eBible.org",
+       "url": "https://ebible.org/find/details.php?id=eng-kjv"
+      }
+     ]
+    }
+   },
+   {
+    "id": "bsb",
+    "title": "Berean Standard Bible",
+    "organization": "Berean Bible (publisher; bereanbible.com, berean.bible)",
+    "source": "https://berean.bible/downloads.htm",
+    "license": "Public domain (dedicated April 30, 2023; berean.bible/terms.htm). Attribution appreciated, not required.",
+    "credit": {
+     "text": "The Holy Bible, Berean Standard Bible, BSB is produced in cooperation with Bible Hub, Discovery Bible, OpenBible.com, and the Berean Bible Translation Committee. This text of God's Word has been dedicated to the public domain.",
+     "links": [
+      {
+       "label": "berean.bible",
+       "url": "https://berean.bible"
+      }
+     ]
+    }
+   },
+   {
+    "id": "bsb-tables",
+    "title": "BSB Translation Tables",
+    "organization": "Berean Bible (publisher; bereanbible.com, berean.bible)",
+    "source": "https://berean.bible/downloads.htm",
+    "license": "Public domain: the publisher dedicates the Berean Bible texts to the public domain (April 30, 2023; berean.bible/terms.htm). The terms don't name the tables separately. Attribution appreciated, not required.",
+    "credit": {
+     "text": "The Holy Bible, Berean Standard Bible, BSB is produced in cooperation with Bible Hub, Discovery Bible, OpenBible.com, and the Berean Bible Translation Committee. This text of God's Word has been dedicated to the public domain.",
+     "links": [
+      {
+       "label": "berean.bible",
+       "url": "https://berean.bible"
+      }
+     ]
+    }
+   },
+   {
+    "id": "wcf",
+    "title": "Westminster Confession of Faith (1647)",
+    "organization": null,
+    "source": "https://github.com/NonlinearFruit/Creeds.json/tree/2ae21a4c5387ecc91f474c9d3d67c826d2a6b9d5",
+    "license": "Text public domain; repository Unlicense",
+    "credit": {
+     "text": "Westminster Confession of Faith (1647) from the Creeds.json project, used as published.",
+     "links": [
+      {
+       "label": "Creeds.json",
+       "url": "https://github.com/NonlinearFruit/Creeds.json"
+      }
+     ]
+    }
+   },
+   {
+    "id": "henry",
+    "title": "Matthew Henry's Commentary on the Whole Bible",
+    "organization": "Christian Classics Ethereal Library (CCEL), Calvin University",
+    "source": "https://ccel.org/ccel/henry",
+    "license": "Public domain (\"May be copied and distributed freely\", in each volume). CCEL's site policy asks permission for republishing or commercial use.",
+    "credit": {
+     "text": "Matthew Henry's Commentary on the Whole Bible from the Christian Classics Ethereal Library at Calvin University.",
+     "links": [
+      {
+       "label": "ccel.org",
+       "url": "https://ccel.org/ccel/henry"
+      }
+     ]
+    }
+   },
+   {
+    "id": "strongs-greek",
+    "title": "Strong's Greek Lexicon (STEPBible TBESG)",
+    "organization": "STEPBible.org, Tyndale House, Cambridge",
+    "source": "https://github.com/STEPBible/STEPBible-Data/tree/bd09545c7a44b39ace20f16c0359915f2aa23a62",
+    "license": "CC BY 4.0: credit \"STEP Bible\", linked to www.STEPBible.org; changes to the data recorded",
+    "credit": {
+     "text": "Lexicon data from STEP Bible, created by Tyndale House, Cambridge, and licensed under CC BY 4.0. ReformStudy keeps the main entry for each Strong's number and reformats it; the changes are described in res/SOURCES.md.",
+     "links": [
+      {
+       "label": "STEPBible.org",
+       "url": "https://www.STEPBible.org"
+      },
+      {
+       "label": "CC BY 4.0",
+       "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+     ]
+    }
+   },
+   {
+    "id": "strongs-hebrew",
+    "title": "Strong's Hebrew Lexicon (STEPBible TBESH)",
+    "organization": "STEPBible.org, Tyndale House, Cambridge",
+    "source": "https://github.com/STEPBible/STEPBible-Data/tree/bd09545c7a44b39ace20f16c0359915f2aa23a62",
+    "license": "CC BY 4.0: credit \"STEP Bible\", linked to www.STEPBible.org; changes to the data recorded. The definitions (Abridged BDB, © Larry Pierce of OnlineBible.net) need Online Bible's permission and are left out.",
+    "credit": {
+     "text": "Lexicon data from STEP Bible, created by Tyndale House, Cambridge, and licensed under CC BY 4.0. ReformStudy keeps the main entry for each Strong's number and reformats it; the changes are described in res/SOURCES.md.",
+     "links": [
+      {
+       "label": "STEPBible.org",
+       "url": "https://www.STEPBible.org"
+      },
+      {
+       "label": "CC BY 4.0",
+       "url": "https://creativecommons.org/licenses/by/4.0/"
+      }
+     ]
+    }
+   }
+  ]
+ },
+ "live": {
+  "ref": "v0.1.0",
+  "commit": "252a67b",
+  "url": "/"
+ }
+}
